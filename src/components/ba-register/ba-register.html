@@ -1,0 +1,115 @@
+<ion-list class="login-form">
+  	<form [formGroup]="formSignup" class="form-custom">
+  		<div *ngFor="let item of data.register">
+			<ion-item *ngIf="item.type =='text'" mode="md" bg-transparent no-padding>
+				<ion-label floating><span light [innerHTML]="item.label"></span></ion-label>
+				<ion-input dir="{{display_mode}}" light type="{{item.type}}" formControlName="{{item.name_id}}"></ion-input>
+			</ion-item>
+			<ion-item *ngIf="item.type =='email'" mode="md" bg-transparent no-padding>
+				<ion-label floating><span light [innerHTML]="item.label"></span></ion-label>
+				<ion-input dir="{{display_mode}}" light type="{{item.type}}" formControlName="{{item.name_id}}"></ion-input>
+			</ion-item>
+			<ion-item *ngIf="item.type =='tel'" mode="md" bg-transparent no-padding>
+				<ion-label floating><span light [innerHTML]="item.label"></span></ion-label>
+				<ion-input dir="{{display_mode}}" light type="{{item.type}}" formControlName="{{item.name_id}}"></ion-input>
+			</ion-item>
+			<ion-item *ngIf="item.type == 'textarea'" mode="md" bg-transparent no-padding>
+				<ion-label floating><span light [innerHTML]="item.label"></span></ion-label>
+				<ion-input dir="{{display_mode}}" light type="{{item.type}}" formControlName="{{item.name_id}}"></ion-input>
+			</ion-item>
+			<ion-item *ngIf="item.type == 'password'" mode="md" bg-transparent no-padding>
+				<ion-label floating><span light [innerHTML]="item.label"></span></ion-label>
+				<ion-input dir="{{display_mode}}" light type="{{item.type}}" formControlName="{{item.name_id}}"></ion-input>
+			</ion-item>
+			<div *ngIf="item.type == 'radio'" radio-group formControlName="{{item.name_id}}"  mode="md" no-padding>
+				<ion-label>
+					<span light [innerHTML]="item.label"></span>
+				</ion-label>
+				<div *ngFor="let option of item.option_field">
+					<ion-label class="custom-radio"><span light>{{option}}</span><ion-radio light mode="md" dir="{{display_mode}}" [value]="option"></ion-radio></ion-label>
+				</div>
+			</div>
+			<ion-item *ngIf="item.type == 'ip_address'" mode="md" bg-transparent no-padding>
+				<ion-label floating><span light [innerHTML]="item.label"></span></ion-label>
+				<ion-input dir="{{display_mode}}" light type="{{item.type}}" formControlName="{{item.name_id}}"></ion-input>
+			</ion-item>
+			<ion-item *ngIf="item.type == 'number'" mode="md" bg-transparent no-padding>
+				<ion-label floating><span light [innerHTML]="item.label"></span></ion-label>
+				<ion-input dir="{{display_mode}}" light type="{{item.type}}" formControlName="{{item.name_id}}"></ion-input>
+			</ion-item>
+			<ion-item *ngIf="item.type == 'url'" mode="md" bg-transparent no-padding>
+				<ion-label floating><span light [innerHTML]="item.label"></span></ion-label>
+				<ion-input dir="{{display_mode}}" light type="{{item.type}}" formControlName="{{item.name_id}}"></ion-input>
+			</ion-item>
+			<ion-item *ngIf="item.type == 'select'" mode="md" bg-transparent no-padding>
+				<ion-label floating><span light [innerHTML]="item.label"></span></ion-label>
+					<ion-select formControlName="{{item.name_id}}">
+				    	<ion-option *ngFor="let option of item.option_field" [value]="option">{{option}}</ion-option>
+				  	</ion-select>
+			</ion-item>
+			<ion-item *ngIf="item.type == 'multiselect'" mode="md" bg-transparent no-padding>
+				<ion-label floating><span light [innerHTML]="item.label"></span></ion-label>
+				<ion-select formControlName="{{item.name_id}}" multiple="true">
+			    	<ion-option *ngFor="let option of item.option_field" [value]="option">{{option}}</ion-option>
+			  	</ion-select>
+			</ion-item>
+			<ion-item *ngIf="item.type == 'checkbox'" mode="md" class="checkbox-custom" bg-transparent no-padding>
+				<ion-label light [innerHTML] = "item.label"></ion-label>
+				<ion-checkbox mode="md" dir="{{display_mode}}" formControlName="{{item.name_id}}"></ion-checkbox>
+			</ion-item>
+			<ion-item *ngIf="item.type == 'ba-date'" mode="md" bg-transparent no-padding>
+			  	<ion-label floating><span light [innerHTML]="item.label"></span></ion-label>
+			  	<ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY" formControlName="{{item.name_id}}"></ion-datetime>
+			</ion-item>
+			<ion-item *ngIf="item.type == 'country' && item.name_id == 'billing_country'" mode="md" bg-transparent no-padding>
+				<ion-label text-wrap ><span light [innerHTML]="item.label"></span></ion-label>
+				<ion-select light dir="{{display_mode}}" [selectOptions]="{cssClass:'select-address'}" [cancelText]="'general.cancel'|translate" [okText]="'general.ok'|translate" type="text" formControlName="{{item.name_id}}" (ionChange)="changeCountryRegister($event,item.name_id, item.country_has_state)">
+					<ion-option *ngFor="let country of countries" [value]="country.value">
+						<span [innerHtml]="country.name"></span>
+					</ion-option>
+				</ion-select>
+			</ion-item>
+			<ion-item mode="md" bg-transparent no-padding *ngIf="item.type == 'state' && item.name_id == 'billing_state' && stateRegister.default_country && stateRegister.default_country != 'input'">
+				<ion-label  text-wrap ><span light [innerHTML]="item.label"></span></ion-label>
+				<ion-select light dir="{{display_mode}}" [selectOptions]="{cssClass:'select-address'}" [cancelText]="'general.cancel'|translate" [okText]="'general.ok'|translate" type="text" formControlName="{{item.name_id}}" >
+					<ion-option *ngFor="let state of stateRegister.default_country" [value]="state.value">
+						<span [innerHtml]="state.name"></span>
+					</ion-option>
+				</ion-select>
+			</ion-item>
+
+			<ion-item mode="md" bg-transparent no-padding *ngIf="item.type == 'state' && item.name_id == 'billing_state' && stateRegister.default_country && stateRegister.default_country == 'input'">
+				<ion-label text-wrap ><span light [innerHTML]="item.label"></span></ion-label>
+				<ion-input light dir="{{display_mode}}" type="text" formControlName="{{item.name_id}}" ></ion-input>
+			</ion-item>
+			<ion-item *ngIf="item.type == 'country' && item.name_id != 'billing_country'" mode="md" bg-transparent no-padding>
+				<ion-label text-wrap ><span light [innerHTML]="item.label"></span></ion-label>
+				<ion-select light dir="{{display_mode}}" [selectOptions]="{cssClass:'select-address'}" [cancelText]="'general.cancel'|translate" [okText]="'general.ok'|translate" type="text" formControlName="{{item.name_id}}" (ionChange)="changeCountryRegister($event,item.name_id, item.country_has_state)">
+					<ion-option *ngFor="let country of countries" [value]="country.value">
+						<span [innerHtml]="country.name"></span>
+					</ion-option>
+				</ion-select>
+			</ion-item>
+			<ion-item mode="md" bg-transparent no-padding *ngIf="item.type == 'state' && item.name_id != 'billing_state' && stateRegister[item.country_belong_to] && stateRegister[item.country_belong_to] != 'input'">
+				<ion-label  text-wrap ><span light [innerHTML]="item.label"></span></ion-label>
+				<ion-select light dir="{{display_mode}}" [selectOptions]="{cssClass:'select-address'}" [cancelText]="'general.cancel'|translate" [okText]="'general.ok'|translate" type="text" formControlName="{{item.name_id}}" >
+					<ion-option *ngFor="let state of stateRegister[item.country_belong_to]" [value]="state.value">
+						<span [innerHtml]="state.name"></span>
+					</ion-option>
+				</ion-select>
+			</ion-item>
+
+			<ion-item mode="md" bg-transparent no-padding *ngIf="item.type == 'state' && item.name_id != 'billing_state' && stateRegister[item.country_belong_to] && stateRegister[item.country_belong_to] == 'input'">
+				<ion-label text-wrap ><span light [innerHTML]="item.label"></span></ion-label>
+				<ion-input light dir="{{display_mode}}" type="text" formControlName="{{item.name_id}}" ></ion-input>
+			</ion-item>
+
+  		</div>
+  	</form>
+</ion-list>
+<button ion-button block text-uppercase (click)="register()" [disabled]="formSignup.invalid">
+	<span>{{'signup.title'|translate}}</span>
+</button>
+<button ion-button block clear class="disable-hover" color="light" (click)="gotoLogin()">
+	<span>{{'signup.login'|translate}}</span>
+</button>

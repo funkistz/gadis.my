@@ -1,1 +1,4 @@
 <ion-nav [root]="rootPage"></ion-nav>
+<div absolute padding text-center width-100 primary-bg *ngIf="isLoaded && disconnect" class="disconnect">
+	{{'general.disconnect'|translate}}
+</div>

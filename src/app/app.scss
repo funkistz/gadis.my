@@ -1,16 +1,508 @@
-// http://ionicframework.com/docs/theming/
+html{
+	&.small{font-size:56.25%;}
+	&.normal{font-size:62.5%;}
+	&.large{font-size:68.75%;}
+	&.extra_large{font-size:75%;}
+}
+ion-icon[class*="ion-ios-icon-"], ion-icon[class*="ion-md-icon-"]{font-family:"vspfonts", "Roboto", "fontello"}
+.alert-message{overflow:auto}
+.back-button-icon-ios{font-size:2.5rem!important}
+/*.text-input-md{margin-left:8px!important}*/
+/*.item-md .text-input-ios{margin-left:8px!important}*/
+/*.cloned-input{display:none}*/
+.input-has-focus .label-ios[floating]{
+	color:color($colors, primary);
+}
+.select-ios .select-text{margin-left:8px}
+img{
+	max-width:100%;
+	max-height:100%;
+}
+p{margin:8px 0}
+::placeholder{
+    text-overflow:ellipsis;
+}
+::-webkit-input-placeholder{text-overflow:ellipsis!important;}
+::-moz-placeholder{text-overflow:ellipsis!important;}
+:-moz-placeholder{text-overflow:ellipsis!important;}
+:-ms-input-placeholder{text-overflow:ellipsis!important;}
 
+html[dir="ltr"]{
+	[float-left]{float:left}
+	[float-right]{float:right}
+	page-detail .product-slides .product-favorite {
+		right:15px;
+	}
+	[right]{margin-right: 16px;}
+}
+html[dir="rtl"]{
+	.label-ios[floating] {
+	  transform-origin: right top;
+	}
+	.item-ios.item-block .item-inner {
+	   padding-right: 0px; 
+	}
+	page-address{
+		.label-ios {
+		  margin: 11px 0px 11px 0;
+		}
+	}
+	page-cart{
+		.label-ios {
+		  	margin: 11px 16px 11px 10px;
+		}
+		.text-input-ios {
+    		margin: 11px 16px 11px 0;
+    	}
+    	.list-product .item-product .button-delete {
+		    top: -10px;
+		    left: -16px;
+		}
+		[right]{margin-left: 16px;}
+		[left]{margin-right: 16px;}
+	}
+	page-account {
+		.item-ios ion-icon[item-left] {
 
-// App Global Sass
-// --------------------------------------------------
-// Put style rules here that you want to apply globally. These
-// styles are for the entire app and not just one component.
-// Additionally, this file can be also used as an entry point
-// to import other Sass files to be included in the output CSS.
-//
-// Shared Sass variables, which can be used to adjust Ionic's
-// default Sass variables, belong in "theme/variables.scss".
-//
-// To declare rules for a specific mode, create a child rule
-// for the .md, .ios, or .wp mode classes. The mode class is
-// automatically applied to the <body> element in the app.
+		}
+		.item-ios {
+			padding-right: 16px;
+			padding-left: 0;
+		}
+		.item-ios [item-left] {
+			margin: 8px 0 8px 16px;
+		}
+	}
+	page-checkout{
+		.checkout-term {
+			.term-note{
+				padding-left: 0;
+				padding-right: 28px;
+			}
+		}
+		hide-show {
+			.button-change [this-title] .icon {
+				  float: right;
+				  margin-left: 8px;
+				}
+		}
+		.item-divider-ios {
+			padding-left: 0;
+			padding-right: 16px;
+		}
+		.item-ios [item-left] {
+			margin: 8px 0px 8px 16px;
+		}
+	}
+	page-detail-order {
+		[text-left] {text-align: left !important;}
+		.checkout-term {
+			.term-note{
+				padding-left: 0;
+				padding-right: 28px;
+			}
+		}
+		.item-ios [item-left] {
+			margin: 8px 0px 8px 16px;
+		}
+		.item-divider-ios {
+			padding-left: 0;
+			padding-right: 16px;
+		}
+		hide-show .button-change [this-title] .icon {
+		    float: right;
+		    margin-left: 8px !important;
+		}
+		.item-order-detail{padding-right: 0;}
+		[margin-right-order]{margin-left: 16px;}
+		[float-right] {float: left !important;}
+		[float-left] {float: right !important;}
+	}
+	.item-md.item-block .item-inner {
+	  padding-right: 0px;
+	}
+	.label-ios {
+	  margin: 11px 0px 11px 10px;
+	}
+	.item-ios.item-label-floating .text-input {
+		margin-right: 0;
+	}
+	[float-left]{float:right}
+	[float-right]{float:left}
+	button-cart ion-badge{
+		left:auto;
+		right:25px;
+	}
+	[text-right]{text-align:left !important}
+	[text-left]{text-align:right !important}
+	[margin-left] {margin-right: 16px !important;}
+	[margin-right] {margin-left: 16px !important;}
+	page-detail .product-slides .product-favorite {
+		left:15px !important;
+	}
+	.favorite{
+		left:-16px;
+	}
+	.detail{
+		left:0;
+	}
+	.product-detail{
+		/*padding-right:8px;*/
+		padding-left: 0px;
+	}
+	.filter-list ion-col .product-detail .icon-check-cart{
+		margin-right: 0;
+		margin-left: 10%;
+	}
+
+	.filter-list {
+		.product-block {
+			.product-info {
+				padding: 0 10px 0 0;
+			}
+
+			.icon-cart-iconcartcheck {
+				left: 35px;
+				right: auto;
+			}
+
+			.btn-favorite {
+				left: 8px;
+				right: auto;
+			}
+
+			.product-price {padding: 0 0 0 50px;}
+		}
+	}
+
+	.button-cart-list {
+		display: block ;
+    	justify-content: space-between;
+
+		.add-to-cart {margin: 0 5px 0 0;}
+	}
+
+	page-account .account-list .toggle {
+		margin: 8px 8px 8px 0;
+	}
+
+	page-detail {
+		.product-rate {
+			.rate {
+				margin-left: 16px;
+			}
+
+			.ion-ios-arrow-forward {margin: 0;}
+		}
+
+		.quantity-title {
+			display: flex;
+			justify-content: space-between;
+		}
+
+		.quantity-price .col {
+			display: flex;
+			&:first-child {
+				justify-content: flex-start;
+			}
+
+			&:last-child {
+				justify-content: flex-end;
+			}
+		}
+	}
+
+}
+[disable-transform=true]{
+	position:fixed;
+	transform:none!important;
+}
+[relative]{position:relative}
+[absolute]{position:absolute}
+[overflow]{overflow:auto}
+[width-100], [size-full]{width:100%}
+[height-100], [size-full]{height:100%}
+[no-padding-hard]{padding:0!important}
+[no-padding-left]{padding-left:0}
+[padding-4]{padding:4px}
+[padding-4-vertical]{padding:4px 0}
+[padding-8]{padding:8px}
+[margin-auto]{
+	display:block;
+	margin:0 auto
+}
+[min-height-250] {min-height: 230px;}
+[border-right]{border-right: 1px solid #f0f0f0}
+[border-bottom]{border-bottom: 1px solid #f0f0f0}
+[border-left]{border-left: 1px solid #f0f0f0}
+[no-border]{border:none}
+[top]{top:0}
+[right]{right:0}
+[bottom]{bottom:0}
+[left]{left:0}
+[text-through]{text-decoration:line-through}
+[text-none]{text-decoration:none}
+[font-120]{font-size:120%}
+[font-110]{font-size:110%}
+[font-90]{font-size:90%}
+[font-80]{font-size:80%}
+[bg-full]{background-size:100% 100%}
+[bg-transparent]{background:transparent}
+[icon-big]{font-size:2em}
+[icon-page]{font-size:3em}
+[no-wrap]{white-space:nowrap}
+[no-wrap-ellipsis]{
+	white-space:nowrap;
+	display:block;
+	text-overflow:ellipsis;
+	overflow:hidden;
+}
+[width-50] {
+    flex: 0 0 50%;
+    width: 50%;
+    max-width: 50%;
+}
+.no-data{line-height:28px}
+.rate{
+	display:inline-block;
+	overflow:hidden;
+	width:66px;
+	height:13px;
+	background:url(../assets/images/rate.png) no-repeat 0px -14px;
+}
+.rating{
+	display:block;
+	height:13px;
+	background:url(../assets/images/rate.png) no-repeat;
+}
+.alert-no-title{
+	.alert-head{display:none}
+	.alert-message{padding:24px}
+}
+.term-condition{
+	.alert-wrapper {
+		.alert-head {
+			border-bottom:1px solid #ebebeb;
+		}
+		.alert-message{
+			text-align: left;
+		}
+	}
+	.alert-button-default{
+		color:color($colors, azure);
+	}
+}
+.alert-ios .alert-button:last-child{font-weight:normal}
+.alert-forgot{
+	.alert-wrapper{
+		background:#fff;
+		overflow:hidden;
+		position: relative;
+	}
+	.alert-title{
+		font-size:21px;
+		text-align:left;
+	}
+	.alert-message{
+		font-size:12px;
+		padding-bottom:0;
+		overflow-y:visible;
+		text-align:left;
+	}
+	.alert-input-group{
+		padding-bottom:0;
+		.alert-input{
+			border-radius:0;
+			border:none;
+			border-bottom:1px solid #C1BCB6;
+		}
+	}
+	.alert-button-group{
+		-webkit-justify-content: flex-start;
+		-ms-flex-pack: start;
+		justify-content: flex-start;
+		padding:0 $content-padding;
+		padding-bottom:24px;
+		margin-top:10px;
+		.button-cancel{
+			position:absolute;
+			top:0;
+			right:0;
+			margin:0;
+			min-width:40px;
+			.button-inner{
+				&:before{
+					content:"\f2c0";
+					font-family:"Ionicons";
+					font-size:18px;
+					color:#76746F;
+				}
+			}
+		}
+		.button-confirm{
+			max-width:55%;
+			font-size:12px;
+			height:34px;
+			text-transform:uppercase;
+			border-radius:5px;
+			background:color($colors, primary);
+			color:color-contrast($colors, primary);
+		}
+	}
+}
+.alert-signout{
+	.alert-button-default{
+		color:color($colors, azure);
+	}
+}
+.action-text-size{
+	.selected{color:color($colors, gray)}
+}
+.disconnect{
+	bottom:$toolbar-ios-height;
+	color:color-contrast($colors, primary);
+}
+[product-border]{
+	border:2px solid #fcfcfc;
+	img{
+		width:100%;
+		height:100%;
+	}
+}
+[product-sale]{
+	padding:0 4px;
+}
+[icon-sale]{
+    top:4px;
+	left:-3px;
+    width:36px!important;
+	height:auto!important;
+}
+[icon-outstock] {
+    top: 4px;
+    left: -2px;
+    width: 68px !important;
+    height: auto !important;
+}
+[text-underline]{text-decoration:underline;}
+.disable-hover{
+	.button-effect{display:none;}
+}
+.button-clear{
+	&.activated{background:none!important;}
+}
+.select-address{
+	.alert-button-group{
+		.alert-button:first-child{color:color($colors, dark);}
+		.alert-button:last-child{color:color($colors, navy);}
+	}
+}
+[margin-0]{margin:0;}
+[font-weight-500]{font-weight: 500}
+
+.button-cart-list{
+	.button-cart{
+		background-color: #fff;
+		border: 1px solid color($colors, primary);
+		border-radius: 14px;
+		height: 28px;
+		padding: 0 10px;
+		opacity: 1 !important;
+		margin: 5px 0 0;
+		.icon-cart-add{
+			font-size: 18px;
+			margin-top: -1px;
+		}
+		.add-to-cart{
+			font-size: 12px;
+			margin-left: 5px;
+		}
+
+		.button-inner > div {
+			display: flex;
+		    justify-content: center;
+		    align-items: center;
+		}
+	}
+	.icon-cart-iconcartcheck{padding-top:9px; font-size: 17px;}
+}
+
+.button-cart-list-option{
+	.button-cart{
+		background-color: #fff;
+		border: 1px solid #333e48;
+		border-radius: 14px;
+		height: 28px;
+		padding: 0 10px;
+		line-height: 28px;
+		margin:5px 0 0;
+		.icon-cart-add{font-size: 18px;}
+		.add-to-cart{font-size: 13px; color: #333e48;}
+	}
+}
+
+.product-block {
+	.product-price {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+
+	.product-title {
+		display: block;
+	}
+}
+
+ .row {
+  	align-items: center;
+ }
+
+.clearfix:after {
+	content: "";
+    clear: both;
+    display: table;
+}
+.faded-content{
+	visibility: hidden;
+  	opacity: 0;
+  	transition: visibility 0s, opacity 0.5s linear;
+}
+.faded-has-content {
+  visibility: visible;
+  opacity: 1;
+}
+.simple-price>span {
+	font-size: 120%;
+	font-weight: bold;
+	color: #000;
+}
+.simple-price > ins {
+	text-decoration: none !important;
+	font-size: 120% ;
+	font-weight: bold;
+	color: #000;
+}
+.footer-home{background:#0a1622}
+.checkbox-custom{
+	.checkbox{margin:0 5px 0 0!important;}
+	.item-inner{
+		border-bottom:none!important;
+		/*font-size:1.2rem;*/
+	}
+	.checkbox-md {
+		    margin: 9px 20px 9px 4px !important;
+	}
+}
+.check-activate {
+	font-size:1.2rem;
+}
+.custom-radio {
+	span {
+		font-size: 17px;
+	}
+	ion-radio {
+		top:1px;
+		left: 5px;
+	}
+}
+	

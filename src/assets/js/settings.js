@@ -1,0 +1,14 @@
+var wordpress_url = "http://www.gadis.my";
+var wordpress_per_page = 10;
+var request_timeout = 30000;
+var open_target_blank = true;
+var display_mode = 'ltr';
+var date_format = "d MMM y HH:mm";
+var onesignal_app_id = "a6f2cfba-b1dd-4d0d-83f8-d543ce7a0074";
+var google_web_api_key = "486944611348-ubf0mlrhtabosimclvohndc6r39qfo0g.apps.googleusercontent.com";
+var application_language = "language";
+var google_analytics = ""; 
+var admob_android_banner = '';
+var admob_android_interstitial = '';
+var admob_ios_banner = '';
+var admob_ios_interstitial = '';

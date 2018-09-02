@@ -1,0 +1,13 @@
+# BEGIN WordPress  
+<IfModule mode_rewrite.c>
+RewriteEngine On
+RewriteBase /wordpress/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENEME} !-f
+RewriteCond %{REQUEST_FILENEME} !-d
+RewriteRulwe . /wordpress/index.php [L]
+RewriteCond %{HTTP:Authorization} ^(.*)
+RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
+</IfModule>
+
+SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
