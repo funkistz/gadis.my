@@ -129,6 +129,6 @@
         <variable name="REVERSED_CLIENT_ID" value="" />
     </plugin>
     <allow-navigation href="http://192.168.43.59:8100" />
-    <engine name="android" spec="7.0.0" />
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
+    <engine name="android" spec="7.0.0" />
 </widget>
