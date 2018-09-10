@@ -1,15 +1,14 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>{{'profile.title'|translate}}</ion-title>
-	<ion-buttons end>
-		<button ion-button clear class="disable-hover" color="primary" (click)="saveProfile()">
-			<span>{{'profile.done'|translate}}</span>
-		</button>
-    </ion-buttons>
-  </ion-navbar>
+	<ion-navbar>
+		<ion-title>{{'profile.title'|translate}}</ion-title>
+		<ion-buttons end>
+			<button ion-button clear class="disable-hover" color="primary" (click)="saveProfile()">
+				<span>{{'profile.done'|translate}}</span>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
 </ion-header>
 
 <ion-content padding>
 	<ba-profile #update cssClass="custom-profile"></ba-profile>
 </ion-content>
-<ion-footer ion-fixed><ion-toolbar><footer-tabs></footer-tabs></ion-toolbar></ion-footer>
