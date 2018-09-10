@@ -58,6 +58,10 @@ import { AboutPage } from '../pages/about/about';
 import { TermsPage } from '../pages/terms/terms';
 import { PrivacyPage } from '../pages/privacy/privacy';
 import { ContactPage } from '../pages/contact/contact';
+import { TabsPage } from '../pages/tabs/tabs';
+import { VendorsPage } from '../pages/vendors/vendors';
+
+
 //pipe
 import { PricePipe } from '../pipes/price/price';
 import { OderByPipe } from '../pipes/oder-by/oder-by';
@@ -68,6 +72,10 @@ import { StaticPipe } from '../pipes/static/static';
 import { ViewmorePipe } from '../pipes/viewmore/viewmore';
 import { RangePipe } from '../pipes/range/range';
 import { TimeagoPipe } from '../pipes/timeago/timeago';
+
+//provider
+import { WoocommerceProvider } from '../providers/woocommerce/woocommerce';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -110,7 +118,9 @@ import { TimeagoPipe } from '../pipes/timeago/timeago';
     PrivacyPage,
     ContactPage,
     DetailCategoryPage,
-    OrderPage
+    OrderPage,
+    TabsPage,
+    VendorsPage
   ],
   imports: [
     BrowserModule,
@@ -120,10 +130,10 @@ import { TimeagoPipe } from '../pipes/timeago/timeago';
       mode: 'ios',
       pageTransition: 'md-transition',
       platforms: {
-          ios: {
-            scrollAssist: false,
-            autoFocusAssist: false
-          }
+        ios: {
+          scrollAssist: false,
+          autoFocusAssist: false
+        }
       }
     }),
     HttpModule,
@@ -132,9 +142,9 @@ import { TimeagoPipe } from '../pipes/timeago/timeago';
       useFactory: (createTranslateLoader),
       deps: [Http]
     }),
-    IonicStorageModule.forRoot({ 
-      name: 'woocommerce_application', 
-      driverOrder: ['sqlite', 'websql', 'indexeddb'] 
+    IonicStorageModule.forRoot({
+      name: 'woocommerce_application',
+      driverOrder: ['sqlite', 'websql', 'indexeddb']
     })
   ],
   bootstrap: [IonicApp],
@@ -162,7 +172,9 @@ import { TimeagoPipe } from '../pipes/timeago/timeago';
     PrivacyPage,
     ContactPage,
     DetailCategoryPage,
-    OrderPage
+    OrderPage,
+    TabsPage,
+    VendorsPage
   ],
   providers: [
     StatusBar,
@@ -179,7 +191,8 @@ import { TimeagoPipe } from '../pipes/timeago/timeago';
     SocialSharing,
     GooglePlus,
     Facebook,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    WoocommerceProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }

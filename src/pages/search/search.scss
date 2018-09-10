@@ -98,4 +98,7 @@ page-search {
 	}
 	[mark]{@include background-opacity(#000, 0.4);}
 	.button-view .button.disabled{color:#cdcdcd}
+	.toolbar-background{
+		border-width: 0px !important;
+	}
 }

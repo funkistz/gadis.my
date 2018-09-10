@@ -34,7 +34,7 @@
 		"has_error": "An error occurred, please try again later.",
 		"cancel": "Cancel",
 		"ok": "OK",
-		"copyright": "© 2017 Copyright. All rights reserved."
+		"copyright": "© 2018 Copyright. All rights reserved."
 	},
 	"tabs": {
 		"home": "Home",
@@ -155,8 +155,8 @@
 		"forgot_placeholder": "Username",
 		"forgot_send": "Send reset link",
 		"forgot_success": "Link sent successfully",
-		"forgot_err" : "Username is empty",
-		"loginwith" : "or login with",
+		"forgot_err": "Username is empty",
+		"loginwith": "or login with",
 		"login_fail": "Sorry, Something went wrong: Please try to login again"
 	},
 	"signup": {
@@ -177,7 +177,7 @@
 		"remove": "Coupon has been removed.",
 		"coupon_invalid": "Coupon code is invaild",
 		"already_applied": "Coupon code already applied!",
-		"remove_couponOnly":" Do you want remove old coupon?",
+		"remove_couponOnly": " Do you want remove old coupon?",
 		"discount": "You receive a discount of",
 		"totals": "Totals",
 		"total_price": "Total price:",
@@ -264,15 +264,14 @@
 		"total": "Total Amount:",
 		"details": "Details",
 		"status": {
-            "processing": "processing ",
-            "on_hold": "on hold",
-            "cancelled": "cancelled",
-            "completed": "completed",
-            "pending": "pending",
-            "refunded": "refunded",
-            "failed": "failed"
-
-        }
+			"processing": "processing ",
+			"on_hold": "on hold",
+			"cancelled": "cancelled",
+			"completed": "completed",
+			"pending": "pending",
+			"refunded": "refunded",
+			"failed": "failed"
+		}
 	},
 	"detailOrder": {
 		"title": "Order ID: #",
@@ -397,8 +396,8 @@
 		"tax": "Tax:",
 		"coupon_code": "Coupon Code:",
 		"order_total": "Order Total",
-		"condition":"I’ve read and accept the",
-		"term":" Terms & Conditions *",
+		"condition": "I’ve read and accept the",
+		"term": " Terms & Conditions *",
 		"payment_method": "Select a Payment Method",
 		"term_popup": {
 			"title": "Terms & Conditions",

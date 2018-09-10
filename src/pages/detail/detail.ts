@@ -21,16 +21,16 @@ declare var cordova: any;
 declare var display_mode: string;
 
 @Component({
-  selector: 'page-detail',
-  templateUrl: 'detail.html',
-  providers: [Core, ObjectToArrayPipe, PhotoViewer]
+	selector: 'page-detail',
+	templateUrl: 'detail.html',
+	providers: [Core, ObjectToArrayPipe, PhotoViewer]
 })
 export class DetailPage {
 	CommentsPage = CommentsPage;
 	DetailPage = DetailPage;
 	@ViewChild('cart') buttonCart;
 	id: Number; slides: Number = 1; quantity: Number = 1; variation: Number;
-	detail: any = { wooconnector_crop_images: [] }; attributes: any = {}; rating:Number; ratingCount:Number; reviewCount:Object = [];
+	detail: any = { wooconnector_crop_images: [] }; attributes: any = {}; rating: Number; ratingCount: Number; reviewCount: Object = [];
 	description: string;
 	reviews_allowed: boolean;
 	favorite: Object = {}; trans: Object = {};
@@ -57,7 +57,7 @@ export class DetailPage {
 		this.display = display_mode;
 		translate.get('detail').subscribe(trans => this.trans = trans);
 		this.id = navParams.get("id");
-		this.storage.get('favorite').then((val) => { if (val) this.favorite = val;});
+		this.storage.get('favorite').then((val) => { if (val) this.favorite = val; });
 		this.getData();
 	}
 
@@ -70,7 +70,7 @@ export class DetailPage {
 			this.loaddata = true;
 			setTimeout(() => {
 				this.faded = true;
-			},200);
+			}, 200);
 			this.reviews_allowed = this.detail['reviews_allowed'];
 			this.rating = this.detail['average_rating'];
 			this.ratingCount = this.detail['rating_count'];
@@ -100,7 +100,7 @@ export class DetailPage {
 				});
 			}
 			// default_attributes
-			if(this.detail.default_attributes.length > 0) {
+			if (this.detail.default_attributes.length > 0) {
 				this.detail.default_attributes.forEach((val) => {
 					this.attributes[val["name"]].option = val["option"].toLowerCase();
 				});
@@ -108,12 +108,15 @@ export class DetailPage {
 			this.getVariation();
 		});
 	}
-getProducts(): Observable<Object[]> {
+	getProducts(): Observable<Object[]> {
 		return new Observable(observable => {
 			let params = { post_num_page: this.page, post_per_page: 4 };
-			this.http.get(wordpress_url + '/wp-json/wooconnector/product/getproduct/'+ this.id, {
+			this.http.get(wordpress_url + '/wp-json/wooconnector/product/getproduct/' + this.id, {
 				search: this.core.objectToURLParams(params)
 			}).subscribe(products => {
+
+				console.log(products.json());
+
 				observable.next(products.json());
 				observable.complete();
 			});
@@ -122,14 +125,14 @@ getProducts(): Observable<Object[]> {
 	load(infiniteScroll) {
 		this.page++;
 		this.getProducts().subscribe(products => {
-			if (products['modernshop_look_images'].length > 0) {	
+			if (products['modernshop_look_images'].length > 0) {
 				this.detail['modernshop_look_images'] = this.detail['modernshop_look_images'].concat(products['modernshop_look_images']);
 			} else this.over = true;
 			infiniteScroll.complete();
 		});
 	}
 	changeSlides(event) {
-		if(!event.realIndex) event.realIndex = 0;
+		if (!event.realIndex) event.realIndex = 0;
 		this.slides = event.realIndex + 1;
 	}
 	changeFavorite() {
@@ -163,7 +166,7 @@ getProducts(): Observable<Object[]> {
 		}
 	}
 	viewImage(src: string) {
-		if(!this.platform.is('cordova')) return;
+		if (!this.platform.is('cordova')) return;
 		this.PhotoViewer.show(src);
 	}
 	getVariation() {
@@ -204,8 +207,8 @@ getProducts(): Observable<Object[]> {
 			if (this.detail["manage_stock"] && this.quantity > this.detail["stock_quantity"] && !this.detail['backorders_allowed']) {
 				this.Toast.showShortBottom(this.trans["out_of_quantity"] + this.detail["stock_quantity"])
 					.subscribe(
-					toast => { },
-					error => { console.log(error); }
+						toast => { },
+						error => { console.log(error); }
 					);
 				return;
 			}
@@ -275,7 +278,7 @@ getProducts(): Observable<Object[]> {
 							alertContent += product['name'] + ' ' + this.trans['out_of_quantity'] + product['stock_quantity'] + '<br/>';
 						} else if (!product['in_stock'] && !product['stock_quantity'] && !product['backorders_allowed']) {
 							alertContent += product['name'] + ' ' + this.trans['out_of_stock'] + '<br/>';
-						}else {
+						} else {
 							if (!val[product['id']]) {
 								let now: Object = {};
 								now['idCart'] = product['id'];
@@ -326,7 +329,7 @@ getProducts(): Observable<Object[]> {
 		this.detail = {};
 		this.faded = false;
 		this.getData();
-		setTimeout(function() {
+		setTimeout(function () {
 			refresher.complete();
 		}, 500);
 	}

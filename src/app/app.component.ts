@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Http } from '@angular/http';
 import { Core } from '../service/core.service';
 import { HomePage } from '../pages/home/home';
+import { TabsPage } from '../pages/tabs/tabs';
 import { TranslateService } from '../module/ng2-translate';
 import { Storage } from '@ionic/storage';
 import { Config } from '../service/config.service';
@@ -26,7 +27,7 @@ declare var admob_ios_interstitial: string;
   providers: [Core, GoogleAnalytics, ScreenOrientation, Device]
 })
 export class MyApp {
-  rootPage:any = HomePage;
+  rootPage: any = TabsPage;
   trans: Object;
   isLoaded: boolean;
   disconnect: boolean;
@@ -45,40 +46,40 @@ export class MyApp {
     public screenOrientation: ScreenOrientation,
     private device: Device,
     public ga: GoogleAnalytics
-    ) {
-      platform.ready().then(() => {
-        statusBar.styleDefault();
-        if (platform.is('android')) {
-            statusBar.backgroundColorByHexString('#fff');
+  ) {
+    platform.ready().then(() => {
+      statusBar.styleDefault();
+      if (platform.is('android')) {
+        statusBar.backgroundColorByHexString('#fff');
+      }
+      splashScreen.hide();
+      translate.setDefaultLang(application_language);
+      translate.use(application_language);
+      let html = document.querySelector('html');
+      html.setAttribute("dir", display_mode);
+      storage.set('require', false);
+      if (platform.is('cordova')) {
+        screenOrientation.lock('portrait');
+        let operating_system = '';
+        let admob: Object = {};
+        if (device.platform == 'Android') {
+          operating_system = 'Android';
+          admob = {
+            banner: admob_android_banner,
+            interstitial: admob_android_interstitial
+          };
+        } else if (device.platform == 'iOS') {
+          operating_system = 'iOS';
+          admob = {
+            banner: admob_ios_banner,
+            interstitial: admob_ios_interstitial
+          };
         }
-        splashScreen.hide();
-        translate.setDefaultLang(application_language);
-        translate.use(application_language);
-        let html = document.querySelector('html');
-        html.setAttribute("dir", display_mode);
-        storage.set('require', false);
-        if (platform.is('cordova')) {
-          screenOrientation.lock('portrait');
-          let operating_system = '';
-          let admob: Object = {};
-          if (device.platform == 'Android') {
-            operating_system = 'Android';
-            admob = {
-              banner: admob_android_banner,
-              interstitial: admob_android_interstitial
-            };
-          } else if (device.platform == 'iOS') {
-            operating_system = 'iOS';
-            admob = {
-              banner: admob_ios_banner,
-              interstitial: admob_ios_interstitial
-            };
-          }
         if (google_analytics) {
           ga.startTrackerWithId(google_analytics).then(() => {
-          ga.trackView(operating_system);
-        }).catch(e => console.log('Error starting GoogleAnalytics', e));
-              }
+            ga.trackView(operating_system);
+          }).catch(e => console.log('Error starting GoogleAnalytics', e));
+        }
         Network.onDisconnect().subscribe(() => {
           ngZone.run(() => { this.disconnect = true; });
         });

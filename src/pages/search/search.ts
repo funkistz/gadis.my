@@ -25,13 +25,13 @@ declare var wordpress_per_page: Number;
 declare var Keyboard;
 
 @Component({
-  selector: 'page-search',
-  templateUrl: 'search.html',
-  providers: [Core, ObjectToArrayPipe]
+	selector: 'page-search',
+	templateUrl: 'search.html',
+	providers: [Core, ObjectToArrayPipe]
 })
 export class SearchPage {
 
-  	@ViewChild(TextInput) inputSearch: TextInput;
+	@ViewChild(TextInput) inputSearch: TextInput;
 	@ViewChild('cart') buttonCart;
 	DetailPage = DetailPage;
 	CategoriesPage = CategoriesPage;
@@ -45,9 +45,9 @@ export class SearchPage {
 	trans: Object = {};
 	over: boolean; actionCart: Object = [];
 	cartArray: Object = {};
-	noResuilt:boolean = false;
+	noResuilt: boolean = false;
 	quantity: Number = 1;
-	data:Object[] = [];
+	data: Object[] = [];
 	faded: boolean = false;
 	loaddata: boolean = false;
 
@@ -59,11 +59,11 @@ export class SearchPage {
 		public Toast: Toast
 	) {
 		http.get(wordpress_url + '/wp-json/wooconnector/product/getattribute')
-		.subscribe(res => {
-			this.attributes = res.json();
-			this.attributes['custom'] = new ObjectToArrayPipe().transform(this.attributes['custom']);
-			this.reset();
-		});
+			.subscribe(res => {
+				this.attributes = res.json();
+				this.attributes['custom'] = new ObjectToArrayPipe().transform(this.attributes['custom']);
+				this.reset();
+			});
 	}
 	ngOnInit() {
 		if (this.inputSearch) {
@@ -87,7 +87,7 @@ export class SearchPage {
 		this.storage.get('cart').then(val => {
 			let cartNew = Object.assign([], val);
 			this.cartArray = {};
-			cartNew.forEach(productCart =>{
+			cartNew.forEach(productCart => {
 				this.cartArray[productCart['id']] = productCart['id'];
 				console.log(this.cartArray);
 			});
@@ -116,7 +116,9 @@ export class SearchPage {
 		else this.filter['open'] = 'sort';
 	}
 	search() {
-		Keyboard.hide();
+		// if (window.cordova && window.cordova.plugins.Keyboard) {
+		// 	Keyboard.hide();
+		// }
 		if (this.filter['open'] == 'filter') this.openFilter();
 		this.page = 1;
 		this.over = false;
@@ -132,11 +134,11 @@ export class SearchPage {
 							if (val['id'] == cart['id']) val['onCart'] = true;
 						});
 					});
-				} 
+				}
 				this.products = products;
 				setTimeout(() => {
 					this.faded = true;
-				},100);
+				}, 100);
 			} else {
 				this.products = [];
 				this.noResuilt = true;
@@ -172,9 +174,9 @@ export class SearchPage {
 				};
 			}
 			let params = {
-				'search' : this.keyword,
-				'post_num_page' : this.page,
-				'post_per_page' : wordpress_per_page,
+				'search': this.keyword,
+				'post_num_page': this.page,
+				'post_per_page': wordpress_per_page,
 			}
 			let sortParams = this.core.addSortToSearchParams(params, this.sort);
 			if (tmpFilter.length == 0 && !this.range['lower'] && !this.range['upper']) {
@@ -260,7 +262,7 @@ export class SearchPage {
 					error => { console.log(error); }
 				);
 			} else this.storage.set('cart', val).then(() => {
-				this.checkCart();		
+				this.checkCart();
 				this.buttonCart.update();
 				if (!detail['in_stock'] && detail['backorders'] == 'notify') {
 					this.Toast.showShortBottom(this.trans["addOut"]).subscribe(
