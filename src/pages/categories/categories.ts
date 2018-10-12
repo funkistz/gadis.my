@@ -28,18 +28,38 @@ export class CategoriesPage {
 	noResuilt: boolean = false;
 	faded: boolean = false;
 	loaddata: boolean = false;
+	title = 'All Categories';
+
 	constructor(
 		public http: Http,
 		public core: Core,
-		public navCtrl: NavController
+		public navCtrl: NavController,
+		private navParams: NavParams,
 	) {
-		let params = { cat_num_page: 1, cat_per_page: 100, parent: '0' };
+
+		let id = navParams.get('id');
+		let name = navParams.get('name');
+		let params: any = { cat_num_page: 1, cat_per_page: 100, cat_order_by: 'slug' };
+
+		console.log('cat id:' + id);
+
+		if (id) {
+			params = { cat_num_page: 1, cat_per_page: 100, cat_order_by: 'slug', parent: id };
+			this.title = name;
+		}
+
+		// let params = { cat_num_page: 1, cat_per_page: 100, parent: '0' };
 		let loadCategories = () => {
 			http.get(wordpress_url + '/wp-json/wooconnector/product/getcategories', {
 				search: core.objectToURLParams(params)
 			}).subscribe(res => {
 				this.loaddata = true;
-				this.parents = this.parents.concat(res.json());
+				let tempCat = this.parents.concat(res.json());
+
+				this.parents = tempCat.filter(function (obj: any) {
+					return obj.parent != 0;
+				});
+
 				setTimeout(() => {
 					this.faded = true;
 				}, 100);

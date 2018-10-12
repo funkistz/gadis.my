@@ -5,19 +5,24 @@ import { CategoriesPage } from '../categories/categories';
 import { SearchPage } from '../search/search';
 import { AccountPage } from '../account/account';
 import { VendorsPage } from '../vendors/vendors';
+import { MyshopPage } from '../myshop/myshop';
 
 @Component({
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
 
-  tab1Root = HomePage;
-  tab2Root = CategoriesPage;
-  tab3Root = SearchPage;
-  tab4Root = AccountPage;
-  tab5Root = VendorsPage;
+  HomePage = HomePage;
+  CategoriesPage = CategoriesPage;
+  SearchPage = SearchPage;
+  AccountPage = AccountPage;
+  VendorsPage = VendorsPage;
+  MyshopPage = MyshopPage;
+
+  // HomePage = MyshopPage;
 
   // tab1Root = VendorsPage;
+  // tab5Root = HomePage;
 
 
   constructor() {

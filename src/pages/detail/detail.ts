@@ -15,6 +15,8 @@ import { PhotoViewer } from '@ionic-native/photo-viewer';
 import { ObjectToArrayPipe } from '../../pipes/object-to-array/object-to-array';
 //Page
 import { CommentsPage } from '../comments/comments';
+import { WoocommerceProvider } from '../../providers/woocommerce/woocommerce';
+import { VendorDetailPage } from '../vendor-detail/vendor-detail';
 
 declare var wordpress_url: string;
 declare var cordova: any;
@@ -28,6 +30,7 @@ declare var display_mode: string;
 export class DetailPage {
 	CommentsPage = CommentsPage;
 	DetailPage = DetailPage;
+	VendorDetailPage = VendorDetailPage;
 	@ViewChild('cart') buttonCart;
 	id: Number; slides: Number = 1; quantity: Number = 1; variation: Number;
 	detail: any = { wooconnector_crop_images: [] }; attributes: any = {}; rating: Number; ratingCount: Number; reviewCount: Object = [];
@@ -40,6 +43,8 @@ export class DetailPage {
 	display: string;
 	faded: boolean = false;
 	loaddata: boolean = false;
+	WooCommerce: any;
+
 	constructor(
 		public navParams: NavParams,
 		public core: Core,
@@ -52,7 +57,8 @@ export class DetailPage {
 		private SocialSharing: SocialSharing,
 		public PhotoViewer: PhotoViewer,
 		public platform: Platform,
-		public InAppBrowser: InAppBrowser
+		public InAppBrowser: InAppBrowser,
+		public WP: WoocommerceProvider,
 	) {
 		this.display = display_mode;
 		translate.get('detail').subscribe(trans => this.trans = trans);
@@ -74,7 +80,15 @@ export class DetailPage {
 			this.reviews_allowed = this.detail['reviews_allowed'];
 			this.rating = this.detail['average_rating'];
 			this.ratingCount = this.detail['rating_count'];
-			this.reviewCount = this.detail['wooconnector_reviews'];
+
+			//get vendor
+			this.getVendor(this.detail.vendor);
+
+			if (this.detail['wooconnector_reviews']) {
+				this.reviewCount = this.detail['wooconnector_reviews'];
+			} else {
+				this.reviewCount = 0;
+			}
 			this.description = this.detail['description']
 			if (!this.detail['wooconnector_crop_images']) {
 				let noImages = { wooconnector_large: 'assets/images/no-image.png' };
@@ -108,20 +122,73 @@ export class DetailPage {
 			this.getVariation();
 		});
 	}
+
 	getProducts(): Observable<Object[]> {
 		return new Observable(observable => {
-			let params = { post_num_page: this.page, post_per_page: 4 };
-			this.http.get(wordpress_url + '/wp-json/wooconnector/product/getproduct/' + this.id, {
-				search: this.core.objectToURLParams(params)
-			}).subscribe(products => {
+			// let params = { post_num_page: this.page, post_per_page: 4 };
+			// this.http.get(wordpress_url + '/wp-json/wooconnector/product/getproduct/' + this.id, {
+			// 	search: this.core.objectToURLParams(params)
+			// }).subscribe(products => {
+
+			// 	console.log(products.json());
+
+			// 	observable.next(products.json());
+			// 	observable.complete();
+			// });
+
+			this.WooCommerce = this.WP.get({
+				wcmc: false,
+				method: 'GET',
+				api: 'products/' + this.id
+			});
+
+			this.WooCommerce.subscribe(products => {
 
 				console.log(products.json());
 
 				observable.next(products.json());
 				observable.complete();
+
+			}, err => {
+
+				console.log('error oi');
+
 			});
 		});
 	}
+
+	vendor: any;
+
+	getVendor(id) {
+
+		console.log('load vendor');
+
+		this.WooCommerce = this.WP.get({
+			wcmc: true,
+			method: 'GET',
+			api: 'vendors/' + id
+		});
+
+		this.WooCommerce.subscribe(vendor => {
+
+			console.log(vendor.json());
+
+			if (vendor.json()) {
+				this.vendor = vendor.json();
+				return vendor.json();
+			} else {
+				return;
+			}
+
+		}, err => {
+
+			console.log('error oi');
+			return;
+
+		});
+
+	}
+
 	load(infiniteScroll) {
 		this.page++;
 		this.getProducts().subscribe(products => {
@@ -131,10 +198,12 @@ export class DetailPage {
 			infiniteScroll.complete();
 		});
 	}
+
 	changeSlides(event) {
 		if (!event.realIndex) event.realIndex = 0;
 		this.slides = event.realIndex + 1;
 	}
+
 	changeFavorite() {
 		if (this.favorite[Number(this.id)]) {
 			delete this.favorite[Number(this.id)];
@@ -165,10 +234,12 @@ export class DetailPage {
 			});
 		}
 	}
+
 	viewImage(src: string) {
 		if (!this.platform.is('cordova')) return;
 		this.PhotoViewer.show(src);
 	}
+
 	getVariation() {
 		if (this.detail["type"] == "variable" && this.detail["variations"].length > 0) {
 			let attr = new ObjectToArrayPipe().transform(this.attributes);
@@ -190,9 +261,11 @@ export class DetailPage {
 			);
 		}
 	}
+
 	share() {
 		this.SocialSharing.share(null, null, null, this.detail["permalink"]);
 	}
+
 	addToCart() {
 		if (!this.detail['in_stock']) {
 			this.Toast.showShortBottom(this.trans["outStock"]).subscribe(
@@ -264,9 +337,11 @@ export class DetailPage {
 			});
 		}
 	}
+
 	external(link: string) {
 		this.InAppBrowser.create(link, "_system");
 	}
+
 	grouped() {
 		if (this.groupedProduct) {
 			this.storage.get('cart').then((val) => {
@@ -319,12 +394,14 @@ export class DetailPage {
 			});
 		}
 	}
+
 	noVariation() {
 		this.Toast.showShortBottom(this.trans["have_not_variation"]).subscribe(
 			toast => { },
 			error => { console.log(error); }
 		);
 	}
+
 	doRefresh(refresher) {
 		this.detail = {};
 		this.faded = false;
@@ -333,9 +410,11 @@ export class DetailPage {
 			refresher.complete();
 		}, 500);
 	}
+
 	popToRoot() {
 		this.navCtrl.popToRoot();
 	}
+
 	onSwipe(e) {
 		if (e['deltaX'] < -150 || e['deltaX'] > 150) {
 			if (e['deltaX'] > 0 && this.detail['wooconnector_previous_product']) {

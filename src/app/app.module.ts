@@ -28,6 +28,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { WooImageComponent } from '../components/woo-image/woo-image';
 import { ButtonCartComponent } from '../components/button-cart/button-cart';
 import { FooterTabsComponent } from '../components/footer-tabs/footer-tabs';
 import { HideShowComponent } from '../components/hide-show/hide-show';
@@ -60,7 +61,11 @@ import { PrivacyPage } from '../pages/privacy/privacy';
 import { ContactPage } from '../pages/contact/contact';
 import { TabsPage } from '../pages/tabs/tabs';
 import { VendorsPage } from '../pages/vendors/vendors';
-
+import { VendorDetailPage } from '../pages/vendor-detail/vendor-detail';
+import { MyshopPage } from '../pages/myshop/myshop';
+import { CreateProductPage } from '../pages/create-product/create-product';
+import { BrowserPage } from '../pages/browser/browser';
+import { CreateVendorPage } from '../pages/create-vendor/create-vendor';
 
 //pipe
 import { PricePipe } from '../pipes/price/price';
@@ -80,6 +85,7 @@ import { WoocommerceProvider } from '../providers/woocommerce/woocommerce';
   declarations: [
     MyApp,
     HomePage,
+    WooImageComponent,
     ButtonCartComponent,
     FooterTabsComponent,
     HideShowComponent,
@@ -120,7 +126,12 @@ import { WoocommerceProvider } from '../providers/woocommerce/woocommerce';
     DetailCategoryPage,
     OrderPage,
     TabsPage,
-    VendorsPage
+    VendorsPage,
+    VendorDetailPage,
+    MyshopPage,
+    CreateProductPage,
+    BrowserPage,
+    CreateVendorPage
   ],
   imports: [
     BrowserModule,
@@ -174,7 +185,12 @@ import { WoocommerceProvider } from '../providers/woocommerce/woocommerce';
     DetailCategoryPage,
     OrderPage,
     TabsPage,
-    VendorsPage
+    VendorsPage,
+    VendorDetailPage,
+    MyshopPage,
+    CreateProductPage,
+    BrowserPage,
+    CreateVendorPage
   ],
   providers: [
     StatusBar,

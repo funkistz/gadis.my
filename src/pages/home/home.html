@@ -4,7 +4,7 @@
 			<img class="home-title" float-left src="assets/images/logo.png" />
 		</ion-title>
 		<ion-buttons end>
-			<button-cart *ngIf="statictext" #cart icon="icon-bag"></button-cart>
+			<button-cart #cart icon="icon-bag"></button-cart>
 		</ion-buttons>
 	</ion-navbar>
 </ion-header>
@@ -29,6 +29,7 @@
 			<img [src]="slide.slider_images" float-left />
 		</ion-slide>
 	</ion-slides>
+
 	<!-- Deal of the day -->
 	<div *ngIf="deal && 0<deal.length" (swipe)="onSwipeContent($event)">
 		<div padding-horizontal padding-top text-uppercase dark relative>
@@ -60,6 +61,26 @@
 			</ion-col>
 		</ion-row>
 	</div>
+
+	<!-- Categories -->
+	<div padding text-uppercase dark (swipe)="onSwipeContent($event)">
+		<b>{{'home.categories'|translate}}</b>
+		<button ion-button small clear float-right color="gray" class="btn-text" (click)="categoryPage()">{{'home.viewAll'|translate}}</button>
+	</div>
+	<ion-spinner *ngIf="!loadedCategories" name="ios" margin-auto></ion-spinner>
+	<ion-scroll dir="{{displays}}" *ngIf="loadedCategories && 0<categories.length" scrollX="true" class="scroll-categories">
+		<div relative *ngFor="let category of categories" class="item-categories" [navPush]="CategoriesPage" [navParams]="{id:category.id, name:category.name}">
+			<ion-row center mark absolute width-100 height-100>
+				<div margin-auto light text-center [innerHTML]="category.name"></div>
+			</ion-row>
+			<img *ngIf="category.modernshop_images_categories && category.modernshop_images_categories.modern_square" [src]="category.modernshop_images_categories.modern_square"
+			/>
+			<img *ngIf="!category.modernshop_images_categories || !category.modernshop_images_categories.modern_square" src="assets/images/no-image.png"
+			/>
+		</div>
+	</ion-scroll>
+	<div text-center *ngIf="loadedCategories && categories.length<1" class="no-data">{{'home.no_categories'|translate}}</div>
+
 	<!-- Latest -->
 	<div padding-horizontal padding-top text-uppercase dark (swipe)="onSwipeContent($event)">
 		<b>{{'home.latest'|translate}}</b>
@@ -104,56 +125,21 @@
 		</ion-row>
 		<div text-center *ngIf="products.length == 0 && loadedProducts" class="no-data" margin-top>{{'general.no_data'|translate}}</div>
 	</div>
+
 	<button ion-button *ngIf="loadedProducts && products.length != 0" clear class="disable-hover" block color="gray" (click)="viewAll()">{{'home.viewAll'|translate}}</button>
-	<!-- Categories -->
-	<div padding text-uppercase dark (swipe)="onSwipeContent($event)">
-		<b>{{'home.categories'|translate}}</b>
-	</div>
-	<ion-spinner *ngIf="!loadedCategories" name="ios" margin-auto></ion-spinner>
-	<ion-scroll dir="{{displays}}" *ngIf="loadedCategories && 0<categories.length" scrollX="true" class="scroll-categories">
-		<div relative *ngFor="let category of categories" class="item-categories" [navPush]="DetailCategoryPage" [navParams]="{id:category.id}">
-			<ion-row center mark absolute width-100 height-100>
-				<div margin-auto light text-center [innerHTML]="category.name"></div>
-			</ion-row>
-			<img *ngIf="category.modernshop_images_categories && category.modernshop_images_categories.modern_square" [src]="category.modernshop_images_categories.modern_square"
-			/>
-			<img *ngIf="!category.modernshop_images_categories || !category.modernshop_images_categories.modern_square" src="assets/images/no-image.png"
-			/>
-		</div>
-	</ion-scroll>
-	<div text-center *ngIf="loadedCategories && categories.length<1" class="no-data">{{'home.no_categories'|translate}}</div>
-	<!-- Client Say -->
-	<div relative margin-top *ngIf="clientSay && 0<clientSay.length" class="client-say" light overflow>
-		<img width-100 float-left src="assets/images/client-say-bg.png" />
-		<div mark absolute width-100 height-100 text-center></div>
-		<div absolute width-100 height-100 overflow>
-			<div absolute width-100 padding text-center>{{'home.whatClientSay'|translate}}</div>
-			<ion-slides pager="true" class="slides-client-say" loop="true" autoplay="3000" dir="{{display}}">
-				<ion-slide *ngFor="let slide of clientSay" text-center>
-					<div padding-8 [innerHTML]="'“ '+(slide.comment_content|viewmore:50)+' ”'"></div>
-					<div padding-8>
-						<div>
-							<small [innerHTML]="slide.user+' - '+(slide.comment_date_gmt + 'Z'|timeago)"></small>
-						</div>
-						<div class="rate">
-							<div class="rating" [style.width]="slide.rating*20+'%'"></div>
-						</div>
-					</div>
-				</ion-slide>
-			</ion-slides>
-		</div>
-	</div>
+
 	<div (swipe)="onSwipeContent($event)">
 		<!-- Service -->
-		<ion-row wrap padding *ngIf="statictext">
-			<!-- <ion-col *ngFor="let service of 'home.services'|translate" width-50> -->
-			<!-- <div secondary-bg text-center padding-4 padding-vertical height-100> -->
-			<!-- <div><ion-icon primary [name]="service.icon" class="services-icon"></ion-icon></div> -->
-			<!-- <div dark><b>{{service.title}}</b><br/></div> -->
-			<!-- <span font-80>{{service.text}}</span> -->
-			<!-- </div> -->
-			<!-- </ion-col> -->
-			<ion-col width-50 margin-auto *ngIf="statictext.modern_homepage_title_1 || statictext.modern_description_homepage_1">
+		<!-- <ion-row wrap padding *ngIf="statictext"> -->
+		<!-- <ion-col *ngFor="let service of 'home.services'|translate" width-50> -->
+		<!-- <div secondary-bg text-center padding-4 padding-vertical height-100> -->
+		<!-- <div><ion-icon primary [name]="service.icon" class="services-icon"></ion-icon></div> -->
+		<!-- <div dark><b>{{service.title}}</b><br/></div> -->
+		<!-- <span font-80>{{service.text}}</span> -->
+		<!-- </div> -->
+		<!-- </ion-col> -->
+
+		<!-- <ion-col width-50 margin-auto *ngIf="statictext.modern_homepage_title_1 || statictext.modern_description_homepage_1">
 				<div secondary-bg text-center padding-4 padding-vertical height-100>
 					<div>
 						<ion-icon primary name="icon-reply" class="services-icon"></ion-icon>
@@ -200,8 +186,8 @@
 					</div>
 					<div font-80 [innerHTML]="statictext.modern_description_homepage_4"></div>
 				</div>
-			</ion-col>
-		</ion-row>
+			</ion-col> -->
+		<!-- </ion-row> -->
 		<!-- Newsletter -->
 		<!-- <div padding bg-full class="news-letter"> -->
 		<!-- <div text-uppercase light><b>{{'home.newsletter'|translate}}</b></div> -->
@@ -213,10 +199,6 @@
 		<!-- About Footer -->
 		<!-- <about-footer></about-footer> -->
 		<div padding light text-center class="footer-home" *ngIf="statictext">
-			<h5 text-uppercase margin-top>{{statictext.modern_footer_details_title}}</h5>
-			<p>{{statictext.modern_footer_address}}</p>
-			<a href="tel:{{statictext.modern_footer_phone}}">{{statictext.modern_footer_phone}}</a>
-			<p>{{statictext.modern_footer_email_domain}}</p>
 			<div padding-8>
 				<button ion-button icon-only clear color="light" class="disable-hover" (click)="openLinkFooter(statictext.modern_link_twitter, true)">
 					<ion-icon name="icon-twitter"></ion-icon>
@@ -228,7 +210,7 @@
 					<ion-icon name="logo-instagram"></ion-icon>
 				</button>
 			</div>
-			<p>{{'general.copyright'|translate}}</p>
+			<p>{{ 'general.copyright'|translate }}</p>
 		</div>
 	</div>
 </ion-content>

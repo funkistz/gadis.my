@@ -37,9 +37,11 @@ declare var onesignal_app_id: string;
 	providers: [Core, ScreenOrientation, DatePipe]
 })
 export class HomePage {
+
 	@ViewChild('cart') buttonCart;
 	@ViewChild('slide_update') slide_Update;
 	@ViewChild('Content') content;
+
 	DetailPage = DetailPage;
 	LoginPage = LoginPage;
 	CategoriesPage = CategoriesPage;
@@ -54,9 +56,11 @@ export class HomePage {
 	loadedProducts: boolean; loadedCategories: boolean;
 	latesting: Number; latestIndex: Number = null;
 	popup_homepage: Object;
-	display:string;
+	display: string;
 	faded: boolean = false;
 	statictext: Object;
+	public date: string = new Date().toISOString();
+
 	constructor(
 		private http: Http,
 		public core: Core,
@@ -71,16 +75,20 @@ export class HomePage {
 		public screenOrientation: ScreenOrientation,
 		public modalCtrl: ModalController
 	) {
+
+		console.log('enter home');
+
 		this.display = display_mode;
 		platform.ready().then(() => {
+
 			if (platform.is('cordova')) {
 				console.log(OneSignal);
-				OneSignal.getIds().then(function(userId) {
-			      console.log(userId['userId']);
-			      storage.set('userID', userId['userId']).then(() => {
-			      	console.log('UserID has set!')
-			      });
-			    });
+				OneSignal.getIds().then(function (userId) {
+					console.log(userId['userId']);
+					storage.set('userID', userId['userId']).then(() => {
+						console.log('UserID has set!')
+					});
+				});
 				OneSignal.startInit(onesignal_app_id);
 				OneSignal.inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification);
 				OneSignal.handleNotificationOpened().subscribe(res => {
@@ -89,13 +97,23 @@ export class HomePage {
 				});
 				OneSignal.endInit();
 			}
+
+			this.getData();
+
 			storage.get('login').then(login => {
+
+				console.log('enter get login');
+
 				let getAllSetting = () => {
-				      let url = wordpress_url + "/wp-json/mobiconnector/settings/getfirstloadapp";
-				      http.get(url).subscribe(res => {
-				        let settings = res.json()['socials_login'];
-				        this.config['app_settings'] = settings;
-				        if (login && login['token']) {
+
+					console.log('enter getAllSetting()');
+
+					let url = wordpress_url + "/wp-json/mobiconnector/settings/getfirstloadapp";
+
+					http.get(url).subscribe(res => {
+						let settings = res.json()['socials_login'];
+						this.config['app_settings'] = settings;
+						if (login && login['token']) {
 							console.log(login['token']);
 							this.core.checkTokenLogin(login['token']).subscribe(data => {
 								if (data['code'] == 'jwt_auth_valid_token') console.log('token valid');
@@ -105,147 +123,178 @@ export class HomePage {
 								}
 							});
 						}
-				        getstatic();
-				      }, err => {
-				      	showAlertfirst();
-				      });
-				      let showAlertfirst = () => {
-							translate.get('general').subscribe(trans => {
-								let alert = alertCtrl.create({
-									message: trans['error_first']['message'],
-									cssClass: 'alert-no-title',
-									enableBackdropDismiss: false,
-									buttons: [
-										{
-											text: trans['error_first']['button'],
-											handler: () => {
-												let popupDismiss = alert.dismiss();
-												popupDismiss.then(() => {
-													getstatic();
-													this.getData();
-													this.getPopupHomePage();
-												});
-												return false;
-											}
+						getstatic();
+					}, err => {
+						showAlertfirst();
+					});
+
+					let showAlertfirst = () => {
+
+						console.log('enter showAlertfirst()');
+
+						translate.get('general').subscribe(trans => {
+							let alert = alertCtrl.create({
+								message: trans['error_first']['message'],
+								cssClass: 'alert-no-title',
+								enableBackdropDismiss: false,
+								buttons: [
+									{
+										text: trans['error_first']['button'],
+										handler: () => {
+											let popupDismiss = alert.dismiss();
+											popupDismiss.then(() => {
+												getstatic();
+												// this.getData();
+												// this.getPopupHomePage();
+											});
+											return false;
 										}
-									]
-								});
-								alert.present();
-							});
-						};
-					}
-				let getstatic = () => {
-				let params: any = {};
-				http.get(wordpress_url + '/wp-json/modernshop/static/gettextstatic', {
-					search: core.objectToURLParams(params)
-				}).subscribe(res => {
-					if (res.json()['login_expired']) {
-						storage.remove('login').then(() => {
-							translate.get('general').subscribe(trans => {
-								let alert = alertCtrl.create({
-									message: trans['login_expired']['message'],
-									cssClass: 'alert-no-title',
-									enableBackdropDismiss: false,
-									buttons: [trans['login_expired']['button']]
-								});
-								alert.present();
-							});
-						});
-					}
-					config.set('text_static', res.json()['text_static']);
-					config.set('currency', res.json()['currency']);
-					config.set('required_login', res.json()['required_login']);
-					this.statictext = config['text_static'];
-					this.buttonCart;
-					this.getData();
-				}, error => {
-					showAlertfirst();
-				});
-				http.get(wordpress_url + '/wp-json/wooconnector/settings/getactivelocaltion')
-				.subscribe(location => {
-					config.set('countries', location.json()['countries']);
-					config.set('states', location.json()['states']);
-				});
-				http.get(wordpress_url + '/wp-json/ba-mobile-form/data-form')
-				.subscribe(form => {
-					let repass: Object = {
-						name_id: 'baform_re_password ',
-						label: 'Re-password*',
-						type: 'password',
-						require_check: 1
-					}
-					let tmpData: Object = form.json();
-					form.json()['register'].forEach((item, key) => {
-						if (item.name_id == 'billing_password') tmpData['register'].splice(key+1, 0, repass);
-					});
-					form.json()['profile'].forEach((item, key) => {
-						if (item.name_id == 'billing_password') tmpData['profile'].splice(key + 1, 0, repass);
-					});
-					console.log(tmpData);
-					config.set('customForm', tmpData);
-					
-				});
-				let showAlertfirst = () => {
-					translate.get('general').subscribe(trans => {
-						let alert = alertCtrl.create({
-							message: trans['error_first']['message'],
-							cssClass: 'alert-no-title',
-							enableBackdropDismiss: false,
-							buttons: [
-								{
-									text: trans['error_first']['button'],
-									handler: () => {
-										let popupDismiss = alert.dismiss();
-										popupDismiss.then(() => {
-											getstatic();
-											this.getData();
-											this.getPopupHomePage();
-										});
-										return false;
 									}
-								}
-							]
+								]
+							});
+							alert.present();
 						});
-						alert.present();
+					};
+				}
+
+				let getstatic = () => {
+
+					console.log('enter getstatic()');
+
+					let params: any = {};
+
+					http.get(wordpress_url + '/wp-json/modernshop/static/gettextstatic', {
+						search: core.objectToURLParams(params)
+					}).subscribe(res => {
+						if (res.json()['login_expired']) {
+							storage.remove('login').then(() => {
+								translate.get('general').subscribe(trans => {
+									let alert = alertCtrl.create({
+										message: trans['login_expired']['message'],
+										cssClass: 'alert-no-title',
+										enableBackdropDismiss: false,
+										buttons: [trans['login_expired']['button']]
+									});
+									alert.present();
+								});
+							});
+						}
+						config.set('text_static', res.json()['text_static']);
+						config.set('currency', res.json()['currency']);
+						config.set('required_login', res.json()['required_login']);
+						config.set('last_sync', this.date);
+						this.statictext = config['text_static'];
+						storage.set('static', config);
+						this.buttonCart;
+						// this.getData();
+					}, error => {
+						showAlertfirst();
 					});
+
+					http.get(wordpress_url + '/wp-json/wooconnector/settings/getactivelocaltion')
+						.subscribe(location => {
+							config.set('countries', location.json()['countries']);
+							config.set('states', location.json()['states']);
+						});
+
+					http.get(wordpress_url + '/wp-json/ba-mobile-form/data-form')
+						.subscribe(form => {
+							let repass: Object = {
+								name_id: 'baform_re_password ',
+								label: 'Re-password*',
+								type: 'password',
+								require_check: 1
+							}
+							let tmpData: Object = form.json();
+							form.json()['register'].forEach((item, key) => {
+								if (item.name_id == 'billing_password') tmpData['register'].splice(key + 1, 0, repass);
+							});
+							form.json()['profile'].forEach((item, key) => {
+								if (item.name_id == 'billing_password') tmpData['profile'].splice(key + 1, 0, repass);
+							});
+							console.log(tmpData);
+							config.set('customForm', tmpData);
+
+						});
+
+					let showAlertfirst = () => {
+						translate.get('general').subscribe(trans => {
+							let alert = alertCtrl.create({
+								message: trans['error_first']['message'],
+								cssClass: 'alert-no-title',
+								enableBackdropDismiss: false,
+								buttons: [
+									{
+										text: trans['error_first']['button'],
+										handler: () => {
+											let popupDismiss = alert.dismiss();
+											popupDismiss.then(() => {
+												getstatic();
+												// this.getData();
+												// this.getPopupHomePage();
+											});
+											return false;
+										}
+									}
+								]
+							});
+							alert.present();
+						});
+					};
 				};
-			};
-			getAllSetting();
+
+				getAllSetting();
 			});
 		});
-		storage.get('require').then(val =>{
-		    if (!val) this.getPopupHomePage();
+
+		storage.get('require').then(val => {
+			// if (!val) this.getPopupHomePage();
 		});
 	}
+
 	ionViewDidEnter() {
-		if (this.statictext) this.buttonCart.update(); 
+		if (this.statictext) {
+
+			this.buttonCart.update();
+		}
 	}
+
+	setConfig(config) {
+
+	}
+
 	openLinkFooter(url: string, external: boolean = false) {
 		if (!url) return;
 		else this.InAppBrowser.create(url, open_target_blank ? "_blank" : "_system", "location=no");
 	}
+
 	getPopupHomePage() {
-        let url = wordpress_url + "/wp-json/wooconnector/popup/getpopuphomepage";
-        let date = new Date();
-        let date_gmt0 = new Date(date.toString()).toUTCString();
-        this.http.get(url, {
-            search: this.core.objectToURLParams({'datetime': date_gmt0})
-        }).subscribe(res => {
-            if(res.json()) {
-                this.popup_homepage = res.json();
-            }
-        })
-    }
-    closePopup(check: boolean) {
-    	this.popup_homepage=null
+		let url = wordpress_url + "/wp-json/wooconnector/popup/getpopuphomepage";
+		let date = new Date();
+		let date_gmt0 = new Date(date.toString()).toUTCString();
+		this.http.get(url, {
+			search: this.core.objectToURLParams({ 'datetime': date_gmt0 })
+		}).subscribe(res => {
+			if (res.json()) {
+				this.popup_homepage = res.json();
+			}
+		})
+	}
+
+	closePopup(check: boolean) {
+		this.popup_homepage = null
 		this.storage.set('require', true);
 	}
+
 	getData(isRefreshing: boolean = false, refresher = null) {
+
+		console.log('enter getData()');
+
 		this.http.get(wordpress_url + '/wp-json/wooslider/product/getslider')
 			.subscribe(res => {
 				if (isRefreshing) delete this.slides;
 				this.slides = res.json();
-		});
+			});
 		this.http.get(wordpress_url + '/wp-json/wooconnector/product/getdealofday', {
 			search: this.core.objectToURLParams({
 				post_per_page: 4
@@ -254,39 +303,59 @@ export class HomePage {
 			if (isRefreshing) delete this.deal;
 			this.deal = res.json();
 		});
-		this.http.get(wordpress_url + '/wp-json/wooconnector/product/getnewcomment')
-			.subscribe(res => {
-				if (isRefreshing) delete this.clientSay;
-				this.clientSay = res.json();
-			});
+		// this.http.get(wordpress_url + '/wp-json/wooconnector/product/getnewcomment')
+		// 	.subscribe(res => {
+		// 		if (isRefreshing) delete this.clientSay;
+		// 		this.clientSay = res.json();
+		// 	});
 		this.loadLatest();
 		if (isRefreshing) {
 			this.categories = [];
 			this.loadCategories(refresher);
 		} else this.loadCategories();
 	}
+
 	doRefresh(refresher) {
 		this.loadedProducts = false;
 		this.loadedCategories = false;
 		this.getData(true, refresher);
 	}
+
 	loadLatest() {
+
+		console.log('enter loadLatest()');
+
 		this.products = []
 		if (!this.latesting) {
 			this.faded = false;
-			let params: any = { post_per_page: 4 };
+			let params: any = { post_per_page: 10 };
 			this.http.get(wordpress_url + '/wp-json/wooconnector/product/getproduct', {
 				search: this.core.objectToURLParams(params)
 			}).subscribe(res => {
+
+				console.log(res);
+
 				let data = res.json();
 				if (data.length != 0) {
 					this.products = data;
 					console.log(this.products);
 					setTimeout(() => {
 						this.faded = true;
-					},100);
+					}, 100);
 				} else this.products = [];
 				this.loadedProducts = true;
+
+				this.storage.get('static').then(config => {
+
+					if (config) {
+						this.statictext = config['text_static'];
+					}
+
+				});
+			}, err => {
+
+				console.log(err);
+
 			});
 		} else {
 			this.faded = false;
@@ -294,20 +363,32 @@ export class HomePage {
 			this.http.get(wordpress_url + '/wp-json/wooconnector/product/getproductbycategory', {
 				search: this.core.objectToURLParams(params)
 			}).subscribe(res => {
+
+				console.log(res);
+
 				let data = res.json();
 				if (data['products'].length != 0) {
 					this.products = data['products'];
 					console.log(this.products);
 					setTimeout(() => {
 						this.faded = true;
-					},100);
-				} else  this.products = [];
+					}, 100);
+				} else this.products = [];
 				this.loadedProducts = true;
+			}, err => {
+
+				console.log(err);
+
 			});
 		}
 	}
+
 	loadCategories(refresher = null) {
-		let params = { parent: '0', cat_per_page: 100, cat_num_page: 1 };
+
+		console.log('load categories');
+
+		let params = { cat_per_page: 100, cat_num_page: 1, parent: 0 };
+		// let params = { parent: '0', cat_per_page: 100, cat_num_page: 1 };
 		let loadCategories = () => {
 			this.http.get(wordpress_url + '/wp-json/wooconnector/product/getcategories', {
 				search: this.core.objectToURLParams(params)
@@ -324,6 +405,7 @@ export class HomePage {
 		};
 		loadCategories();
 	}
+
 	openLink(url: string, external: boolean = false) {
 		if (!url) return;
 		if (url.indexOf("link://") == 0) {
@@ -336,15 +418,17 @@ export class HomePage {
 			else if (data[0] == "term-and-conditions") this.navCtrl.push(this.TermsPage);
 			else if (data[0] == "privacy-policy") this.navCtrl.push(this.PrivacyPage);
 		} else this.InAppBrowser.create(url, open_target_blank ? "_blank" : "_system", "location=no");
-		this.popup_homepage=null
+		this.popup_homepage = null
 		this.storage.set('require', true);
 	}
+
 	changeLatest(id: Number, index: Number = null) {
 		this.latesting = id;
 		this.latestIndex = index;
 		this.loadedProducts = false;
 		this.loadLatest();
 	}
+
 	onSwipe(e) {
 		if (e['deltaX'] < -150 || e['deltaX'] > 150) {
 			if (e['deltaX'] > 0) {
@@ -356,11 +440,18 @@ export class HomePage {
 			}
 		}
 	}
+
 	onSwipeContent(e) {
 		if (e['deltaX'] < -150) this.navCtrl.push(this.CategoriesPage);
 	}
+
 	viewAll() {
 		if (this.latesting) this.navCtrl.push(this.DetailCategoryPage, { id: this.latesting });
 		else this.navCtrl.push(this.LatestPage);
+	}
+
+	categoryPage() {
+		// this.navCtrl.push(this.CategoriesPage);
+		this.navCtrl.parent.select(1);
 	}
 }

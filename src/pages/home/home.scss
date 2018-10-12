@@ -1,6 +1,6 @@
 page-home {
 	.header .toolbar-title {display: flex;}
-	.footer{background:#0a1622}
+	.footer{background:#237793}
 	.popup-homepage {
         position: absolute;
         top: 0;
@@ -56,7 +56,7 @@ page-home {
     }
 	.back-button{display:none!important}
 	.title.title-ios{padding:0 16px 1px}
-	.home-title{height:30px}
+	.home-title{height:30px !important;}
 	.slides-home{
 		height:auto;
 		/*.swiper-wrapper {

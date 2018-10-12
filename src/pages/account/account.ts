@@ -31,13 +31,13 @@ declare var wordpress_url: string;
 const wordpress_order = wordpress_url + '/wp-json/wooconnector/order';
 
 @Component({
-  selector: 'page-account',
-  templateUrl: 'account.html',
-  providers: [StorageMulti, Device, Core]
+	selector: 'page-account',
+	templateUrl: 'account.html',
+	providers: [StorageMulti, Device, Core]
 })
 export class AccountPage {
 
-  	LoginPage = LoginPage;
+	LoginPage = LoginPage;
 	ProfilePage = ProfilePage;
 	OrderPage = OrderPage;
 	FavoritePage = FavoritePage;
@@ -83,17 +83,17 @@ export class AccountPage {
 			}
 		});
 		this.storageMul.get(['favorite', 'notification', 'text'])
-		.then(val => {
-			console.log(val);
-			if (val) {
-				if (val["favorite"]) this.data["favorite"] = Object.keys(val["favorite"]).length;
-				else this.data["favorite"] = 0;
-				if (val["notification"] != false) this.data["notification"] = true;
-				else this.data["notification"] = false;
-				if (val["text"]) this.data["text"] = val["text"];
-				else this.data["text"] = "normal";
-			}
-		});
+			.then(val => {
+				console.log(val);
+				if (val) {
+					if (val["favorite"]) this.data["favorite"] = Object.keys(val["favorite"]).length;
+					else this.data["favorite"] = 0;
+					if (val["notification"] != false) this.data["notification"] = true;
+					else this.data["notification"] = false;
+					if (val["text"]) this.data["text"] = val["text"];
+					else this.data["text"] = "normal";
+				}
+			});
 	}
 	getDataValidToken(login: any) {
 		this.data["login"] = login;

@@ -1,0 +1,140 @@
+<!--
+  Generated template for the MyshopPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>My Shop</ion-title>
+    <ion-spinner name="bubbles" *ngIf="!loaded" float-right></ion-spinner>
+    <ion-buttons end *ngIf="loaded">
+      <button ion-button icon-only color="royal" (click)="refreshPage()">
+        <ion-icon name="refresh"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+  <div padding-right padding-left margin-bottom style="height: 32px;">
+    <ion-segment [(ngModel)]="segment" (ionChange)="segmentChanged($event)" *ngIf="shop.id">
+      <ion-segment-button value="shop">
+        Details
+      </ion-segment-button>
+      <ion-segment-button value="product">
+        Products
+      </ion-segment-button>
+      <ion-segment-button value="order">
+        Orders
+      </ion-segment-button>
+      <ion-segment-button value="other">
+        Others
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <!-- <ion-grid *ngIf="!shop.id">
+    <ion-row padding text-center>
+
+      <ion-spinner name="bubbles" *ngIf="!isShopLoaded && isLogin"></ion-spinner>
+
+      <button ion-button (click)="createShop()" color="primary" block *ngIf="!shop.id && isShopLoaded && isLogin">
+        <ion-icon name="star" item-end></ion-icon>
+        Create shop
+      </button>
+
+    </ion-row>
+  </ion-grid> -->
+
+  <ion-card *ngIf="!isLogin">
+
+    <ion-card-header>
+      Please login first to setup your shop
+    </ion-card-header>
+
+    <ion-card-content>
+      <button ion-item (click)="accountPage()">
+        <ion-icon name="log-in" item-start></ion-icon>
+        Login
+      </button>
+    </ion-card-content>
+
+  </ion-card>
+
+  <div [ngSwitch]="segment" *ngIf="shop.id">
+    <div *ngSwitchCase="'shop'">
+
+    </div>
+    <div *ngSwitchCase="'product'">
+
+      <ion-list>
+        <ion-item *ngIf="productLoaded && products.length <= 0">
+          <h2>No product found</h2>
+        </ion-item>
+        <ion-item-sliding *ngFor="let product of products">
+
+          <ion-item>
+            <ion-thumbnail item-start>
+              <img [src]="product.modernshop_images[0].modern_square">
+            </ion-thumbnail>
+            <h2>{{ product.name }}</h2>
+            <h3>{{ product.price }}</h3>
+            <p>
+              <ion-badge *ngFor="let cat of product.categories">{{ cat.name }}</ion-badge>
+            </p>
+            <button ion-button clear item-end [navPush]="BrowserPage" [navParams]="{task:'add-product/' + product.id}">Edit</button>
+          </ion-item>
+          <ion-item-options side="right">
+            <button ion-button color="danger">
+              <ion-icon name="trash"></ion-icon>
+              Delete
+            </button>
+          </ion-item-options>
+
+        </ion-item-sliding>
+      </ion-list>
+
+    </div>
+    <div *ngSwitchCase="'order'">
+    </div>
+    <div *ngSwitchCase="'other'">
+
+      <ion-list>
+        <button ion-item [navPush]="BrowserPage" [navParams]="{task:'vendor-report'}">
+          Reports
+        </button>
+        <button ion-item [navPush]="BrowserPage" [navParams]="{task:'vendor-withdrawal'}">
+          Payments Withdrawal
+        </button>
+        <button ion-item [navPush]="BrowserPage" [navParams]="{task:'transaction-details'}">
+          Payments History
+        </button>
+      </ion-list>
+
+    </div>
+  </div>
+
+  <div *ngIf="isLogin">
+
+    <iframe [src]='storeFrontURL' width="100%" height="100%" frameborder="0" class="iframe" [ngStyle]="{'visibility':shopStyle}"
+      (load)="dismissLoading()"></iframe>
+    <iframe [src]='safeURL' width="100%" height="100%" frameborder="0" class="iframe" [ngStyle]="{'visibility':orderStyle}" *ngIf="shop.id"></iframe>
+
+  </div>
+
+  <ion-fab right bottom *ngIf="fab">
+    <button ion-fab (click)="createProductPage()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+
+</ion-content>

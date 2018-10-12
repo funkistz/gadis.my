@@ -18,9 +18,9 @@ import { TermsPage } from '../terms/terms';
 declare var wordpress_url;
 
 @Component({
-  	selector: 'page-checkout',
-  	templateUrl: 'checkout.html',
-  	providers: [Core, StorageMulti, ObjectToArrayPipe]
+	selector: 'page-checkout',
+	templateUrl: 'checkout.html',
+	providers: [Core, StorageMulti, ObjectToArrayPipe]
 })
 export class CheckoutPage {
 	AddressPage = AddressPage;
@@ -32,10 +32,10 @@ export class CheckoutPage {
 	playerID: string;
 	paymentDataArr: Object[] = [];
 
-  	constructor(
-  		public navCtrl: NavController,
-  		public navParams: NavParams,
-  		private storageMul: StorageMulti,
+	constructor(
+		public navCtrl: NavController,
+		public navParams: NavParams,
+		private storageMul: StorageMulti,
 		private core: Core,
 		private http: Http,
 		private platform: Platform,
@@ -45,12 +45,12 @@ export class CheckoutPage {
 		private alertCtrl: AlertController,
 		public modalCtrl: ModalController,
 		public config: Config
-  	) {
-  		translate.get('checkout').subscribe(trans => this.trans = trans);
+	) {
+		translate.get('checkout').subscribe(trans => this.trans = trans);
 		core.showLoading();
-  	}
+	}
 
-  	ionViewDidEnter() {
+	ionViewDidEnter() {
 		this.data = [];
 		this.core.showLoading();
 		this.storageMul.get(['login', 'user', 'cart', 'coupon', 'useBilling', 'userID']).then(val => {
@@ -58,6 +58,7 @@ export class CheckoutPage {
 			if (val["login"] && val["login"]["token"]) this.login = val["login"];
 			if (val["userID"]) this.playerID = val["userID"];
 			if (val["user"]) this.user = val["user"]['mobiconnector_address'];
+			console.log(val["user"]);
 			console.log(this.user);
 			if (val["cart"]) {
 				this.cart = val["cart"];
@@ -89,7 +90,7 @@ export class CheckoutPage {
 					this.http.get(wordpress_url + '/wp-json/wooconnector/calculator/getall', option).subscribe(res => {
 						this.data = res.json();
 						console.log(this.data);
-						if (this.data['payment']){
+						if (this.data['payment']) {
 							this.paymentDataArr = this.data['payment']
 						}
 						if (this.data['total']['discount']) {
@@ -128,7 +129,7 @@ export class CheckoutPage {
 					});
 				}
 			}
-			if(val['useBilling'] == true) this.useBilling = true;
+			if (val['useBilling'] == true) this.useBilling = true;
 			else this.useBilling = false;
 		});
 	}
@@ -151,8 +152,8 @@ export class CheckoutPage {
 				}
 			}
 		});
-		if (paymentData.length > 0) this.data['payment']  = paymentData;
-		else this.data['payment'] = this.paymentDataArr;	
+		if (paymentData.length > 0) this.data['payment'] = paymentData;
+		else this.data['payment'] = this.paymentDataArr;
 		this.payment = this.data['payment'][0]['id'];
 		this.shipping = shipping['id'];
 		this.data['_shipping'] = Number(shipping['price']);
@@ -167,7 +168,7 @@ export class CheckoutPage {
 		params['shipping_method'] = this.shipping;
 		params['payment_method'] = this.payment;
 		params['onesignal_player_id'] = this.playerID;
-		if(this.useBilling) params['ship_to_different_address'] = 0;
+		if (this.useBilling) params['ship_to_different_address'] = 0;
 		else params['ship_to_different_address'] = 1;
 		if (this.coupon) {
 			let coupon: string[] = [];
@@ -216,55 +217,58 @@ export class CheckoutPage {
 		if (this.platform.is('cordova')) {
 			this.platform.ready().then(() => {
 				let isCheckout: boolean = false;
+				checkoutUrl = checkoutUrl.replace('http', 'https');
+				console.log('checkout url : ' + checkoutUrl);
 				let openCheckout = this.InAppBrowser.create(checkoutUrl, '_blank', 'location=no,closebuttoncaption=Close,hardwareback=yes,footer=yes');
 				openCheckout.on('loadstart').subscribe(res => {
-				console.log(res);			
+					console.log('enter load start');
+					console.log(res);
 					let url = wordpress_url;
 					if (res.url.indexOf(url) != 0) url = url.replace('http', 'https');
 					console.log(url);
-					if ((res.url.indexOf(url) == 0 && res.url.indexOf('order-received') != -1)){
+					if ((res.url.indexOf(url) == 0 && res.url.indexOf('order-received') != -1)) {
 						order_id = (res.url.split('?')[0]).split('order-received/')[1].replace("/", "");
-						let params =  {};
+						let params = {};
 						params['id'] = order_id;
 						if (this.login && this.login['token']) {
 							params['token'] = true;
 						} else params['token'] = false;
-						this.navCtrl.push(ThanksPage,{ params: params}).then(() => {
-							openCheckout.close();    
-                        	this.storageMul.remove(['cart', 'coupon']);
+						this.navCtrl.push(ThanksPage, { params: params }).then(() => {
+							openCheckout.close();
+							this.storageMul.remove(['cart', 'coupon']);
 						});
 					} else if (res.url.indexOf('cancel_order') != -1 && res.url.indexOf('paypal.com') == -1) {
-                        openCheckout.close();
-                    }
+						openCheckout.close();
+					}
 				});
 				openCheckout.on('loaderror').subscribe(res => {
 					console.log(res);
 					openCheckout.close();
 					this.Toast.showLongBottom(this.trans['has_error']['message']).subscribe(
-						toast => {},
+						toast => { },
 						error => { console.log(error); }
 					);
 				});
 			});
 		}
 	}
-	showTerms(){
+	showTerms() {
 		let alert = this.alertCtrl.create({
-		    title: this.config['text_static']['modern_terms_ofuser_title'],
-		    message: this.config['text_static']['modern_description_term_ofuse'],
-		    cssClass: 'term-condition',
-		    buttons: [
-		      {
-		        text: this.trans['term_popup']['cancel'],
-		        role: 'cancel'
-		      },
-		      {
-		        text: this.trans['term_popup']['accept'],
-		        handler: () => {
-		          this.checkCondition = true;
-		        }
-		      }
-		    ]
+			title: this.config['text_static']['modern_terms_ofuser_title'],
+			message: this.config['text_static']['modern_description_term_ofuse'],
+			cssClass: 'term-condition',
+			buttons: [
+				{
+					text: this.trans['term_popup']['cancel'],
+					role: 'cancel'
+				},
+				{
+					text: this.trans['term_popup']['accept'],
+					handler: () => {
+						this.checkCondition = true;
+					}
+				}
+			]
 		});
 		alert.present();
 	}

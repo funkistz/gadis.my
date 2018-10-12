@@ -108,6 +108,20 @@
 				"text": "Product Name: Z to A",
 				"value": "-name"
 			}
+		],
+		"sortDataLess": [
+			{
+				"text": "Time: Latest",
+				"value": "-date"
+			},
+			{
+				"text": "Product Name: A to Z",
+				"value": "name"
+			},
+			{
+				"text": "Product Name: Z to A",
+				"value": "-name"
+			}
 		]
 	},
 	"search": {

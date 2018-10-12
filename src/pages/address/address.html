@@ -1,15 +1,14 @@
 <ion-header>
-  <ion-navbar>
-	<ion-title>{{'address.title'|translate}}</ion-title>
-	<ion-buttons end>
-		<button ion-button (click)="getLocation()">
-			<ion-icon name="ios-locate-outline"></ion-icon>
-		</button>
-	</ion-buttons>
-  </ion-navbar>
+	<ion-navbar>
+		<ion-title>{{'address.title'|translate}}</ion-title>
+		<ion-buttons end>
+			<button ion-button (click)="getLocation()">
+				<ion-icon name="ios-locate-outline"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
 </ion-header>
 
 <ion-content padding>
 	<ba-address #location cssClass="formaddress"></ba-address>
 </ion-content>
-<ion-footer ion-fixed><ion-toolbar><footer-tabs></footer-tabs></ion-toolbar></ion-footer>

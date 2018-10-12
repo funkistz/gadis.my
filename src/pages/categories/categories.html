@@ -1,9 +1,6 @@
 <ion-header (swipe)="onSwipeContent($event)">
 	<ion-navbar>
-		<ion-title start>
-			<img class="home-title" float-left src="assets/images/logo.png" />
-		</ion-title>
-		<ion-title center>{{'categories.title'|translate}}</ion-title>
+		<ion-title [innerHTML]="title" center margin-left>...</ion-title>
 		<ion-buttons end>
 			<button-cart #cart icon="icon-bag"></button-cart>
 		</ion-buttons>

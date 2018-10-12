@@ -1,0 +1,14 @@
+page-myshop {
+    .label-ios + ion-input .text-input, .label-ios + ion-textarea .text-input, .label-ios + .input + .cloned-input {
+        margin-left: 0; 
+    }
+
+    ion-spinner {
+        display: block;
+        margin: auto;
+    }
+
+    .iframe{
+        position: absolute;
+    }
+}
