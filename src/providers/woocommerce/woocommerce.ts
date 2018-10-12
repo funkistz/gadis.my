@@ -118,13 +118,14 @@ export class WoocommerceProvider {
 
     } else if (option.method == 'DELETE') {
 
-      let url = this.url;
-
-      if (option.param) {
-        url += '?' + this.objectToUrl(option.param);
+      if (!option.param) {
+        option.param = {};
       }
 
-      return this.http.post(url, {
+      let params = this.objectToURLParams(option.param);
+      console.log(params);
+
+      return this.http.post(this.url, params, {
         headers: headers,
       })
 

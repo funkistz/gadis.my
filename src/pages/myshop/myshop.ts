@@ -14,6 +14,7 @@ import { Device } from '@ionic-native/device';
 import { WoocommerceProvider } from '../../providers/woocommerce/woocommerce';
 import { CreateProductPage } from '../../pages/create-product/create-product';
 import { BrowserPage } from '../../pages/browser/browser';
+import { Toast } from '@ionic-native/toast';
 
 @IonicPage()
 @Component({
@@ -44,6 +45,7 @@ export class MyshopPage {
   storeFrontURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.externalLink);
   loaded = false;
   first = false;
+  shopReady = false;
 
   //shop info
 
@@ -57,7 +59,8 @@ export class MyshopPage {
     public formBuilder: FormBuilder,
     public core: Core,
     public sanitizer: DomSanitizer,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    public Toast: Toast
   ) {
 
     this.loaded = false;
@@ -108,7 +111,24 @@ export class MyshopPage {
       console.log(val);
 
       if (val) {
+
         if (val["user"]) {
+
+          if (this.data["user"]) {
+
+            if (this.data["user"].ID != val["user"]['mobiconnector_info'].ID) {
+              this.first = false;
+              this.shop = {};
+              this.shop = {
+                shop: {
+                  banner: "assets/images/account-bg.png",
+                  image: "assets/images/person.png"
+                }
+              };
+            }
+
+          }
+
           this.data["user"] = val["user"]['mobiconnector_info'];
         }
         if (val["login"] && val["login"]["token"]) {
@@ -148,6 +168,8 @@ export class MyshopPage {
 
   checkShop(id) {
 
+    this.shopReady = false;
+
     console.log('enter check shop');
 
     this.storeFrontURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.externalLink + '?username=' + this.data["login"].user_display_name + '&task=' + 'storefront');
@@ -162,6 +184,7 @@ export class MyshopPage {
     this.WooCommerce.subscribe(data => {
 
       this.isShopLoaded = true;
+      this.shopReady = true;
       console.log(data);
 
       try {
@@ -211,6 +234,7 @@ export class MyshopPage {
 
         }
       } catch (e) {
+        this.shopReady = true;
         console.log('error try check shop');
         return false;
       }
@@ -453,6 +477,7 @@ export class MyshopPage {
         {
           text: 'Delete',
           handler: () => {
+            this.core.showLoading();
             console.log('Agree clicked');
 
             let wooDelete = this.WP.get({
@@ -460,7 +485,7 @@ export class MyshopPage {
               method: 'DELETE',
               api: 'products/' + product.id,
               param: {
-                force: 'true'
+                // force: 'true'
               }
             });
 
@@ -470,12 +495,31 @@ export class MyshopPage {
               console.log(data.json());
               if (data.json()) {
 
+                this.Toast.showShortBottom('Product deleted').subscribe(
+                  toast => { },
+                  error => { console.log(error); }
+                );
 
+              } else {
+
+                this.Toast.showShortBottom('Some error occured').subscribe(
+                  toast => { },
+                  error => { console.log(error); }
+                );
 
               }
 
+              this.getProduct(this.data["user"].ID);
+              this.core.hideLoading();
+
             }, err => {
 
+              this.Toast.showShortBottom('Some error occured').subscribe(
+                toast => { },
+                error => { console.log(error); }
+              );
+
+              this.core.hideLoading();
               console.log('error oi');
 
             });
