@@ -13,7 +13,6 @@ import { Device } from '@ionic-native/device';
 import { WoocommerceProvider } from '../../providers/woocommerce/woocommerce';
 import { Http } from '@angular/http';
 
-@IonicPage()
 @Component({
   selector: 'page-create-product',
   templateUrl: 'create-product.html',

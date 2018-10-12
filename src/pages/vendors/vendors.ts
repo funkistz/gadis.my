@@ -7,7 +7,6 @@ import { Core } from '../../service/core.service';
 import { WoocommerceProvider } from '../../providers/woocommerce/woocommerce';
 import { VendorDetailPage } from '../vendor-detail/vendor-detail';
 
-@IonicPage()
 @Component({
   selector: 'page-vendors',
   templateUrl: 'vendors.html',

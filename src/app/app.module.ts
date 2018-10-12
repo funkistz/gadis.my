@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
+import { ErrorHandler, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { HttpModule, Http } from '@angular/http';
 
@@ -67,6 +67,8 @@ import { CreateProductPage } from '../pages/create-product/create-product';
 import { BrowserPage } from '../pages/browser/browser';
 import { CreateVendorPage } from '../pages/create-vendor/create-vendor';
 
+import { ComponentsModule } from '../components/components.module';
+
 //pipe
 import { PricePipe } from '../pipes/price/price';
 import { OderByPipe } from '../pipes/oder-by/oder-by';
@@ -85,8 +87,6 @@ import { WoocommerceProvider } from '../providers/woocommerce/woocommerce';
   declarations: [
     MyApp,
     HomePage,
-    WooImageComponent,
-    ButtonCartComponent,
     FooterTabsComponent,
     HideShowComponent,
     ButtonQuantityComponent,
@@ -125,9 +125,12 @@ import { WoocommerceProvider } from '../providers/woocommerce/woocommerce';
     ContactPage,
     DetailCategoryPage,
     OrderPage,
+    VendorDetailPage,
+
+    WooImageComponent,
+    ButtonCartComponent,
     TabsPage,
     VendorsPage,
-    VendorDetailPage,
     MyshopPage,
     CreateProductPage,
     BrowserPage,
@@ -156,7 +159,8 @@ import { WoocommerceProvider } from '../providers/woocommerce/woocommerce';
     IonicStorageModule.forRoot({
       name: 'woocommerce_application',
       driverOrder: ['sqlite', 'websql', 'indexeddb']
-    })
+    }),
+    // ComponentsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -209,6 +213,7 @@ import { WoocommerceProvider } from '../providers/woocommerce/woocommerce';
     Facebook,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     WoocommerceProvider
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

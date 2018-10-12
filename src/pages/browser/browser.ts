@@ -3,8 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Storage } from '@ionic/storage';
 
-
-@IonicPage()
 @Component({
   selector: 'page-browser',
   templateUrl: 'browser.html'

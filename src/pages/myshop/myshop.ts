@@ -16,7 +16,6 @@ import { CreateProductPage } from '../../pages/create-product/create-product';
 import { BrowserPage } from '../../pages/browser/browser';
 import { Toast } from '@ionic-native/toast';
 
-@IonicPage()
 @Component({
   selector: 'page-myshop',
   templateUrl: 'myshop.html',
