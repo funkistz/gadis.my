@@ -77,15 +77,22 @@ export class WoocommerceProvider {
     let headers = new Headers();
     let authorization = this.consumer_key + ':' + this.consumer_secret + ':' + version + ':' + option.api + ':' + option.method;
     headers.set('Authorization', authorization);
+    // headers.set('Cache-control', 'no-cache');
+    // headers.set('Cache-control', 'no-store');
+    // headers.set('Expires', '0');
+    // headers.set('Pragma', 'no-cache');
 
     if (option.method == 'GET') {
 
       let url = this.url;
-      console.log({ url: this.url });
 
       if (option.param) {
+        option.param.timestamp = + new Date();
         url += '?' + this.objectToUrl(option.param);
       }
+
+      console.log({ url: this.url });
+
 
       return this.http.get(url, {
         headers: headers,

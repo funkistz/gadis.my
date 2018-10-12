@@ -362,14 +362,14 @@ export class MyshopPage {
       vendor: id
     };
 
-    this.wooProduct = this.WP.get({
+    let getProduct = this.WP.get({
       wcmc: false,
       method: 'GET',
       api: 'products',
       param: params
     });
 
-    this.wooProduct.subscribe(data => {
+    getProduct.subscribe(data => {
 
       console.log(data.json());
       if (data.json()) {
