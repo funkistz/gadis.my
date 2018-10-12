@@ -1,4 +1,4 @@
-1. You can change your app setting at:
+1. You can change your app setting and general info at:
 
 https://www.gadis.my/wp-admin/admin.php?page=modernshop-settings
 
