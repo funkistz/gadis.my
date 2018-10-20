@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, AlertController, Platform } from 'ionic-angular';
+import { NavController, NavParams, AlertController, Platform, ToastController } from 'ionic-angular';
 import { Http, Headers } from '@angular/http';
 import { Config } from '../../service/config.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -15,6 +15,10 @@ import { Content } from 'ionic-angular';
 
 //Page
 import { SignupPage } from '../signup/signup';
+
+//additional
+import { AngularFireModule } from 'angularfire2';
+import firebase from 'firebase';
 
 declare var wordpress_url;
 declare var display_mode;
@@ -51,7 +55,8 @@ export class LoginPage {
 		public translate: TranslateService,
 		public Toast: Toast,
 		public googleplus: GooglePlus,
-		private fb: Facebook
+		private fb: Facebook,
+		public toastCtrl: ToastController
 	) {
 		this.login_facebook = config['app_settings']['facebook'];
 		this.login_google = config['app_settings']['google'];
@@ -162,11 +167,29 @@ export class LoginPage {
 				);
 			});
 	}
+
+	loginGPFirebase() {
+		this.socialMode = true;
+		this.loading = true;
+		this.googleplus.login({
+			'webClientId': '645613074065-n9mbjl60isqld2l04olqigldrfjl5pf3.apps.googleusercontent.com',
+			'offline': true
+		}).then(res => {
+
+			firebase.auth().signInWithCredential(firebase.auth.GoogleAuthProvider.credential(res.idToken))
+				.then(success => {
+
+				}).catch(error => {
+
+				});
+		});
+	}
+
 	loginGP() {
 		this.socialMode = true;
 		this.loading = true;
 		this.googleplus.login({
-			'webClientId': google_web_api_key,
+			'webClientId': '645613074065-n9mbjl60isqld2l04olqigldrfjl5pf3.apps.googleusercontent.com',
 			'offline': true
 		}).then(profile => {
 			let params = {
@@ -185,10 +208,15 @@ export class LoginPage {
 			this.socialMode = false;
 			this.loading = false;
 			console.log(err);
-			this.Toast.showShortBottom(this.trans["login_fail"]).subscribe(
-				toast => { },
-				error => { console.log(error); }
-			);
+			const toast = this.toastCtrl.create({
+				message: err,
+				duration: 3000
+			});
+			toast.present();
+			// this.Toast.showShortBottom(this.trans["login_fail"]).subscribe(
+			// 	toast => { },
+			// 	error => { console.log(error); }
+			// );
 		});
 	}
 	socialLogin(params: any) {

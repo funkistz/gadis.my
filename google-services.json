@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "645613074065",
+    "firebase_url": "https://gadismy-b3cb6.firebaseio.com",
+    "project_id": "gadismy-b3cb6",
+    "storage_bucket": "gadismy-b3cb6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:645613074065:android:e6c615772383b7ca",
+        "android_client_info": {
+          "package_name": "com.domain.gadismy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "645613074065-b8voetl1famqs82stu3etiluhubi7k8e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.domain.gadismy",
+            "certificate_hash": "320d46bb43e5d9cf61f587db177ead32546c7905"
+          }
+        },
+        {
+          "client_id": "645613074065-n9mbjl60isqld2l04olqigldrfjl5pf3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxxOP5erIRLxRtjvxCUhdFinCWIYIk4As"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "645613074065-glo3hjh1p7ivdvjr2963lfpm7c3iv2gl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

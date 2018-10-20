@@ -85,6 +85,19 @@ import { TimeagoPipe } from '../pipes/timeago/timeago';
 
 //provider
 import { WoocommerceProvider } from '../providers/woocommerce/woocommerce';
+import { AngularFireModule } from 'angularfire2';
+import firebase from 'firebase';
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyAQIifgk-8g7u9f5vFWTFXaXJyubTkD_No",
+  authDomain: "gadismy-b3cb6.firebaseapp.com",
+  databaseURL: "https://gadismy-b3cb6.firebaseio.com",
+  projectId: "gadismy-b3cb6",
+  storageBucket: "gadismy-b3cb6.appspot.com",
+  messagingSenderId: "645613074065"
+};
+
+firebase.initializeApp(firebaseConfig);
 
 @NgModule({
   declarations: [
@@ -143,6 +156,7 @@ import { WoocommerceProvider } from '../providers/woocommerce/woocommerce';
   ],
   imports: [
     BrowserModule,
+    AngularFireModule.initializeApp(firebaseConfig),
     IonicModule.forRoot(MyApp, {
       backButtonText: '',
       backButtonIcon: 'md-arrow-back',
