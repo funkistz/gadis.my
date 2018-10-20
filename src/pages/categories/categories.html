@@ -16,8 +16,8 @@
 		</ion-col>
 	</ion-row>
 	<!-- Has categories -->
-	<div width-100 text-center padding *ngIf="!loaddata">
-		<ion-spinner name="ios"></ion-spinner>
+	<div class="slider-temp" *ngIf="!loaddata">
+		<g-loader></g-loader>
 	</div>
 	<ion-row *ngIf="0 < parents.length" wrap padding-4 class="faded-content" [ngClass]="{'faded-has-content':faded}">
 		<ion-col width-50 *ngFor="let category of parents" class="item-category" [navPush]="DetailCategoryPage" [navParams]="{id:category.id}"

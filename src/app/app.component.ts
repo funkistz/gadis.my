@@ -6,6 +6,8 @@ import { Http } from '@angular/http';
 import { Core } from '../service/core.service';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { OnboardingPage } from '../pages/onboarding/onboarding';
+
 import { TranslateService } from '../module/ng2-translate';
 import { Storage } from '@ionic/storage';
 import { Config } from '../service/config.service';
@@ -27,7 +29,7 @@ declare var admob_ios_interstitial: string;
   providers: [Core, GoogleAnalytics, ScreenOrientation, Device]
 })
 export class MyApp {
-  rootPage: any = TabsPage;
+  rootPage: any = OnboardingPage;
   trans: Object;
   isLoaded: boolean;
   disconnect: boolean;

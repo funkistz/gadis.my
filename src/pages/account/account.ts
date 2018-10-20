@@ -133,6 +133,8 @@ export class AccountPage {
 							this.data['order'] = 0;
 							this.storage.remove('login').then(() => {
 								this.storage.remove('user').then(() => {
+									this.storage.remove('shop');
+									this.storage.remove('customer');
 									this.isLogin = false;
 									console.log('aaa');
 								})

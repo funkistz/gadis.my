@@ -28,6 +28,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { GLoaderComponent } from '../components/g-loader/g-loader';
 import { WooImageComponent } from '../components/woo-image/woo-image';
 import { ButtonCartComponent } from '../components/button-cart/button-cart';
 import { FooterTabsComponent } from '../components/footer-tabs/footer-tabs';
@@ -66,6 +67,8 @@ import { MyshopPage } from '../pages/myshop/myshop';
 import { CreateProductPage } from '../pages/create-product/create-product';
 import { BrowserPage } from '../pages/browser/browser';
 import { CreateVendorPage } from '../pages/create-vendor/create-vendor';
+import { VendorRegisterPage } from '../pages/vendor-register/vendor-register';
+import { OnboardingPage } from '../pages/onboarding/onboarding';
 
 import { ComponentsModule } from '../components/components.module';
 
@@ -126,7 +129,7 @@ import { WoocommerceProvider } from '../providers/woocommerce/woocommerce';
     DetailCategoryPage,
     OrderPage,
     VendorDetailPage,
-
+    GLoaderComponent,
     WooImageComponent,
     ButtonCartComponent,
     TabsPage,
@@ -134,7 +137,9 @@ import { WoocommerceProvider } from '../providers/woocommerce/woocommerce';
     MyshopPage,
     CreateProductPage,
     BrowserPage,
-    CreateVendorPage
+    CreateVendorPage,
+    VendorRegisterPage,
+    OnboardingPage
   ],
   imports: [
     BrowserModule,
@@ -194,7 +199,9 @@ import { WoocommerceProvider } from '../providers/woocommerce/woocommerce';
     MyshopPage,
     CreateProductPage,
     BrowserPage,
-    CreateVendorPage
+    CreateVendorPage,
+    VendorRegisterPage,
+    OnboardingPage
   ],
   providers: [
     StatusBar,

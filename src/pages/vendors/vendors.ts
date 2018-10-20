@@ -28,6 +28,7 @@ export class VendorsPage {
     public WP: WoocommerceProvider
   ) {
 
+    this.getData();
 
   }
 
@@ -38,6 +39,12 @@ export class VendorsPage {
 
   ionViewDidEnter() {
     this.buttonCart.update();
+  }
+
+  getData() {
+
+    this.loaddata = false;
+    this.vendors = [];
 
     this.WooCommerce = this.WP.get({
       wcmc: true,
@@ -57,6 +64,12 @@ export class VendorsPage {
       console.log('error oi');
 
     });
+
+  }
+
+  doRefresh(refresher) {
+    refresher.complete();
+    this.getData();
   }
 
   ionViewDidLoad() {

@@ -1,0 +1,29 @@
+<ion-content>
+
+  <div class="slider-temp" *ngIf="!onboard" style="height: 183px; width: 100%; padding: 40px 0;">
+    <g-loader></g-loader>
+  </div>
+
+  <ion-slides pager #slider *ngIf="onboard">
+
+    <ion-slide *ngFor="let slide of slides" padding>
+      <img [src]="slide.image" class="slide-image image-shadow" />
+      <h2 class="slide-title" [innerHTML]="slide.title"></h2>
+      <p [innerHTML]="slide.description"></p>
+      <div margin-top>
+        <button ion-button block (click)="next()">Next</button>
+      </div>
+    </ion-slide>
+
+    <ion-slide padding>
+      <img [src]="final.image" class="slide-image image-shadow" />
+      <h2 class="slide-title" [innerHTML]="final.title"></h2>
+      <p [innerHTML]="final.description"></p>
+      <div margin-top>
+        <button ion-button block color="azure" (click)="startNow()">Get Started Now</button>
+      </div>
+    </ion-slide>
+
+  </ion-slides>
+
+</ion-content>

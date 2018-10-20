@@ -4,6 +4,7 @@ import { CrossSellComponent } from './cross-sell/cross-sell';
 import { WooImageComponent } from './woo-image/woo-image';
 import { ButtonCartComponent } from './button-cart/button-cart';
 import { PricePipe } from '../pipes/price/price';
+import { GLoaderComponent } from './g-loader/g-loader';
 
 @NgModule({
 	declarations: [CrossSellComponent],

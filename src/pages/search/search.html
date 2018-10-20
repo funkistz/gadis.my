@@ -89,8 +89,8 @@
 		<ion-row center ion-fixed width-100 height-100 *ngIf="noResuilt" (swipe)="onSwipeContent($event)">
 			<ion-col width-100 text-center>{{'search.no_result'|translate}}</ion-col>
 		</ion-row>
-		<div width-100 text-center padding *ngIf="loaddata">
-			<ion-spinner name="ios"></ion-spinner>
+		<div class="slider-temp" *ngIf="loaddata" style="height: 183px; width: 100%; padding: 40px 0;">
+			<g-loader></g-loader>
 		</div>
 		<ion-row padding-8 wrap *ngIf="0< products.length" class="faded-content" [ngClass]="{'filter-list':!filter.grid, 'faded-has-content':faded}"
 		 (swipe)="onSwipeContent($event)">

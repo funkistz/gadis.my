@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.domain.gadismy" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.domain.gadismy" version="1.1.2" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Gadis.my</name>
     <description>Gadis.my</description>
-    <author email="mobile@buy-addons.com" href="http://buy-addons.com">buy-addons.com</author>
+    <author email="support@gadis.my" href="https://www.gadis.my">gadis.my</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
@@ -34,8 +34,8 @@
     <platform name="android">
         <allow-intent href="market:*" />
         <config-file parent="/resources" target="./res/values/strings.xml">
-            <string name="fb_app_id">193950848129470</string>
-            <string name="fb_app_name">Social Application</string>
+            <string name="fb_app_id">184730569105044</string>
+            <string name="fb_app_name">Gadis.my</string>
         </config-file>
         <preference name="OverrideUserAgent" value="Mozilla/5.0 My Browser" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
@@ -119,10 +119,6 @@
     <plugin name="cordova-plugin-request-location-accuracy" spec="^2.2.3" />
     <plugin name="cordova.plugins.diagnostic" spec="^4.0.8" />
     <plugin name="cordova-plugin-google-analytics" spec="^1.8.3" />
-    <plugin name="cordova-plugin-facebook4" spec="^2.2.0">
-        <variable name="APP_ID" value="193950848129470" />
-        <variable name="APP_NAME" value="Social Application" />
-    </plugin>
     <plugin name="cordova-plugin-googleplus" spec="^5.3.0">
         <variable name="REVERSED_CLIENT_ID" value="" />
     </plugin>
@@ -131,6 +127,10 @@
     <allow-navigation href="http://192.168.0.103:8100" />
     <allow-navigation href="http://192.168.0.105:8100" />
     <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
+    <plugin name="cordova-plugin-facebook4" spec="^2.5.0">
+        <variable name="APP_ID" value="184730569105044" />
+        <variable name="APP_NAME" value="Gadis.my" />
+    </plugin>
     <plugin name="onesignal-cordova-plugin" spec="^2.4.3" />
     <engine name="ios" spec="4.5.5" />
 </widget>

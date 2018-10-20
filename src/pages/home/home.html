@@ -16,12 +16,18 @@
 	</div>
 </div>
 <ion-content>
+
 	<!-- Refresh -->
 	<ion-refresher (ionRefresh)="doRefresh($event)">
 		<ion-refresher-content [pullingIcon]="'general.pullingIcon'|translate" [pullingText]="'general.pullToRefresh'|translate"
 		 [refreshingSpinner]="'general.refreshingSpinner'|translate" [refreshingText]="'general.refreshing'|translate">
 		</ion-refresher-content>
 	</ion-refresher>
+
+	<div class="slider-temp" *ngIf="!slides || slides.length <= 0" style="border-bottom: 1px solid #888580;">
+		<g-loader></g-loader>
+	</div>
+
 	<!-- Slider -->
 	<ion-slides #slide_update *ngIf="slides && 0 < slides.length" class="slides-home" pager="true" loop="true" autoplay="5000"
 	 dir="{{display}}">
@@ -29,6 +35,15 @@
 			<img [src]="slide.slider_images" float-left />
 		</ion-slide>
 	</ion-slides>
+
+	<div text-center style="margin-top:-20px;">
+		<button ion-button color="azure" icon-end style="z-index: 9;" (click)="searchPage()">SHOP NOW
+			<ion-icon name="cart"></ion-icon>
+		</button>
+		<button ion-button icon-end style="z-index: 9;" (click)="vendorPage()">SELL ANYTHING
+			<ion-icon name="star"></ion-icon>
+		</button>
+	</div>
 
 	<!-- Deal of the day -->
 	<div *ngIf="deal && 0<deal.length" (swipe)="onSwipeContent($event)">
@@ -67,18 +82,32 @@
 		<b>{{'home.categories'|translate}}</b>
 		<button ion-button small clear float-right color="gray" class="btn-text" (click)="categoryPage()">{{'home.viewAll'|translate}}</button>
 	</div>
-	<ion-spinner *ngIf="!loadedCategories" name="ios" margin-auto></ion-spinner>
-	<ion-scroll dir="{{displays}}" *ngIf="loadedCategories && 0<categories.length" scrollX="true" class="scroll-categories">
-		<div relative *ngFor="let category of categories" class="item-categories" [navPush]="CategoriesPage" [navParams]="{id:category.id, name:category.name}">
-			<ion-row center mark absolute width-100 height-100>
-				<div margin-auto light text-center [innerHTML]="category.name"></div>
-			</ion-row>
-			<img *ngIf="category.modernshop_images_categories && category.modernshop_images_categories.modern_square" [src]="category.modernshop_images_categories.modern_square"
-			/>
-			<img *ngIf="!category.modernshop_images_categories || !category.modernshop_images_categories.modern_square" src="assets/images/no-image.png"
-			/>
-		</div>
-	</ion-scroll>
+
+	<!-- <ion-spinner *ngIf="!loadedCategories" name="ios" margin-auto class="spinner-category"></ion-spinner> -->
+	<div class="slider-temp" *ngIf="!loadedCategories">
+		<g-loader></g-loader>
+	</div>
+
+	<ion-grid dir="{{ displays }}" *ngIf="loadedCategories && 0<categories.length" class="grid-categories">
+		<ion-row>
+			<ion-col col-6 *ngFor="let category of categories">
+
+				<ion-card class="card-background-page" [navPush]="CategoriesPage" [navParams]="{id:category.id, name:category.name}">
+					<img *ngIf="category.modernshop_images_categories && category.modernshop_images_categories.modern_square" [src]="category.modernshop_images_categories.modern_square"
+					/>
+					<img *ngIf="!category.modernshop_images_categories || !category.modernshop_images_categories.modern_square" src="assets/images/no-image.png"
+					/>
+					<div class="overlay"></div>
+					<div class="card-title" [innerHTML]="category.name"></div>
+				</ion-card>
+
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+
+	<!-- <ion-scroll dir="{{ displays }}" *ngIf="loadedCategories && 0<categories.length" scrollX="true" class="scroll-categories">
+	</ion-scroll> -->
+
 	<div text-center *ngIf="loadedCategories && categories.length<1" class="no-data">{{'home.no_categories'|translate}}</div>
 
 	<!-- Latest -->
@@ -94,7 +123,10 @@
 			<span [innerHTML]="category.name"></span>
 		</button>
 	</ion-scroll>
-	<ion-spinner *ngIf="!loadedProducts" name="ios" margin-auto margin-top></ion-spinner>
+	<!-- <ion-spinner *ngIf="!loadedProducts" name="ios" margin-auto margin-top style="margin: 100px auto;"></ion-spinner> -->
+	<div class="slider-temp" *ngIf="!loadedProducts">
+		<g-loader></g-loader>
+	</div>
 	<!-- <div (swipe)="onSwipe($event)"> -->
 	<div (swipe)="onSwipeContent($event)">
 		<ion-row padding-8 wrap *ngIf="products && products.length > 0" class="faded-content" [ngClass]="{'faded-has-content':faded}">

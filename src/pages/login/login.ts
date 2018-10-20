@@ -184,6 +184,7 @@ export class LoginPage {
 		}).catch(err => {
 			this.socialMode = false;
 			this.loading = false;
+			console.log(err);
 			this.Toast.showShortBottom(this.trans["login_fail"]).subscribe(
 				toast => { },
 				error => { console.log(error); }

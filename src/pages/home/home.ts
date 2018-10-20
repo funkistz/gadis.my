@@ -11,6 +11,8 @@ import { Config } from '../../service/config.service';
 import { Storage } from '@ionic/storage';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { StatusBar } from '@ionic-native/status-bar';
+import { StorageMulti } from '../../service/storage-multi.service';
+
 // Page
 import { DetailPage } from '../detail/detail';
 import { LoginPage } from '../login/login';
@@ -22,6 +24,7 @@ import { AboutPage } from '../about/about';
 import { TermsPage } from '../terms/terms';
 import { PrivacyPage } from '../privacy/privacy';
 import { ContactPage } from '../contact/contact';
+import { SearchPage } from '../search/search';
 
 import { TranslateService } from '../../module/ng2-translate';
 
@@ -34,7 +37,7 @@ declare var onesignal_app_id: string;
 @Component({
 	selector: 'page-home',
 	templateUrl: 'home.html',
-	providers: [Core, ScreenOrientation, DatePipe]
+	providers: [Core, ScreenOrientation, DatePipe, StorageMulti]
 })
 export class HomePage {
 
@@ -42,6 +45,7 @@ export class HomePage {
 	@ViewChild('slide_update') slide_Update;
 	@ViewChild('Content') content;
 
+	SearchPage = SearchPage;
 	DetailPage = DetailPage;
 	LoginPage = LoginPage;
 	CategoriesPage = CategoriesPage;
@@ -59,6 +63,7 @@ export class HomePage {
 	display: string;
 	faded: boolean = false;
 	statictext: Object;
+	time: any = new Date().getTime();
 	public date: string = new Date().toISOString();
 
 	constructor(
@@ -72,11 +77,13 @@ export class HomePage {
 		public alertCtrl: AlertController,
 		public config: Config,
 		public storage: Storage,
+		public storageMul: StorageMulti,
 		public screenOrientation: ScreenOrientation,
 		public modalCtrl: ModalController
 	) {
 
 		console.log('enter home');
+		this.getCache();
 
 		this.display = display_mode;
 		platform.ready().then(() => {
@@ -113,6 +120,8 @@ export class HomePage {
 					http.get(url).subscribe(res => {
 						let settings = res.json()['socials_login'];
 						this.config['app_settings'] = settings;
+						storage.set('settings', settings);
+
 						if (login && login['token']) {
 							console.log(login['token']);
 							this.core.checkTokenLogin(login['token']).subscribe(data => {
@@ -290,29 +299,38 @@ export class HomePage {
 
 		console.log('enter getData()');
 
-		this.http.get(wordpress_url + '/wp-json/wooslider/product/getslider')
-			.subscribe(res => {
-				if (isRefreshing) delete this.slides;
-				this.slides = res.json();
-			});
-		this.http.get(wordpress_url + '/wp-json/wooconnector/product/getdealofday', {
-			search: this.core.objectToURLParams({
-				post_per_page: 4
-			})
-		}).subscribe(res => {
-			if (isRefreshing) delete this.deal;
-			this.deal = res.json();
-		});
-		// this.http.get(wordpress_url + '/wp-json/wooconnector/product/getnewcomment')
-		// 	.subscribe(res => {
-		// 		if (isRefreshing) delete this.clientSay;
-		// 		this.clientSay = res.json();
-		// 	});
 		this.loadLatest();
 		if (isRefreshing) {
 			this.categories = [];
 			this.loadCategories(refresher);
 		} else this.loadCategories();
+
+		if (isRefreshing) {
+			this.loadSliders(refresher);
+		} else this.loadSliders();
+
+	}
+
+	getCache() {
+
+		this.storageMul.get(['sliders', 'main_categories', 'setting']).then(val => {
+
+			if (val["sliders"]) {
+				this.slides = val["sliders"];
+			}
+
+			if (val["main_categories"]) {
+				this.categories = val["main_categories"];
+				this.loadedCategories = true;
+			}
+
+			if (val["settings"]) {
+				let settings = val["settings"].json()['socials_login'];
+				this.config['app_settings'] = settings;
+			}
+
+		});
+
 	}
 
 	doRefresh(refresher) {
@@ -328,7 +346,7 @@ export class HomePage {
 		this.products = []
 		if (!this.latesting) {
 			this.faded = false;
-			let params: any = { post_per_page: 10 };
+			let params: any = { post_per_page: 4, time: this.time };
 			this.http.get(wordpress_url + '/wp-json/wooconnector/product/getproduct', {
 				search: this.core.objectToURLParams(params)
 			}).subscribe(res => {
@@ -393,7 +411,13 @@ export class HomePage {
 			this.http.get(wordpress_url + '/wp-json/wooconnector/product/getcategories', {
 				search: this.core.objectToURLParams(params)
 			}).subscribe(res => {
-				if (res.json() && res.json().length > 0) this.categories = this.categories.concat(res.json());
+				if (res.json() && res.json().length > 0) {
+
+					// this.categories = this.categories.concat(res.json());
+					this.categories = res.json();
+					this.storage.remove('main_categories');
+					this.storage.set('main_categories', this.categories);
+				}
 				if (res.json() && res.json().length == 100) {
 					params.cat_num_page++;
 					loadCategories();
@@ -404,6 +428,48 @@ export class HomePage {
 			});
 		};
 		loadCategories();
+	}
+
+	loadSliders(refresher = null) {
+
+		console.log('load sliders');
+
+		this.http.get(wordpress_url + '/wp-json/wooslider/product/getslider')
+			.subscribe(res => {
+
+				if (res.json()) {
+					console.log(res.json());
+					if (refresher) delete this.slides;
+					this.slides = res.json();
+					this.storage.set('sliders', this.slides);
+				}
+
+			});
+	}
+
+	loadDealOfDay(refresher = null) {
+
+		console.log('load deals');
+
+		this.http.get(wordpress_url + '/wp-json/wooconnector/product/getdealofday', {
+			search: this.core.objectToURLParams({
+				post_per_page: 4
+			})
+		}).subscribe(res => {
+			if (refresher) delete this.deal;
+			this.deal = res.json();
+		});
+	}
+
+	loadComment(refresher = null) {
+
+		console.log('load comments');
+
+		this.http.get(wordpress_url + '/wp-json/wooconnector/product/getnewcomment')
+			.subscribe(res => {
+				if (refresher) delete this.clientSay;
+				this.clientSay = res.json();
+			});
 	}
 
 	openLink(url: string, external: boolean = false) {
@@ -451,7 +517,17 @@ export class HomePage {
 	}
 
 	categoryPage() {
+		this.navCtrl.push(this.CategoriesPage);
+		// this.navCtrl.parent.select(1);
+	}
+
+	vendorPage() {
 		// this.navCtrl.push(this.CategoriesPage);
-		this.navCtrl.parent.select(1);
+		this.navCtrl.parent.select(3);
+	}
+
+	searchPage() {
+		// this.navCtrl.push(this.CategoriesPage);
+		this.navCtrl.parent.select(2);
 	}
 }

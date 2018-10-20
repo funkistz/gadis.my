@@ -10,6 +10,10 @@
 
 <ion-content>
 
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <!-- Empty -->
   <ion-row *ngIf="parents.length < 1 && noResuilt" ion-fixed width-100 height-100 (swipe)="onSwipeContent($event)">
     <ion-col width-50 style="margin:0 auto;" text-center>
@@ -17,8 +21,8 @@
     </ion-col>
   </ion-row>
   <!-- Has categories -->
-  <div width-100 text-center padding *ngIf="!loaddata">
-    <ion-spinner name="ios"></ion-spinner>
+  <div class="slider-temp" *ngIf="!loaddata" style="height: 183px; width: 100%; padding: 40px 0;">
+    <g-loader></g-loader>
   </div>
   <ion-list>
     <ion-item *ngFor="let vendor of vendors" [navPush]="VendorDetailPage" [navParams]="{vendor:vendor}">

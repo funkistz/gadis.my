@@ -56,8 +56,12 @@ export class SearchPage {
 		public core: Core,
 		public storage: Storage,
 		public navCtrl: NavController,
+		public navParams: NavParams,
 		public Toast: Toast
 	) {
+
+		this.search();
+
 		http.get(wordpress_url + '/wp-json/wooconnector/product/getattribute')
 			.subscribe(res => {
 				this.attributes = res.json();
@@ -81,7 +85,7 @@ export class SearchPage {
 		this.checkCart();
 		this.getFavorite();
 		this.buttonCart.update();
-		setTimeout(() => { this.inputSearch.setFocus(); }, 100);
+		// setTimeout(() => { this.inputSearch.setFocus(); }, 100);
 	}
 	checkCart() {
 		this.storage.get('cart').then(val => {
@@ -117,7 +121,7 @@ export class SearchPage {
 	}
 	search() {
 		// if (window.cordova && window.cordova.plugins.Keyboard) {
-		// 	Keyboard.hide();
+		Keyboard.hide();
 		// }
 		if (this.filter['open'] == 'filter') this.openFilter();
 		this.page = 1;

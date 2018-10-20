@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Storage } from '@ionic/storage';
@@ -15,15 +15,20 @@ export class BrowserPage {
   title: String = '';
 
   username;
+  callback;
+  task;
 
   constructor(
+    public hostElement: ElementRef,
     public navCtrl: NavController,
     public navParams: NavParams,
     public sanitizer: DomSanitizer,
     public storage: Storage,
   ) {
 
+    this.callback = this.navParams.get('callback');
     let task = navParams.get('task');
+    this.task = task;
 
     if (task == 'storefront') {
       this.title = 'Store Front';
@@ -61,7 +66,30 @@ export class BrowserPage {
     console.log('ionViewDidLoad BrowserPage');
   }
 
+  first = 0;
   onLoad() {
+
+    console.log(this.first);
+
+    let rule = 0;
+
+    if (this.task == 'storefront') {
+      rule = 1;
+    }
+
+    const iframe = this.hostElement.nativeElement.querySelector('iframe');
+    let src = iframe.src;
+    console.log(src);
+    console.log(this.safeURL);
+
+    if (this.first > rule) {
+
+      this.callback('registered').then(() => { this.navCtrl.pop() });
+
+    } else {
+      this.first++;
+    }
+
     // this.core.hideLoading();
     this.loaded = true;
   }
