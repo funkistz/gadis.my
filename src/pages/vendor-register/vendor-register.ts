@@ -26,16 +26,11 @@ export class VendorRegisterPage {
     public storage: Storage,
   ) {
 
+    this.username = this.navParams.get('username');
     this.callback = this.navParams.get('callback');
     let task = 'dashboard';
 
-    this.storage.get('login').then((login) => {
-
-      console.log(login);
-      this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.externalLink + '?username=' + login.user_display_name + '&task=' + task);
-      this.username = login.username;
-
-    });
+    this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.externalLink + '?username=' + this.username + '&task=' + task);
 
   }
 

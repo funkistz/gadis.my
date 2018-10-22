@@ -421,6 +421,7 @@ export class MyshopPage {
 
   createProductPage() {
     this.navCtrl.push(BrowserPage, {
+      username: this.customer.username,
       task: 'add-product'
     });
   }
@@ -705,6 +706,7 @@ export class MyshopPage {
 
     this.navCtrl.push(BrowserPage,
       {
+        username: this.customer.username,
         task: 'storefront',
         callback: this.updateCallback
       });
@@ -714,6 +716,7 @@ export class MyshopPage {
 
     this.navCtrl.push(VendorRegisterPage,
       {
+        username: this.customer.username,
         callback: this.registerCallback
       });
 

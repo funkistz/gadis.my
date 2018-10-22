@@ -26,6 +26,10 @@ export class BrowserPage {
     public storage: Storage,
   ) {
 
+    this.username = this.navParams.get('username');
+
+    console.log('login as : ' + this.username);
+
     this.callback = this.navParams.get('callback');
     let task = navParams.get('task');
     this.task = task;
@@ -52,13 +56,7 @@ export class BrowserPage {
       this.title = 'Edit Product';
     }
 
-    this.storage.get('login').then((login) => {
-
-      console.log(login);
-      this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.externalLink + '?username=' + login.user_display_name + '&task=' + task);
-      this.username = login.username;
-
-    });
+    this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.externalLink + '?username=' + this.username + '&task=' + task);
 
   }
 

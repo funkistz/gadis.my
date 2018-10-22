@@ -132,7 +132,7 @@
 	"account": {
 		"login": "LOGIN",
 		"signout": {
-			"title": "Modern Shop",
+			"title": "Gadis.my",
 			"message": "Do you want to logout?",
 			"no": "Cancel",
 			"yes": "OK"

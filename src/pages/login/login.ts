@@ -111,7 +111,7 @@ export class LoginPage {
 						headers: headers,
 						withCredentials: true
 					}).subscribe(user => {
-						console.log(user);
+						console.log(user.json());
 						this.core.hideLoading();
 						this.storage.set('user', user.json()).then(() => {
 							this.storage.set('login', login).then(() => this.navCtrl.pop());
@@ -219,6 +219,7 @@ export class LoginPage {
 			// );
 		});
 	}
+
 	socialLogin(params: any) {
 		this.http.post(wordpress_url + '/wp-json/mobiconnector/settings/usersociallogin', params)
 			.subscribe(
@@ -238,6 +239,7 @@ export class LoginPage {
 				);
 			}
 	}
+
 	forgot() {
 		let alert = this.alertCtrl.create({
 			title: this.trans["forgot_title"],

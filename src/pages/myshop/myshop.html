@@ -225,7 +225,7 @@
               <p>
                 <ion-badge *ngFor="let cat of product.categories">{{ cat.name }}</ion-badge>
               </p>
-              <button ion-button clear item-end [navPush]="BrowserPage" [navParams]="{task:'add-product/' + product.id}">Edit</button>
+              <button ion-button clear item-end [navPush]="BrowserPage" [navParams]="{username: customer.username ,task:'add-product/' + product.id}">Edit</button>
             </ion-item>
             <ion-item-options side="right">
               <button ion-button color="danger" (click)="deleteProduct(product)">
@@ -245,13 +245,13 @@
       <div *ngSwitchCase="'other'">
 
         <ion-list>
-          <button ion-item [navPush]="BrowserPage" [navParams]="{task:'vendor-report'}">
+          <button ion-item [navPush]="BrowserPage" [navParams]="{username: customer.username ,task:'vendor-report'}">
             Reports
           </button>
-          <button ion-item [navPush]="BrowserPage" [navParams]="{task:'vendor-withdrawal'}">
+          <button ion-item [navPush]="BrowserPage" [navParams]="{username: customer.username ,task:'vendor-withdrawal'}">
             Payments Withdrawal
           </button>
-          <button ion-item [navPush]="BrowserPage" [navParams]="{task:'transaction-details'}">
+          <button ion-item [navPush]="BrowserPage" [navParams]="{username: customer.username ,task:'transaction-details'}">
             Payments History
           </button>
         </ion-list>
