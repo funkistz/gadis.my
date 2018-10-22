@@ -58,8 +58,8 @@ export class LoginPage {
 		private fb: Facebook,
 		public toastCtrl: ToastController
 	) {
-		this.login_facebook = config['app_settings']['facebook'];
-		this.login_google = config['app_settings']['google'];
+		// this.login_facebook = config['app_settings']['facebook'];
+		// this.login_google = config['app_settings']['google'];
 		storage.get('userID').then(val => {
 			if (val) {
 				this.playerId = val;

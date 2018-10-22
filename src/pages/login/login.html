@@ -12,7 +12,9 @@
 				<ion-list class="login-form" no-margin>
 					<form [formGroup]="formLogin" class="form-custom">
 						<ion-item mode="md" bg-transparent no-padding>
-							<ion-label floating><span light>{{'general.username'|translate}}</span></ion-label>
+							<ion-label floating>
+								<span light>{{'general.username'|translate}}</span>
+							</ion-label>
 							<ion-input dir="{{display_mode}}" light formControlName="username"></ion-input>
 						</ion-item>
 						<ion-item mode="md" bg-transparent no-padding>
@@ -38,13 +40,15 @@
 					<span [navPush]="SignupPage">{{'login.signup'|translate}}</span>
 				</div>
 			</div>
-			<div light margin-top text-center *ngIf="(login_facebook && login_google) || login_facebook || login_google">
-				<p><span>{{'login.loginwith'|translate}}</span></p>
+			<div light margin-top text-center>
+				<p>
+					<span>{{'login.loginwith'|translate}}</span>
+				</p>
 				<div width-100 class="social-login">
-					<div width-50 padding-5 in-line *ngIf="login_facebook" (click)="login('facebook')">
+					<div width-50 padding-5 in-line (click)="login('facebook')">
 						<img class="social-icon" src="assets/images/facebook.png" />
 					</div>
-					<div width-50 in-line *ngIf="login_google" (click)="login('google')">
+					<div width-50 in-line (click)="login('google')">
 						<img class="social-icon" src="assets/images/google.png" />
 					</div>
 				</div>
