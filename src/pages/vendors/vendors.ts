@@ -19,6 +19,7 @@ export class VendorsPage {
   parents: Object[] = [];
   WooCommerce: any;
   loaddata: boolean = false;
+  tempVendors: any = [];
   vendors: any = [];
   VendorDetailPage = VendorDetailPage;
 
@@ -41,6 +42,25 @@ export class VendorsPage {
     this.buttonCart.update();
   }
 
+  search(ev: any) {
+
+    if (!this.loaddata) {
+      return;
+    }
+
+    this.vendors = this.tempVendors;
+
+    const val = ev.target.value;
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.vendors = this.vendors.filter((item) => {
+        return (item.shop.title.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
+
+  }
+
   getData() {
 
     this.loaddata = false;
@@ -49,12 +69,16 @@ export class VendorsPage {
     this.WooCommerce = this.WP.get({
       wcmc: true,
       method: 'GET',
-      api: 'vendors'
+      api: 'vendors',
+      param: {
+        'per_page': 100
+      }
     });
 
     this.WooCommerce.subscribe(data => {
 
       this.loaddata = true;
+      this.tempVendors = data.json();
       this.vendors = data.json();
       console.log(data.json());
 

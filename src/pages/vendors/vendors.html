@@ -5,8 +5,8 @@
       <button-cart #cart icon="icon-bag"></button-cart>
     </ion-buttons>
   </ion-navbar>
+  <ion-searchbar (ionInput)="search($event)"></ion-searchbar>
 </ion-header>
-
 
 <ion-content>
 
@@ -28,7 +28,6 @@
     <ion-item *ngFor="let vendor of vendors" [navPush]="VendorDetailPage" [navParams]="{vendor:vendor}">
       <ion-avatar item-start>
         <woo-image [id]="vendor.shop.image"></woo-image>
-        <!-- <img [src]="getImageSrc(images, vendor.shop.image, 'thumbnail', 'person.png', 'loading-color.gif') | async"> -->
       </ion-avatar>
       <h2>{{ vendor.shop.title }}</h2>
       <p>{{ vendor.shop.description }}</p>
