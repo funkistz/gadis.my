@@ -39,7 +39,7 @@ export class SearchPage {
 	keyword: string;
 	products: Object[] = []; attributes: Object[] = [];
 	page = 1; sort: string = '-date_created_gmt'; range: Object = { lower: 0, upper: 0 };
-	filter: Object = { grid: true, open: null, value: {}, valueCustom: {} }; filtering: boolean;
+	filter: any = { grid: true, open: null, value: {}, valueCustom: {} }; filtering: boolean;
 	grid: boolean = true;
 	favorite: Object = {};
 	trans: Object = {};
@@ -64,6 +64,7 @@ export class SearchPage {
 
 		http.get(wordpress_url + '/wp-json/wooconnector/product/getattribute')
 			.subscribe(res => {
+				console.log(res.json());
 				this.attributes = res.json();
 				this.attributes['custom'] = new ObjectToArrayPipe().transform(this.attributes['custom']);
 				this.reset();
@@ -120,9 +121,12 @@ export class SearchPage {
 		else this.filter['open'] = 'sort';
 	}
 	search() {
-		// if (window.cordova && window.cordova.plugins.Keyboard) {
-		Keyboard.hide();
-		// }
+
+		console.log('searching...');
+
+		if (document.URL.indexOf('http') !== 0) {
+			Keyboard.hide();
+		}
 		if (this.filter['open'] == 'filter') this.openFilter();
 		this.page = 1;
 		this.over = false;
@@ -140,6 +144,9 @@ export class SearchPage {
 					});
 				}
 				this.products = products;
+
+				console.log(this.products);
+
 				setTimeout(() => {
 					this.faded = true;
 				}, 100);
@@ -287,6 +294,12 @@ export class SearchPage {
 			if (e['deltaX'] < 0) this.navCtrl.push(this.AccountPage);
 			else this.navCtrl.push(this.CategoriesPage);
 		}
+	}
+
+	getFilter() {
+
+		this.filter.open = null;
+		this.search();
 	}
 
 }

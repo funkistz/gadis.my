@@ -7,6 +7,9 @@ import { Core } from '../service/core.service';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { OnboardingPage } from '../pages/onboarding/onboarding';
+import { CreateProductPage } from '../pages/create-product/create-product';
+import { MyshopPage } from '../pages/myshop/myshop';
+import { VendorUpdatePage } from '../pages/vendor-update/vendor-update';
 
 import { TranslateService } from '../module/ng2-translate';
 import { Storage } from '@ionic/storage';
@@ -30,6 +33,7 @@ declare var admob_ios_interstitial: string;
 })
 export class MyApp {
   rootPage: any = OnboardingPage;
+  // rootPage: any = VendorUpdatePage;
   trans: Object;
   isLoaded: boolean;
   disconnect: boolean;

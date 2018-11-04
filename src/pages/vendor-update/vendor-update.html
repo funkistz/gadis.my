@@ -1,0 +1,144 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Update Shop</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <div *ngIf="shop">
+
+    <div relative overflow class="account-header" text-center>
+      <div float-left width-100>
+        <woo-image [id]="shop.banner" type="width" *ngIf="!images['banner']"></woo-image>
+        <img [src]="images['banner']" style="width:100%;" *ngIf="images['banner']">
+      </div>
+      <div mark absolute top left width-100 height-100></div>
+      <ion-row center padding absolute top left width-100 height-100>
+        <ion-col secondary>
+          <div>
+            <div class="account-avatar" margin-auto>
+              <div width-100 height-100>
+                <woo-image [id]="shop.image" *ngIf="!images['avatar']"></woo-image>
+                <img [src]="images['avatar']" style="width:100%;" *ngIf="images['avatar']">
+              </div>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <ion-grid padding>
+      <ion-row>
+        <ion-col>
+          <button ion-button block round icon-start color="dark" (click)="presentActionSheet('banner')">
+            Change Banner
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button block round icon-start color="dark" (click)="presentActionSheet('avatar')">
+            Change Avatar
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-list padding>
+
+      <form [formGroup]="formEdit">
+
+        <ion-item mode="md" bg-transparent no-padding>
+          <ion-label stacked>
+            <span dark>Store Name *</span>
+          </ion-label>
+          <ion-input dark type="text" formControlName="name" placeholder="Name" [(ngModel)]="shop.title"></ion-input>
+        </ion-item>
+
+        <!-- <ion-item mode="md" bg-transparent no-padding>
+              <ion-label stacked>
+                <span dark>Store Slug *</span>
+              </ion-label>
+              <ion-input dark type="text" formControlName="slug" placeholder="Slug" readonly></ion-input>
+            </ion-item> -->
+
+        <ion-item mode="md" bg-transparent no-padding>
+          <ion-label stacked>
+            <span dark>Store Description *</span>
+          </ion-label>
+          <ion-textarea dark type="text" formControlName="description" placeholder="Description" [(ngModel)]="shop.description"></ion-textarea>
+        </ion-item>
+
+        <ion-item mode="md" bg-transparent no-padding>
+          <ion-label stacked>
+            <span dark>Message to Buyers</span>
+          </ion-label>
+          <ion-textarea dark type="text" formControlName="message_to_buyers" placeholder="Message to Buyers" [(ngModel)]="shop.message_to_buyers"></ion-textarea>
+        </ion-item>
+
+        <ion-item mode="md" bg-transparent no-padding>
+          <ion-label stacked>
+            <span dark>Phone</span>
+          </ion-label>
+          <ion-input dark type="text" formControlName="phone" placeholder="phone" [(ngModel)]="shop.phone"></ion-input>
+        </ion-item>
+
+        <h4>
+          Address
+        </h4>
+
+        <ion-item mode="md" bg-transparent no-padding>
+          <ion-label>Line 1</ion-label>
+          <ion-input dark type="text" placeholder="Address Line 1" formControlName="address_1" [(ngModel)]="shop.address_1"></ion-input>
+        </ion-item>
+
+        <ion-item mode="md" bg-transparent no-padding>
+          <ion-label>Line 2</ion-label>
+          <ion-input dark type="text" placeholder="Address Line 1" formControlName="address_2" [(ngModel)]="shop.address_2"></ion-input>
+        </ion-item>
+
+        <!-- <ion-item mode="md" bg-transparent no-padding>
+          <ion-input dark type="text" placeholder="Country" formControlName="country" [(ngModel)]="shop.country" readonly></ion-input>
+        </ion-item> -->
+
+        <ion-item mode="md" bg-transparent no-padding>
+          <!-- <ion-input dark type="text" placeholder="State" formControlName="state" [(ngModel)]="shop.state"></ion-input> -->
+          <ion-label>State</ion-label>
+          <ion-select dark placeholder="State" formControlName="state" [(ngModel)]="shop.country" interface="popover">
+            <ion-option *ngFor="let state of states" value="{{ state }}">{{ state }}</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item mode="md" bg-transparent no-padding>
+          <ion-label>City</ion-label>
+          <ion-input dark type="text" placeholder="City" formControlName="city" [(ngModel)]="shop.city"></ion-input>
+        </ion-item>
+
+        <ion-item mode="md" bg-transparent no-padding>
+          <ion-label>Zip Code</ion-label>
+          <ion-input dark type="text" placeholder="ZIP Code" formControlName="postcode" [(ngModel)]="shop.postcode"></ion-input>
+        </ion-item>
+
+      </form>
+
+    </ion-list>
+
+  </div>
+
+</ion-content>
+
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <button ion-button full color="light" navPop>Cancel</button>
+      </ion-col>
+      <ion-col col-6>
+        <button ion-button full [disabled]="formEdit.invalid" (click)="update()">Save</button>
+        <!-- <button ion-button full (click)="addProduct()">Add Product</button> -->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

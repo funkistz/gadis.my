@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <button clear ion-button color="dark" start (click)="viewCtrl.dismiss()">Cancel</button>
+    <ion-title>Choose Category</ion-title>
+  </ion-toolbar>
+  <ion-searchbar (ionInput)="search($event)"></ion-searchbar>
+</ion-header>
+
+
+<ion-content>
+
+  <div class="slider-temp" *ngIf="loading" style="height: 183px; width: 100%; padding: 40px 0;">
+    <g-loader></g-loader>
+  </div>
+
+  <ion-list no-lines *ngIf="!loading">
+    <button ion-item *ngFor="let category of categories" (click)="selectCategory(category)" [innerHTML]="category.name">
+    </button>
+  </ion-list>
+
+</ion-content>

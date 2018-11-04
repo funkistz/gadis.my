@@ -1,0 +1,48 @@
+page-vendor-update {
+
+    .images-wrapper{
+        background-color: #333;
+        min-height: 150px;
+    }
+
+    .text-input, .select-text{
+        margin-left: 0 !important;
+    }
+
+    .prevIcon{
+        position: absolute;
+        bottom: -5px;
+        left: -5px;
+    }
+
+    .nextIcon{
+        position: absolute;
+        bottom: -5px;
+        right: -5px;
+    }
+
+    .image-placeholder{
+        overflow: visible;
+        min-height: 80px;
+        margin: 5px;
+        width: calc(100% - 10px);
+
+        ion-badge{
+            position: absolute;
+        }
+    }
+
+    .block {
+        position: relative;
+        .deleteIcon {
+            position: absolute !important;
+            color: #ffffff !important;
+            right: -8px;
+            top: -8px;
+        }
+        .deleteIcon:before {
+            font-size: 30px !important;
+        }
+    }
+
+}

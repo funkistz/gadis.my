@@ -27,6 +27,7 @@ import { ContactPage } from '../contact/contact';
 import { SearchPage } from '../search/search';
 
 import { TranslateService } from '../../module/ng2-translate';
+import moment from 'moment';
 
 declare var wordpress_url: string;
 declare var cordova: any;
@@ -65,6 +66,7 @@ export class HomePage {
 	statictext: Object;
 	time: any = new Date().getTime();
 	public date: string = new Date().toISOString();
+	public today = moment();
 
 	constructor(
 		private http: Http,
@@ -111,148 +113,70 @@ export class HomePage {
 
 				console.log('enter get login');
 
-				let getAllSetting = () => {
-
-					console.log('enter getAllSetting()');
-
-					let url = wordpress_url + "/wp-json/mobiconnector/settings/getfirstloadapp";
-
-					http.get(url).subscribe(res => {
-						let settings = res.json()['socials_login'];
-						this.config['app_settings'] = settings;
-						storage.set('settings', settings);
-
-						if (login && login['token']) {
-							console.log(login['token']);
-							this.core.checkTokenLogin(login['token']).subscribe(data => {
-								if (data['code'] == 'jwt_auth_valid_token') console.log('token valid');
-								else {
-									this.core.removeToken();
-									// this.navCtrl.push(this.LoginPage);
-								}
-							});
+				if (login && login['token']) {
+					console.log(login['token']);
+					this.core.checkTokenLogin(login['token']).subscribe(data => {
+						if (data['code'] == 'jwt_auth_valid_token') console.log('token valid');
+						else {
+							this.core.removeToken();
+							this.navCtrl.push(this.LoginPage);
 						}
-						getstatic();
-					}, err => {
-						showAlertfirst();
 					});
-
-					let showAlertfirst = () => {
-
-						console.log('enter showAlertfirst()');
-
-						translate.get('general').subscribe(trans => {
-							let alert = alertCtrl.create({
-								message: trans['error_first']['message'],
-								cssClass: 'alert-no-title',
-								enableBackdropDismiss: false,
-								buttons: [
-									{
-										text: trans['error_first']['button'],
-										handler: () => {
-											let popupDismiss = alert.dismiss();
-											popupDismiss.then(() => {
-												getstatic();
-												// this.getData();
-												// this.getPopupHomePage();
-											});
-											return false;
-										}
-									}
-								]
-							});
-							alert.present();
-						});
-					};
 				}
 
+				//wait checking first
 				let getstatic = () => {
 
 					console.log('enter getstatic()');
 
-					let params: any = {};
-
-					http.get(wordpress_url + '/wp-json/modernshop/static/gettextstatic', {
-						search: core.objectToURLParams(params)
-					}).subscribe(res => {
-						if (res.json()['login_expired']) {
-							storage.remove('login').then(() => {
-								translate.get('general').subscribe(trans => {
-									let alert = alertCtrl.create({
-										message: trans['login_expired']['message'],
-										cssClass: 'alert-no-title',
-										enableBackdropDismiss: false,
-										buttons: [trans['login_expired']['button']]
-									});
-									alert.present();
-								});
-							});
-						}
-						config.set('text_static', res.json()['text_static']);
-						config.set('currency', res.json()['currency']);
-						config.set('required_login', res.json()['required_login']);
-						config.set('last_sync', this.date);
-						this.statictext = config['text_static'];
-						storage.set('static', config);
-						this.buttonCart;
-						// this.getData();
-					}, error => {
-						showAlertfirst();
-					});
-
-					http.get(wordpress_url + '/wp-json/wooconnector/settings/getactivelocaltion')
-						.subscribe(location => {
-							config.set('countries', location.json()['countries']);
-							config.set('states', location.json()['states']);
-						});
-
-					http.get(wordpress_url + '/wp-json/ba-mobile-form/data-form')
-						.subscribe(form => {
-							let repass: Object = {
-								name_id: 'baform_re_password ',
-								label: 'Re-password*',
-								type: 'password',
-								require_check: 1
-							}
-							let tmpData: Object = form.json();
-							form.json()['register'].forEach((item, key) => {
-								if (item.name_id == 'billing_password') tmpData['register'].splice(key + 1, 0, repass);
-							});
-							form.json()['profile'].forEach((item, key) => {
-								if (item.name_id == 'billing_password') tmpData['profile'].splice(key + 1, 0, repass);
-							});
-							console.log(tmpData);
-							config.set('customForm', tmpData);
-
-						});
-
-					let showAlertfirst = () => {
-						translate.get('general').subscribe(trans => {
-							let alert = alertCtrl.create({
-								message: trans['error_first']['message'],
-								cssClass: 'alert-no-title',
-								enableBackdropDismiss: false,
-								buttons: [
-									{
-										text: trans['error_first']['button'],
-										handler: () => {
-											let popupDismiss = alert.dismiss();
-											popupDismiss.then(() => {
-												getstatic();
-												// this.getData();
-												// this.getPopupHomePage();
-											});
-											return false;
-										}
-									}
-								]
-							});
-							alert.present();
-						});
-					};
 				};
 
-				getAllSetting();
+				this.storageMul.get(['last_sync_static', 'static', 'last_sync_form', 'form', 'last_sync_location', 'location']).then(val => {
+
+					if (val['last_sync_static'] && val['static']) {
+
+						if (!this.today.isSame(new Date(val['last_sync_static']), "day")) {
+
+							console.log('not today static');
+							this.getStatic();
+						}
+
+					} else {
+
+						this.getStatic();
+
+					}
+
+					if (val['last_sync_form'] && val['form']) {
+
+						if (!this.today.isSame(new Date(val['last_sync_form']), "day")) {
+
+							console.log('not today form');
+							this.getFormData();
+						}
+
+					} else {
+
+						this.getFormData();
+
+					}
+
+					if (val['last_sync_location'] && val['location']) {
+
+						if (!this.today.isSame(new Date(val['last_sync_location']), "day")) {
+
+							console.log('not today location');
+							this.getLocation();
+						}
+
+					} else {
+
+						this.getLocation();
+
+					}
+
+				});
+
 			});
 		});
 
@@ -268,7 +192,126 @@ export class HomePage {
 		}
 	}
 
-	setConfig(config) {
+	showAlertfirst() {
+		this.translate.get('general').subscribe(trans => {
+			let alert = this.alertCtrl.create({
+				message: trans['error_first']['message'],
+				cssClass: 'alert-no-title',
+				enableBackdropDismiss: false,
+				buttons: [
+					{
+						text: trans['error_first']['button'],
+						handler: () => {
+							let popupDismiss = alert.dismiss();
+							popupDismiss.then(() => {
+								this.getData();
+								// this.getPopupHomePage();
+							});
+							return false;
+						}
+					}
+				]
+			});
+			alert.present();
+		});
+	};
+
+	getFirstLoadApp() {
+
+		console.log('enter first load app');
+
+		let url = wordpress_url + "/wp-json/mobiconnector/settings/getfirstloadapp";
+
+		this.http.get(url).subscribe(res => {
+			let settings = res.json()['socials_login'];
+			this.config['app_settings'] = settings;
+			this.storage.set('settings', settings);
+
+
+			this.getStatic();
+		}, err => {
+			this.showAlertfirst();
+		});
+
+	}
+
+	getLocation() {
+
+		console.log('enter get location');
+
+		this.http.get(wordpress_url + '/wp-json/wooconnector/settings/getactivelocaltion')
+			.subscribe(location => {
+				this.config.set('countries', location.json()['countries']);
+				this.config.set('states', location.json()['states']);
+
+				this.storage.set('location', location.json());
+				this.storage.set('last_sync_location', this.date);
+			});
+
+	}
+
+	getFormData() {
+
+		console.log('enter get form');
+
+		this.http.get(wordpress_url + '/wp-json/ba-mobile-form/data-form')
+			.subscribe(form => {
+				let repass: Object = {
+					name_id: 'baform_re_password ',
+					label: 'Re-password*',
+					type: 'password',
+					require_check: 1
+				}
+				let tmpData: Object = form.json();
+				form.json()['register'].forEach((item, key) => {
+					if (item.name_id == 'billing_password') tmpData['register'].splice(key + 1, 0, repass);
+				});
+				form.json()['profile'].forEach((item, key) => {
+					if (item.name_id == 'billing_password') tmpData['profile'].splice(key + 1, 0, repass);
+				});
+				console.log(tmpData);
+				this.config.set('customForm', tmpData);
+
+				this.storage.set('form', form.json());
+				this.storage.set('last_sync_form', this.date);
+			});
+
+	}
+
+	getStatic() {
+
+		console.log('enter get static');
+
+		let params: any = {};
+
+		this.http.get(wordpress_url + '/wp-json/modernshop/static/gettextstatic', {
+			search: this.core.objectToURLParams(params)
+		}).subscribe(res => {
+			if (res.json()['login_expired']) {
+				this.storage.remove('login').then(() => {
+					this.translate.get('general').subscribe(trans => {
+						let alert = this.alertCtrl.create({
+							message: trans['login_expired']['message'],
+							cssClass: 'alert-no-title',
+							enableBackdropDismiss: false,
+							buttons: [trans['login_expired']['button']]
+						});
+						alert.present();
+					});
+				});
+			}
+			this.config.set('text_static', res.json()['text_static']);
+			this.config.set('currency', res.json()['currency']);
+			this.config.set('required_login', res.json()['required_login']);
+			this.config.set('last_sync', this.date);
+			this.statictext = this.config['text_static'];
+			this.storage.set('static', this.config);
+			this.buttonCart;
+
+			this.storage.set('last_sync_static', this.date)
+		}, error => {
+			this.showAlertfirst();
+		});
 
 	}
 
@@ -295,25 +338,68 @@ export class HomePage {
 		this.storage.set('require', true);
 	}
 
-	getData(isRefreshing: boolean = false, refresher = null) {
+	async getData(isRefreshing: boolean = false, refresher = null) {
 
 		console.log('enter getData()');
 
-		this.loadLatest();
-		if (isRefreshing) {
-			this.categories = [];
-			this.loadCategories(refresher);
-		} else this.loadCategories();
+		if (this.categories || this.slides) {
 
-		if (isRefreshing) {
-			this.loadSliders(refresher);
-		} else this.loadSliders();
+			await this.loadLatest();
+
+		} else {
+
+			this.loadLatest();
+
+		}
+
+		this.storageMul.get(['last_sync_slider', 'sliders', 'last_sync_category', 'main_categories']).then(val => {
+
+			if (val['last_sync_slider'] && val['sliders']) {
+
+				if (!this.today.isSame(new Date(val['last_sync_slider']), "day")) {
+
+					console.log('not today slider');
+					if (isRefreshing) {
+						this.loadSliders(refresher);
+					} else this.loadSliders();
+				}
+
+			} else {
+
+				if (isRefreshing) {
+					this.loadSliders(refresher);
+				} else this.loadSliders();
+
+			}
+
+			if (val['last_sync_category'] && val['main_categories']) {
+
+				if (!this.today.isSame(new Date(val['last_sync_category']), "day")) {
+
+					console.log('not today category');
+					if (isRefreshing) {
+						this.categories = [];
+						this.loadCategories(refresher);
+					} else this.loadCategories();
+
+				}
+
+			} else {
+
+				if (isRefreshing) {
+					this.categories = [];
+					this.loadCategories(refresher);
+				} else this.loadCategories();
+
+			}
+
+		});
 
 	}
 
 	getCache() {
 
-		this.storageMul.get(['sliders', 'main_categories', 'setting']).then(val => {
+		this.storageMul.get(['sliders', 'main_categories', 'setting', 'static', 'location', 'form']).then(val => {
 
 			if (val["sliders"]) {
 				this.slides = val["sliders"];
@@ -329,76 +415,137 @@ export class HomePage {
 				this.config['app_settings'] = settings;
 			}
 
+			if (val["static"]) {
+
+				console.log(val["static"]);
+				let static_setting = val["static"];
+
+				this.config.set('text_static', static_setting['text_static']);
+				this.config.set('currency', static_setting['currency']);
+				this.config.set('required_login', static_setting['required_login']);
+
+				this.statictext = this.config['text_static'];
+			}
+
+			if (val["location"]) {
+
+				this.config.set('countries', val["location"]['countries']);
+				this.config.set('states', val["location"]['states']);
+
+			}
+
+			if (val["form"]) {
+
+				let form = val["form"];
+
+				let repass: Object = {
+					name_id: 'baform_re_password ',
+					label: 'Re-password*',
+					type: 'password',
+					require_check: 1
+				}
+				let tmpData: Object = form;
+				form['register'].forEach((item, key) => {
+					if (item.name_id == 'billing_password') tmpData['register'].splice(key + 1, 0, repass);
+				});
+				form['profile'].forEach((item, key) => {
+					if (item.name_id == 'billing_password') tmpData['profile'].splice(key + 1, 0, repass);
+				});
+				console.log(tmpData);
+				this.config.set('customForm', tmpData);
+
+			}
+
 		});
 
 	}
 
 	doRefresh(refresher) {
 		this.loadedProducts = false;
-		this.loadedCategories = false;
-		this.getData(true, refresher);
+		// this.loadedCategories = false;
+		this.loadLatest();
+		refresher.complete();
 	}
 
-	loadLatest() {
+	async loadLatest() {
 
 		console.log('enter loadLatest()');
 
-		this.products = []
-		if (!this.latesting) {
-			this.faded = false;
-			let params: any = { post_per_page: 4, time: this.time };
-			this.http.get(wordpress_url + '/wp-json/wooconnector/product/getproduct', {
-				search: this.core.objectToURLParams(params)
-			}).subscribe(res => {
+		return new Promise((resolve, reject) => {
 
-				console.log(res);
+			this.products = []
+			if (!this.latesting) {
 
-				let data = res.json();
-				if (data.length != 0) {
-					this.products = data;
-					console.log(this.products);
-					setTimeout(() => {
-						this.faded = true;
-					}, 100);
-				} else this.products = [];
-				this.loadedProducts = true;
+				this.faded = false;
+				let params: any = { post_per_page: 4, time: this.time };
 
-				this.storage.get('static').then(config => {
+				console.log('/wp-json/wooconnector/product/getproduct');
+				this.http.get(wordpress_url + '/wp-json/wooconnector/product/getproduct', {
+					search: this.core.objectToURLParams(params)
+				}).subscribe(res => {
 
-					if (config) {
-						this.statictext = config['text_static'];
-					}
+					resolve();
+					console.log(res);
+
+					let data = res.json();
+					if (data.length != 0) {
+						this.products = data;
+						console.log(this.products);
+						setTimeout(() => {
+							this.faded = true;
+						}, 100);
+					} else this.products = [];
+					this.loadedProducts = true;
+
+					this.storage.get('static').then(config => {
+
+						if (config) {
+							this.statictext = config['text_static'];
+						}
+
+					});
+
+					this.storage.set('last_sync_latest_product', this.date)
+				}, err => {
+
+					resolve();
+					this.showAlertfirst();
+					console.log(err);
 
 				});
-			}, err => {
+			} else {
+				this.faded = false;
+				let params: any = { post_per_page: 4, post_category: this.latesting };
 
-				console.log(err);
+				console.log('/wp-json/wooconnector/product/getproductbycategory');
+				this.http.get(wordpress_url + '/wp-json/wooconnector/product/getproductbycategory', {
+					search: this.core.objectToURLParams(params)
+				}).subscribe(res => {
 
-			});
-		} else {
-			this.faded = false;
-			let params: any = { post_per_page: 4, post_category: this.latesting };
-			this.http.get(wordpress_url + '/wp-json/wooconnector/product/getproductbycategory', {
-				search: this.core.objectToURLParams(params)
-			}).subscribe(res => {
+					resolve();
+					console.log(res);
 
-				console.log(res);
+					let data = res.json();
+					if (data['products'].length != 0) {
+						this.products = data['products'];
+						console.log(this.products);
+						setTimeout(() => {
+							this.faded = true;
+						}, 100);
+					} else this.products = [];
+					this.loadedProducts = true;
+				}, err => {
 
-				let data = res.json();
-				if (data['products'].length != 0) {
-					this.products = data['products'];
-					console.log(this.products);
-					setTimeout(() => {
-						this.faded = true;
-					}, 100);
-				} else this.products = [];
-				this.loadedProducts = true;
-			}, err => {
+					resolve();
+					this.showAlertfirst();
+					console.log(err);
 
-				console.log(err);
+				});
+			}
 
-			});
-		}
+		});
+
+
 	}
 
 	loadCategories(refresher = null) {
@@ -425,6 +572,8 @@ export class HomePage {
 					if (refresher) refresher.complete();
 					this.loadedCategories = true;
 				}
+
+				this.storage.set('last_sync_category', this.date)
 			});
 		};
 		loadCategories();
@@ -444,6 +593,7 @@ export class HomePage {
 					this.storage.set('sliders', this.slides);
 				}
 
+				this.storage.set('last_sync_slider', this.date)
 			});
 	}
 

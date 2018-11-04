@@ -8,12 +8,12 @@
 
   <ion-navbar>
     <ion-title>My Shop {{ debug }}</ion-title>
-    <ion-spinner name="bubbles" *ngIf="!loaded" float-right></ion-spinner>
+    <!-- <ion-spinner name="bubbles" *ngIf="!loaded" float-right></ion-spinner>
     <ion-buttons end *ngIf="loaded">
       <button ion-button icon-only color="royal" (click)="refreshPage()">
         <ion-icon name="refresh"></ion-icon>
       </button>
-    </ion-buttons>
+    </ion-buttons> -->
   </ion-navbar>
 
   <div padding-right padding-left style="height: 42px; background-color: #fff;">
@@ -40,6 +40,10 @@
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
+
+  <div class="slider-temp" *ngIf="!loaded" style="height: 183px; width: 100%; padding: 40px 0;">
+    <g-loader></g-loader>
+  </div>
 
   <div *ngIf="loaded">
 
@@ -132,85 +136,69 @@
             </ion-row>
           </div>
 
-          <div text-right padding-right>
-            <button ion-button (click)="storeFrontPage()">Update</button>
-          </div>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <h3>Store Details</h3>
+              </ion-col>
+              <ion-col text-right>
+                <button ion-button icon-start (click)="storeFrontPage()">
+                  <ion-icon name="create"></ion-icon>
+                  Update
+                </button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
 
-          <form [formGroup]="formEdit" *ngIf="info" padding>
-
-            <ion-item mode="md" bg-transparent no-padding>
-              <ion-label stacked>
-                <span dark>Store Name *</span>
-              </ion-label>
-              <ion-input dark type="text" formControlName="name" placeholder="Name" readonly></ion-input>
+          <ion-list>
+            <ion-item>
+              <h2 padding-bottom>Store Name</h2>
+              <h3>{{ shop.title }}</h3>
             </ion-item>
 
-            <!-- <ion-item mode="md" bg-transparent no-padding>
-                <ion-label stacked>
-                  <span dark>Store Slug *</span>
-                </ion-label>
-                <ion-input dark type="text" formControlName="slug" placeholder="Slug" readonly></ion-input>
-              </ion-item> -->
-
-            <ion-item mode="md" bg-transparent no-padding>
-              <ion-label stacked>
-                <span dark>Store Description *</span>
-              </ion-label>
-              <ion-textarea dark type="text" formControlName="description" placeholder="Description" readonly></ion-textarea>
+            <ion-item>
+              <h2 padding-bottom>Store Description</h2>
+              <h3>{{ shop.description }}</h3>
             </ion-item>
 
-            <!-- <ion-item mode="md" bg-transparent no-padding>
-                <ion-label stacked>
-                  <span dark>Message to Buyers</span>
-                </ion-label>
-                <ion-textarea dark type="text" formControlName="message_to_buyers" placeholder="Message to Buyers" readonly></ion-textarea>
-              </ion-item> -->
-
-            <ion-item mode="md" bg-transparent no-padding>
-              <ion-label stacked>
-                <span dark>Phone</span>
-              </ion-label>
-              <ion-input dark type="text" formControlName="phone" placeholder="phone" readonly></ion-input>
+            <ion-item>
+              <h2 padding-bottom>Message to Buyers</h2>
+              <h3>{{ shop.message_to_buyers }}</h3>
             </ion-item>
 
-            <h4>
-              Address
-            </h4>
-
-            <ion-item mode="md" bg-transparent no-padding>
-              <ion-input dark type="text" placeholder="Address Line 1" formControlName="address_1" readonly></ion-input>
+            <ion-item>
+              <h2 padding-bottom>Phone</h2>
+              <h3>{{ shop.phone }}</h3>
             </ion-item>
 
-            <ion-item mode="md" bg-transparent no-padding>
-              <ion-input dark type="text" placeholder="Address Line 1" formControlName="address_2" readonly></ion-input>
+            <ion-item>
+              <h2 padding-bottom>Address</h2>
+              <h3>{{ shop.address_1 }}</h3>
+              <h3>{{ shop.address_2 }}</h3>
+              <h3>{{ shop.city }}</h3>
+              <h3>{{ shop.postcode }}</h3>
+              <h3>{{ shop.city }}</h3>
+              <h3>{{ shop.state }}</h3>
             </ion-item>
-
-            <ion-item mode="md" bg-transparent no-padding>
-              <ion-input dark type="text" placeholder="Country" formControlName="country" readonly></ion-input>
-            </ion-item>
-
-            <ion-item mode="md" bg-transparent no-padding>
-              <ion-input dark type="text" placeholder="State" formControlName="state" readonly></ion-input>
-            </ion-item>
-
-            <ion-item mode="md" bg-transparent no-padding>
-              <ion-input dark type="text" placeholder="City" formControlName="city" readonly></ion-input>
-            </ion-item>
-
-            <ion-item mode="md" bg-transparent no-padding>
-              <ion-input dark type="text" placeholder="ZIP Code" formControlName="postcode" readonly></ion-input>
-            </ion-item>
-
-          </form>
+          </ion-list>
 
         </div>
 
       </div>
       <div *ngSwitchCase="'product'">
 
-        <ion-spinner name="bubbles" *ngIf="!productLoaded && shop"></ion-spinner>
+        <div text-center style="background-color: #fff; padding: 10px 16px">
+          <button block ion-button icon-start (click)="createProductPage()">
+            <ion-icon name="pricetag"></ion-icon>
+            Add Product
+          </button>
+        </div>
 
-        <ion-list>
+        <div class="slider-temp" *ngIf="!productLoaded && shop" style="height: 183px; width: 100%; padding: 40px 0;">
+          <g-loader></g-loader>
+        </div>
+
+        <ion-list *ngIf="productLoaded && shop">
           <ion-item *ngIf="productLoaded && products.length <= 0">
             <h2>No product found</h2>
           </ion-item>
@@ -221,11 +209,12 @@
                 <img [src]="product.modernshop_images[0].modern_square">
               </ion-thumbnail>
               <h2>{{ product.name }}</h2>
-              <h3>{{ product.price }}</h3>
+              <h3 [innerHTML]="product.price_html"></h3>
               <p>
                 <ion-badge *ngFor="let cat of product.categories">{{ cat.name }}</ion-badge>
               </p>
-              <button ion-button clear item-end [navPush]="BrowserPage" [navParams]="{username: customer.username ,task:'add-product/' + product.id}">Edit</button>
+              <!-- <button ion-button clear item-end [navPush]="BrowserPage" [navParams]="{username: customer.username ,task:'add-product/' + product.id}">Edit</button> -->
+              <button ion-button clear item-end (click)="updateProduct(product)">Edit</button>
             </ion-item>
             <ion-item-options side="right">
               <button ion-button color="danger" (click)="deleteProduct(product)">
@@ -259,7 +248,8 @@
       </div>
     </div>
 
-    <iframe [src]='safeURL' width="100%" height="100%" frameborder="0" class="iframe" [ngStyle]="{'visibility':orderStyle}" *ngIf="user && shop"></iframe>
+    <iframe [src]='safeURL' width="100%" [height]="orderHeight" frameborder="0" class="iframe" [ngStyle]="{'visibility':orderStyle}"
+      *ngIf="user && shop"></iframe>
 
     <!-- <div *ngIf="user && shop"> -->
 
@@ -268,12 +258,6 @@
     <!-- <iframe [src]='safeURL' width="100%" height="100%" frameborder="0" class="iframe" [ngStyle]="{'visibility':orderStyle}" *ngIf="shop"></iframe> -->
 
     <!-- </div> -->
-
-    <ion-fab right bottom *ngIf="fab">
-      <button ion-fab (click)="createProductPage()">
-        <ion-icon name="add"></ion-icon>
-      </button>
-    </ion-fab>
 
   </div>
 

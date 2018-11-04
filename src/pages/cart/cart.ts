@@ -22,9 +22,9 @@ declare var wordpress_url;
 declare var display_mode;
 
 @Component({
-  selector: 'page-cart',
-  templateUrl: 'cart.html',
-  providers: [StorageMulti, Core, ObjectToArrayPipe]
+	selector: 'page-cart',
+	templateUrl: 'cart.html',
+	providers: [StorageMulti, Core, ObjectToArrayPipe]
 })
 export class CartPage {
 	AddressPage = AddressPage;
@@ -38,12 +38,12 @@ export class CartPage {
 	isCache: boolean;
 	couponCode: String;
 	invalid: boolean;
-	check_require_login:boolean;
+	check_require_login: boolean;
 	checkCart: boolean = false;
 	constructor(
-	  	public navCtrl: NavController,
-	  	public navParams: NavParams,
-	  	public storage: Storage,
+		public navCtrl: NavController,
+		public navParams: NavParams,
+		public storage: Storage,
 		public storageMul: StorageMulti,
 		public http: Http,
 		public alertCtrl: AlertController,
@@ -75,23 +75,42 @@ export class CartPage {
 		this.navCtrl.popToRoot();
 	}
 	delete(id: string) {
-		let data = Object.assign({}, this.data);
-		delete data[id];
-		this.data = data;
-		this.update();
+
+		const confirm = this.alertCtrl.create({
+			title: 'Remove product?',
+			message: 'Are you sure want to remove the product from cart?',
+			buttons: [
+				{
+					text: 'Cancel',
+					handler: () => {
+						console.log('cancel clicked');
+					}
+				},
+				{
+					text: 'Delete',
+					handler: () => {
+						let data = Object.assign({}, this.data);
+						delete data[id];
+						this.data = data;
+						this.update();
+					}
+				}
+			]
+		});
+		confirm.present();
 	}
 	update() {
 		if (Object.keys(this.data).length > 0) {
-			this.storage.set('cart', this.data).then(() => { 
-				this.validate(); 
+			this.storage.set('cart', this.data).then(() => {
+				this.validate();
 			});
 		} else {
-			this.storage.remove('cart').then(() => { 
+			this.storage.remove('cart').then(() => {
 				console.log('empty cart');
 				this.checkCart = true;
 			});
 		}
-		
+
 	}
 	validate() {
 		this.core.showLoading();
@@ -145,7 +164,7 @@ export class CartPage {
 							}
 						}
 						if (resp['errors'][key] && resp['errors'][key]['message']) {
-								message += resp['errors'][key]['message'];
+							message += resp['errors'][key]['message'];
 						}
 					}
 					if (resp['discount']) {
@@ -183,38 +202,38 @@ export class CartPage {
 	}
 	showAlert(message: string) {
 		if (message == 'Sorry, Coupon only one.') {
-			message +=  this.trans["remove_couponOnly"];
+			message += this.trans["remove_couponOnly"];
 			let alert = this.alertCtrl.create({
 				message: message,
 				cssClass: 'alert-no-title',
 				buttons: [
-			      {
-			        text: this.trans["confirm"]["no"],
-			        role: 'cancel'
-			      },
-			      {
-			        text: this.trans["confirm"]["yes"],
-			        handler: () => {
-			          	this.coupon = [];
-                        this.couponData = [];
-                        this.storage.remove('coupon');
-                        this.apply();
-			        }
-			      }
-			    ]
+					{
+						text: this.trans["confirm"]["no"],
+						role: 'cancel'
+					},
+					{
+						text: this.trans["confirm"]["yes"],
+						handler: () => {
+							this.coupon = [];
+							this.couponData = [];
+							this.storage.remove('coupon');
+							this.apply();
+						}
+					}
+				]
 			});
 			alert.present();
 		} else {
 			if (message) {
 				let alert = this.alertCtrl.create({
-				message: message,
-				cssClass: 'alert-no-title',
-				buttons: [
+					message: message,
+					cssClass: 'alert-no-title',
+					buttons: [
 						{
 							text: this.trans['validate'],
-							 handler: () => {
-					          	this.couponCode = '';
-					        }
+							handler: () => {
+								this.couponCode = '';
+							}
 						}
 					]
 				});
@@ -339,7 +358,7 @@ export class CartPage {
 		if (this.check_require_login) {
 			if (this.login) this.navCtrl.push(this.AddressPage);
 			else this.navCtrl.push(this.LoginPage);
-		} else{
+		} else {
 			if (this.login) this.navCtrl.push(this.AddressPage);
 			else {
 				let alert = this.alertCtrl.create({
@@ -361,7 +380,7 @@ export class CartPage {
 						}
 					]
 				});
-				alert.present();	
+				alert.present();
 			}
 		}
 	}

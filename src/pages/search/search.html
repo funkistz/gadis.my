@@ -77,8 +77,8 @@
 			</ion-scroll>
 		</div>
 		<!-- Sort -->
-		<div *ngIf="filter.open=='sort'" ion-fixed width-100 height-100 mark tappable (click)="filter.open=null">
-			<ion-list radio-group [(ngModel)]="sort" class="list-sort" (ngModelChange)="filter.open=null">
+		<div *ngIf="filter.open=='sort'" ion-fixed width-100 height-100 mark tappable (click)="getFilter()">
+			<ion-list radio-group [(ngModel)]="sort" class="list-sort" (ngModelChange)="getFilter()">
 				<ion-item *ngFor="let option of 'categories.sortData'|translate">
 					<ion-label [innerHTML]="option.text"></ion-label>
 					<ion-radio [value]="option.value"></ion-radio>
@@ -92,7 +92,7 @@
 		<div class="slider-temp" *ngIf="loaddata" style="height: 183px; width: 100%; padding: 40px 0;">
 			<g-loader></g-loader>
 		</div>
-		<ion-row padding-8 wrap *ngIf="0< products.length" class="faded-content" [ngClass]="{'filter-list':!filter.grid, 'faded-has-content':faded}"
+		<ion-row padding-8 wrap *ngIf="0< products.length && !loaddata" class="faded-content" [ngClass]="{'filter-list':!filter.grid, 'faded-has-content':faded}"
 		 (swipe)="onSwipeContent($event)">
 			<ion-col padding-8 relative [attr.width-50]="filter.grid ? true : null" *ngFor="let product of products" class="product-block">
 				<div [navPush]="DetailPage" [navParams]="{id:product.id}" relative class="product-image clearfix">
@@ -123,11 +123,17 @@
 							</div>
 						</div>
 						<span class="product-title" dark [innerHTML]="product.name"></span>
-						<div *ngIf="product.type=='variable' && 0< product.attributes.length" [hidden]="filter.grid">
-							<div *ngFor="let attribute of product.attributes|filter:{variation:true}">
+						<div *ngIf="0< product.attributes.length" [hidden]="filter.grid">
+							<div *ngFor="let attribute of product.attributes">
 								<span [innerHTML]="attribute.name"></span>:
-								<span dark>{{attribute.options|arrayjoin:', '}}</span>
+								<span dark>{{ attribute.options|arrayjoin:', ' }}</span>
 							</div>
+						</div>
+						<div style="position: absolute; top: 14px; left: 15px;" [hidden]="!filter.grid">
+							<ion-badge *ngFor="let attribute of product.attributes" [innerHTML]="attribute.options|arrayjoin:', '" style="margin-right:4px;"
+							 [hidden]="attribute.name != 'Condition'">
+
+							</ion-badge>
 						</div>
 					</div>
 					<div class="button-cart-list" *ngIf="product.type!='variable' && product.type!='grouped' && product.type!='external'">

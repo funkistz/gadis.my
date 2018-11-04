@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-
+import { Toast } from '@ionic-native/toast';
 import { Storage } from '@ionic/storage';
 import { TranslateService } from '../../module/ng2-translate';
 import { StorageMulti } from '../../service/storage-multi.service';
@@ -12,9 +12,11 @@ import { Config } from '../../service/config.service';
 import { Core } from '../../service/core.service';
 import { Device } from '@ionic-native/device';
 import { WoocommerceProvider } from '../../providers/woocommerce/woocommerce';
+
 import { VendorRegisterPage } from '../../pages/vendor-register/vendor-register';
 import { BrowserPage } from '../../pages/browser/browser';
-import { Toast } from '@ionic-native/toast';
+import { CreateProductPage } from '../../pages/create-product/create-product';
+import { VendorUpdatePage } from '../../pages/vendor-update/vendor-update';
 
 @Component({
   selector: 'page-myshop',
@@ -71,21 +73,6 @@ export class MyshopPage {
     this.loaded = false;
     this.storage.remove('customer');
 
-    this.formEdit = formBuilder.group({
-      name: ['', Validators.compose([Validators.maxLength(25), Validators.required])],
-      slug: ['', Validators.compose([Validators.maxLength(25), Validators.required])],
-      description: ['', Validators.compose([Validators.maxLength(255), Validators.required])],
-      message_to_buyers: ['', Validators.compose([Validators.maxLength(255)])],
-      phone: ['', Validators.compose([Validators.maxLength(13)])],
-      email: ['', Validators.compose([Validators.maxLength(55), Validators.required])],
-      address_1: ['', Validators.compose([Validators.maxLength(25)])],
-      address_2: ['', Validators.compose([Validators.maxLength(25)])],
-      city: ['', Validators.compose([Validators.maxLength(25)])],
-      state: ['', Validators.compose([Validators.maxLength(25)])],
-      country: ['', Validators.compose([Validators.maxLength(25)])],
-      postcode: ['', Validators.compose([Validators.maxLength(25)])]
-    });
-
     this.isShopLoaded = false;
 
   }
@@ -100,6 +87,8 @@ export class MyshopPage {
 
     this.userLoaded = false;
     this.user = null;
+    this.shop = null;
+    this.customer = null;
     this.customerLoaded = false;
 
     console.log('enter get data');
@@ -148,71 +137,6 @@ export class MyshopPage {
 
     });
 
-  }
-
-  getData1() {
-
-    console.log('enter get data');
-
-    this.storageMul.get(['login', 'user', 'shop', 'customer']).then(val => {
-
-      console.log('user');
-      console.log(val);
-
-      if (val) {
-
-        if (val["user"]) {
-
-          if (this.data["user"]) {
-
-            if (this.data["user"].ID != val["user"]['mobiconnector_info'].ID) {
-              this.first = false;
-              this.shop = {};
-              this.shop = {
-                shop: {
-                  banner: "assets/images/account-bg.png",
-                  image: "assets/images/person.png"
-                }
-              };
-            }
-
-          }
-
-          this.data["user"] = val["user"]['mobiconnector_info'];
-        }
-        if (val["login"] && val["login"]["token"]) {
-          this.isLogin = true;
-          this.data["login"] = val["login"];
-
-          if (!this.first) {
-            this.checkShop(this.data["user"].ID);
-          } else {
-            this.loaded = true;
-          }
-
-        } else {
-          this.isLogin = false;
-          this.first = false;
-
-          console.log('logout');
-          this.shop = {};
-          this.shop = {
-            shop: {
-              banner: "assets/images/account-bg.png",
-              image: "assets/images/person.png"
-            }
-          };
-          this.isLogin = false;
-          this.loaded = true;
-
-        }
-
-        this.info = JSON.stringify(val);
-        console.log(this.data["login"]);
-        // this.presentToast(val);
-
-      }
-    });
   }
 
   checkingShop;
@@ -268,6 +192,10 @@ export class MyshopPage {
     let meta_data = customer.meta_data;
     let shop: any = {};
 
+    if (!this.getMeta(meta_data, '_vendor_page_title')) {
+      return;
+    }
+
     shop.title = this.getMeta(meta_data, '_vendor_page_title');
     shop.slug = this.getMeta(meta_data, '_vendor_page_slug');
     shop.description = this.getMeta(meta_data, '_vendor_description');
@@ -280,6 +208,7 @@ export class MyshopPage {
     shop.phone = this.getMeta(meta_data, '_vendor_phone');
     shop.image = this.getMeta(meta_data, '_vendor_image');
     shop.banner = this.getMeta(meta_data, '_vendor_banner');
+    shop.message_to_buyers = this.getMeta(meta_data, '_vendor_message_to_buyers');
 
     if (!shop.image) {
       shop.image = 'assets/images/person.png';
@@ -289,21 +218,10 @@ export class MyshopPage {
       shop.banner = 'assets/images/loading-wave.gif';
     }
 
-    this.formEdit.controls['name'].setValue(shop.title);
-    this.formEdit.controls['slug'].setValue(shop.slug);
-    this.formEdit.controls['description'].setValue(shop.description);
-    this.formEdit.controls['phone'].setValue(shop.phone);
-
-    this.formEdit.controls['address_1'].setValue(shop.address_1);
-    this.formEdit.controls['address_2'].setValue(shop.address_2);
-    this.formEdit.controls['city'].setValue(shop.city);
-    this.formEdit.controls['country'].setValue(shop.country);
-    this.formEdit.controls['postcode'].setValue(shop.postcode);
-    this.formEdit.controls['state'].setValue(shop.state);
-
     this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.externalLink + '?username=' + this.customer.username + '&task=' + 'vendor-orders');
 
     this.shop = shop;
+    this.storage.set('shop', shop);
     console.log(shop);
 
   }
@@ -322,92 +240,6 @@ export class MyshopPage {
 
   }
 
-  checkShop1(id) {
-
-    this.shopReady = false;
-
-    console.log('enter check shop');
-
-    // this.storeFrontURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.externalLink + '?username=' + this.data["login"].user_display_name + '&task=' + 'storefront');
-    // this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.externalLink + '?username=' + this.data["login"].user_display_name + '&task=' + 'vendor-orders');
-
-    this.WooCommerce = this.WP.get({
-      wcmc: false,
-      method: 'GET',
-      api: 'customers/' + id
-    });
-
-    this.WooCommerce.subscribe(data => {
-
-      this.isShopLoaded = true;
-      this.shopReady = true;
-      console.log(data);
-
-      try {
-
-        if (data.json()) {
-
-          console.log('shop');
-          let customers = data.json();
-          console.log(customers);
-
-          if (customers.id) {
-
-            let shop: any = {};
-            this.first = true;
-
-            let role = this.customerRole(customers);
-
-            // this.getProduct(this.data["user"].ID);
-
-            // if (!shop.shop.banner) {
-            //   shop.shop.banner = "assets/images/account-bg.png";
-            // }
-
-            // if (!shop.shop.image) {
-            //   shop.shop.image = "assets/images/person.png";
-            // }
-
-            // this.shop = shop;
-
-            // this.formEdit.controls['name'].setValue(shop.shop.title);
-            // this.formEdit.controls['slug'].setValue(shop.shop.slug);
-            // this.formEdit.controls['description'].setValue(shop.shop.description);
-            // this.formEdit.controls['message_to_buyers'].setValue(shop.message_to_buyers);
-            // this.formEdit.controls['phone'].setValue(shop.address.phone);
-            // this.formEdit.controls['email'].setValue(shop.login);
-
-            // this.formEdit.controls['address_1'].setValue(shop.address.address_1);
-            // this.formEdit.controls['address_2'].setValue(shop.address.address_2);
-            // this.formEdit.controls['city'].setValue(shop.address.city);
-            // this.formEdit.controls['country'].setValue(shop.address.country);
-            // this.formEdit.controls['postcode'].setValue(shop.address.postcode);
-            // this.formEdit.controls['state'].setValue(shop.address.state);
-
-            // this.formEdit.controls['facebook'].setValue(shop.social.facebook);
-            // this.formEdit.controls['twitter'].setValue(shop.social.twitter);
-            // this.formEdit.controls['google_plus'].setValue(shop.social.google_plus);
-            // this.formEdit.controls['linkedin'].setValue(shop.social.linkdin);
-            // this.formEdit.controls['youtube'].setValue(shop.social.youtube);
-            // this.formEdit.controls['instagram'].setValue(shop.social.instagram);
-
-          }
-
-        }
-      } catch (e) {
-        this.shopReady = true;
-        console.log('error try check shop');
-        return false;
-      }
-
-    }, err => {
-
-      console.log('error oi');
-
-    });
-
-  }
-
   customerRole(customer) {
 
     return customer.role;
@@ -420,9 +252,9 @@ export class MyshopPage {
   }
 
   createProductPage() {
-    this.navCtrl.push(BrowserPage, {
-      username: this.customer.username,
-      task: 'add-product'
+    this.navCtrl.push(CreateProductPage, {
+      vendor: this.customer.id,
+      callback: this.productCallback
     });
   }
 
@@ -435,7 +267,7 @@ export class MyshopPage {
     {
       "_vendor_message_to_buyers": temp.message_to_buyers,
       "_vendor_page_title": temp.name,
-      "_vendor_page_slug": temp.slug,
+      // "_vendor_page_slug": temp.slug,
       "_vendor_description": temp.description,
       "_vendor_address_1": temp.address_1,
       "_vendor_address_2": temp.address_2,
@@ -444,12 +276,12 @@ export class MyshopPage {
       "_vendor_country": temp.country,
       "_vendor_postcode": temp.postcode,
       "_vendor_phone": temp.phone,
-      "_vendor_fb_profile": temp.facebook,
-      "_vendor_twitter_profile": temp.twitter,
-      "_vendor_google_plus_profile": temp.google_plus,
-      "_vendor_linkdin_profile": temp.linkedin,
-      "_vendor_youtube": temp.youtube,
-      "_vendor_instagram": temp.instagram
+      // "_vendor_fb_profile": temp.facebook,
+      // "_vendor_twitter_profile": temp.twitter,
+      // "_vendor_google_plus_profile": temp.google_plus,
+      // "_vendor_linkdin_profile": temp.linkedin,
+      // "_vendor_youtube": temp.youtube,
+      // "_vendor_instagram": temp.instagram
     };
 
     let meta = [];
@@ -470,18 +302,17 @@ export class MyshopPage {
     console.log(params);
 
     this.WooCommerce = this.WP.get({
-      wcmc: false,
+      wcmc: true,
       method: 'PUT',
-      api: 'customers/' + this.shop.id,
+      api: 'vendors/' + this.customer.id,
       param: params
     });
 
     this.WooCommerce.subscribe(response => {
 
+      console.log(response);
+
       if (response) {
-
-        console.log(response.json());
-
 
         if (response.json().id) {
 
@@ -500,7 +331,7 @@ export class MyshopPage {
     }, err => {
 
       const toast = this.toastCtrl.create({
-        message: err,
+        message: 'Some error occured',
         duration: 3000
       });
       toast.present();
@@ -575,6 +406,7 @@ export class MyshopPage {
   shopStyle = "visible";
   orderStyle = "hidden";
   fab = false;
+  orderHeight = '0px';
 
   segmentChanged(event) {
     console.log(event._value);
@@ -589,14 +421,17 @@ export class MyshopPage {
       console.log('shop visible');
       this.shopStyle = "visible";
       this.orderStyle = "hidden";
+      this.orderHeight = '0px'
     } else if (event._value == 'order') {
       console.log('order visible');
       this.shopStyle = "'hidden";
       this.orderStyle = "visible";
+      this.orderHeight = '100%;'
     } else {
       console.log('other visible');
       this.shopStyle = "hidden";
       this.orderStyle = "hidden";
+      this.orderHeight = '0px'
     }
   }
 
@@ -608,7 +443,8 @@ export class MyshopPage {
 
     if (this.segment == 'product') {
 
-      this.getProduct(this.user.ID, refresher);
+      refresher.complete();
+      this.getProduct(this.user.ID);
 
     } else {
 
@@ -634,7 +470,18 @@ export class MyshopPage {
 
   }
 
+  updateProduct(product) {
+
+    this.navCtrl.push(CreateProductPage, {
+      vendor: this.customer.id,
+      product: product,
+      callback: this.productCallback
+    });
+
+  }
+
   deleteProduct(product) {
+
     const confirm = this.alertCtrl.create({
       title: 'Delete ' + product.name + '?',
       message: 'This will permanently delete the product?',
@@ -662,8 +509,6 @@ export class MyshopPage {
 
             wooDelete.subscribe(data => {
 
-              console.log(data);
-              console.log(data.json());
               if (data.json()) {
 
                 this.Toast.showShortBottom('Product deleted').subscribe(
@@ -680,7 +525,8 @@ export class MyshopPage {
 
               }
 
-              this.getProduct(this.data["user"].ID);
+              this.deleteLocalProduct(product.id);
+              this.Toast.showShortBottom('Product deleted');
               this.core.hideLoading();
 
             }, err => {
@@ -702,12 +548,17 @@ export class MyshopPage {
     confirm.present();
   }
 
+  deleteLocalProduct(id) {
+    this.products.forEach((item, index) => {
+      if (item.id === id) this.products.splice(index, 1);
+    });
+  }
+
   storeFrontPage() {
 
-    this.navCtrl.push(BrowserPage,
+    this.navCtrl.push(VendorUpdatePage,
       {
-        username: this.customer.username,
-        task: 'storefront',
+        vendor: this.shop,
         callback: this.updateCallback
       });
   }
@@ -722,6 +573,19 @@ export class MyshopPage {
 
   }
 
+  productCallback = data => {
+
+    this.getProduct(this.user.ID);
+
+    return new Promise((resolve, reject) => {
+
+      this.getProduct(this.user.ID);
+
+      resolve();
+    });
+
+  }
+
   updateCallback = data => {
     return new Promise((resolve, reject) => {
 
@@ -729,11 +593,6 @@ export class MyshopPage {
       this.storage.remove('customer');
       this.first = false;
       this.getData();
-      const toast = this.toastCtrl.create({
-        message: 'Sucessfully Update',
-        duration: 3000
-      });
-      toast.present();
 
       resolve();
     });

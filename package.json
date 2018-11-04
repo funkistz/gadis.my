@@ -22,14 +22,18 @@
     "@angular/platform-browser": "5.2.10",
     "@angular/platform-browser-dynamic": "5.2.10",
     "@firebase/database": "^0.2.1",
-    "@ionic-native/camera": "^4.14.0",
+    "@ionic-native/camera": "^4.16.0",
     "@ionic-native/core": "4.7.0",
-    "@ionic-native/device": "^4.14.0",
+    "@ionic-native/device": "^4.16.0",
     "@ionic-native/diagnostic": "^4.14.0",
     "@ionic-native/facebook": "^4.16.0",
+    "@ionic-native/file": "^4.16.0",
+    "@ionic-native/file-path": "^4.16.0",
+    "@ionic-native/file-transfer": "^4.16.0",
     "@ionic-native/geolocation": "^4.14.0",
     "@ionic-native/google-analytics": "^4.14.0",
     "@ionic-native/google-plus": "^4.14.0",
+    "@ionic-native/image-picker": "^4.16.0",
     "@ionic-native/in-app-browser": "^4.15.0",
     "@ionic-native/linkedin": "^4.14.0",
     "@ionic-native/location-accuracy": "^4.14.0",
@@ -50,28 +54,32 @@
     "cordova-plugin-camera": "^4.0.3",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-facebook4": "^2.5.0",
+    "cordova-plugin-file": "^6.0.1",
+    "cordova-plugin-file-transfer": "^1.7.1",
+    "cordova-plugin-filepath": "^1.4.2",
     "cordova-plugin-geolocation": "^4.0.1",
     "cordova-plugin-google-analytics": "^1.8.6",
-    "cordova-plugin-googleplus": "^5.3.1",
+    "cordova-plugin-googleplus": "^5.3.2",
     "cordova-plugin-inappbrowser": "^3.0.0",
-    "cordova-plugin-ionic-keyboard": "^2.1.2",
-    "cordova-plugin-ionic-webview": "^1.2.1",
+    "cordova-plugin-ionic-keyboard": "^2.1.3",
     "cordova-plugin-network-information": "^2.0.1",
     "cordova-plugin-request-location-accuracy": "^2.2.3",
     "cordova-plugin-screen-orientation": "^3.0.1",
     "cordova-plugin-splashscreen": "^5.0.2",
+    "cordova-plugin-telerik-imagepicker": "^2.2.2",
     "cordova-plugin-whitelist": "^1.3.3",
     "cordova-plugin-x-socialsharing": "^5.4.1",
     "cordova-plugin-x-toast": "^2.7.0",
-    "cordova-sqlite-storage": "^2.4.0",
+    "cordova-sqlite-storage": "^2.5.0",
     "cordova.plugins.diagnostic": "^4.0.10",
     "es6-promise-plugin": "^4.2.2",
     "firebase": "^5.5.5",
     "ionic-angular": "3.9.2",
     "ionic-plugin-keyboard": "^2.2.1",
     "ionicons": "3.0.0",
+    "moment": "^2.22.2",
     "ng2-translate": "^5.0.0",
-    "onesignal-cordova-plugin": "^2.4.3",
+    "onesignal-cordova-plugin": "^2.4.4",
     "php-serialize": "^2.0.1",
     "rxjs": "5.5.11",
     "sw-toolbox": "3.6.0",
@@ -93,7 +101,6 @@
       "cordova-plugin-whitelist": {},
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
-      "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-x-toast": {},
       "cordova-plugin-x-socialsharing": {},
@@ -109,15 +116,20 @@
       },
       "cordova-plugin-facebook4": {
         "APP_ID": "193950848129470",
-        "APP_NAME": "Social Application"
+        "APP_NAME": "Social Application",
+        "FACEBOOK_ANDROID_SDK_VERSION": "4.+"
       },
       "cordova-plugin-googleplus": {
         "REVERSED_CLIENT_ID": "com.googleusercontent.apps.645613074065-n9mbjl60isqld2l04olqigldrfjl5pf3"
       },
-      "ionic-plugin-keyboard": {}
+      "ionic-plugin-keyboard": {},
+      "cordova-plugin-file-transfer": {},
+      "cordova-plugin-filepath": {},
+      "cordova-plugin-telerik-imagepicker": {
+        "PHOTO_LIBRARY_USAGE_DESCRIPTION": "Gadis.my need to access your files"
+      },
+      "cordova-plugin-file": {}
     },
-    "platforms": [
-      "ios"
-    ]
+    "platforms": []
   }
 }

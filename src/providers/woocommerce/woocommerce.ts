@@ -4,7 +4,7 @@ import { Http, Headers, URLSearchParams } from '@angular/http';
 @Injectable()
 export class WoocommerceProvider {
 
-  url = 'http://www.gadis.my/wc-mc.php';
+  url = 'http://www.gadis.my/wc-mc-v2.php';
   consumer_key = 'ck_d09b1a20baa9733d021692e4abf056f63599627d';
   consumer_secret = 'cs_f311e704d4787a2d51aa9389ef22aefabecd34a9';
 
@@ -73,6 +73,13 @@ export class WoocommerceProvider {
     if (option.wcmc) {
       version = 'wcmp/v1';
     }
+    if (!option.param) {
+      option.param = {};
+    }
+
+    if (option.method != 'GET') {
+      option.params = this.objectToURLParams(option.param);
+    }
 
     let headers = new Headers();
     let authorization = this.consumer_key + ':' + this.consumer_secret + ':' + version + ':' + option.api + ':' + option.method;
@@ -93,46 +100,25 @@ export class WoocommerceProvider {
 
       console.log({ url: this.url });
 
-
       return this.http.get(url, {
         headers: headers,
       });
 
     } else if (option.method == 'POST') {
 
-      if (!option.param) {
-        option.param = {};
-      }
-
-      let params = this.objectToURLParams(option.param);
-
-      return this.http.post(this.url, params, {
+      return this.http.post(this.url, option.param, {
         headers: headers,
       })
 
     } else if (option.method == 'PUT') {
 
-      if (!option.param) {
-        option.param = {};
-      }
-
-      let params = this.objectToURLParams(option.param);
-      console.log(params);
-
-      return this.http.post(this.url, params, {
+      return this.http.post(this.url, option.param, {
         headers: headers,
       })
 
     } else if (option.method == 'DELETE') {
 
-      if (!option.param) {
-        option.param = {};
-      }
-
-      let params = this.objectToURLParams(option.param);
-      console.log(params);
-
-      return this.http.post(this.url, params, {
+      return this.http.post(this.url, option.param, {
         headers: headers,
       })
 

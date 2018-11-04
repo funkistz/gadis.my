@@ -29,21 +29,27 @@
 	</div>
 
 	<!-- Slider -->
-	<ion-slides #slide_update *ngIf="slides && 0 < slides.length" class="slides-home" pager="true" loop="true" autoplay="5000"
+	<ion-slides #slide_update *ngIf="slides && 0 < slides.length" class="slides-home" pager="true" loop="true" autoplay="6000"
 	 dir="{{display}}">
 		<ion-slide *ngFor="let slide of slides" tappable (click)="openLink(slide.url)">
 			<img [src]="slide.slider_images" float-left />
 		</ion-slide>
 	</ion-slides>
 
-	<div text-center style="margin-top:-20px;">
-		<button ion-button color="azure" icon-end style="z-index: 9;" (click)="searchPage()">SHOP NOW
-			<ion-icon name="cart"></ion-icon>
-		</button>
-		<button ion-button icon-end style="z-index: 9;" (click)="vendorPage()">SELL ANYTHING
-			<ion-icon name="star"></ion-icon>
-		</button>
-	</div>
+	<ion-grid text-center>
+		<ion-row>
+			<ion-col>
+				<button ion-button block color="azure" icon-end style="z-index: 9999;" (click)="searchPage()">SHOP NOW
+					<ion-icon name="cart"></ion-icon>
+				</button>
+			</ion-col>
+			<ion-col>
+				<button ion-button block icon-end style="z-index: 9999;" (click)="vendorPage()">SELL ANYTHING
+					<ion-icon name="star"></ion-icon>
+				</button>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
 
 	<!-- Deal of the day -->
 	<div *ngIf="deal && 0<deal.length" (swipe)="onSwipeContent($event)">
@@ -79,7 +85,7 @@
 
 	<!-- Categories -->
 	<div padding text-uppercase dark (swipe)="onSwipeContent($event)">
-		<b>{{'home.categories'|translate}}</b>
+		<b>CATEGORIES</b>
 		<button ion-button small clear float-right color="gray" class="btn-text" (click)="categoryPage()">{{'home.viewAll'|translate}}</button>
 	</div>
 
@@ -153,6 +159,12 @@
 				</p>
 				<span *ngIf="(product.name).length > 50" float-left width-100 [innerHTML]="(product.name | slice: 0 : 59) + '...'"></span>
 				<span *ngIf="(product.name).length < 50" float-left width-100 [innerHTML]="product.name"></span>
+				<div style="position: absolute; top: 14px; left: 15px;">
+					<ion-badge *ngFor="let attribute of product.attributes" [innerHTML]="attribute.options|arrayjoin:', '" style="margin-right:4px;"
+					 [hidden]="attribute.name != 'Condition'">
+
+					</ion-badge>
+				</div>
 			</ion-col>
 		</ion-row>
 		<div text-center *ngIf="products.length == 0 && loadedProducts" class="no-data" margin-top>{{'general.no_data'|translate}}</div>
@@ -231,7 +243,7 @@
 		<!-- About Footer -->
 		<!-- <about-footer></about-footer> -->
 		<div padding light text-center class="footer-home" *ngIf="statictext">
-			<div padding-8>
+			<!-- <div padding-8>
 				<button ion-button icon-only clear color="light" class="disable-hover" (click)="openLinkFooter(statictext.modern_link_twitter, true)">
 					<ion-icon name="icon-twitter"></ion-icon>
 				</button>
@@ -241,8 +253,8 @@
 				<button ion-button icon-only clear color="light" class="disable-hover" (click)="openLinkFooter(statictext.modern_link_google, true)">
 					<ion-icon name="logo-instagram"></ion-icon>
 				</button>
-			</div>
-			<p>{{ 'general.copyright'|translate }}</p>
+			</div> -->
+			<p>Copyright 2018 © Gadis.my</p>
 		</div>
 	</div>
 </ion-content>

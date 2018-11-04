@@ -64,13 +64,18 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { VendorsPage } from '../pages/vendors/vendors';
 import { VendorDetailPage } from '../pages/vendor-detail/vendor-detail';
 import { MyshopPage } from '../pages/myshop/myshop';
+import { VendorUpdatePage } from '../pages/vendor-update/vendor-update';
 import { CreateProductPage } from '../pages/create-product/create-product';
 import { BrowserPage } from '../pages/browser/browser';
 import { CreateVendorPage } from '../pages/create-vendor/create-vendor';
 import { VendorRegisterPage } from '../pages/vendor-register/vendor-register';
 import { OnboardingPage } from '../pages/onboarding/onboarding';
+import { ModalCategoryPage } from '../pages/modal-category/modal-category';
 
-import { ComponentsModule } from '../components/components.module';
+import { ImagePicker } from '@ionic-native/image-picker';
+import { File } from '@ionic-native/file';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+import { FilePath } from '@ionic-native/file-path';
 
 //pipe
 import { PricePipe } from '../pipes/price/price';
@@ -139,7 +144,9 @@ import { WoocommerceProvider } from '../providers/woocommerce/woocommerce';
     BrowserPage,
     CreateVendorPage,
     VendorRegisterPage,
-    OnboardingPage
+    OnboardingPage,
+    ModalCategoryPage,
+    VendorUpdatePage
   ],
   imports: [
     BrowserModule,
@@ -201,7 +208,9 @@ import { WoocommerceProvider } from '../providers/woocommerce/woocommerce';
     BrowserPage,
     CreateVendorPage,
     VendorRegisterPage,
-    OnboardingPage
+    OnboardingPage,
+    ModalCategoryPage,
+    VendorUpdatePage
   ],
   providers: [
     StatusBar,
@@ -218,6 +227,11 @@ import { WoocommerceProvider } from '../providers/woocommerce/woocommerce';
     SocialSharing,
     GooglePlus,
     Facebook,
+    ImagePicker,
+    File,
+    FileTransfer,
+    FileTransferObject,
+    FilePath,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     WoocommerceProvider
   ],

@@ -7,68 +7,136 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Add Product</ion-title>
+    <ion-title>Sell Item</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
 
-  <ion-list>
+  <div class="slider-temp" *ngIf="loading" style="height: 183px; width: 100%; padding: 40px 0;">
+    <g-loader></g-loader>
+  </div>
 
-    <form [formGroup]="formEdit">
+  <div *ngIf="!loading">
 
-      <ion-item mode="md">
-        <ion-label stacked>
-          <span dark>Brands</span>
-        </ion-label>
-        <ion-input dark type="text" formControlName="name" placeholder="Name"></ion-input>
-      </ion-item>
+    <ion-grid class="images-wrapper">
+      <ion-row>
+        <h2 *ngIf="images.length <= 0" style="margin: auto; margin-top: 40px;" text-center>Please select at least 1 and maximum of 3 images</h2>
+        <ion-col col-6 *ngFor="let image of images; let id = index">
+          <ion-card class="block image-placeholder">
+            <ion-badge *ngIf="id == 0">Primary</ion-badge>
+            <ion-badge *ngIf="id != 0">{{ id+1 }}</ion-badge>
+            <button small ion-button icon-only class="deleteIcon" color="danger" (click)="deletePhoto(id, image)">
+              <ion-icon name="trash"></ion-icon>
+            </button>
+            <button small ion-button icon-only class="prevIcon" color="light" (click)="prevImage(id)">
+              <ion-icon name="arrow-round-back"></ion-icon>
+            </button>
+            <button small ion-button icon-only class="nextIcon" color="light" (click)="nextImage(id)">
+              <ion-icon name="arrow-round-forward"></ion-icon>
+            </button>
+            <img [src]="pathForImage(image)" *ngIf="image" />
+            <!-- <h5>{{ pathForImage(image) }}</h5> -->
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
-      <ion-item mode="md">
-        <ion-label stacked>
-          <span dark>Product Name</span>
-        </ion-label>
-        <ion-input dark type="text" formControlName="name" placeholder="Name"></ion-input>
-      </ion-item>
+    <ion-row padding *ngIf="images.length < 3">
 
-      <ion-item mode="md">
-        <ion-label stacked>
-          <span dark>Price(RM)</span>
-        </ion-label>
-        <ion-input dark type="text" formControlName="name" placeholder="Name"></ion-input>
-      </ion-item>
+      <button ion-button block round icon-start color="dark" (click)="presentActionSheet()">
+        <ion-icon name="camera"></ion-icon>Choose Image
+      </button>
 
-      <ion-item mode="md">
-        <ion-label stacked>
-          <span dark>Sale Price(RM)</span>
-        </ion-label>
-        <ion-input dark type="number" step="0.01" formControlName="name" placeholder="Name"></ion-input>
-      </ion-item>
+    </ion-row>
 
-      <ion-item mode="md">
-        <ion-label stacked>
-          <span dark>Short Description</span>
-        </ion-label>
-        <ion-textarea dark type="text" formControlName="name" placeholder="Name"></ion-textarea>
-      </ion-item>
+    <ion-list>
 
-      <ion-item mode="md">
-        <ion-label stacked>
-          <span dark>Categories</span>
-        </ion-label>
-        <ion-select dark formControlName="name" placeholder="Categories">
-          <ion-option *ngFor="let cat of categories" [value]="cat.id">
-            {{ cat.name }}
-          </ion-option>
-        </ion-select>
-      </ion-item>
+      <form [formGroup]="formEdit">
 
-      <button ion-button block margin-top (click)="addProduct()">Save</button>
+        <ion-item mode="md">
+          <ion-label stacked>
+            <span dark>Brands</span>
+          </ion-label>
+          <ion-input dark type="text" formControlName="brand" placeholder="brands"></ion-input>
+        </ion-item>
 
-    </form>
+        <ion-item mode="md">
+          <ion-label stacked>
+            <span dark>Product Name*</span>
+          </ion-label>
+          <ion-input dark type="text" formControlName="name" placeholder="name" [(ngModel)]="product.name"></ion-input>
+        </ion-item>
 
-  </ion-list>
+        <ion-item mode="md">
+          <ion-label stacked>
+            <span dark>Price (RM)*</span>
+          </ion-label>
+          <ion-input dark type="number" step="0.01" min="0" formControlName="regular_price" placeholder="price" [(ngModel)]="product.regular_price"></ion-input>
+        </ion-item>
+
+        <ion-item mode="md">
+          <ion-label stacked>
+            <span dark>Sale Price (RM)*</span>
+          </ion-label>
+          <ion-input dark type="number" step="0.01" min="0" formControlName="sale_price" placeholder="sale price" [(ngModel)]="product.price"></ion-input>
+        </ion-item>
+
+        <ion-item mode="md">
+          <ion-label stacked>
+            <span dark>Short Description</span>
+          </ion-label>
+          <ion-textarea dark type="text" formControlName="short_description" placeholder="short description"></ion-textarea>
+        </ion-item>
+
+        <ion-item mode="md">
+          <ion-label stacked>
+            <span dark>Categories*</span>
+          </ion-label>
+          <ion-input dark placeholder="Please Choose" (click)="modalCategory()" disabled *ngIf="!categoryName"></ion-input>
+          <ion-input dark placeholder="Please Choose" (click)="modalCategory()" *ngIf="categoryName" [innerHTML]="categoryName"></ion-input>
+        </ion-item>
+
+        <div *ngFor="let attr of attributes.attributes">
+
+          <ion-item mode="md" *ngIf="attr.slug == 'pa_colour' || attr.slug == 'pa_condition'">
+            <ion-label stacked>
+              <span dark [innerHTML]="attr.name" *ngIf="attr.slug == 'pa_colour'"></span>
+              <span dark [innerHTML]="attr.name + '*'" *ngIf="attr.slug == 'pa_condition'"></span>
+            </ion-label>
+            <ion-select dark placeholder="Please Choose" formControlName="{{ attr.slug }}" interface="popover">
+              <ion-option *ngFor="let term of attr.term" [innerHTML]="term.name" [value]="term.name"></ion-option>
+            </ion-select>
+          </ion-item>
+
+        </div>
+
+        <ion-input type="hidden" placeholder="Category ID" formControlName="category"></ion-input>
+
+      </form>
+
+    </ion-list>
+
+
+  </div>
 
 </ion-content>
+
+<ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <button ion-button full color="light" navPop>Cancel</button>
+      </ion-col>
+      <ion-col col-6>
+        <button ion-button full [disabled]="formEdit.invalid || images.length <= 0" (click)="addProduct()">
+          <span *ngIf="!product.id">Sell</span>
+          <span *ngIf="product.id">Update</span>
+        </button>
+        <!-- <button ion-button full (click)="addProduct()">Add Product</button> -->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>
