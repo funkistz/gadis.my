@@ -73,15 +73,19 @@
         <ion-item mode="md">
           <ion-label stacked>
             <span dark>Price (RM)*</span>
+            <p dark>*must equal or more than sale price</p>
           </ion-label>
-          <ion-input dark type="number" step="0.01" min="0" formControlName="regular_price" placeholder="price" [(ngModel)]="product.regular_price"></ion-input>
+          <ion-input dark type="number" step="0.01" min="0" [max]="product.price" [formControl]="formEdit.controls['regular_price']"
+            placeholder="price" [(ngModel)]="product.regular_price"></ion-input>
         </ion-item>
 
         <ion-item mode="md">
           <ion-label stacked>
-            <span dark>Sale Price (RM)*</span>
+            <span dark>Sale Price (RM)</span>
+            <p dark>*must equal or less than price</p>
           </ion-label>
-          <ion-input dark type="number" step="0.01" min="0" formControlName="sale_price" placeholder="sale price" [(ngModel)]="product.price"></ion-input>
+          <ion-input dark type="number" step="0.01" min="0" [max]="product.regular_price" [formControl]="formEdit.controls['sale_price']"
+            placeholder="sale price" [(ngModel)]="product.price"></ion-input>
         </ion-item>
 
         <ion-item mode="md">
@@ -106,12 +110,50 @@
               <span dark [innerHTML]="attr.name" *ngIf="attr.slug == 'pa_colour'"></span>
               <span dark [innerHTML]="attr.name + '*'" *ngIf="attr.slug == 'pa_condition'"></span>
             </ion-label>
-            <ion-select dark placeholder="Please Choose" formControlName="{{ attr.slug }}" interface="popover">
+            <ion-select dark placeholder="Please Choose" formControlName="{{ attr.slug }}" interface="action-sheet">
               <ion-option *ngFor="let term of attr.term" [innerHTML]="term.name" [value]="term.name"></ion-option>
             </ion-select>
           </ion-item>
 
         </div>
+
+        <ion-item-divider>Stock Management</ion-item-divider>
+
+        <ion-item mode="md">
+          <ion-label padding-left>Manage Stock?</ion-label>
+          <ion-checkbox color="dark" checked="false" [(ngModel)]="product.manage_stock" formControlName="manage_stock"></ion-checkbox>
+        </ion-item>
+
+        <ion-item mode="md" *ngIf="product.manage_stock">
+          <ion-label stacked>
+            <span dark>Stock Quantity</span>
+          </ion-label>
+          <ion-input dark type="number" step="1" min="1" placeholder="quantity" [(ngModel)]="product.stock_quantity" formControlName="stock_quantity"></ion-input>
+        </ion-item>
+
+        <ion-item mode="md" *ngIf="product.manage_stock">
+          <ion-label stacked>
+            <span dark>Allow Backorders?</span>
+          </ion-label>
+          <ion-select dark interface="action-sheet" [(ngModel)]="product.backorders" formControlName="backorders">
+            <ion-option value="no">Do not allow</ion-option>
+            <ion-option value="notify">Allow, but notify customer</ion-option>
+            <ion-option value="yes">Allow</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item mode="md">
+          <ion-label padding-left>In stock</ion-label>
+          <ion-checkbox color="dark" checked="true" [(ngModel)]="product.in_stock" formControlName="in_stock"></ion-checkbox>
+        </ion-item>
+
+        <ion-item mode="md">
+          <ion-label padding-left>
+            Sold Individually
+            <p dark>*only allow one item to be bought in a single order</p>
+          </ion-label>
+          <ion-checkbox color="dark" checked="false" [(ngModel)]="product.sold_individually" formControlName="sold_individually"></ion-checkbox>
+        </ion-item>
 
         <ion-input type="hidden" placeholder="Category ID" formControlName="category"></ion-input>
 

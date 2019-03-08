@@ -13,12 +13,21 @@ page-categories {
 		}
 	}
 	.item-category{
+
 		.row {
 			display: flex;
 			align-items: center;
 		}
 
-		[mark]{@include background-opacity(#000, 0.4);}
+		[mark]{
+			@include background-opacity(#000, 0.4);
+			border-radius: 8px;
+		}
+
+		[overflow]{
+			border-radius: 8px;
+		}
+
 		.name{
 			display:inline-block;
 			padding:5px 10px;

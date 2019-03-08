@@ -144,7 +144,7 @@ export class DetailPage {
 
 			this.WooCommerce.subscribe(products => {
 
-				console.log(products.json());
+				console.log(products);
 
 				observable.next(products.json());
 				observable.complete();

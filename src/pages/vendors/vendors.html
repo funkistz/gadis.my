@@ -1,6 +1,6 @@
 <ion-header (swipe)="onSwipeContent($event)">
   <ion-navbar>
-    <ion-title center>Vendors</ion-title>
+    <ion-title center>Shops</ion-title>
     <ion-buttons end>
       <button-cart #cart icon="icon-bag"></button-cart>
     </ion-buttons>
@@ -26,9 +26,9 @@
   </div>
   <ion-list>
     <ion-item *ngFor="let vendor of vendors" [navPush]="VendorDetailPage" [navParams]="{vendor:vendor}">
-      <ion-avatar item-start>
+      <!-- <ion-avatar item-start>
         <woo-image [id]="vendor.shop.image"></woo-image>
-      </ion-avatar>
+      </ion-avatar> -->
       <h2>{{ vendor.shop.title }}</h2>
       <p>{{ vendor.shop.description }}</p>
     </ion-item>

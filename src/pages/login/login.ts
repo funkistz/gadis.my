@@ -190,6 +190,7 @@ export class LoginPage {
 		this.loading = true;
 		this.googleplus.login({
 			'webClientId': '645613074065-n9mbjl60isqld2l04olqigldrfjl5pf3.apps.googleusercontent.com',
+			// 'webClientId': '645613074065-f5anume7q8s1honsb51s53da4trhc3sg.apps.googleusercontent.com',
 			'offline': true
 		}).then(profile => {
 			let params = {

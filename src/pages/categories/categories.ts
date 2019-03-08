@@ -6,8 +6,8 @@ import { Http } from '@angular/http';
 // Custom
 import { Core } from '../../service/core.service';
 import { Storage } from '@ionic/storage';
+import { Toast } from '@ionic-native/toast';
 import { StorageMulti } from '../../service/storage-multi.service';
-
 // Page
 import { DetailCategoryPage } from '../detail-category/detail-category';
 import { SearchPage } from '../search/search';
@@ -25,104 +25,34 @@ export class CategoriesPage {
 	@ViewChild('cart') buttonCart;
 	DetailCategoryPage = DetailCategoryPage;
 	SearchPage = SearchPage;
-	parents: Object[] = [];
+	parents: any[] = [];
+	parentsFiltered: any[] = [];
 	id: Number;
 	noResuilt: boolean = false;
 	faded: boolean = false;
 	loaddata: boolean = false;
 	title = 'All Categories';
-	public today = moment();
 	public date: string = new Date().toISOString();
+	public today = moment();
+	parent_id;
 
 	constructor(
 		public http: Http,
 		public core: Core,
 		public navCtrl: NavController,
-		private navParams: NavParams,
+		public navParams: NavParams,
 		public storage: Storage,
 		public storageMul: StorageMulti
 	) {
 
-		this.storageMul.get(['last_sync_all_category', 'all_category']).then(val => {
+		this.parent_id = this.navParams.get('id');
 
-			if (val['last_sync_all_category'] && val['all_category']) {
-
-				if (!this.today.isSame(new Date(val['last_sync_all_category']), "day")) {
-
-					console.log('not today all category');
-					this.getCategory();
-				} else {
-
-					this.loaddata = true;
-					let tempCat = this.parents.concat(val['all_category']);
-
-					this.parents = tempCat.filter(function (obj: any) {
-						return obj.parent != 0;
-					});
-
-					setTimeout(() => {
-						this.faded = true;
-					}, 100);
-					if (val['all_category'] && val['all_category'].length == 100) {
-						this.noResuilt = false;
-						this.getCategory();
-					} else {
-						this.loaddata = true;
-						this.noResuilt = true;
-					}
-				}
-
-			} else {
-
-				this.getCategory();
-
-			}
-
-		});
-
-	}
-
-	getCategory() {
-
-		console.log('get category...');
-
-		let id = this.navParams.get('id');
-		let name = this.navParams.get('name');
-		let params: any = { cat_num_page: 1, cat_per_page: 100, cat_order_by: 'slug' };
-
-		if (id) {
-			params = { cat_num_page: 1, cat_per_page: 100, cat_order_by: 'slug', parent: id };
-			this.title = name;
+		if (this.parent_id) {
+			this.title = this.navParams.get('name');
 		}
 
-		this.http.get(wordpress_url + '/wp-json/wooconnector/product/getcategories', {
-			search: this.core.objectToURLParams(params)
-		}).subscribe(res => {
-
-			this.storage.set('last_sync_all_category', this.date);
-			this.storage.set('all_category', res.json());
-			this.loaddata = true;
-			let tempCat = this.parents.concat(res.json());
-
-			this.parents = tempCat.filter(function (obj: any) {
-				return obj.parent != 0;
-			});
-
-			setTimeout(() => {
-				this.faded = true;
-			}, 100);
-			if (res.json() && res.json().length == 100) {
-				this.noResuilt = false;
-				params.cat_num_page++;
-				this.getCategory();
-			} else {
-				this.loaddata = true;
-				this.noResuilt = true;
-			}
-		});
-
+		this.loadCategories();
 	}
-
 	ionViewDidEnter() {
 		this.buttonCart.update();
 	}
@@ -131,6 +61,111 @@ export class CategoriesPage {
 			if (e['deltaX'] < 0) this.navCtrl.push(this.SearchPage);
 			else this.navCtrl.popToRoot();
 		}
+	}
+
+	cat_num_page = 1;
+	loadCategories() {
+
+		console.log('load categories...');
+
+		this.storageMul.get(['last_sync_all_category', 'all_category']).then(val => {
+
+			if (val['last_sync_all_category'] && val['all_category']) {
+
+				if (!this.today.isSame(new Date(val['last_sync_all_category']), "day")) {
+
+					console.log('not today all category');
+					this.getAllCategory();
+
+				} else {
+
+					this.parents = val['all_category'];
+
+					if (this.parent_id) {
+						let items = val['all_category'].filter(item => item.parent == this.parent_id);
+						this.parentsFiltered = items;
+					} else {
+						this.parentsFiltered = val['all_category'];
+					}
+
+					console.log(this.parentsFiltered);
+
+					setTimeout(() => {
+						this.faded = true;
+					}, 100);
+					this.loaddata = true;
+					this.noResuilt = true;
+
+				}
+
+			} else {
+
+				this.getAllCategory();
+
+			}
+
+		});
+
+	};
+
+	getAllCategory() {
+
+		let loadCategories = () => {
+
+			console.log('load categories...');
+
+			let params = { cat_num_page: this.cat_num_page, cat_per_page: 100 };
+			this.http.get(wordpress_url + '/wp-json/wooconnector/product/getcategories', {
+				search: this.core.objectToURLParams(params)
+			}).subscribe(res => {
+				this.loaddata = true;
+				this.parents = this.parents.concat(res.json());
+
+				if (this.parent_id) {
+					let items = res.json().filter(item => item.parent == this.parent_id);
+					this.parentsFiltered = this.parentsFiltered.concat(items);
+				} else {
+					this.parentsFiltered = this.parentsFiltered.concat(res.json());
+				}
+
+				setTimeout(() => {
+					this.faded = true;
+				}, 100);
+				if (res.json() && res.json().length == 100) {
+					this.noResuilt = false;
+					this.cat_num_page++;
+					loadCategories();
+				} else {
+					this.loaddata = true;
+					this.noResuilt = true;
+
+					this.storage.set('all_category', this.parents);
+					this.storage.set('last_sync_all_category', this.date);
+				}
+			});
+		};
+		loadCategories();
+
+	}
+
+	categoryPage(category) {
+
+		// [navPush]="DetailCategoryPage" [navParams]="{id:category.id}"
+
+		let items = this.parents.filter(item => item.parent == category.id);
+
+		if (items && items.length) {
+
+			this.navCtrl.push(CategoriesPage, { id: category.id, name: category.name });
+
+		} else {
+
+			this.navCtrl.push(this.DetailCategoryPage, { id: category.id });
+
+		}
+
+		console.log(items);
+
 	}
 
 }

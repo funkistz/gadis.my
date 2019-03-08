@@ -16,12 +16,11 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { LocationAccuracy } from '@ionic-native/location-accuracy';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { Device } from '@ionic-native/device';
+import { Toast } from '@ionic-native/toast';
 
 // Page
 import { LoginPage } from '../../pages/login/login';
 import { CheckoutPage } from '../../pages/checkout/checkout';
-
-import Serialize from 'php-serialize';
 
 declare var wordpress_url;
 declare var display_mode;
@@ -37,7 +36,7 @@ export class BaAddressComponent {
 	CheckoutPage = CheckoutPage;
 	formAddress: FormGroup;
 	login: Object = {};
-	data: any = {};
+	data: Object = {};
 	dataUser: Object = {};
 	rawData: Object;
 	isCache: boolean;
@@ -67,7 +66,8 @@ export class BaAddressComponent {
 		public LocationAccuracy: LocationAccuracy,
 		public platform: Platform,
 		public Diagnostic: Diagnostic,
-		public Device: Device
+		public Device: Device,
+		public Toast: Toast
 	) {
 		this.display_mode = display_mode;
 		translate.get('states').subscribe(trans => {
@@ -81,16 +81,14 @@ export class BaAddressComponent {
 			let params: Object = {};
 			this.data['billing'].forEach(item => {
 				if (item['required_check'] == 1) {
-					if (item['name_id'] != 'billing_email' && item['name_id'] != 'billing_phone') params[item['name_id']] = ['', Validators.required];
+					if (item['name_id'] != 'billing_email') params[item['name_id']] = ['', Validators.required];
 					else if (item['name_id'] == 'billing_email') params[item['name_id']] = ['', Validators.compose([Validators.required, CoreValidator.isEmail])];
-					else if (item['name_id'] == 'billing_phone') params[item['name_id']] = ['', Validators.compose([Validators.required, CoreValidator.isPhone])]
 				} else params[item['name_id']] = ['']
 			});
 			this.data['shipping'].forEach(item => {
 				if (item['required_check'] == 1) {
-					if (item['name_id'] != 'shipping_email' && item['name_id'] != 'shipping_phone') params[item['name_id']] = ['', Validators.required];
+					if (item['name_id'] != 'shipping_email') params[item['name_id']] = ['', Validators.required];
 					else if (item['name_id'] == 'shipping_email') params[item['name_id']] = ['', Validators.compose([Validators.required, CoreValidator.isEmail])];
-					else if (item['name_id'] == 'shipping_phone') params[item['name_id']] = ['', Validators.compose([Validators.required, CoreValidator.isPhone])]
 				} else params[item['name_id']] = ['']
 			});
 			this.formAddress = this.formBuilder.group(params);
@@ -104,12 +102,16 @@ export class BaAddressComponent {
 			if (val['useBilling'] == false) this.useBilling = false;
 			else this.useBilling = true;
 			if (val['user']) {
+
+				console.log(val['user'], 'user data');
+
 				this.dataUser = val['user'];
 				this.checkBillingDefault(this.dataUser['mobiconnector_address']['billing_country']);
 				Object.keys(this.dataUser['mobiconnector_address']).forEach(item => {
 					this.data['billing'].forEach(field => {
 						if (item.indexOf('billing_country') == 0 && item != 'billing_country') {
 							if (item == field['name_id']) {
+								console.log(field['name_id']);
 								this.checkBillingCustom(this.dataUser['mobiconnector_address'][field['name_id']], field['name_id'], field['country_has_state']);
 							}
 						}
@@ -117,6 +119,12 @@ export class BaAddressComponent {
 				});
 				this.updateShipping();
 				this.reset();
+
+				console.log(this.dataUser['user_email']);
+				if (this.dataUser['user_email']) {
+					this.formAddress.get('billing_email').setValue(this.dataUser['user_email']);
+					this.formAddress.get('shipping_email').setValue(this.dataUser['user_email']);
+				}
 			}
 		});
 	}
@@ -155,8 +163,6 @@ export class BaAddressComponent {
 					}
 				});
 			});
-			console.log('from update shipping:');
-			console.log(this.formAddress);
 			this.formAddress.patchValue(params);
 		}
 	}
@@ -268,20 +274,18 @@ export class BaAddressComponent {
 					headers: headers,
 					withCredentials: true
 				}).subscribe(res => {
-					console.log(res.json());
 					this.data = res.json();
-
-					let temp_data = res.json();
-
-					let mobi_address = Serialize.unserialize(temp_data.mobiconnector_address);
-
-					console.log(mobi_address);
-					this.data.mobiconnector_address = mobi_address;
-
 					this.storage.set('user', this.data).then(() => {
 						this.gotoCheckout();
 					});
 					this.core.hideLoading();
+				}, err => {
+
+					this.core.hideLoading();
+					this.Toast.showShortBottom(err.json()["message"]).subscribe(
+						toast => { },
+						error => { console.log(error); }
+					);
 				});
 			} else {
 				this.dataUser['mobiconnector_address'] = this.formAddress.value;
@@ -293,10 +297,6 @@ export class BaAddressComponent {
 		} else this.gotoCheckout();
 	}
 	gotoCheckout() {
-
-		//debug
-		// return;
-
 		if (this.navCtrl.getPrevious() && this.navCtrl.getPrevious().component == this.CheckoutPage)
 			this.navCtrl.pop();
 		else {

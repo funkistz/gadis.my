@@ -1,6 +1,7 @@
 <ion-header>
 	<ion-navbar>
-		<ion-title>{{'detail.title'|translate}}</ion-title>
+		<ion-title *ngIf="!detail.name">{{'detail.title'|translate}}</ion-title>
+		<ion-title *ngIf="detail.name" [innerHTML]="detail.name"></ion-title>
 		<ion-buttons end>
 			<button-cart #cart icon="icon-bag"></button-cart>
 		</ion-buttons>
@@ -18,8 +19,7 @@
 	<div relative class="product-slides faded-content" padding-4 light-bg [ngClass]="{'faded-has-content':faded}">
 		<ion-slides *ngIf="detail.wooconnector_crop_images" (ionSlideDidChange)="changeSlides($event)" pager="true" dir="{{display}}">
 			<ion-slide *ngFor="let image of detail.wooconnector_crop_images">
-				<img float-left *ngIf="image.wooconnector_large" [src]="image.wooconnector_large" (click)="viewImage(image.wooconnector_large)"
-				/>
+				<img float-left *ngIf="image.wooconnector_large" [src]="image.source_url" (click)="viewImage(image.source_url)" />
 				<img float-left *ngIf="!image.wooconnector_large" src="assets/images/no-image.png" />
 			</ion-slide>
 		</ion-slides>

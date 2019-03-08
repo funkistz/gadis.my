@@ -8,6 +8,7 @@ import { NavController, NavParams, TextInput } from 'ionic-angular';
 import { Core } from '../../service/core.service';
 import { Storage } from '@ionic/storage';
 import { Toast } from '@ionic-native/toast';
+import { StorageMulti } from '../../service/storage-multi.service';
 
 
 //Pipes
@@ -18,7 +19,7 @@ import { ObjectToArrayPipe } from '../../pipes/object-to-array/object-to-array';
 import { DetailPage } from '../detail/detail';
 import { CategoriesPage } from '../categories/categories';
 import { AccountPage } from '../account/account';
-
+import moment from 'moment';
 
 declare var wordpress_url: string;
 declare var wordpress_per_page: Number;
@@ -27,7 +28,7 @@ declare var Keyboard;
 @Component({
 	selector: 'page-search',
 	templateUrl: 'search.html',
-	providers: [Core, ObjectToArrayPipe]
+	providers: [Core, ObjectToArrayPipe, StorageMulti]
 })
 export class SearchPage {
 
@@ -39,6 +40,7 @@ export class SearchPage {
 	keyword: string;
 	products: Object[] = []; attributes: Object[] = [];
 	page = 1; sort: string = '-date_created_gmt'; range: Object = { lower: 0, upper: 0 };
+	categories: Object[] = [];
 	filter: any = { grid: true, open: null, value: {}, valueCustom: {} }; filtering: boolean;
 	grid: boolean = true;
 	favorite: Object = {};
@@ -50,6 +52,8 @@ export class SearchPage {
 	data: Object[] = [];
 	faded: boolean = false;
 	loaddata: boolean = false;
+	public date: string = new Date().toISOString();
+	public today = moment();
 
 	constructor(
 		public http: Http,
@@ -57,10 +61,13 @@ export class SearchPage {
 		public storage: Storage,
 		public navCtrl: NavController,
 		public navParams: NavParams,
-		public Toast: Toast
+		public Toast: Toast,
+		public storageMul: StorageMulti
 	) {
 
 		this.search();
+
+		this.loadCategories();
 
 		http.get(wordpress_url + '/wp-json/wooconnector/product/getattribute')
 			.subscribe(res => {
@@ -111,6 +118,10 @@ export class SearchPage {
 			this.filter['valueCustom'][attr['slug']] = {};
 		});
 		this.range = { lower: 0, upper: 0 };
+	}
+	openCategory() {
+		if (this.filter['open'] == 'category') this.filter['open'] = null;
+		else this.filter['open'] = 'category';
 	}
 	openFilter() {
 		if (this.filter['open'] == 'filter') this.filter['open'] = null;
@@ -184,11 +195,16 @@ export class SearchPage {
 					}
 				};
 			}
-			let params = {
+			let params: any = {
 				'search': this.keyword,
 				'post_num_page': this.page,
 				'post_per_page': wordpress_per_page,
 			}
+
+			if (this.filterCategory) {
+				params.post_category = this.filterCategory.id;
+			}
+
 			let sortParams = this.core.addSortToSearchParams(params, this.sort);
 			if (tmpFilter.length == 0 && !this.range['lower'] && !this.range['upper']) {
 				this.http.get(wordpress_url + '/wp-json/wooconnector/product/getproduct', {
@@ -219,6 +235,80 @@ export class SearchPage {
 			infiniteScroll.complete();
 		});
 	}
+
+	filterCategory;
+	setCategory(category) {
+
+		if (category) {
+			this.filterCategory = category;
+		} else {
+			this.filterCategory = null;
+		}
+		this.filter.open = null
+
+		console.log('set category : ' + this.filterCategory);
+
+		this.search();
+	}
+
+	cat_num_page = 1;
+	loadCategories() {
+
+		console.log('load categories...');
+
+		this.storageMul.get(['last_sync_all_category', 'all_category']).then(val => {
+
+			if (val['last_sync_all_category'] && val['all_category']) {
+
+				if (!this.today.isSame(new Date(val['last_sync_all_category']), "day")) {
+
+					console.log('not today all category');
+					this.getAllCategory();
+
+				} else {
+
+					this.categories = val['all_category'];
+
+				}
+
+			} else {
+
+				this.getAllCategory();
+
+			}
+
+		});
+
+	};
+
+	getAllCategory() {
+
+		let loadCategories = () => {
+
+			console.log('load categories...');
+
+			let params = { cat_num_page: this.cat_num_page, cat_per_page: 100 };
+			this.http.get(wordpress_url + '/wp-json/wooconnector/product/getcategories', {
+				search: this.core.objectToURLParams(params)
+			}).subscribe(res => {
+
+				this.categories = this.categories.concat(res.json());
+
+				if (res.json() && res.json().length == 100) {
+
+					this.cat_num_page++;
+					loadCategories();
+				} else {
+
+					this.storage.set('all_category', this.categories);
+					this.storage.set('last_sync_all_category', this.date);
+				}
+			});
+		};
+		loadCategories();
+
+	}
+
 	changeFavorite(product: Object) {
 		if (this.favorite[product["id"]]) {
 			delete this.favorite[product["id"]];

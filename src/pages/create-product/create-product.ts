@@ -51,7 +51,12 @@ export class CreateProductPage {
     name: '',
     regular_price: '',
     price: '',
-    short_description: ''
+    short_description: '',
+    manage_stock: false,
+    stock_quantity: '',
+    backorders: 'no',
+    in_stock: true,
+    sold_individually: false
   };
 
   callback;
@@ -93,12 +98,17 @@ export class CreateProductPage {
       brand: ['', Validators.compose([Validators.maxLength(50)])],
       name: ['', Validators.compose([Validators.maxLength(50), Validators.required])],
       regular_price: ['', Validators.compose([Validators.required])],
-      sale_price: ['', Validators.compose([Validators.required])],
+      sale_price: ['', Validators.compose([Validators.required, Validators.min(0)])],
       short_description: ['', Validators.compose([Validators.maxLength(255)])],
       category: ['', Validators.compose([Validators.required])],
       pa_condition: ['', Validators.compose([Validators.required])],
       pa_colour: [''],
-    });
+      manage_stock: [''],
+      stock_quantity: [''],
+      backorders: [''],
+      in_stock: [''],
+      sold_individually: [''],
+    }, { validator: this.matchValidator });
 
     if (this.product) {
 
@@ -131,10 +141,50 @@ export class CreateProductPage {
 
     });
 
+  }
+
+  matchValidator(group: FormGroup) {
+    // console.log('checking...');
+    var valid = false;
+
+    if (group.controls['regular_price'].value >= group.controls['sale_price'].value) {
+      // console.log(group.controls['regular_price'].value + ' >= ' + group.controls['sale_price'].value);
+      valid = true;
+    }
+
+    if (valid) {
+      return null;
+    }
+
+    return {
+      mismatch: true
+    };
+  }
+
+  validatorRegularPrice(control) {
+
+    if (control.value >= this.product.price) {
+      return true;
+    } else {
+      return false;
+    }
+
+  }
+
+  validatorSalePrice(control) {
+
+    if (control.value <= this.product.regular_price) {
+      return true;
+    } else {
+      return false;
+    }
 
   }
 
   setProduct() {
+
+    console.log('set product');
+    console.log(this.product);
 
     let product = this.product;
     let app = this;
@@ -144,8 +194,6 @@ export class CreateProductPage {
       if (product.images.length > 0) {
 
         product.images.forEach(function (value) {
-          console.log(value);
-
           app.images.push(value.src);
         });
 
@@ -187,13 +235,17 @@ export class CreateProductPage {
 
       if (product.attributes.length > 0) {
 
+        console.log('attr exist');
+
         let colour = product.attributes.find(e => e.name === 'Colour');
         if (colour) {
           this.formEdit.controls['pa_colour'].setValue(colour.options[0]);
+          console.log('colour');
+          console.log(colour.options[0]);
         }
 
         let condition = product.attributes.find(e => e.name === 'Condition');
-        if (colour) {
+        if (condition) {
           this.formEdit.controls['pa_condition'].setValue(condition.options[0]);
         }
 
@@ -289,6 +341,8 @@ export class CreateProductPage {
       if (!file.startsWith('http')) {
 
         if (!stop) {
+
+          //enable this after finished debug
           const contents = await this.uploadImages(file).catch(error => stop = true);
           console.log(contents);
         }
@@ -326,24 +380,33 @@ export class CreateProductPage {
     ];
 
     let images = [];
-    let attributes = [
-      {
-        "id": 1,
-        "name": "Colour",
-        "visible": 1,
-        "options": [
-          temp.pa_colour
-        ]
-      },
-      {
-        "id": 2,
-        "name": "Condition",
-        "visible": 1,
-        "options": [
-          temp.pa_condition
-        ]
-      }
-    ];
+    let attributes = [];
+
+    if (temp.pa_colour) {
+      attributes.push(
+        {
+          "id": 1,
+          "name": "Colour",
+          "visible": 1,
+          "options": [
+            temp.pa_colour
+          ]
+        }
+      );
+    }
+
+    if (temp.pa_condition) {
+      attributes.push(
+        {
+          "id": 2,
+          "name": "Condition",
+          "visible": 1,
+          "options": [
+            temp.pa_condition
+          ]
+        }
+      );
+    }
 
     let meta_data = [
       {
@@ -352,8 +415,11 @@ export class CreateProductPage {
       }
     ];
 
-    this.uploadedImages.forEach(src => {
-      images.push({ src: src });
+    this.uploadedImages.forEach(([key, src]) => {
+      images.push({
+        src: src,
+        position: key
+      });
     });
 
     let params: any = {
@@ -364,7 +430,18 @@ export class CreateProductPage {
       sale_price: temp.sale_price,
       short_description: temp.short_description,
       categories: JSON.stringify(category),
-      attributes: JSON.stringify(attributes)
+      attributes: JSON.stringify(attributes),
+      manage_stock: temp.manage_stock,
+      in_stock: temp.in_stock,
+      sold_individually: temp.sold_individually
+    }
+
+    if (temp.stock_quantity) {
+      params.stock_quantity = temp.stock_quantity;
+    }
+
+    if (temp.backorders) {
+      params.backorders = temp.backorders;
     }
 
     if (images.length > 0) {

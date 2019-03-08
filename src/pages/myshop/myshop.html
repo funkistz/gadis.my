@@ -118,7 +118,7 @@
 
         <div *ngIf="shop && user">
 
-          <div relative overflow class="account-header" text-center>
+          <!-- <div relative overflow class="account-header" text-center>
             <div float-left width-100>
               <woo-image [id]="shop.banner" type="width"></woo-image>
             </div>
@@ -134,7 +134,7 @@
                 </div>
               </ion-col>
             </ion-row>
-          </div>
+          </div> -->
 
           <ion-grid>
             <ion-row>
@@ -210,6 +210,7 @@
               </ion-thumbnail>
               <h2>{{ product.name }}</h2>
               <h3 [innerHTML]="product.price_html"></h3>
+              <h3 *ngIf="product.stock_quantity" [innerHTML]="'Quantity: ' + product.stock_quantity"></h3>
               <p>
                 <ion-badge *ngFor="let cat of product.categories">{{ cat.name }}</ion-badge>
               </p>

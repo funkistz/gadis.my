@@ -67,7 +67,7 @@ export class WoocommerceProvider {
   //method, wcmc, api, param
   get(option) {
 
-    console.log(option);
+    // console.log(option);
 
     let version = 'wc/v2';
     if (option.wcmc) {
@@ -84,6 +84,8 @@ export class WoocommerceProvider {
     let headers = new Headers();
     let authorization = this.consumer_key + ':' + this.consumer_secret + ':' + version + ':' + option.api + ':' + option.method;
     headers.set('Authorization', authorization);
+    // headers.set('authorization', authorization);
+    // headers.set('x-api-key', authorization);
     // headers.set('Cache-control', 'no-cache');
     // headers.set('Cache-control', 'no-store');
     // headers.set('Expires', '0');
@@ -97,8 +99,6 @@ export class WoocommerceProvider {
         option.param.timestamp = + new Date();
         url += '?' + this.objectToUrl(option.param);
       }
-
-      console.log({ url: this.url });
 
       return this.http.get(url, {
         headers: headers,

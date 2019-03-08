@@ -102,7 +102,11 @@ export class HomePage {
 				OneSignal.inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification);
 				OneSignal.handleNotificationOpened().subscribe(res => {
 					let payload = res.notification.payload;
-					if (payload && payload['launchURL']) this.openLink(payload['launchURL'], true);
+					if (payload && payload['launchURL']) {
+						console.log('opening notification');
+						console.log(payload['launchURL']);
+						this.openLink(payload['launchURL'], true);
+					}
 				});
 				OneSignal.endInit();
 			}
@@ -180,9 +184,9 @@ export class HomePage {
 			});
 		});
 
-		storage.get('require').then(val => {
-			// if (!val) this.getPopupHomePage();
-		});
+		// storage.get('require').then(val => {
+		// if (!val) this.getPopupHomePage();
+		// });
 	}
 
 	ionViewDidEnter() {
@@ -220,7 +224,7 @@ export class HomePage {
 
 		console.log('enter first load app');
 
-		let url = wordpress_url + "/wp-json/mobiconnector/settings/getfirstloadapp";
+		let url = wordpress_url + "/wp-json/mobiconnector/settings/getfirstloadapp?time=" + this.time;
 
 		this.http.get(url).subscribe(res => {
 			let settings = res.json()['socials_login'];
@@ -282,7 +286,7 @@ export class HomePage {
 
 		console.log('enter get static');
 
-		let params: any = {};
+		let params: any = { 'time': this.time };
 
 		this.http.get(wordpress_url + '/wp-json/modernshop/static/gettextstatic', {
 			search: this.core.objectToURLParams(params)
@@ -477,7 +481,9 @@ export class HomePage {
 			if (!this.latesting) {
 
 				this.faded = false;
-				let params: any = { post_per_page: 4, time: this.time };
+				let params: any = { post_per_page: 10, time: this.time };
+
+				console.log(params, 'time');
 
 				console.log('/wp-json/wooconnector/product/getproduct');
 				this.http.get(wordpress_url + '/wp-json/wooconnector/product/getproduct', {
@@ -515,7 +521,7 @@ export class HomePage {
 				});
 			} else {
 				this.faded = false;
-				let params: any = { post_per_page: 4, post_category: this.latesting };
+				let params: any = { post_per_page: 10, post_category: this.latesting, time: this.time };
 
 				console.log('/wp-json/wooconnector/product/getproductbycategory');
 				this.http.get(wordpress_url + '/wp-json/wooconnector/product/getproductbycategory', {
@@ -552,7 +558,7 @@ export class HomePage {
 
 		console.log('load categories');
 
-		let params = { cat_per_page: 100, cat_num_page: 1, parent: 0 };
+		let params = { parent: 0, cat_per_page: 100, cat_num_page: 1, time: this.time };
 		// let params = { parent: '0', cat_per_page: 100, cat_num_page: 1 };
 		let loadCategories = () => {
 			this.http.get(wordpress_url + '/wp-json/wooconnector/product/getcategories', {

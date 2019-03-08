@@ -33,7 +33,7 @@
 
 <ion-content>
 
-  <div relative overflow class="account-header" text-center>
+  <!-- <div relative overflow class="account-header" text-center>
     <div float-left width-100>
       <woo-image [id]="vendor.shop.banner" type="width"></woo-image>
     </div>
@@ -41,7 +41,6 @@
     <ion-row center padding absolute top left width-100 height-100>
       <ion-col secondary>
         <div class="account-avatar" margin-auto>
-          <!-- <img [src]="getImageSrc(images, vendor.shop.image, 'thumbnail', 'person.png', 'loading-wave.gif')" width-100 height-100/> -->
           <div width-100 height-100>
             <woo-image [id]="vendor.shop.image"></woo-image>
           </div>
@@ -52,7 +51,16 @@
         <div>{{ vendor.shop.description }}</div>
       </ion-col>
     </ion-row>
-  </div>
+  </div> -->
+
+  <ion-card style="margin:0 0 12px 0 !important; width: 100% !important;">
+    <ion-card-header>
+      Shop: {{ vendor.shop.title }}
+    </ion-card-header>
+    <ion-card-content>
+      {{ vendor.shop.description }}
+    </ion-card-content>
+  </ion-card>
 
   <!-- Refresh -->
   <ion-refresher (ionRefresh)="doRefresh($event)">

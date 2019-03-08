@@ -6,11 +6,14 @@
 				<ion-label floating [innerHTML]="item.label"></ion-label>
 				<ion-input dir="{{display_mode}}" type="{{item.type}}" formControlName="{{item.name_id}}" (input)="checkUseBilling()"></ion-input>
 			</ion-item>
-			<ion-item *ngIf="item.type =='email'" mode="md"  bg-transparent no-padding>
+			<ion-item *ngIf="item.type =='email'" mode="md" bg-transparent no-padding>
 				<ion-label floating [innerHTML]="item.label"></ion-label>
-				<ion-input dir="{{display_mode}}" type="{{item.type}}" formControlName="{{item.name_id}}" (input)="checkUseBilling()"></ion-input>
+				<ion-input *ngIf="!this.dataUser['user_email']" dir="{{ display_mode }}" type="{{item.type}}" formControlName="{{item.name_id}}"
+				 (input)="checkUseBilling()"></ion-input>
+				<ion-input *ngIf="this.dataUser['user_email']" readonly dir="{{ display_mode }}" type="{{item.type}}" formControlName="{{item.name_id}}"
+				 (input)="checkUseBilling()"></ion-input>
 			</ion-item>
-			<ion-item *ngIf="item.type =='tel'" mode="md"  bg-transparent no-padding>
+			<ion-item *ngIf="item.type =='tel'" mode="md" bg-transparent no-padding>
 				<ion-label floating [innerHTML]="item.label"></ion-label>
 				<ion-input dir="{{display_mode}}" type="{{item.type}}" formControlName="{{item.name_id}}" (input)="checkUseBilling()"></ion-input>
 			</ion-item>
@@ -18,12 +21,16 @@
 				<ion-label floating [innerHTML]="item.label"></ion-label>
 				<ion-textarea rows="4" dir="{{display_mode}}" formControlName="{{item.name_id}}" (input)="checkUseBilling()"></ion-textarea>
 			</ion-item>
-			<div *ngIf="item.type == 'radio'" radio-group formControlName="{{item.name_id}}" (ionChange)="checkUseBilling()"  mode="md" no-padding>
+			<div *ngIf="item.type == 'radio'" radio-group formControlName="{{item.name_id}}" (ionChange)="checkUseBilling()" mode="md"
+			 no-padding>
 				<ion-label>
 					<span dark [innerHTML]="item.label"></span>
 				</ion-label>
 				<div *ngFor="let option of item.option_field">
-					<ion-label class="custom-radio"><span>{{option}}</span><ion-radio  mode="md" dir="{{display_mode}}" [value]="option"></ion-radio></ion-label>		
+					<ion-label class="custom-radio">
+						<span>{{option}}</span>
+						<ion-radio mode="md" dir="{{display_mode}}" [value]="option"></ion-radio>
+					</ion-label>
 				</div>
 			</div>
 			<ion-item *ngIf="item.type == 'ip_address'" mode="md" bg-transparent no-padding>
@@ -39,30 +46,31 @@
 				<ion-input dir="{{display_mode}}" type="{{item.type}}" formControlName="{{item.name_id}}" (input)="checkUseBilling()"></ion-input>
 			</ion-item>
 			<ion-item *ngIf="item.type == 'select'" mode="md" bg-transparent no-padding>
-				<ion-label floating [innerHTML] = "item.label"></ion-label>
-					<ion-select formControlName="{{item.name_id}}">
-				    	<ion-option *ngFor="let option of item.option_field" [value]="option" (ionChange)="checkUseBilling()">{{option}}</ion-option>
-				  	</ion-select>
+				<ion-label floating [innerHTML]="item.label"></ion-label>
+				<ion-select formControlName="{{item.name_id}}">
+					<ion-option *ngFor="let option of item.option_field" [value]="option" (ionChange)="checkUseBilling()">{{option}}</ion-option>
+				</ion-select>
 			</ion-item>
 			<ion-item *ngIf="item.type == 'multiselect'" mode="md" bg-transparent no-padding>
-				<ion-label floating [innerHTML] = "item.label"></ion-label>
+				<ion-label floating [innerHTML]="item.label"></ion-label>
 				<ion-select formControlName="{{item.name_id}}" multiple="true">
-			    	<ion-option *ngFor="let option of item.option_field" [value]="option">{{option}}</ion-option>
-			  	</ion-select>
+					<ion-option *ngFor="let option of item.option_field" [value]="option">{{option}}</ion-option>
+				</ion-select>
 			</ion-item>
 			<ion-item *ngIf="item.type == 'checkbox'" mode="md" class="checkbox-custom" no-padding>
-				<ion-label [innerHTML] = "item.label"></ion-label>
-				<ion-checkbox mode="md" dir="{{display_mode}}" formControlName="{{item.name_id}}" (ionChange)="checkUseBilling()" ></ion-checkbox>
+				<ion-label [innerHTML]="item.label"></ion-label>
+				<ion-checkbox mode="md" dir="{{display_mode}}" formControlName="{{item.name_id}}" (ionChange)="checkUseBilling()"></ion-checkbox>
 			</ion-item>
 			<ion-item *ngIf="item.type == 'ba-date'" mode="md" bg-transparent no-padding>
-			  	<ion-label floating [innerHTML] = "item.label"></ion-label>
-			  	<ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY" formControlName="{{item.name_id}}" (input)="checkUseBilling()" ></ion-datetime>
+				<ion-label floating [innerHTML]="item.label"></ion-label>
+				<ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY" formControlName="{{item.name_id}}" (input)="checkUseBilling()"></ion-datetime>
 			</ion-item>
 
 			<!--country-->
 			<ion-item *ngIf="item.type == 'country' && item.name_id == 'billing_country'" mode="md" bg-transparent no-padding>
-				<ion-label floating [innerHTML] = "item.label"></ion-label>
-				<ion-select dir="{{display_mode}}" [selectOptions]="{cssClass:'select-address'}" [cancelText]="'general.cancel'|translate" [okText]="'general.ok'|translate" type="text" formControlName="{{item.name_id}}" (ionChange)="changeCountryBilling($event,item.name_id, item.country_has_state)">
+				<ion-label floating [innerHTML]="item.label"></ion-label>
+				<ion-select dir="{{display_mode}}" [selectOptions]="{cssClass:'select-address'}" [cancelText]="'general.cancel'|translate"
+				 [okText]="'general.ok'|translate" type="text" formControlName="{{item.name_id}}" (ionChange)="changeCountryBilling($event,item.name_id, item.country_has_state)">
 					<ion-option *ngFor="let country of countries" [value]="country.value">
 						<span [innerHtml]="country.name"></span>
 					</ion-option>
@@ -70,7 +78,8 @@
 			</ion-item>
 			<ion-item mode="md" bg-transparent no-padding *ngIf="item.type == 'state' && item.name_id == 'billing_state' && statesBillingCustom.default_country && statesBillingCustom.default_country != 'input'">
 				<ion-label [innerHTML]="item.label"></ion-label>
-				<ion-select dir="{{display_mode}}" [selectOptions]="{cssClass:'select-address'}" [cancelText]="'general.cancel'|translate" [okText]="'general.ok'|translate" type="text" formControlName="{{item.name_id}}" (ionChange)="checkUseBilling()">
+				<ion-select dir="{{display_mode}}" [selectOptions]="{cssClass:'select-address'}" [cancelText]="'general.cancel'|translate"
+				 [okText]="'general.ok'|translate" type="text" formControlName="{{item.name_id}}" (ionChange)="checkUseBilling()">
 					<ion-option *ngFor="let state of statesBillingCustom.default_country" [value]="state.value">
 						<span [innerHtml]="state.name"></span>
 					</ion-option>
@@ -82,17 +91,19 @@
 			</ion-item>
 
 			<!--cusstom country -->
-			<ion-item *ngIf="item.type == 'country' && item.name_id != 'billing_country'"  mode="md" bg-transparent no-padding>
-				<ion-label floating [innerHTML] = "item.label"></ion-label>
-				<ion-select dir="{{display_mode}}" [selectOptions]="{cssClass:'select-address'}" [cancelText]="'general.cancel'|translate" [okText]="'general.ok'|translate" type="text" formControlName="{{item.name_id}}" (ionChange)="changeCountryBilling($event,item.name_id, item.country_has_state)">
+			<ion-item *ngIf="item.type == 'country' && item.name_id != 'billing_country'" mode="md" bg-transparent no-padding>
+				<ion-label floating [innerHTML]="item.label"></ion-label>
+				<ion-select dir="{{display_mode}}" [selectOptions]="{cssClass:'select-address'}" [cancelText]="'general.cancel'|translate"
+				 [okText]="'general.ok'|translate" type="text" formControlName="{{item.name_id}}" (ionChange)="changeCountryBilling($event,item.name_id, item.country_has_state)">
 					<ion-option *ngFor="let country of countries" [value]="country.value">
 						<span [innerHtml]="country.name"></span>
 					</ion-option>
 				</ion-select>
 			</ion-item>
-			<ion-item  mode="md" bg-transparent no-padding *ngIf="item.type == 'state' && item.name_id != 'billing_state' && statesBilling[item.country_belong_to] && statesBilling[item.country_belong_to] != 'input'">
+			<ion-item mode="md" bg-transparent no-padding *ngIf="item.type == 'state' && item.name_id != 'billing_state' && statesBilling[item.country_belong_to] && statesBilling[item.country_belong_to] != 'input'">
 				<ion-label floating [innerHTML]="item.label"></ion-label>
-				<ion-select dir="{{display_mode}}" [selectOptions]="{cssClass:'select-address'}" [cancelText]="'general.cancel'|translate" [okText]="'general.ok'|translate" type="text" formControlName="{{item.name_id}}" (ionChange)="checkUseBilling()">
+				<ion-select dir="{{display_mode}}" [selectOptions]="{cssClass:'select-address'}" [cancelText]="'general.cancel'|translate"
+				 [okText]="'general.ok'|translate" type="text" formControlName="{{item.name_id}}" (ionChange)="checkUseBilling()">
 					<ion-option *ngFor="let state of statesBilling[item.country_belong_to]" [value]="state.value">
 						<span [innerHtml]="state.name"></span>
 					</ion-option>
@@ -114,15 +125,16 @@
 <ion-list *ngIf="!useBilling">
 	<form [formGroup]="formAddress">
 		<div *ngFor="let item of data.shipping">
-			<ion-item *ngIf="item.type =='text'" mode="md"  bg-transparent no-padding>
+			<ion-item *ngIf="item.type =='text'" mode="md" bg-transparent no-padding>
 				<ion-label floating [innerHTML]="item.label"></ion-label>
 				<ion-input dir="{{display_mode}}" type="{{item.type}}" formControlName="{{item.name_id}}"></ion-input>
 			</ion-item>
-			<ion-item *ngIf="item.type =='email'" mode="md"  bg-transparent no-padding>
+			<ion-item *ngIf="item.type =='email'" mode="md" bg-transparent no-padding>
 				<ion-label floating [innerHTML]="item.label"></ion-label>
-				<ion-input dir="{{display_mode}}" type="{{item.type}}" formControlName="{{item.name_id}}"></ion-input>
+				<ion-input *ngIf="!this.dataUser['user_email']" dir="{{display_mode}}" type="{{item.type}}" formControlName="{{item.name_id}}"></ion-input>
+				<ion-input *ngIf="this.dataUser['user_email']" readonly dir="{{ display_mode }}" type="{{item.type}}" formControlName="{{item.name_id}}"></ion-input>
 			</ion-item>
-			<ion-item *ngIf="item.type =='tel'" mode="md"  bg-transparent no-padding>
+			<ion-item *ngIf="item.type =='tel'" mode="md" bg-transparent no-padding>
 				<ion-label floating [innerHTML]="item.label"></ion-label>
 				<ion-input dir="{{display_mode}}" type="{{item.type}}" formControlName="{{item.name_id}}"></ion-input>
 			</ion-item>
@@ -130,12 +142,15 @@
 				<ion-label floating [innerHTML]="item.label"></ion-label>
 				<ion-textarea rows="4" dir="{{display_mode}}" formControlName="{{item.name_id}}"></ion-textarea>
 			</ion-item>
-			<div *ngIf="item.type == 'radio'" radio-group formControlName="{{item.name_id}}"  mode="md" no-padding>
+			<div *ngIf="item.type == 'radio'" radio-group formControlName="{{item.name_id}}" mode="md" no-padding>
 				<ion-label>
 					<span dark [innerHTML]="item.label"></span>
 				</ion-label>
 				<div *ngFor="let option of item.option_field">
-					<ion-label class="custom-radio"><span>{{option}}</span><ion-radio mode="md" dir="{{display_mode}}" [value]="option"></ion-radio></ion-label>
+					<ion-label class="custom-radio">
+						<span>{{option}}</span>
+						<ion-radio mode="md" dir="{{display_mode}}" [value]="option"></ion-radio>
+					</ion-label>
 				</div>
 			</div>
 			<ion-item *ngIf="item.type == 'ip_address'" mode="md" bg-transparent no-padding>
@@ -150,38 +165,40 @@
 				<ion-label floating [innerHTML]="item.label"></ion-label>
 				<ion-input dir="{{display_mode}}" type="{{item.type}}" formControlName="{{item.name_id}}"></ion-input>
 			</ion-item>
-			<ion-item *ngIf="item.type == 'select'" mode="md"  bg-transparent no-padding>
-				<ion-label floating [innerHTML] = "item.label"></ion-label>
-					<ion-select formControlName="{{item.name_id}}">
-				    	<ion-option *ngFor="let option of item.option_field" [value]="option">{{option}}</ion-option>
-				  	</ion-select>
+			<ion-item *ngIf="item.type == 'select'" mode="md" bg-transparent no-padding>
+				<ion-label floating [innerHTML]="item.label"></ion-label>
+				<ion-select formControlName="{{item.name_id}}">
+					<ion-option *ngFor="let option of item.option_field" [value]="option">{{option}}</ion-option>
+				</ion-select>
 			</ion-item>
 			<ion-item *ngIf="item.type == 'multiselect'" mode="md" bg-transparent no-padding>
-				<ion-label floating [innerHTML] = "item.label"></ion-label>
+				<ion-label floating [innerHTML]="item.label"></ion-label>
 				<ion-select formControlName="{{item.name_id}}" multiple="true">
-			    	<ion-option *ngFor="let option of item.option_field" [value]="option">{{option}}</ion-option>
-			  	</ion-select>
+					<ion-option *ngFor="let option of item.option_field" [value]="option">{{option}}</ion-option>
+				</ion-select>
 			</ion-item>
 			<ion-item *ngIf="item.type == 'checkbox'" mode="md" class="checkbox-custom" no-padding>
-				<ion-label [innerHTML] = "item.label"></ion-label>
-				<ion-checkbox mode="md" dir="{{display_mode}}" formControlName="{{item.name_id}}" ></ion-checkbox>
+				<ion-label [innerHTML]="item.label"></ion-label>
+				<ion-checkbox mode="md" dir="{{display_mode}}" formControlName="{{item.name_id}}"></ion-checkbox>
 			</ion-item>
 			<ion-item *ngIf="item.type == 'ba-date'" mode="md" bg-transparent no-padding>
-			  	<ion-label floating [innerHTML] = "item.label"></ion-label>
-			  	<ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY" formControlName="{{item.name_id}}"></ion-datetime>
+				<ion-label floating [innerHTML]="item.label"></ion-label>
+				<ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY" formControlName="{{item.name_id}}"></ion-datetime>
 			</ion-item>
 
 			<ion-item *ngIf="item.type == 'country' && item.name_id == 'shipping_country'" mode="md" bg-transparent no-padding>
 				<ion-label floating [innerHTML]="item.label"></ion-label>
-				<ion-select dir="{{display_mode}}" [selectOptions]="{cssClass:'select-address'}" [cancelText]="'general.cancel'|translate" [okText]="'general.ok'|translate" type="text" formControlName="{{item.name_id}}" (ionChange)="changeCountryShipping($event,item.name_id, item.country_has_state)">
+				<ion-select dir="{{display_mode}}" [selectOptions]="{cssClass:'select-address'}" [cancelText]="'general.cancel'|translate"
+				 [okText]="'general.ok'|translate" type="text" formControlName="{{item.name_id}}" (ionChange)="changeCountryShipping($event,item.name_id, item.country_has_state)">
 					<ion-option *ngFor="let country of countries" [value]="country.value">
 						<span [innerHtml]="country.name"></span>
 					</ion-option>
 				</ion-select>
 			</ion-item>
-			<ion-item mode="md" bg-transparent no-padding *ngIf="item.type == 'state' && item.name_id == 'shipping_state' && statesShippingCustom && statesShippingCustom.default_country!='input'" >
+			<ion-item mode="md" bg-transparent no-padding *ngIf="item.type == 'state' && item.name_id == 'shipping_state' && statesShippingCustom.default_country && statesShippingCustom.default_country!='input'">
 				<ion-label floating [innerHTML]="item.label"></ion-label>
-				<ion-select dir="{{display_mode}}" [selectOptions]="{cssClass:'select-address'}" [cancelText]="'general.cancel'|translate" [okText]="'general.ok'|translate" type="text" formControlName="shipping_state" (ionChange)="checkUseBilling()">
+				<ion-select dir="{{display_mode}}" [selectOptions]="{cssClass:'select-address'}" [cancelText]="'general.cancel'|translate"
+				 [okText]="'general.ok'|translate" type="text" formControlName="shipping_state" (ionChange)="checkUseBilling()">
 					<ion-option *ngFor="let state of statesShippingCustom.default_country" [value]="state.value">
 						<span [innerHtml]="state.name"></span>
 					</ion-option>
@@ -193,9 +210,10 @@
 			</ion-item>
 
 			<!--custom shipping-->
-			<ion-item *ngIf="item.type == 'country' && item.name_id != 'shipping_country'" mode="md" bg-transparent no-padding class="item-block item-input item-label-floating item-md">
+			<ion-item *ngIf="item.type == 'country' && item.name_id != 'shipping_country'" mode="md" bg-transparent no-padding>
 				<ion-label floating [innerHTML]="item.label"></ion-label>
-				<ion-select dir="{{display_mode}}" [selectOptions]="{cssClass:'select-address'}" [cancelText]="'general.cancel'|translate" [okText]="'general.ok'|translate" type="text" formControlName="{{item.name_id}}" (ionChange)="changeCountryShipping($event,item.name_id, item.country_has_state)">
+				<ion-select dir="{{display_mode}}" [selectOptions]="{cssClass:'select-address'}" [cancelText]="'general.cancel'|translate"
+				 [okText]="'general.ok'|translate" type="text" formControlName="{{item.name_id}}" (ionChange)="changeCountryShipping($event,item.name_id, item.country_has_state)">
 					<ion-option *ngFor="let country of countries" [value]="country.value">
 						<span [innerHtml]="country.name"></span>
 					</ion-option>
@@ -203,9 +221,10 @@
 			</ion-item>
 
 			<!-- custom shipping state -->
-			<ion-item mode="md" bg-transparent no-padding *ngIf="item.type == 'state' && item.name_id != 'shipping_state' && statesShipping[item.country_belong_to] && statesShipping[item.country_belong_to]!='input'" >
+			<ion-item mode="md" bg-transparent no-padding *ngIf="item.type == 'state' && item.name_id != 'shipping_state' && statesShipping[item.country_belong_to] && statesShipping[item.country_belong_to]!='input'">
 				<ion-label floating [innerHTML]="item.label"></ion-label>
-				<ion-select dir="{{display_mode}}" [selectOptions]="{cssClass:'select-address'}" [cancelText]="'general.cancel'|translate" [okText]="'general.ok'|translate" type="text" formControlName="{{item.name_id}}">
+				<ion-select dir="{{display_mode}}" [selectOptions]="{cssClass:'select-address'}" [cancelText]="'general.cancel'|translate"
+				 [okText]="'general.ok'|translate" type="text" formControlName="{{item.name_id}}">
 					<ion-option *ngFor="let state of statesShipping[item.country_belong_to]" [value]="state.value">
 						<span [innerHtml]="state.name"></span>
 					</ion-option>
@@ -218,7 +237,6 @@
 		</div>
 	</form>
 </ion-list>
-<button ion-button block text-uppercase (click)="confirm()" 
-	[disabled]="formAddress.invalid">
+<button ion-button block text-uppercase (click)="confirm()" [disabled]="formAddress.invalid">
 	<span text-uppercase>{{'address.confirm'|translate}}</span>
 </button>
