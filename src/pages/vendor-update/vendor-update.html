@@ -106,7 +106,7 @@
         <ion-item mode="md" bg-transparent no-padding>
           <!-- <ion-input dark type="text" placeholder="State" formControlName="state" [(ngModel)]="shop.state"></ion-input> -->
           <ion-label>State</ion-label>
-          <ion-select dark placeholder="State" formControlName="state" [(ngModel)]="shop.country" interface="popover">
+          <ion-select dark placeholder="State" formControlName="state" [(ngModel)]="shop.state" interface="popover">
             <ion-option *ngFor="let state of states" value="{{ state }}">{{ state }}</ion-option>
           </ion-select>
         </ion-item>
