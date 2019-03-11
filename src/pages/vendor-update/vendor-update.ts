@@ -18,6 +18,7 @@ import { FilePath } from '@ionic-native/file-path';
 import { ModalCategoryPage } from '../../pages/modal-category/modal-category';
 
 declare var cordova: any;
+declare var wordpress_url: string;
 
 @Component({
   selector: 'page-vendor-update',
@@ -133,7 +134,7 @@ export class VendorUpdatePage {
   uploadedBanner: any;
   async uploadImages(image, type) {
 
-    var url = "http://www.gadis.my/wp-upload.php";
+    var url = wordpress_url + "/wp-upload.php";
     var targetPath = this.pathForImage(image);
     var filename = image;
     console.log(targetPath);
@@ -249,7 +250,7 @@ export class VendorUpdatePage {
     }
 
     console.log('updating');
-    let updateRequest = this.http.post('http://www.gadis.my/wcmp-vendor.php',
+    let updateRequest = this.http.post(wordpress_url + '/wcmp-vendor.php',
       params
     ).subscribe(response => {
 

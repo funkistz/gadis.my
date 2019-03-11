@@ -4,7 +4,7 @@ import { Http, Headers, URLSearchParams } from '@angular/http';
 @Injectable()
 export class WoocommerceProvider {
 
-  url = 'http://www.gadis.my/wc-mc-v2.php';
+  url = 'https://www.gadis.my/wc-mc-v2.php';
   consumer_key = 'ck_d09b1a20baa9733d021692e4abf056f63599627d';
   consumer_secret = 'cs_f311e704d4787a2d51aa9389ef22aefabecd34a9';
 
@@ -51,7 +51,7 @@ export class WoocommerceProvider {
       src: true,
     };
 
-    this.http.get('http://www.gadis.my/wp-media.php', {
+    this.http.get('https://www.gadis.my/wp-media.php', {
       search: this.objectToURLParams(params)
     }).subscribe(res => {
 

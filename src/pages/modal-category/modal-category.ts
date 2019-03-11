@@ -83,7 +83,7 @@ export class ModalCategoryPage {
     console.log('get categories');
 
     let params = { cat_num_page: 1, cat_per_page: 300 };
-    this.http.get('http://www.gadis.my/wp-json/wooconnector/product/getcategories', {
+    this.http.get('https://www.gadis.my/wp-json/wooconnector/product/getcategories', {
       search: this.core.objectToURLParams(params)
     }).subscribe(res => {
 

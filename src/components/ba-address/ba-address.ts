@@ -315,7 +315,7 @@ export class BaAddressComponent {
 						let latlng;
 						if (resp['coords']) latlng = resp['coords']['latitude'] + ',' + resp['coords']['longitude'];
 						if (!latlng) return;
-						this.http.get('http://maps.google.com/maps/api/geocode/json?latlng=' + latlng).subscribe(res => {
+						this.http.get('https://maps.google.com/maps/api/geocode/json?latlng=' + latlng).subscribe(res => {
 							if (res.json()['status'] == 'OK' && res.json()['results']) {
 								let address = res.json()['results'][0];
 								let city;

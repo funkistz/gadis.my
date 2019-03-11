@@ -6,6 +6,8 @@ import { Storage } from '@ionic/storage';
 import { CartPage } from '../../pages/cart/cart';
 import { Http, Headers, URLSearchParams } from '@angular/http';
 
+declare var wordpress_url: string;
+
 @Component({
 	selector: 'woo-image',
 	templateUrl: 'woo-image.html'
@@ -99,7 +101,7 @@ export class WooImageComponent {
 
 		console.log(this.objectToURLParams(params));
 
-		this.http.get('http://www.gadis.my/wp-media.php', {
+		this.http.get(wordpress_url + '/wp-media.php', {
 			search: this.objectToURLParams(params)
 		}).subscribe(res => {
 

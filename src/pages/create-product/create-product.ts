@@ -19,6 +19,7 @@ import { ModalCategoryPage } from '../../pages/modal-category/modal-category';
 import moment from 'moment';
 
 declare var cordova: any;
+declare var wordpress_url: string;
 
 @Component({
   selector: 'page-create-product',
@@ -276,7 +277,7 @@ export class CreateProductPage {
 
     console.log('get attribute...');
 
-    this.http.get('http://www.gadis.my/wp-json/wooconnector/product/getattribute')
+    this.http.get(wordpress_url + '/wp-json/wooconnector/product/getattribute')
       .subscribe(res => {
         console.log(res.json());
         this.attributes = res.json();
@@ -290,7 +291,7 @@ export class CreateProductPage {
   uploadedImages = [];
   async uploadImages(image) {
 
-    var url = "http://www.gadis.my/wp-upload.php";
+    var url = wordpress_url + "/wp-upload.php";
     var targetPath = this.pathForImage(image);
     var filename = image;
     console.log(targetPath);
