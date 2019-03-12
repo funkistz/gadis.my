@@ -211,7 +211,7 @@
               <h3 [innerHTML]="product.price_html"></h3>
               <h3 *ngIf="product.stock_quantity" [innerHTML]="'Quantity: ' + product.stock_quantity"></h3>
               <p>
-                <ion-badge *ngFor="let cat of product.categories">{{ cat.name }}</ion-badge>
+                <ion-badge *ngFor="let cat of product.categories" [innerHTML]="cat.name"></ion-badge>
               </p>
               <!-- <button ion-button clear item-end [navPush]="BrowserPage" [navParams]="{username: customer.username ,task:'add-product/' + product.id}">Edit</button> -->
               <button ion-button clear item-end (click)="updateProduct(product)">Edit</button>

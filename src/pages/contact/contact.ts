@@ -39,10 +39,16 @@ export class ContactPage {
 			message: ['', Validators.required]
 		});
 		storage.get('user').then(user => {
-			this.formContact.patchValue({
-				name: user['display_name'],
-				email: user['user_email']
-			});
+
+      if(user){
+
+        this.formContact.patchValue({
+          name: user['display_name'],
+          email: user['user_email']
+        });
+
+      }
+
 		});
 		translate.get('contact').subscribe(trans => this.trans = trans);
 	}

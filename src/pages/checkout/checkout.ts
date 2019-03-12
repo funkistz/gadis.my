@@ -217,7 +217,7 @@ export class CheckoutPage {
 		if (this.platform.is('cordova')) {
 			this.platform.ready().then(() => {
 				let isCheckout: boolean = false;
-				checkoutUrl = checkoutUrl.replace('http', 'https');
+				// checkoutUrl = checkoutUrl.replace('http', 'https');
 				console.log('checkout url : ' + checkoutUrl);
 				let openCheckout = this.InAppBrowser.create(checkoutUrl, '_blank', 'location=no,closebuttoncaption=Close,hardwareback=yes,footer=yes');
 				openCheckout.on('loadstart').subscribe(res => {

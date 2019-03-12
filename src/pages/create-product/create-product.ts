@@ -314,6 +314,13 @@ export class CreateProductPage {
         console.log(data.response);
         let uploaded = JSON.parse(data.response);
         this.uploadedImages.push(uploaded.url);
+
+        var index = this.images.indexOf(filename);
+
+        if (index !== -1) {
+          this.images[index] = uploaded.url;
+        }
+
         resolve();
 
       }, err => {
@@ -416,12 +423,26 @@ export class CreateProductPage {
       }
     ];
 
-    this.uploadedImages.forEach(([key, src]) => {
+    // this.uploadedImages.forEach(function (src, key) {
+
+    //   images.push({
+    //     src: src,
+    //     position: key
+    //   });
+
+    // });
+
+    this.images.forEach(function (src, key) {
+
       images.push({
         src: src,
         position: key
       });
+
     });
+
+    console.log('Pushed images');
+    console.log( JSON.stringify(images) );
 
     let params: any = {
       vendor: vendorID,
@@ -453,22 +474,22 @@ export class CreateProductPage {
 
     if (this.product.id) {
 
-      if (this.product.images) {
+      // if (this.product.images) {
 
-        if (this.product.images.length > 0) {
+      //   if (this.product.images.length > 0) {
 
-          this.product.images.forEach(function (value) {
-            console.log(value);
+      //     this.product.images.forEach(function (value) {
+      //       console.log(value);
 
-            images.push(value);
+      //       images.push(value);
 
-          });
+      //     });
 
-          params.images = JSON.stringify(images);
+      //     params.images = JSON.stringify(images);
 
-        }
+      //   }
 
-      }
+      // }
 
       this.WooCommerce = this.WP.get({
         wcmc: false,
@@ -680,13 +701,13 @@ export class CreateProductPage {
     let actionSheet = this.actionSheetCtrl.create({
       title: 'Select Image Source',
       buttons: [
-        {
-          text: 'Load from album (multiple)',
-          handler: () => {
-            // this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
-            this.getPictures();
-          }
-        },
+        // {
+        //   text: 'Load from album (multiple)',
+        //   handler: () => {
+        //     // this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
+        //     this.getPictures();
+        //   }
+        // },
         {
           text: 'Load from album (crop)',
           handler: () => {
