@@ -1,0 +1,19 @@
+{
+    "name": "ba-mobile-form",
+    "description": "baform",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Taydotech",
+            "email": "baform@taydotech.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4":{
+            "DesignForm\\" : "./inc"
+        }
+    }
+}

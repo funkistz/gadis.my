@@ -1,0 +1,681 @@
+{
+    "homepage": {
+        "name": "Home Page",
+        "blocks": {
+            "header-application": {
+                "name": "Header Application",
+                "fields": {
+                    "modernshop-application-logo": {
+                        "name": "Application Logo",
+                        "type": "images",
+                        "value": "",
+                        "notice": "",
+                        "warring": "You should upload a 212x52 image for logo"
+                    },
+                    "modernshop-header-background": {
+                        "name": "Background Header",
+                        "type": "background",
+                        "value": {
+                            "color": "#FFFFFF",
+                            "image": ""
+                        },
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-header-height": {
+                        "name": "Header Height",
+                        "type": "number-px",
+                        "value": "28px",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-header-menu-cart-icon": {
+                        "name": "Menu cart icon",
+                        "type": "images",
+                        "value": "",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-header-menu-cart-size": {
+                        "name": "Menu cart icon size",
+                        "type": "number-px",
+                        "value": "28px",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-header-cart-total-font-size": {
+                        "name": "Menu cart total font size",
+                        "type": "select-font-size",
+                        "value": "14px",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-header-cart-total-font-weight": {
+                        "name": "Menu cart total font weight",
+                        "type": "select-font-weight",
+                        "value": "600",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-header-cart-total-color": {
+                        "name": "Menu cart total color",
+                        "type": "color",
+                        "value": "#222222",
+                        "notice": "",
+                        "warring": ""
+                    }
+                }
+            },
+            "products": {
+                "name": "Products",
+                "fields": {
+                    "modernshop-title-product-font-size": {
+                        "name": "Title Product Font Size",
+                        "type": "select-font-size",
+                        "value": "14px",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-title-product-font-weight": {
+                        "name": "Title Product Font Weight",
+                        "type": "select-font-weight",
+                        "value": "600",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-title-product-color": {
+                        "name": "Title Product Color",
+                        "type": "color",
+                        "value": "#222222",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-price-product-color": {
+                        "name": "Product Price Color",
+                        "type": "color",
+                        "value": "#FF0000",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-price-product-font-size": {
+                        "name": "Price Product Font size",
+                        "type": "select-font-size",
+                        "value": "#FF0000",
+                        "notice": "14px",
+                        "warring": ""
+                    },
+                    "modernshop-price-product-font-weight": {
+                        "name": "Price Product Font weight",
+                        "type": "select-font-weight",
+                        "value": "700",
+                        "notice": "",
+                        "warring": ""
+                    }
+                }
+            },
+            "home-deal-of-day": {
+                "name": "Deal Of Day",
+                "fields": {
+                    "modernshop-items-per-page": {
+                        "name": "Items Per Page",
+                        "type": "number",
+                        "value": "2",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-title-background": {
+                        "name": "Background Title",
+                        "type": "background",
+                        "value": {
+                            "color": "#FFFFFF",
+                            "image": ""
+                        },
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-title-height": {
+                        "name": "Title Height",
+                        "type": "number-px",
+                        "value": "28px",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-title-font-size": {
+                        "name": "Title Font Size",
+                        "type": "select-font-size",
+                        "value": "12px",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-title-font-weight": {
+                        "name": "Title Font Weight",
+                        "type": "select-font-weight",
+                        "value": "600",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-title-color": {
+                        "name": "Title Color",
+                        "type": "color",
+                        "value": "#222222",
+                        "notice": "",
+                        "warring": ""
+                    }
+                }
+            },
+            "home-latest": {
+                "name": "Latest",
+                "fields": {
+                    "modernshop-items-per-page": {
+                        "name": "Items Per Page",
+                        "type": "number",
+                        "value": "10",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-title-background": {
+                        "name": "Background Title",
+                        "type": "background",
+                        "value": {
+                            "color": "#FFFFFF",
+                            "image": ""
+                        },
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-title-height": {
+                        "name": "Title Height",
+                        "type": "number-px",
+                        "value": "28px",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-title-font-size": {
+                        "name": "Title Font Size",
+                        "type": "select-font-size",
+                        "value": "12px",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-title-font-weight": {
+                        "name": "Title Font Weight",
+                        "type": "select-font-weight",
+                        "value": "600",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-title-color": {
+                        "name": "Title Color",
+                        "type": "color",
+                        "value": "#222222",
+                        "notice": "",
+                        "warring": ""
+                    }
+                }
+            },
+            "home-categories": {
+                "name": "Categories",
+                "fields": {
+                    "modernshop-items-per-page": {
+                        "name": "Items Per Page",
+                        "type": "number",
+                        "value": "10",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-title-background": {
+                        "name": "Background Title",
+                        "type": "background",
+                        "value": {
+                            "color": "#FFFFFF",
+                            "image": ""
+                        },
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-title-height": {
+                        "name": "Title Height",
+                        "type": "number-px",
+                        "value": "28px",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-title-font-size": {
+                        "name": "Title Font Size",
+                        "type": "select-font-size",
+                        "value": "12px",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-title-font-weight": {
+                        "name": "Title Font Weight",
+                        "type": "select-font-weight",
+                        "value": "600",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-title-color": {
+                        "name": "Title Color",
+                        "type": "color",
+                        "value": "#222222",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-categories-item-width": {
+                        "name": "Item width",
+                        "type": "number-px",
+                        "value": "50",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-categories-item-height": {
+                        "name": "Item height",
+                        "type": "number-px",
+                        "value": "50",
+                        "notice": "",
+                        "warring": ""
+                    }
+                }
+            },
+            "out-client-say": {
+                "name": "Out Client Say",
+                "fields": {
+                    "modernshop-out-client-height": {
+                        "name": "Out Client Height",
+                        "type": "number-px",
+                        "value": "28px",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-out-client-background": {
+                        "name": "Background Out Client",
+                        "type": "background",
+                        "value": {
+                            "color": "#FFFFFF",
+                            "image": ""
+                        },
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-out-client-title-font-size": {
+                        "name": "Out Client Title Font Size",
+                        "type": "select-font-size",
+                        "value": "12px",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-out-client-title-font-weight": {
+                        "name": "Out Client Title Font Weight",
+                        "type": "select-font-weight",
+                        "value": "600",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-out-client-title-color": {
+                        "name": "Out Client Title Color",
+                        "type": "color",
+                        "value": "#222222",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-out-client-message-height": {
+                        "name": "Out Client Message Height",
+                        "type": "number-px",
+                        "value": "28px",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-out-client-message-background": {
+                        "name": "Background Out Client Message",
+                        "type": "background",
+                        "value": {
+                            "color": "#FFFFFF",
+                            "image": ""
+                        },
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-out-client-message-font-size": {
+                        "name": "Out Client Message Font Size",
+                        "type": "select-font-size",
+                        "value": "12px",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-out-client-message-font-weight": {
+                        "name": "Out Client Message Font Weight",
+                        "type": "select-font-weight",
+                        "value": "600",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-out-client-message-color": {
+                        "name": "Out Client Message Color",
+                        "type": "color",
+                        "value": "#222222",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-out-client-user-font-size": {
+                        "name": "Out Client User Font Size",
+                        "type": "select-font-size",
+                        "value": "12px",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-out-client-user-font-weight": {
+                        "name": "Out Client User Font Weight",
+                        "type": "select-font-weight",
+                        "value": "600",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-out-client-user-color": {
+                        "name": "Out Client User Color",
+                        "type": "color",
+                        "value": "#FFFF00",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-out-client-month-font-size": {
+                        "name": "Out Client Month Font Size",
+                        "type": "select-font-size",
+                        "value": "12px",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-out-client-month-font-weight": {
+                        "name": "Out Client Month Font Weight",
+                        "type": "select-font-weight",
+                        "value": "600",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-out-client-month-color": {
+                        "name": "Out Client Month Color",
+                        "type": "color",
+                        "value": "#FFFF00",
+                        "notice": "",
+                        "warring": ""
+                    }
+                }
+            },
+            "four-blocks-for-shop": {
+                "name": "4 Blocks for shop",
+                "fields": {
+                    "modernshop-blocks-one-icon": {
+                        "name": "Blocks One Icon",
+                        "type": "images",
+                        "value": "",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-blocks-two-icon": {
+                        "name": "Blocks Two Icon",
+                        "type": "images",
+                        "value": "",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-blocks-three-icon": {
+                        "name": "Blocks Three Icon",
+                        "type": "images",
+                        "value": "",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-blocks-four-icon": {
+                        "name": "Blocks Four Icon",
+                        "type": "images",
+                        "value": "",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-blocks-icon-font-size": {
+                        "name": "Block Icon Font Size",
+                        "type": "select-font-size",
+                        "value": "20px",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-blocks-icon-color": {
+                        "name": "Block Icon Color",
+                        "type": "color",
+                        "value": "#FF0000",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-blocks-title-font-size": {
+                        "name": "Block Title Font Size",
+                        "type": "select-font-size",
+                        "value": "12px",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-blocks-title-weight": {
+                        "name": "Block Title Font Weight",
+                        "type": "select-font-weight",
+                        "value": "600",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-blocks-title-color": {
+                        "name": "Block Title Color",
+                        "type": "color",
+                        "value": "#222222",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-blocks-description-font-size": {
+                        "name": "Block Description Font Size",
+                        "type": "select-font-size",
+                        "value": "12px",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-blocks-description-weight": {
+                        "name": "Block Description Font Weight",
+                        "type": "select-font-weight",
+                        "value": "600",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-blocks-description-color": {
+                        "name": "Block Description Color",
+                        "type": "color",
+                        "value": "#777777",
+                        "notice": "",
+                        "warring": ""
+                    }
+                }
+            },
+            "footer-details": {
+                "name": "Footer Details",
+                "fields": {
+                    "modernshop-welcome-font-size": {
+                        "name": "Block WelCome Font Size",
+                        "type": "select-font-size",
+                        "value": "12px",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-welcome-weight": {
+                        "name": "Block WelCome Font Weight",
+                        "type": "select-font-weight",
+                        "value": "600",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-welcome-color": {
+                        "name": "Block WelCome Color",
+                        "type": "color",
+                        "value": "#777777",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-address-font-size": {
+                        "name": "Block Address Font Size",
+                        "type": "select-font-size",
+                        "value": "12px",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-address-weight": {
+                        "name": "Block Address Font Weight",
+                        "type": "select-font-weight",
+                        "value": "600",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-address-color": {
+                        "name": "Block Address Color",
+                        "type": "color",
+                        "value": "#777777",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-phone-font-size": {
+                        "name": "Block Phone Font Size",
+                        "type": "select-font-size",
+                        "value": "12px",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-phone-weight": {
+                        "name": "Block Phone Font Weight",
+                        "type": "select-font-weight",
+                        "value": "600",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-phone-color": {
+                        "name": "Block Phone Color",
+                        "type": "color",
+                        "value": "#FF0000",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-website-font-size": {
+                        "name": "Block Website Font Size",
+                        "type": "select-font-size",
+                        "value": "12px",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-website-weight": {
+                        "name": "Block Website Font Weight",
+                        "type": "select-font-weight",
+                        "value": "600",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-website-color": {
+                        "name": "Block Website Color",
+                        "type": "color",
+                        "value": "#777777",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-social-font-size": {
+                        "name": "Block Social Font Size",
+                        "type": "select-font-size",
+                        "value": "12px",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-social-weight": {
+                        "name": "Block Social Font Weight",
+                        "type": "select-font-weight",
+                        "value": "600",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-social-color": {
+                        "name": "Block Social Color",
+                        "type": "color",
+                        "value": "#777777",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-copyright-font-size": {
+                        "name": "Block Copyright Font Size",
+                        "type": "select-font-size",
+                        "value": "12px",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-copyright-weight": {
+                        "name": "Block Copyright Font Weight",
+                        "type": "select-font-weight",
+                        "value": "600",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-copyright-color": {
+                        "name": "Block Copyright Color",
+                        "type": "color",
+                        "value": "#777777",
+                        "notice": "",
+                        "warring": ""
+                    }
+                }
+            }
+        }
+    },
+    "categories": {
+        "name": "Categories",
+        "blocks": {
+            "header-application": {
+                "name": "Header Application",
+                "fields": {
+                    "modernshop-cat-per-pages": {
+                        "name": "Items Per Page",
+                        "type": "number",
+                        "value": "10",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-cat-items-width": {
+                        "name": "Items Width",
+                        "type": "number-px",
+                        "value": "40px",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-cat-title-items-color": {
+                        "name": "Categories Title Color",
+                        "type": "color",
+                        "value": "#FF0000",
+                        "notice": "",
+                        "warring": ""
+                    },
+                    "modernshop-cat-title-items-font-size": {
+                        "name": "Categories Title Font Size",
+                        "type": "select-font-size",
+                        "value": "#FF0000",
+                        "notice": "14px",
+                        "warring": ""
+                    },
+                    "modernshop-cat-title-items-font-weight": {
+                        "name": "Categories Title Font Weight",
+                        "type": "select-font-weight",
+                        "value": "700",
+                        "notice": "",
+                        "warring": ""
+                    }
+                }
+            }
+        }
+    },
+    "filter": {
+        "name": "Filter",
+        "blocks": {
+            "header-filter": {
+                "name": "Header Filter",
+                "fields": {
+
+                }
+            }
+        }
+    }
+}

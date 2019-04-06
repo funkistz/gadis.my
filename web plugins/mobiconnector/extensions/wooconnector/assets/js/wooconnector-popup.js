@@ -1,0 +1,12 @@
+jQuery(function ($) {
+    var params = wooconnector_popup_script_params; var custom_smuploader; jQuery('#woo-add-popup').click(function (e) {
+        e.preventDefault(); if (custom_smuploader) { custom_smuploader.open(); return; }
+        custom_smuploader = wp.media.frames.file_frame = wp.media({ title: 'Save In Popup', button: { text: 'Save In Popup' }, multiple: false }); custom_smuploader.on('select', function () { var selection = custom_smuploader.state().get('selection'); selection.map(function (attachment) { attachment = attachment.toJSON(); var urlsm = attachment.url; var checkimage = urlsm.split('.').pop().toUpperCase(); if (checkimage.length < 1) { return false; } else if (checkimage != "PNG" && checkimage != "JPG" && checkimage != "GIF" && checkimage != "JPEG") { alert("invalid extension " + checkimage); return false; } else { var attid = attachment.id; jQuery('#content-popup').attr('src', urlsm); jQuery('#wooconnector-popup-url').val(urlsm); jQuery('#woo-delete-popup').removeClass('woo-hidden'); jQuery('#woo-content-popup').removeClass('woo-hidden'); } }); }); custom_smuploader.open(); return false;
+    }); jQuery('#woo-delete-popup').click(function () { if (confirm("Are you sure?")) { jQuery('#content-popup').attr('src'); jQuery('#wooconnector-popup-url').val(''); jQuery('#woo-delete-popup').addClass('woo-hidden'); jQuery('#woo-content-popup').addClass('woo-hidden'); } else { return false; } })
+    jQuery('#woo-content-popup-close').click(function () { if (confirm("Are you sure?")) { jQuery('#content-popup').attr('src'); jQuery('#wooconnector-popup-url').val(''); jQuery('#woo-delete-popup').addClass('woo-hidden'); jQuery('#woo-content-popup').addClass('woo-hidden'); } else { return false; } })
+    jQuery('#wooconnector_check_popup_datetime').on('click', function () { if (jQuery(this).is(':checked')) { jQuery('#wooconnector_datetime_picker').addClass('open'); } else { jQuery('#wooconnector_datetime_picker').removeClass('open'); } })
+    jQuery('#wooconnector_datetimepicker_from').keypress(function () { return false; })
+    jQuery('#wooconnector_datetimepicker_to').keypress(function () { return false; })
+    jQuery('.woo-clear-button').on('click', function (e) { e.preventDefault; var type = jQuery(this).data('type'); jQuery('#wooconnector_datetimepicker_' + type).val(''); })
+    jQuery(window).scroll(function (e) { if (jQuery(window).scrollTop() > 100) { jQuery('.ui-datepicker').css('margin-top', '0px'); } else { jQuery('.ui-datepicker').css('margin-top', '30px'); } })
+});

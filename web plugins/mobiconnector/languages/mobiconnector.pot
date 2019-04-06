@@ -1,0 +1,1810 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: Mobile Connector\n"
+"POT-Creation-Date: 2018-07-24 16:14+0700\n"
+"PO-Revision-Date: 2018-07-24 16:13+0700\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.9\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: mobiconnector.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: endpoints/class-mobiconnector-language.php:72
+#: endpoints/class-mobiconnector-link.php:56
+#: endpoints/class-mobiconnector-post.php:106
+#: endpoints/class-mobiconnector-report.php:67
+#: endpoints/class-mobiconnector-user.php:169
+#: settings/class-mobiconnector-settings-api.php:139
+msgid "Sorry, you cannot list resources."
+msgstr ""
+
+#: endpoints/class-mobiconnector-post.php:122
+msgid "Post Views Counter Deactive"
+msgstr ""
+
+#: endpoints/class-mobiconnector-report.php:88
+msgid "Post is Invalid."
+msgstr ""
+
+#: endpoints/class-mobiconnector-report.php:96
+msgid "Comment is Invalid."
+msgstr ""
+
+#: endpoints/class-mobiconnector-report.php:108
+msgid "An user has flagged content on mobile application"
+msgstr ""
+
+#: endpoints/class-mobiconnector-report.php:130
+msgid "success"
+msgstr ""
+
+#: endpoints/class-mobiconnector-report.php:131
+msgid "You has just flagged this item."
+msgstr ""
+
+#: endpoints/class-mobiconnector-report.php:136
+msgid "fail"
+msgstr ""
+
+#: endpoints/class-mobiconnector-report.php:137
+msgid "Something went wrong, go back and try again!"
+msgstr ""
+
+#: endpoints/class-mobiconnector-user.php:269
+#: includes/mobiconnector-functions.php:521
+#, php-format
+msgid "New user registration on your site %s:"
+msgstr ""
+
+#: endpoints/class-mobiconnector-user.php:270
+#: endpoints/class-mobiconnector-user.php:281
+#: endpoints/class-mobiconnector-user.php:323
+#: includes/mobiconnector-functions.php:522
+#: includes/mobiconnector-functions.php:534
+#, php-format
+msgid "Username: %s"
+msgstr ""
+
+#: endpoints/class-mobiconnector-user.php:271
+#: includes/mobiconnector-functions.php:523
+#, php-format
+msgid "Email: %s"
+msgstr ""
+
+#: endpoints/class-mobiconnector-user.php:273
+#: includes/mobiconnector-functions.php:526
+#, php-format
+msgid "[%s] New User Registration"
+msgstr ""
+
+#: endpoints/class-mobiconnector-user.php:280
+#: includes/mobiconnector-functions.php:533
+#, php-format
+msgid "Sitename: %s"
+msgstr ""
+
+#: endpoints/class-mobiconnector-user.php:283
+#: includes/mobiconnector-functions.php:537
+#, php-format
+msgid "[%s] Your username and password info"
+msgstr ""
+
+#: endpoints/class-mobiconnector-user.php:322
+msgid "Someone requested that the password be reset for the following account:"
+msgstr ""
+
+#: endpoints/class-mobiconnector-user.php:324
+msgid "If this was a mistake, just ignore this email and nothing will happen."
+msgstr ""
+
+#: endpoints/class-mobiconnector-user.php:325
+msgid "To reset your password, visit the following address:"
+msgstr ""
+
+#: endpoints/class-mobiconnector-user.php:327
+msgid "Password Reset"
+msgstr ""
+
+#: endpoints/class-mobiconnector-user.php:351
+#: endpoints/class-mobiconnector-user.php:517
+msgid "Invalid resource id."
+msgstr ""
+
+#: endpoints/class-mobiconnector-user.php:355
+msgid "Email address is invalid."
+msgstr ""
+
+#: endpoints/class-mobiconnector-user.php:359
+msgid "Username isn't editable"
+msgstr ""
+
+#: endpoints/class-mobiconnector-user.php:397
+msgid "There was an error, probably that user doesn't exist."
+msgstr ""
+
+#: includes/admin/class-mobiconnector-extensions.php:49
+#: includes/admin/class-mobiconnector-extensions.php:50
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:20
+msgid "Extentions"
+msgstr ""
+
+#: includes/admin/class-mobiconnector-extensions.php:92
+msgid "Error with your upload, please try again"
+msgstr ""
+
+#: includes/admin/class-mobiconnector-extensions.php:95
+#, php-format
+msgid "You must upload a %s file"
+msgstr ""
+
+#: includes/admin/class-mobiconnector-extensions.php:95
+msgid "*.zip"
+msgstr ""
+
+#: includes/admin/class-mobiconnector-extensions.php:98
+#, php-format
+msgid "Maximum upload file size: %d MB"
+msgstr ""
+
+#: includes/admin/class-mobiconnector-extensions.php:105
+#, php-format
+msgid ""
+"%1$s has %2$s installed. Please contact your server administrator and ask "
+"them to enable it, %3$s"
+msgstr ""
+
+#: includes/admin/class-mobiconnector-extensions.php:116
+#: includes/mobiconnector-functions-file.php:207
+#, php-format
+msgid ""
+"The Directory %1$s is %2$s writable, you should chmod 777 this directory to "
+"writable"
+msgstr ""
+
+#: includes/admin/class-mobiconnector-meta-box.php:54
+msgid "Mobile App Data"
+msgstr ""
+
+#: includes/admin/class-mobiconnector-meta-box.php:96
+#: settings/class-mobiconnector-settings.php:644
+msgid "Please input your api key!"
+msgstr ""
+
+#: includes/admin/class-mobiconnector-meta-box.php:100
+#: settings/class-mobiconnector-settings.php:649
+msgid "Please input your rest api key!"
+msgstr ""
+
+#: includes/admin/class-mobiconnector-meta-box.php:132
+#, php-format
+msgid "Invalid player ids %s"
+msgstr ""
+
+#: includes/admin/class-mobiconnector-meta-box.php:135
+#: settings/class-mobiconnector-settings.php:700
+msgid "All included players are not subscribed"
+msgstr ""
+
+#: includes/admin/meta-boxs/views/html-post-meta-notification.php:11
+msgid "Notice this post to customer"
+msgstr ""
+
+#: includes/admin/meta-boxs/views/html-post-meta-notification.php:13
+msgid "Title"
+msgstr ""
+
+#: includes/admin/meta-boxs/views/html-post-meta-notification.php:15
+msgid "Content"
+msgstr ""
+
+#: includes/admin/meta-boxs/views/html-post-meta-notification.php:17
+msgid "Feature image used to notification"
+msgstr ""
+
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:19
+msgid "Extention"
+msgstr ""
+
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:96
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:117
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:198
+#, php-format
+msgid "Extension %s."
+msgstr ""
+
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:96
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:171
+#: includes/mobiconnector-functions-file.php:145
+msgid "activated"
+msgstr ""
+
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:117
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:198
+#: includes/mobiconnector-functions-file.php:177
+msgid "deactivated"
+msgstr ""
+
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:144
+msgid "Successful deletion"
+msgstr ""
+
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:171
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:225
+#: includes/mobiconnector-functions-file.php:145
+#: includes/mobiconnector-functions-file.php:177
+#: includes/mobiconnector-functions-file.php:204
+#, php-format
+msgid "Extensions %s."
+msgstr ""
+
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:225
+#: includes/mobiconnector-functions-file.php:204
+msgid "deleted"
+msgstr ""
+
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:325
+#, php-format
+msgctxt "plugins"
+msgid "All <span class=\"count\">(%s)</span>"
+msgid_plural "All <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:328
+#, php-format
+msgid "Active <span class=\"count\">(%s)</span>"
+msgid_plural "Active <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:331
+#, php-format
+msgid "Inactive <span class=\"count\">(%s)</span>"
+msgid_plural "Inactive <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:334
+#, php-format
+msgid "Update Available <span class=\"count\">(%s)</span>"
+msgid_plural "Update Available <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:374
+msgid "Search installed extensions..."
+msgstr ""
+
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:403
+msgid "Extension"
+msgstr ""
+
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:404
+msgid "Description"
+msgstr ""
+
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:423
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:464
+msgid "Activate"
+msgstr ""
+
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:424
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:462
+msgid "Deactivate"
+msgstr ""
+
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:425
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:465
+msgid "Delete"
+msgstr ""
+
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:462
+#, php-format
+msgctxt "plugin"
+msgid "Deactivate %s"
+msgstr ""
+
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:464
+#, php-format
+msgctxt "plugin"
+msgid "Activate %s"
+msgstr ""
+
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:465
+#, php-format
+msgctxt "plugin"
+msgid "Delete %s"
+msgstr ""
+
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:483
+#, php-format
+msgid "Select %s"
+msgstr ""
+
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:522
+#, php-format
+msgid "Version %s"
+msgstr ""
+
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:527
+#, php-format
+msgid "By %s"
+msgstr ""
+
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:535
+#, php-format
+msgid "More information about %s"
+msgstr ""
+
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:537
+msgid "View details"
+msgstr ""
+
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:542
+msgid "Visit plugin site"
+msgstr ""
+
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:593
+#, php-format
+msgid "No extensions found for &#8220;%s&#8221;."
+msgstr ""
+
+#: includes/admin/tables/class-mobiconnector-table-extentios.php:596
+msgid "No extensions found"
+msgstr ""
+
+#: includes/admin/views/html-extensions-active.php:9
+#: includes/admin/views/html-extensions-exist.php:15
+msgid "Installing Extension from uploaded file"
+msgstr ""
+
+#: includes/admin/views/html-extensions-active.php:10
+#: includes/admin/views/html-extensions-exist.php:16
+msgid "Unpacking the package"
+msgstr ""
+
+#: includes/admin/views/html-extensions-active.php:11
+#: includes/admin/views/html-extensions-exist.php:17
+msgid "Installing the extension"
+msgstr ""
+
+#: includes/admin/views/html-extensions-active.php:12
+msgid "Extension installed successfully"
+msgstr ""
+
+#: includes/admin/views/html-extensions-active.php:14
+msgid "Activate Extension"
+msgstr ""
+
+#: includes/admin/views/html-extensions-active.php:15
+#: includes/admin/views/html-extensions-exist.php:21
+msgid "Return to Extensions List"
+msgstr ""
+
+#: includes/admin/views/html-extensions-exist.php:18
+msgid "Destination folder already exists"
+msgstr ""
+
+#: includes/admin/views/html-extensions-exist.php:19
+msgid "Extension installation failed"
+msgstr ""
+
+#: includes/admin/views/html-extentions-upload.php:9
+#: includes/admin/views/html-extentions-upload.php:13
+msgid "Add Extensions"
+msgstr ""
+
+#: includes/admin/views/html-extentions-upload.php:10
+#: includes/admin/views/html-extentions-upload.php:14
+msgid "List Extension"
+msgstr ""
+
+#: includes/admin/views/html-extentions-upload.php:19
+msgid ""
+"If you have a extension in a .zip format, you may install it by uploading it "
+"here."
+msgstr ""
+
+#: includes/admin/views/html-extentions-upload.php:23
+msgid "Extension zip file"
+msgstr ""
+
+#: includes/admin/views/html-extentions-upload.php:25
+msgid "Install Now"
+msgstr ""
+
+#: includes/admin/views/html-extentions.php:9
+#: includes/admin/views/html-extentions.php:13
+msgid "Extensions"
+msgstr ""
+
+#: includes/admin/views/html-extentions.php:10
+#: includes/admin/views/html-extentions.php:14
+msgid "Add New"
+msgstr ""
+
+#: includes/cache/class-mobiconnector-cache.php:44
+msgid "Clear Cache successfully"
+msgstr ""
+
+#: includes/cache/class-mobiconnector-cache.php:91
+msgid "Mobile App Cache"
+msgstr ""
+
+#: includes/cache/class-mobiconnector-cache.php:108
+#: settings/cache/mobiconnector-cache.php:40
+msgid "Clear Cache"
+msgstr ""
+
+#: includes/cache/class-mobiconnector-cache.php:118
+msgid "Setting Cache"
+msgstr ""
+
+#: includes/class-mobiconnector-install.php:78
+#: settings/class-mobiconnector-settings.php:292
+#, php-format
+msgid ""
+"%1$s Can not copy from %2$s<br>Please %3$s file %4$s<br>And %5$s for this "
+"file"
+msgstr ""
+
+#: includes/class-mobiconnector-install.php:87
+#: settings/class-mobiconnector-settings.php:287
+#, php-format
+msgid ""
+"The Directory %1$s is %2$s writable, you should chmod 777 this directory to "
+"writable, so your mobile application can use Cache features."
+msgstr ""
+
+#: includes/class-mobiconnector-install.php:96
+#: settings/class-mobiconnector-settings.php:282
+#, php-format
+msgid ""
+"The plugins %1$s file, Please access %2$s to manual copy source and write it "
+"to .htaccess file"
+msgstr ""
+
+#: includes/class-mobiconnector-install.php:105
+msgid ""
+"Your PHP have not installed the GD library . Please install the GD library "
+"to avoid some errors when using the REST API. "
+msgstr ""
+
+#: includes/class-mobiconnector-install.php:106
+msgid "Install GD library"
+msgstr ""
+
+#: includes/class-mobiconnector-install.php:121
+#: settings/views/mobiconnector-tab-settings.php:6
+msgid "Settings"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:61
+#, php-format
+msgid "Gallery updated. <a href=\"%s\">View gallery</a>"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:64
+msgid "Gallery updated."
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:65
+#, php-format
+msgid "Gallery restored to revision from %s"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:66
+#, php-format
+msgid "Gallery published. <a href=\"%s\">View recipe</a>"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:67
+msgid "Gallery saved."
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:68
+#, php-format
+msgid "Gallery submitted. <a target=\"_blank\" href=\"%s\">Preview gallery</a>"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:69
+#, php-format
+msgid ""
+"Gallery scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href="
+"\"%2$s\">Preview recipe</a>"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:69
+#: includes/class-mobiconnector-posttype.php:82
+msgid "M j, Y @ G:i"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:70
+#, php-format
+msgid ""
+"Gallery draft updated. <a target=\"_blank\" href=\"%s\">Preview gallery</a>"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:74
+#, php-format
+msgid "Video updated. <a href=\"%s\">View video</a>"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:77
+msgid "Video updated."
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:78
+#, php-format
+msgid "Video restored to revision from %s"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:79
+#, php-format
+msgid "Video published. <a href=\"%s\">View recipe</a>"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:80
+msgid "Video saved."
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:81
+#, php-format
+msgid "Video submitted. <a target=\"_blank\" href=\"%s\">Preview video</a>"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:82
+#, php-format
+msgid ""
+"Video scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s"
+"\">Preview recipe</a>"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:83
+#, php-format
+msgid "Video draft updated. <a target=\"_blank\" href=\"%s\">Preview video</a>"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:209
+#: includes/class-mobiconnector-posttype.php:210
+#: includes/class-mobiconnector-posttype.php:211
+#: includes/class-mobiconnector-posttype.php:212
+msgid "Gallery"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:213
+msgid "Edit Gallery"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:214
+msgid "View Gallery"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:215
+msgid "Update Gallery"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:216
+msgid "Add New Gallery"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:217
+msgid "New Gallery Name"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:218
+msgid "Search Galleries"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:219
+msgid "Parent Gallery"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:220
+msgid "Parent Gallery:"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:221
+msgid "No galleries found."
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:222
+msgid "Choose from the most used galleries"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:223
+msgid "Separate galleries with commas"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:245
+#: includes/class-mobiconnector-posttype.php:247
+#: includes/class-mobiconnector-posttype.php:248
+msgid "Videos"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:246
+#: templates/class-mobiconnector-video-custom.php:117
+msgid "Video"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:249
+msgid "Edit Video"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:250
+msgid "View Video"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:251
+msgid "Update Video"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:252
+msgid "Add New Video"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:253
+msgid "New Video Name"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:254
+msgid "Search Videos"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:255
+msgid "Parent Video"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:256
+msgid "Parent Video:"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:257
+msgid "No videos found."
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:258
+msgid "Choose from the most used videos"
+msgstr ""
+
+#: includes/class-mobiconnector-posttype.php:259
+msgid "Separate valleries with commas"
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:321
+msgid "The date the object was published, in the site's timezone."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:327
+msgid "The date the object was published, as GMT."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:333
+msgid "The globally unique identifier for the object."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:339
+msgid "GUID for the object, as it exists in the database."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:345
+msgid "GUID for the object, transformed for display."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:353
+msgid "Unique identifier for the object."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:359
+msgid "URL to the object."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:366
+msgid "The date the object was last modified, in the site's timezone."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:373
+msgid "The date the object was last modified, as GMT."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:380
+msgid "An alphanumeric identifier for the object unique to its type."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:388
+msgid "A named status for the object."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:394
+msgid "Type of Post for the object."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:400
+msgid "A password to protect access to the content and excerpt."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:411
+msgid "The ID for the parent of the object."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:471
+msgid "The title for the object."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:479
+msgid "Title for the object, as it exists in the database."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:484
+msgid "HTML title for the object, transformed for display."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:495
+msgid "The content for the object."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:503
+msgid "Content for the object, as it exists in the database."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:508
+msgid "HTML content for the object, transformed for display."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:514
+msgid "Whether the content is protected with a password."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:525
+msgid "The ID for the author of the object."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:533
+msgid "The excerpt for the object."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:541
+msgid "Excerpt for the object, as it exists in the database."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:546
+msgid "HTML excerpt for the object, transformed for display."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:552
+msgid "Whether the excerpt is protected with a password."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:563
+msgid "The ID of the featured media for the object."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:571
+msgid "Whether or not comments are open on the object."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:577
+msgid "Whether or not the object can be pinged."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:586
+msgid "The order of the object in relation to other object of its type."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:597
+msgid "The format for the object."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:611
+msgid "Whether or not the object should be treated as sticky."
+msgstr ""
+
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:618
+msgid "The theme file to use to display the object."
+msgstr ""
+
+#. translators: %s: taxonomy name
+#: includes/function/addposttypetorest/class-mobiconnector-pre-post-custom.php:629
+#, php-format
+msgid "The terms assigned to the object in the %s taxonomy."
+msgstr ""
+
+#: includes/function/avatar/class-mobiconnector-avatar.php:114
+msgid "Mystery Man"
+msgstr ""
+
+#: includes/function/avatar/class-mobiconnector-avatar.php:115
+msgid "Blank"
+msgstr ""
+
+#: includes/function/avatar/class-mobiconnector-avatar.php:116
+msgid "Gravatar Logo"
+msgstr ""
+
+#: includes/function/avatar/class-mobiconnector-avatar.php:117
+msgid "Identicon (Generated)"
+msgstr ""
+
+#: includes/function/avatar/class-mobiconnector-avatar.php:118
+msgid "Wavatar (Generated)"
+msgstr ""
+
+#: includes/function/avatar/class-mobiconnector-avatar.php:119
+msgid "MonsterID (Generated)"
+msgstr ""
+
+#: includes/function/avatar/class-mobiconnector-avatar.php:120
+msgid "Retro (Generated)"
+msgstr ""
+
+#: includes/function/avatar/class-mobiconnector-avatar.php:185
+msgid "MobiConnector Avatar"
+msgstr ""
+
+#: includes/function/avatar/class-mobiconnector-avatar.php:187
+msgid "Image"
+msgstr ""
+
+#: includes/function/avatar/class-mobiconnector-avatar.php:193
+msgid "Upload"
+msgstr ""
+
+#: includes/function/avatar/class-mobiconnector-avatar.php:195
+msgid "Choose Images"
+msgstr ""
+
+#: includes/function/avatar/class-mobiconnector-avatar.php:202
+msgid "Thumbnail"
+msgstr ""
+
+#: includes/function/avatar/class-mobiconnector-avatar.php:207
+msgid "Remove Images"
+msgstr ""
+
+#: includes/function/avatar/class-mobiconnector-avatar.php:451
+msgid "This file is not an image. Please try another."
+msgstr ""
+
+#: includes/function/avatar/class-mobiconnector-avatar.php:455
+#: includes/function/avatar/class-mobiconnector-avatar.php:484
+msgid "Memory exceeded. Please try another smaller file."
+msgstr ""
+
+#: includes/function/avatar/class-mobiconnector-avatar.php:459
+#, php-format
+msgid ""
+"Unable to create directory %s. Is its parent directory writable by the "
+"server?"
+msgstr ""
+
+#: includes/function/categoriesavatar/class-mobiconnector-categories-avatar.php:57
+msgid "Choose Category Image"
+msgstr ""
+
+#: includes/function/categoriesavatar/class-mobiconnector-categories-avatar.php:58
+msgid "Choose Image"
+msgstr ""
+
+#: includes/function/categoriesavatar/class-mobiconnector-categories-avatar.php:135
+msgid "Mobi Image"
+msgstr ""
+
+#: includes/function/categoriesavatar/class-mobiconnector-categories-avatar.php:219
+msgid "Mobile App Images"
+msgstr ""
+
+#: includes/function/categoriesavatar/class-mobiconnector-categories-avatar.php:220
+msgid "Upload/Edit Image"
+msgstr ""
+
+#: includes/function/categoriesavatar/class-mobiconnector-categories-avatar.php:221
+msgid "Remove image"
+msgstr ""
+
+#: includes/function/categoriesavatar/class-mobiconnector-categories-avatar.php:222
+msgid "* This picture only work on Mobile App"
+msgstr ""
+
+#: includes/function/disablecategories/class-mobiconnector-disable-categories.php:61
+msgid "Disable"
+msgstr ""
+
+#: includes/function/disablecategories/class-mobiconnector-disable-categories.php:123
+msgid "Disable on Mobile App"
+msgstr ""
+
+#: includes/function/jwt/class-mobiconnector-jwt.php:87
+#: includes/function/jwt/class-mobiconnector-jwt.php:235
+#: settings/class-mobiconnector-settings-api.php:465
+msgid "JWT is not configurated properly, please contact the admin"
+msgstr ""
+
+#: includes/function/jwt/class-mobiconnector-jwt.php:208
+msgid "Authorization header not found."
+msgstr ""
+
+#: includes/function/jwt/class-mobiconnector-jwt.php:223
+msgid "Authorization header malformed."
+msgstr ""
+
+#: includes/function/jwt/class-mobiconnector-jwt.php:250
+msgid "The iss do not match with this server"
+msgstr ""
+
+#: includes/function/jwt/class-mobiconnector-jwt.php:261
+msgid "User ID not found in the token"
+msgstr ""
+
+#: includes/function/postviewcounter/class-mobiconnector-postviewcounter.php:81
+#: includes/function/postviewcounter/class-mobiconnector-postviewcounter.php:331
+#: includes/function/postviewcounter/class-mobiconnector-postviewcounter.php:337
+msgid "Mobile Views"
+msgstr ""
+
+#: includes/mobiconnector-functions-file.php:232
+#, php-format
+msgid "%s is not Directory."
+msgstr ""
+
+#: includes/mobiconnector-functions-file.php:322
+#, php-format
+msgid "The Path %1$s is %2$s"
+msgstr ""
+
+#: includes/mobiconnector-functions-file.php:322
+msgid "invalid"
+msgstr ""
+
+#: includes/mobiconnector-functions-file.php:324
+#, php-format
+msgid "The %1$s file does %2$s exist"
+msgstr ""
+
+#: includes/mobiconnector-functions-file.php:324
+msgid "not"
+msgstr ""
+
+#: includes/mobiconnector-functions-file.php:328
+msgid "The extension does not have a valid header."
+msgstr ""
+
+#: includes/mobiconnector-functions-page.php:206
+msgid "All Users"
+msgstr ""
+
+#. translators: %s template
+#: includes/mobiconnector-functions-templates.php:96
+#, php-format
+msgid "%s does not exist."
+msgstr ""
+
+#: includes/mobiconnector-functions.php:524
+#: includes/mobiconnector-functions.php:535
+#, php-format
+msgid "Password: %s"
+msgstr ""
+
+#: languages/mobiconnector-language-settings.php:74
+#: languages/mobiconnector-language-settings.php:75
+msgid "Languages"
+msgstr ""
+
+#: settings/api-security/mobiconnector-api-security.php:24
+msgid "Setting Api key for Mobile App"
+msgstr ""
+
+#: settings/api-security/mobiconnector-api-security.php:39
+msgid "Use Api Key on Mobile App"
+msgstr ""
+
+#: settings/api-security/mobiconnector-api-security.php:45
+#: settings/api-security/mobiconnector-api-security.php:74
+msgid "Api key"
+msgstr ""
+
+#: settings/api-security/mobiconnector-api-security.php:52
+#: settings/cache/mobiconnector-cache.php:50
+#: settings/onesignal/mobiconnector-onesignal-new.php:346
+#: settings/onesignal/mobiconnector-onesignal-settings.php:53
+#: settings/textapp/mobiconnector-settingtext.php:84
+#: settings/views/mobiconnector-settings-social.php:208
+#: settings/views/mobiconnector-views-settings.php:557
+msgid "Save"
+msgstr ""
+
+#: settings/api-security/mobiconnector-api-security.php:60
+msgid "Create Security Key"
+msgstr ""
+
+#: settings/api-security/mobiconnector-api-security.php:64
+msgid "Create"
+msgstr ""
+
+#: settings/cache/mobiconnector-cache.php:15
+msgid "Setting Mobile Cache"
+msgstr ""
+
+#: settings/cache/mobiconnector-cache.php:24
+msgid "Enable Mobile Cache"
+msgstr ""
+
+#: settings/cache/mobiconnector-cache.php:32
+msgid "Speed up your mobile application based Cache solution from api.php."
+msgstr ""
+
+#: settings/cache/mobiconnector-cache.php:38
+msgid "Clear Mobile Cache"
+msgstr ""
+
+#: settings/cache/mobiconnector-cache.php:44
+msgid "Cache Expired (minutes)"
+msgstr ""
+
+#: settings/class-mobiconnector-settings-api.php:661
+msgid "Player ID is Require"
+msgstr ""
+
+#: settings/class-mobiconnector-settings.php:60
+#: settings/class-mobiconnector-settings.php:88
+msgid "Sorry "
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+#: settings/class-mobiconnector-settings.php:104
+#: settings/class-mobiconnector-settings.php:105
+msgid "Mobile Connector"
+msgstr ""
+
+#: settings/class-mobiconnector-settings.php:114
+#: settings/class-mobiconnector-settings.php:115
+msgid "Manage"
+msgstr ""
+
+#: settings/class-mobiconnector-settings.php:266
+#: settings/class-mobiconnector-settings.php:349
+#: settings/class-mobiconnector-settings.php:364
+#: settings/class-mobiconnector-settings.php:410
+#: settings/class-mobiconnector-settings.php:485
+#: settings/class-mobiconnector-settings.php:882
+msgid "Successfully Update"
+msgstr ""
+
+#: settings/class-mobiconnector-settings.php:360
+msgid "Create Security key successfully"
+msgstr ""
+
+#: settings/class-mobiconnector-settings.php:425
+msgid "Your APP ID must be 36 characters. Please retype"
+msgstr ""
+
+#: settings/class-mobiconnector-settings.php:430
+msgid "Your REST API KEY must be 48 characters. Please retype"
+msgstr ""
+
+#: settings/class-mobiconnector-settings.php:529
+msgid "Your URL is not post URL. Please retype"
+msgstr ""
+
+#: settings/class-mobiconnector-settings.php:566
+#: settings/class-mobiconnector-settings.php:571
+msgid "Your URL is not post Category URL. Please retype"
+msgstr ""
+
+#: settings/class-mobiconnector-settings.php:669
+msgid "Send to segments not empty!"
+msgstr ""
+
+#: settings/class-mobiconnector-settings.php:678
+msgid "List test player not empty!"
+msgstr ""
+
+#: settings/class-mobiconnector-settings.php:696
+msgid "Invalid player ids"
+msgstr ""
+
+#: settings/class-mobiconnector-settings.php:746
+msgid "Sent Notification successfully"
+msgstr ""
+
+#: settings/class-mobiconnector-settings.php:750
+msgid "Save Notification successfully"
+msgstr ""
+
+#: settings/class-mobiconnector-settings.php:827
+msgid "Email is invalid"
+msgstr ""
+
+#: settings/htaccess/mobiconnector-htaccess.php:9
+#: settings/views/mobiconnector-tab-settings.php:16
+msgid "Htaccess"
+msgstr ""
+
+#: settings/htaccess/mobiconnector-htaccess.php:11
+msgid ""
+"Please manual copy source and write it to .htaccess file if The plugins can "
+"not write setting to .htaccess file"
+msgstr ""
+
+#: settings/onesignal/class-mobiconnector-table-notice.php:17
+#: settings/onesignal/class-mobiconnector-table-notice.php:166
+msgid "Notification"
+msgstr ""
+
+#: settings/onesignal/class-mobiconnector-table-notice.php:18
+msgid "Notifications"
+msgstr ""
+
+#: settings/onesignal/class-mobiconnector-table-notice.php:93
+msgid "No notification avaliable."
+msgstr ""
+
+#: settings/onesignal/class-mobiconnector-table-notice.php:167
+msgid "Create date"
+msgstr ""
+
+#: settings/onesignal/class-mobiconnector-table-notice.php:168
+#: settings/onesignal/mobiconnector-onesignal-details.php:96
+msgid "Recipients"
+msgstr ""
+
+#: settings/onesignal/class-mobiconnector-table-notice.php:169
+msgid "Successful"
+msgstr ""
+
+#: settings/onesignal/class-mobiconnector-table-notice.php:170
+msgid "Clicked"
+msgstr ""
+
+#: settings/onesignal/class-mobiconnector-table-notice.php:171
+msgid "Remaining"
+msgstr ""
+
+#: settings/onesignal/class-mobiconnector-table-notice.php:172
+msgid "Failed"
+msgstr ""
+
+#: settings/onesignal/class-mobiconnector-table-notice.php:173
+msgid "Total"
+msgstr ""
+
+#: settings/onesignal/class-mobiconnector-table-notice.php:174
+msgid "Actions"
+msgstr ""
+
+#: settings/onesignal/class-mobiconnector-table-player.php:17
+msgid "Player"
+msgstr ""
+
+#: settings/onesignal/class-mobiconnector-table-player.php:18
+msgid "Players"
+msgstr ""
+
+#: settings/onesignal/class-mobiconnector-table-player.php:90
+msgid "No players avaliable."
+msgstr ""
+
+#: settings/onesignal/class-mobiconnector-table-player.php:384
+#: settings/onesignal/class-mobiconnector-table-player.php:385
+#: settings/onesignal/class-mobiconnector-table-player.php:386
+msgid "<a "
+msgstr ""
+
+#: settings/onesignal/class-mobiconnector-table-player.php:398
+msgid "PlayerID"
+msgstr ""
+
+#: settings/onesignal/class-mobiconnector-table-player.php:399
+msgid "Subscribed"
+msgstr ""
+
+#: settings/onesignal/class-mobiconnector-table-player.php:400
+msgid "Device"
+msgstr ""
+
+#: settings/onesignal/class-mobiconnector-table-player.php:401
+msgid "Platform"
+msgstr ""
+
+#: settings/onesignal/class-mobiconnector-table-player.php:402
+msgid "Os"
+msgstr ""
+
+#: settings/onesignal/class-mobiconnector-table-player.php:403
+msgid "Language"
+msgstr ""
+
+#: settings/onesignal/class-mobiconnector-table-player.php:404
+msgid "Session Count"
+msgstr ""
+
+#: settings/onesignal/class-mobiconnector-table-player.php:405
+msgid "Player Test"
+msgstr ""
+
+#: settings/onesignal/class-mobiconnector-table-player.php:406
+msgid "Action"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-details.php:61
+#: settings/onesignal/mobiconnector-onesignal-new.php:116
+msgid "Content Notification"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-details.php:63
+msgid "Messeger Title"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-details.php:74
+msgid "Messeger Content"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-details.php:85
+msgid "Segments"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-details.php:88
+#: settings/onesignal/mobiconnector-onesignal-new.php:279
+msgid "Send to segments"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-details.php:92
+msgid "Exclude segments"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-details.php:99
+msgid "Total Number of Recipients"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-details.php:107
+msgid "Google Android"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-details.php:110
+msgid "Big Picture "
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-details.php:114
+msgid "Large Icon "
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-details.php:118
+msgid "Small Icon "
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-details.php:122
+#: settings/onesignal/mobiconnector-onesignal-details.php:137
+msgid "Sound "
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-details.php:126
+#: settings/onesignal/mobiconnector-onesignal-details.php:141
+msgid "Url "
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-details.php:134
+msgid "Apple iOS"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-listnoti.php:13
+#: settings/onesignal/mobiconnector-onesignal-subtab.php:8
+msgid "Sent Notification"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:58
+msgid "You app title"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:87
+msgid "New push notification"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:103
+msgid "Title Notification"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:129
+msgid "Subtitle Notification"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:139
+msgid "Subtitle only for ios 10+"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:143
+msgid "Internal Link Clickable"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:167
+msgid "Small Icon Notification"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:179
+msgid "You should upload a 48x48 image for small icon"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:183
+msgid "Icon Notification"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:195
+msgid "You should upload a 256x256 image for icon"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:199
+msgid "Bigimages Notification"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:211
+msgid ""
+"Use a 2:1 aspect ratio, You should upload a 1024x512 image for big images"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:215
+msgid "Sound Notification"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:221
+msgid "Android Title Color"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:229
+msgid "Android Content Color"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:237
+msgid "Android Background Images"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:249
+msgid "You should upload a 17 : 2 image for background"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:254
+msgid "Android Led Color"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:263
+msgid "Android Accent Color"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:271
+msgid "Send this message to?"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:274
+msgid "Send to Everyone"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:277
+msgid "Send to Particular Segment(s)"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:285
+#: settings/onesignal/mobiconnector-onesignal-new.php:302
+msgid "All"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:287
+#: settings/onesignal/mobiconnector-onesignal-new.php:304
+msgid "Engaged Users"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:289
+#: settings/onesignal/mobiconnector-onesignal-new.php:306
+msgid "Active Users"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:291
+#: settings/onesignal/mobiconnector-onesignal-new.php:308
+msgid "Inactive Users"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:296
+msgid "Exclude users in segments"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:316
+msgid "Send to Test Device(s)"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:330
+msgid ""
+"You have not added any test users yet. You can do this on the List Player "
+"page."
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-new.php:347
+msgid "Save And Send"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-settings.php:11
+#: settings/onesignal/mobiconnector-onesignal-subtab.php:6
+msgid "Onesignal API"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-settings.php:23
+msgid "Onesignal APP ID"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-settings.php:31
+#, php-format
+msgid ""
+"Enter your Onesignal Onesignal APP ID. You can find this in App Settings > "
+"Keys & IDs. %s"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-settings.php:37
+msgid "Onesignal APP REST API"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-settings.php:45
+#, php-format
+msgid ""
+"Enter 48 characters of your Onesignal REST API Key. You can find this in App "
+"Settings > Keys & IDs. %s"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-subtab.php:7
+msgid "New Notification"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-subtab.php:9
+msgid "All User"
+msgstr ""
+
+#: settings/onesignal/mobiconnector-onesignal-subtab.php:44
+#: settings/onesignal/mobiconnector-onesignal-subtab.php:46
+msgid ""
+"Your Onesignal Api key is invalid, so you can not use this feature. Please "
+"recheck your Onesignal Api Key"
+msgstr ""
+
+#: settings/textapp/mobiconnector-settingtext.php:12
+msgid "Settings Text"
+msgstr ""
+
+#: settings/views/mobiconnector-settings-social.php:49
+msgid "Facebook Login Settings"
+msgstr ""
+
+#: settings/views/mobiconnector-settings-social.php:51
+msgid "Enable Login by Facebook"
+msgstr ""
+
+#: settings/views/mobiconnector-settings-social.php:59
+#, php-format
+msgid ""
+"Allow user can log in your mobile application from their Facebook account. %s"
+msgstr ""
+
+#: settings/views/mobiconnector-settings-social.php:65
+msgid "Facebook App ID"
+msgstr ""
+
+#: settings/views/mobiconnector-settings-social.php:71
+msgid "Facebook App Secret"
+msgstr ""
+
+#: settings/views/mobiconnector-settings-social.php:79
+msgid "Google Login Settings"
+msgstr ""
+
+#: settings/views/mobiconnector-settings-social.php:81
+msgid "Enable Login by Google"
+msgstr ""
+
+#: settings/views/mobiconnector-settings-social.php:89
+#, php-format
+msgid ""
+"Allow user can log in your mobile application from their Google account. %s"
+msgstr ""
+
+#: settings/views/mobiconnector-settings-social.php:95
+msgid "Google Client ID"
+msgstr ""
+
+#: settings/views/mobiconnector-settings-social.php:101
+msgid "Google Client Secret"
+msgstr ""
+
+#: settings/views/mobiconnector-settings-social.php:107
+msgid "Google Api Key"
+msgstr ""
+
+#: settings/views/mobiconnector-settings-social.php:115
+msgid "LinkedIn Login Settings"
+msgstr ""
+
+#: settings/views/mobiconnector-settings-social.php:117
+msgid "Enable Login by LinkedIn"
+msgstr ""
+
+#: settings/views/mobiconnector-settings-social.php:125
+#, php-format
+msgid ""
+"Allow user can log in your mobile application from their LinkedIn account. %s"
+msgstr ""
+
+#: settings/views/mobiconnector-settings-social.php:131
+msgid "LinkedIn Client ID"
+msgstr ""
+
+#: settings/views/mobiconnector-settings-social.php:137
+msgid "Linkedin Client Secret"
+msgstr ""
+
+#: settings/views/mobiconnector-settings-social.php:143
+msgid "LinkedIn Authorized redirect URIs"
+msgstr ""
+
+#: settings/views/mobiconnector-settings-social.php:148
+msgid "Twitter Login Settings"
+msgstr ""
+
+#: settings/views/mobiconnector-settings-social.php:150
+msgid "Enable Login by Twitter"
+msgstr ""
+
+#: settings/views/mobiconnector-settings-social.php:158
+#, php-format
+msgid ""
+"Allow user can log in your mobile application from their Twitter account. %s"
+msgstr ""
+
+#: settings/views/mobiconnector-settings-social.php:164
+msgid "Twitter Consumer Key"
+msgstr ""
+
+#: settings/views/mobiconnector-settings-social.php:170
+msgid "Twitter Consumer Secret"
+msgstr ""
+
+#: settings/views/mobiconnector-settings-social.php:178
+msgid "Instagram Login Settings"
+msgstr ""
+
+#: settings/views/mobiconnector-settings-social.php:180
+msgid "Enable Instagram Login"
+msgstr ""
+
+#: settings/views/mobiconnector-settings-social.php:188
+#, php-format
+msgid ""
+"Allow user can log in your mobile application from their Instagram account. "
+"%s"
+msgstr ""
+
+#: settings/views/mobiconnector-settings-social.php:194
+msgid "Instagram Client ID"
+msgstr ""
+
+#: settings/views/mobiconnector-settings-social.php:200
+msgid "Instagram Client Secret"
+msgstr ""
+
+#: settings/views/mobiconnector-tab-settings.php:7
+msgid "Texts"
+msgstr ""
+
+#: settings/views/mobiconnector-tab-settings.php:8
+msgid "Socials"
+msgstr ""
+
+#: settings/views/mobiconnector-tab-settings.php:9
+msgid "Blog Notification"
+msgstr ""
+
+#: settings/views/mobiconnector-tab-settings.php:10
+msgid "API"
+msgstr ""
+
+#: settings/views/mobiconnector-tab-settings.php:11
+msgid "Cache"
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:50
+msgid "MobiConnector Settings"
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:58
+msgid "Custom Post Type as Post"
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:85
+msgid "Email received when user flagged item"
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:93
+msgid ""
+"Email get notifications when someone report a product, an article or a "
+"comment from your mobile application."
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:101
+msgid "Allow Guest Comments"
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:109
+msgid ""
+"When this mode is enabled, an User open the application on their mobile, "
+"they only see Maintenance Page and can not use any functions from your "
+"application.\n"
+"But an administrator's account can login to use mobile application as "
+"normally"
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:121
+#: settings/views/mobiconnector-views-settings.php:167
+msgid "Languages Display Mode"
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:144
+#: settings/views/mobiconnector-views-settings.php:191
+#: settings/views/mobiconnector-views-settings.php:409
+msgid "Left to Right"
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:146
+#: settings/views/mobiconnector-views-settings.php:193
+#: settings/views/mobiconnector-views-settings.php:411
+msgid "Right to Left"
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:156
+#: settings/views/mobiconnector-views-settings.php:203
+msgid "Languages mode (LTR or RTL) when they open mobile application."
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:214
+msgid "Google Analytics Tracking Code"
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:222
+#, php-format
+msgid "Tracking ID like UA-000000-2 from your google analytics account,  %s"
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:230
+msgid "Date Format"
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:238
+#, php-format
+msgid "Date formatted to only display on your mobile application. %s"
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:246
+msgid "Default Language"
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:391
+msgid ""
+"Default language for API which user can see first it when they open mobile "
+"application."
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:405
+msgid "Default Language Mode"
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:418
+msgid "Default language mode (LTR or RTL) when they open mobile application."
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:426
+msgid "Banner Android Admob"
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:434
+#: settings/views/mobiconnector-views-settings.php:450
+#: settings/views/mobiconnector-views-settings.php:466
+#: settings/views/mobiconnector-views-settings.php:482
+#, php-format
+msgid ""
+"Only use this setting if your mobile application included Admob plugin, %s"
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:442
+msgid "Interstitial Android Admob"
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:458
+msgid "Banner Ios Admob"
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:474
+msgid "Interstitial Ios Admob"
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:490
+msgid "Enable Maintenance Mode"
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:498
+msgid ""
+"When this mode is enabled, an User open the application on their mobile, "
+"they only see Maintenance Page and can not use any functions from your "
+"application. But an administrator's account can login to use mobile "
+"application as normally."
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:506
+msgid "Google API Key"
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:514
+#, php-format
+msgid ""
+"To use the Google Maps API, you must register your app project on the Google "
+"Cloud Platform Console and get a Google API key which you can add to your "
+"app. %s"
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:522
+msgid "Social Login"
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:527
+msgid "Enable Facebook"
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:534
+msgid ""
+"Login by Facebook will be enabled/disabled in Login page from Mobile "
+"Application"
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:541
+msgid "Enable Google +"
+msgstr ""
+
+#: settings/views/mobiconnector-views-settings.php:548
+msgid ""
+"Login by Google Plus will be enabled/disabled in Login page from Mobile "
+"Application"
+msgstr ""
+
+#: templates/class-mobiconnector-gallery-custom.php:51
+msgid "Photos"
+msgstr ""
+
+#: templates/class-mobiconnector-video-custom.php:51
+msgid "Video Files/Links"
+msgstr ""
+
+#: templates/class-mobiconnector-video-custom.php:88
+#: templates/class-mobiconnector-video-custom.php:126
+msgid "Upload Video"
+msgstr ""
+
+#: templates/class-mobiconnector-video-custom.php:101
+msgid "Video Options"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://buy-addons.com/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Intergrated to Wordpress Rest API"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "buy-addons"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://buy-addons.com"
+msgstr ""

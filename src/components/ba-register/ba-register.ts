@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 import { Http, Headers } from '@angular/http';
 import { Core } from '../../service/core.service';
 import { Storage } from '@ionic/storage';
@@ -39,7 +39,8 @@ export class BaRegisterComponent {
 		public formBuilder: FormBuilder,
 		public config: Config,
 		public translate: TranslateService,
-		public Toast: Toast
+		public Toast: Toast,
+		public alertCtrl: AlertController
 	) {
 		translate.get('states').subscribe(trans => {
 			if (trans == 'states') trans = {};
@@ -61,19 +62,57 @@ export class BaRegisterComponent {
 				require_check: 1
 			}
 			this.data['register'].forEach((item, key) => {
-				if (item['required_check'] == 1) {
-					if (item['name_id'] != 'billing_email' && item['name_id'] != 'baform_re_password') params[item['name_id']] = ['', Validators.required];
-					else if (item['name_id'] == 'billing_email') params[item['name_id']] = ['', Validators.compose([Validators.required, CoreValidator.isEmail])];
-					else if (item['name_id'] == 'baform_re_password') params[item['name_id']] = ['', Validators.compose([Validators.required, CoreValidator.confirmPassword])];
+				if (item['required_check'] == 1 || item['require_check'] == 1) {
+
+					console.log(item['name_id']);
+					console.log(item['name_id'] == 'baform_re_password ');
+
+					if (item['name_id'] != 'billing_email' && item['name_id'] != 'baform_re_password ') {
+
+						params[item['name_id']] = ['', Validators.required];
+
+					} else if (item['name_id'] == 'billing_email') {
+
+						params[item['name_id']] = ['', Validators.compose([Validators.required, CoreValidator.isEmail])];
+
+					} else if (item['name_id'] == 'baform_re_password ') {
+
+						params[item['name_id']] = ['', Validators.compose([Validators.required, Validators.minLength(6)])];
+
+					}
 				} else {
-					if (item['name_id'] == 'billing_password') params[item['name_id']] = ['', Validators.required];
-					else params[item['name_id']] = [''];
+					if (item['name_id'] == 'billing_password') {
+
+						params[item['name_id']] = ['', Validators.compose([Validators.required, Validators.minLength(6)])];
+
+						this.data['register'][key]['label'] = 'Password (6 or more characters)*'
+
+					} else {
+
+						params[item['name_id']] = [''];
+
+					}
 				}
 			});
-			console.log(params);
-			this.formSignup = this.formBuilder.group(params);
+			console.log(this.data['register']);
+			this.formSignup = this.formBuilder.group(params, { validator: this.matchValidator });
 		}
 	}
+
+	matchValidator(group: FormGroup) {
+
+		let password = group.controls['billing_password'].value;
+		let confirmPassword = group.controls['baform_re_password '].value;
+
+		if (password == confirmPassword) {
+			return null;
+		}
+
+		return {
+			mismatch: true
+		};
+	}
+
 	removeConfirm() {
 		this.formSignup.patchValue({ baform_re_password: null });
 	}
@@ -90,10 +129,18 @@ export class BaRegisterComponent {
 		this.http.post(wordpress_url + '/wp-json/mobiconnector/user/register_form', params)
 			.subscribe(res => {
 				this.core.hideLoading();
-				this.Toast.showShortBottom(this.trans["success"]).subscribe(
-					toast => { },
-					error => { console.log(error); }
-				);
+				// this.Toast.showShortBottom(this.trans["success"]).subscribe(
+				// 	toast => { },
+				// 	error => { console.log(error); }
+				// );
+
+				const alert = this.alertCtrl.create({
+					title: this.trans["success"],
+					subTitle: 'We sent you a verification email. Please check and verify your account.',
+					buttons: ['OK']
+				});
+				alert.present();
+
 				this.gotoLogin();
 			}, err => {
 				this.core.hideLoading();
@@ -135,7 +182,9 @@ export class BaRegisterComponent {
 	gotoLogin() {
 		if (this.navCtrl.getPrevious() && this.navCtrl.getPrevious().component == this.LoginPage)
 			this.navCtrl.pop();
-		else this.navCtrl.push(this.LoginPage);
+		else this.navCtrl.push(this.LoginPage, {
+			message: "We sent you a verification email. Check and verify your account"
+		});
 	}
 
 }

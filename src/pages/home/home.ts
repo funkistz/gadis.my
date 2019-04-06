@@ -190,8 +190,10 @@ export class HomePage {
 	}
 
 	ionViewDidEnter() {
-		if (this.statictext) {
 
+		this.today = moment();
+
+		if (this.statictext) {
 			this.buttonCart.update();
 		}
 	}

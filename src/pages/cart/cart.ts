@@ -40,6 +40,8 @@ export class CartPage {
 	invalid: boolean;
 	check_require_login: boolean;
 	checkCart: boolean = false;
+	user: any = {};
+
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
@@ -61,12 +63,13 @@ export class CartPage {
 		else this.isCache = true;
 	}
 	getData() {
-		this.storageMul.get(['cart', 'coupon', 'login']).then((val) => {
+		this.storageMul.get(['cart', 'coupon', 'login', 'user']).then((val) => {
 			if (val && val['cart']) this.data = val['cart'];
 			else this.checkCart = true;
 			if (val && val['coupon']) this.coupon = val['coupon'];
 			if (val['login']) {
 				this.login = val['login'];
+				this.user = val["user"];
 			}
 			if (this.data && Object.keys(this.data).length > 0) this.validate();
 		});
@@ -365,15 +368,15 @@ export class CartPage {
 					message: this.trans['confirm']['message'],
 					cssClass: 'alert-no-title alert-signout',
 					buttons: [
+						// {
+						// 	text: this.trans['confirm']["no"],
+						// 	cssClass: 'dark',
+						// 	handler: () => {
+						// 		this.navCtrl.push(this.AddressPage);
+						// 	}
+						// },
 						{
-							text: this.trans['confirm']["no"],
-							cssClass: 'dark',
-							handler: () => {
-								this.navCtrl.push(this.AddressPage);
-							}
-						},
-						{
-							text: this.trans['confirm']["yes"],
+							text: 'Ok',
 							handler: () => {
 								this.navCtrl.push(this.LoginPage);
 							}

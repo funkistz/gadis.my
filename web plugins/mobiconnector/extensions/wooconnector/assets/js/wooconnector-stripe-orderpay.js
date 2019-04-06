@@ -1,0 +1,1 @@
+jQuery(function ($) { setTimeout(function () { $('.wc-stripe-checkout-button').click(); }, 500) })

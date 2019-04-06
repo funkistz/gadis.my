@@ -1,0 +1,140 @@
+.mobiconnector-intro-content{
+    position: fixed;
+    min-height: 80px;
+    width:320px;
+    z-index: 10000001;
+    box-shadow: 0px 0px 8px #777;
+    border-radius: 2px;
+    
+}
+.mobiconnector-intro-content .mobiconnector-heading-intro{
+    min-height: 20px;
+    background: #00a0d2;
+    width:100%;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    position: relative;
+}
+.mobiconnector-intro-content .mobiconnector-heading-intro > h3{
+    position: relative;
+    margin: -1px -1px 0px;
+    padding: 15px 18px 14px 60px;
+    border-bottom: none;
+    line-height: 1.4em;
+    font-size: 14px;
+    color: #fff;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.mobiconnector-intro-content .mobiconnector-heading-intro > h3:before{
+    background: #fff;
+    border-radius: 50%;
+    color: #00a0d2;
+    content: "\f227";
+    font: 400 20px/1.6 dashicons;
+    position: absolute;
+    top: 8px;
+    left: 15px;
+    speak: none;
+    text-align: center;
+    width: 32px;
+    height: 32px;
+    -webkit-font-smoothing: antialiased;
+}
+.mobiconnector-intro-content .mobiconnector-content-intro{
+    min-height: 57px;
+    width:100%;
+    float:left;
+    background: #FFF;
+}
+.mobiconnector-intro-content .mobiconnector-content-intro > p{
+    padding:0px 20px;
+}
+.mobiconnector-buttons-intro{
+    float:left;
+    min-height:24px;
+    background: #FFF;
+    width:100%;
+    padding:10px 0px 15px 0px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+.mobiconnector-buttons-intro .mobiconnector-button-control-step{
+    margin-right:20px;
+}
+.mobiconnector-buttons-intro .mobiconnector-close-intros{
+    float:left;
+    position: relative;
+    margin-left:36px;
+    text-decoration: none;
+    display:block;
+    margin-top:4px;
+}
+.mobiconnector-buttons-intro .mobiconnector-close-intros:before{
+    background: 0 0;
+    color: #72777c;
+    content: "\f153";
+    display: block!important;
+    font: 400 16px/1 dashicons;
+    speak: none;
+    margin: 1px 0px 1px -3px;
+    text-align: center;
+    -webkit-font-smoothing: antialiased!important;
+    width: 10px;
+    height: 100%;
+    position: absolute;
+    left: -15px;
+    top: 1px;
+}
+.mobiconnector-buttons-intro .mobiconnector-close-intros:hover::before{
+    color:#FF0000;
+}
+.mobiconnector-intro-arrow{
+    width: 0;
+    height: 0;
+    border: 0 solid transparent;
+    z-index: 10000001;
+    position: absolute;
+}
+.mobiconnector-intro-arrow .mobiconnector-intro-arrow-inner{
+    border: 13px solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+.mobile-intro-left .mobiconnector-intro-arrow{
+    left:-26px;
+    border-width: 13px 13px 13px 13px;
+    border-right-color: #777;
+    top: 50%;
+    transform: translate(0,-50%);
+}
+.mobile-intro-bottom .mobiconnector-intro-arrow{
+    bottom: 0;
+    border-width: 13px 13px 0;
+    border-top-color: #777;
+    left: 50px;
+}
+.mobile-intro-left .mobiconnector-intro-arrow .mobiconnector-intro-arrow-inner{
+    left: -26px;
+    border-right-color: #FFF;
+    top: 50%;
+    transform: translate(0,-50%);   
+    margin-left:13px; 
+} 
+.mobile-intro-bottom .mobiconnector-intro-arrow .mobiconnector-intro-arrow-inner{
+    bottom: 1px;
+    margin-left: -13px;
+    margin-bottom: -13px;
+    border-top-color: #fff;
+    display: block;
+}
+.mobiconnector-content-intro-details ul{
+    list-style: disc !important;
+    margin-left: 20px;
+}
+.mobiconnector-hover{
+    color:#00b9eb !important;
+}

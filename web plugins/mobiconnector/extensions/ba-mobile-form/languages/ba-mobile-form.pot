@@ -1,0 +1,289 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: BA Design Billing/Shipping/Register Form for Mobile "
+"Application\n"
+"POT-Creation-Date: 2018-08-01 11:06+0700\n"
+"PO-Revision-Date: 2018-08-01 11:06+0700\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.9\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: ba-mobile-form.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: ba-mobile-form.php:25
+msgid ""
+"BA Design Billing/Shipping/Register Form for Mobile Application requires "
+"WooCommerce to be activated"
+msgstr ""
+
+#: functions/functions.php:21
+msgid "Reset successfully."
+msgstr ""
+
+#: inc/Core/BAFormAddFieldCustom.php:14 inc/Core/BAFormAddFieldCustom.php:33
+#: inc/Core/BAFormAddFieldCustom.php:60 inc/Core/BAFormAddFieldCustom.php:79
+msgid "required"
+msgstr ""
+
+#: inc/Core/BAFormAddFieldCustom.php:48 inc/Core/BAFormProfileRegister.php:69
+#: inc/Core/BAFormProfileRegister.php:194
+#: inc/Core/BAFormProfileRegister.php:307
+msgid "Select some options"
+msgstr ""
+
+#: inc/Core/BAFormCoreBase.php:131 inc/Core/BAFormCoreBase.php:208
+msgid "Select PickupDate"
+msgstr ""
+
+#: inc/Core/BAFormCoreBase.php:428
+msgid "This id field is exist."
+msgstr ""
+
+#: inc/Core/BAFormCoreBase.php:432
+msgid "This field is added."
+msgstr ""
+
+#: inc/Core/BAFormCoreBase.php:436
+msgid "This field is updated."
+msgstr ""
+
+#: inc/Core/BAFormCoreBase.php:441
+msgid "Successfully saved."
+msgstr ""
+
+#: inc/Core/BAFormCoreBase.php:670
+msgid "Only work on a mobile"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:45
+msgid "Edit Field"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:49
+msgid "Add Field"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:87
+msgid "Text"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:88
+msgid "Text Area"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:89
+msgid "Radio"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:90
+msgid "Select"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:91
+msgid "Multi Select"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:92
+msgid "Checkbox"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:93
+msgid "Multi Checkbox"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:94
+msgid "Country"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:95
+msgid "State"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:96
+msgid "Date"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:97
+msgid "Phone"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:98
+msgid "Email"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:99
+msgid "Number"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:100
+msgid "IP Address"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:103
+msgid "Left"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:104
+msgid "Right"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:105
+msgid "Full"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:124
+#: inc/Core/BAFormFunctionCallBack.php:126
+#: inc/Core/BAFormFunctionCallBack.php:127
+msgid "Name (it is unique)"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:131
+#: inc/Core/BAFormFunctionCallBack.php:416
+msgid "Type"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:147
+msgid "Options"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:197
+msgid "Select position"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:213
+#: inc/Core/BAFormFunctionCallBack.php:415
+msgid "Name"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:219
+#: inc/Core/BAFormFunctionCallBack.php:418
+msgid "Required"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:224
+#: inc/Core/BAFormFunctionCallBack.php:227
+msgid "Check required"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:232
+msgid "Show in Billing Form"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:237
+#: inc/Core/BAFormFunctionCallBack.php:240
+msgid "Enable show in billing form"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:245
+msgid "Show in Shiping Form"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:250
+#: inc/Core/BAFormFunctionCallBack.php:253
+msgid "Enable show in shipping form"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:258
+msgid "Show in Register Form"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:263
+#: inc/Core/BAFormFunctionCallBack.php:266
+msgid "Enable show in register form"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:271
+msgid "Show in Profile Form"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:290
+msgid "Back"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:295
+#: inc/Core/BAFormFunctionCallBack.php:297
+msgid "Save"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:307
+msgid "+ Add field"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:311
+msgid "Save changes"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:312
+msgid "Reset to default fields"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:339
+msgid "Table list field"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:398
+#: inc/Core/BAFormFunctionCallBack.php:423
+msgid "Edit"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:402
+#: inc/Core/BAFormFunctionCallBack.php:424
+msgid "Delete"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:414
+msgid "|||"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:417
+msgid "Label"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:419
+msgid "Shipping"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:420
+msgid "Billing"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:421
+msgid "Register"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:422
+msgid "Profile"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:446
+msgid "If options is checked, this BA Form only work on a mobile application"
+msgstr ""
+
+#: inc/Core/BAFormFunctionCallBack.php:465
+msgid "Settings"
+msgstr ""
+
+#: inc/Core/BAFormProfileRegister.php:23 inc/Core/BAFormProfileRegister.php:141
+msgid "Extra profile information"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+#. Description of the plugin/theme
+msgid "BA Design Billing/Shipping/Register Form for Mobile Application"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "TayDoTech"
+msgstr ""

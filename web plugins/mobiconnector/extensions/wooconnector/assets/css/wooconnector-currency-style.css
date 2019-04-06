@@ -1,0 +1,12 @@
+.notice {
+    display: none;
+}
+.notice-wooconnector {
+    display: block;
+}
+.wooconnector-ajax-loaded-delete {
+    background: url('ajax-loader.gif') no-repeat center center;
+    width:18px;
+    height:18px;
+    float:left;
+}

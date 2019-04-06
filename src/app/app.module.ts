@@ -71,11 +71,14 @@ import { CreateVendorPage } from '../pages/create-vendor/create-vendor';
 import { VendorRegisterPage } from '../pages/vendor-register/vendor-register';
 import { OnboardingPage } from '../pages/onboarding/onboarding';
 import { ModalCategoryPage } from '../pages/modal-category/modal-category';
+import { ImageEditorPage } from '../pages/image-editor/image-editor';
+import { Myshop2Page } from '../pages/myshop2/myshop2';
 
 import { ImagePicker } from '@ionic-native/image-picker';
 import { File } from '@ionic-native/file';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
 import { FilePath } from '@ionic-native/file-path';
+import { Crop } from '@ionic-native/crop';
 
 //pipe
 import { PricePipe } from '../pipes/price/price';
@@ -146,7 +149,9 @@ import { WoocommerceProvider } from '../providers/woocommerce/woocommerce';
     VendorRegisterPage,
     OnboardingPage,
     ModalCategoryPage,
-    VendorUpdatePage
+    VendorUpdatePage,
+    ImageEditorPage,
+    Myshop2Page
   ],
   imports: [
     BrowserModule,
@@ -210,7 +215,9 @@ import { WoocommerceProvider } from '../providers/woocommerce/woocommerce';
     VendorRegisterPage,
     OnboardingPage,
     ModalCategoryPage,
-    VendorUpdatePage
+    VendorUpdatePage,
+    ImageEditorPage,
+    Myshop2Page
   ],
   providers: [
     StatusBar,
@@ -228,6 +235,7 @@ import { WoocommerceProvider } from '../providers/woocommerce/woocommerce';
     GooglePlus,
     Facebook,
     ImagePicker,
+    Crop,
     File,
     FileTransfer,
     FileTransferObject,

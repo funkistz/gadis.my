@@ -17,6 +17,7 @@ export class VendorRegisterPage {
 
   username;
   callback;
+  type;
 
   constructor(
     public hostElement: ElementRef,
@@ -28,7 +29,9 @@ export class VendorRegisterPage {
 
     this.username = this.navParams.get('username');
     this.callback = this.navParams.get('callback');
-    let task = 'dashboard';
+    this.type = this.navParams.get('type');
+
+    let task = this.type;
 
     this.safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.externalLink + '?username=' + this.username + '&task=' + task);
 

@@ -1,0 +1,112 @@
+#wooconnector-save-design{
+    margin-top:10px;
+}
+.wooconnector-design{
+    width:780px;
+}
+.wooconnector-design .wooconnector-images-td .wooconnector-images-after-choose{
+    max-width:367px;
+    float:left;
+}
+.wooconnector-design .wooconnector-images-td .wooconnector-warning{
+    float:left;
+    display:block;
+    width:100%;
+    padding:5px 0px;
+}
+.wooconnector-design .wooconnector-delete-file{
+    margin-left:6px;
+}
+.wooconnector-design .wooconnector-select-value{
+    display:none;
+}
+.wooconnector-select-value,.wooconnector-select-type-design,.wooconnector-design-input,.wooconnector-select-background-type-design,.wooconnector-select-percent{
+    width:70%;
+}
+.wooconnector-select-value.select-value-color,.wooconnector-design-color.change-value-color{
+    height:27px;
+    width:15%;
+    float: left;
+}
+.wooconnector-select-value.select-value-color-text,.wooconnector-design-color.change-value-color-text{
+    width:calc(55% - 2px);
+}
+.wooconnector-settings .wooconnector-fields{
+    float:left;
+    width:100%;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 2px #CCCCCC;
+    margin-top:10px;
+    position: relative;
+}
+.wooconnector-settings .wooconnector-fields > h1{
+    margin:0px;
+    padding:10px;
+    border-bottom:solid 1px #EEEEEE;
+}
+.wooconnector-hidden-tab-button{
+    position: absolute;
+    top:15px;
+    right:15px;
+    width:20px;
+    height:20px;
+    border:none;
+    background-size: 20px 20px !important;
+    cursor: pointer;
+}
+.wooconnector-hidden-tab-button:focus{
+    outline: none !important;
+}
+.wooconnector-settings .wooconnector-fields > table{
+    padding:10px;
+}
+.wooconnector-settings .wooconnector-fields > table .woo-label{
+    width:30%;
+}
+.wooconnector-settings .wooconnector-fields > table .woo-content{
+    width:70%;
+}
+.wooconnector-box-image-preview{
+    width:100%;
+    float:left;
+}
+.wooconnector-box-image-preview > img{
+    float:left;
+    max-width: 367px;
+}
+.wooconnector-box-image-preview .wooconnector-selected-options{
+    width:100%;
+    float:left;
+    margin-top:6px;
+}
+.wooconnector-box-image-preview .wooconnector-selected-options .wooconnector-button-selected{
+    width:17%;
+    margin-right:2px !important;
+    float:left;
+}
+.wooconnector-tab-page-design{
+    width:100%;
+    float:left;
+    border-bottom:solid 1px #ccc;
+}
+.wooconnector-tab-page-design > li{
+    display:inline-block;   
+    margin:0px;
+}
+.wooconnector-tab-page-design > li > a{
+    display:block;
+    padding:10px 15px;
+    color:#333;
+    text-decoration: none;
+    background: #DDD;
+    border-width:1px 1px 0px 1px;
+    border-style: solid;
+    border-color: #ccc;
+}
+.wooconnector-tab-page-design > li.wooconnector-tab-active > a{
+    background: #f1f1f1;
+    color:#111;
+    border-bottom:solid 1px #f1f1f1;
+    margin-bottom:-1px;
+    margin-left:8px;
+}

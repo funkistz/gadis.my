@@ -1,6 +1,10 @@
 page-browser {
-    ion-spinner {
-        display: block;
-        margin: auto;
-    }
+  ion-spinner {
+    display: block;
+    margin: auto;
+  }
+
+  iframe {
+    padding-bottom: 20px;
+  }
 }

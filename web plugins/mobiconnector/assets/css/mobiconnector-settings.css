@@ -1,0 +1,293 @@
+hr{
+    width:100%;
+}
+#mobi-settings-body,#mobi-body-content,.form-group,.form-element{
+    float:left;
+    width:850px;
+    margin-bottom: 10px;
+}
+.mobi-label{
+    width:25%;
+    float:left;
+}
+.mobi-label > label{
+    font-weight: 400;
+    font-size:13px;
+}
+.mobi-content{
+    width:74%;
+    float:left;
+}
+.mobi-content .mobi-list-checkbox{
+    width:100%;
+    float:left;
+}
+.mobi-content .mobi-list-checkbox .mobi-content-list-checkbox{
+    width:33%;
+    float:left;
+    padding-bottom:5px;
+}
+.mobi-content .mobi-list-checkbox .mobi-content-list-checkbox .mobi-checkbox{
+    margin-top:0px;
+}
+.mobi-content .mobi-input{
+    width:70%;
+     float:left;
+}
+.mobi-submit{
+    margin: 0;
+    display: inline-block;
+    background: #0085ba;
+    border-color: #0073aa #006799 #006799;
+    box-shadow: 0 1px 0 #006799;
+    text-decoration: none;
+    color:#FFF;
+    padding:4px 11px;
+    font-size:14px;
+    vertical-align: middle;
+    height: auto;
+    margin-bottom: 4px;
+    line-height: normal;
+    text-shadow: 0 -1px 1px #006799, 1px 0 1px #006799, 0 1px 1px #006799, -1px 0 1px #006799;
+    cursor: pointer;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 3px;
+    box-sizing: border-box;
+    white-space: nowrap;
+    -webkit-appearance: none;
+    float:left;
+}
+.mobi-submit:active{
+    background: #0073aa;
+    border-color: #006799;
+    -webkit-box-shadow: inset 0 2px 0 #006799;
+    box-shadow: inset 0 2px 0 #006799;
+    vertical-align: top;
+    transform: translateY(1px);
+    outline: 0;
+}
+.mobi-submit:hover{
+    background: #008ec2;
+    border-color: #006799;
+    color: #fff;
+}
+.mobi-submit:forcus{
+    -webkit-box-shadow: 0 1px 0 #0073aa, 0 0 2px 1px #33b3db;
+    box-shadow: 0 1px 0 #0073aa, 0 0 2px 1px #33b3db;
+    background: #008ec2;
+    border-color: #006799;
+    color: #fff;
+}
+#mobiconnector_settings_mail{
+    width:50% !important;
+}
+.mobi-hidden{
+    display:none;
+}
+.notice{
+    display:none;
+}
+.notice-mobiconnector{
+    display:block;
+}
+.mobiconnector-checkbox{
+    margin-top:0px !important;
+}
+.mobiconnector-dropdown-with-checkbox{
+    display:none;
+    width:100%;
+    padding:10px 10px 10px 23px;
+    float:left;
+}
+.mobiconnector-dropdown-with-checkbox .mobiconnector-dropdown-label{
+    width:20%;
+    margin:4px 10px 10px 0px;
+    float:left;
+}
+.mobiconnector-dropdown-with-checkbox .mobiconnector-dropdown-input{
+    width:78%;
+    margin-bottom:10px;
+    float:left;
+}
+.list_sub_tab_mobiconnector,.mobi-div{
+    width:100%;
+    float:left;
+}
+.notice-mobiconnector{
+    border-left: 4px solid #fff;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+    margin: 5px 15px 2px 0px;
+    padding: 1px 12px;
+    background: #fff;
+}
+.notice-mobiconnector.notice-success{
+    border-left-color: #46b450;
+}
+.notice-mobiconnector.notice-error{
+    border-left-color: #FF0000;
+}
+.notice-mobiconnector p{
+    margin: .5em 0;
+    padding: 2px;
+}
+.qtranxs-lang-switch-wrap{
+    float:left;
+    border-bottom: 1px solid #ccc;
+    margin: 0;
+    padding-top: 9px;
+    padding-bottom: 0;
+    line-height: inherit;
+    width:100%;
+}
+.qtranxs-lang-switch{
+    position: relative;
+    background: #e5e5e5 !important;
+    color: #555 !important;
+    float: left;
+    border: 1px solid #ccc !important;
+    border-bottom: none !important;
+    margin: 0px 0px 0px .5em !important;
+    padding: 5px 10px !important;
+    font-size: 14px;
+    line-height: 24px;
+    text-decoration: none !important;
+    cursor: pointer !important;
+    bottom:-1px;
+}
+.qtranxs-lang-switch:hover{
+    background-color: #fff !important;
+    color: #444 !important;
+}
+.qtranxs-lang-switch.active{
+    border-bottom: 1px solid #f1f1f1 !important;
+    background: #f1f1f1 !important;
+    color: #000 !important;
+}
+.mobi-radio{
+    margin-top:1px !important;
+    margin-left:10px !important;
+}
+.mobi-radio.first-child{
+    margin-left:0px !important;
+}
+#mobiconnector-select-languages-displaymode{
+    float:left;
+    width:20%;
+}
+.mobiconnector-languages-displaymode{
+    display:none;
+    float:left;
+    width:33%;
+    margin-left:10px;
+    margin-top:5px;
+}
+.mobiconnector_content-security-key{
+    width: 100%;
+    float:left;
+}
+.mobiconnector_content_left-security-key{
+    width:20%;
+    float:left;
+    margin-bottom:14px;
+}
+.mobiconnector_content_right-security-key{
+    width:80%;
+    float:left;
+    margin-bottom:15px;
+}
+.mobiconnector_security_key{
+    width:70%;
+}
+.mobiconnector-tooltip-symbol{
+    background: #222;
+     display: flex;
+     justify-content: center;
+     align-content: center;
+     border-radius: 50%;
+     width: 15px;
+     margin-left: 10px;
+     height: 15px;
+     color: #FFF;
+     font-size: 13px;
+     cursor: pointer;
+     margin-top: 5px;
+}
+.mobiconnector-tooltip-symbol > span{
+     font-size: 11px;
+     margin-left: 0px;
+     margin-top: -2px;
+}
+.mobiconnector-tooltip-content{
+    display: none;
+    padding: 8px;
+     position: absolute;
+     top: 37px;
+     left: -115px;
+     z-index: 11;
+     width: 250px;
+     height: auto;
+     min-height: 30px;
+     background: #333;
+     color: #FFF;
+     border-radius: 3px;
+}
+.mobiconnector-tooltip-content > a{
+    text-decoration: none;
+    color:#2592bd;
+}
+.mobiconnector-tooltip-content > a:hover{
+    color:#0073aa;
+}
+.mobiconnector-tooltip-content > a:focus{
+    border:none !important;
+    box-shadow: none !important;
+}
+.mobiconnector-tooltip-content > a:active{
+    border:none !important;
+    box-shadow: none !important;
+}
+
+.mobiconnector-tooltip-content::after{
+    content: '';
+    position: absolute;
+     left: 50%;
+     top: -20px;
+     width: 0;
+     height: 0;
+     border-bottom: 10px solid #333;
+     border-top: 10px solid transparent;
+     border-left: 10px solid transparent;
+     border-right: 10px solid transparent;
+     transform: translate(-50%, 0%);
+}
+.mobiconnector-support-input{
+    width: 10%;
+    float: left;
+    text-align: left;
+    margin-top: 2px;
+    margin-left: 5px;
+    position: relative;
+}
+#mobiconnector_application_languages{
+    float:left;
+}
+.mobi-fields-group{
+    margin-top:15px;
+    float:left;
+    width:100%;
+}
+.mobi-fields-group:first-child{
+    margin-top:0px;
+}
+
+.mobi-fields-group .mobi-fields-element{
+    float:left;
+    width:20%;
+}
+.mobi-fields-group .mobi-fields-element > label{
+    float:left;
+}
+.mobiconnector-support-fields{
+    margin-top:2px;
+}

@@ -23,7 +23,8 @@
 
     <ion-grid class="images-wrapper">
       <ion-row>
-        <h2 *ngIf="images.length <= 0" style="margin: auto; margin-top: 40px;" text-center>Please select at least 1 and maximum of 3 images</h2>
+        <h2 *ngIf="images.length <= 0" style="margin: auto; margin-top: 40px;" text-center>Please select at least 1 and
+          maximum of 3 images</h2>
         <ion-col col-6 *ngFor="let image of images; let id = index">
           <ion-card class="block image-placeholder">
             <ion-badge *ngIf="id == 0">Primary</ion-badge>
@@ -50,6 +51,10 @@
         <ion-icon name="camera"></ion-icon>Choose Image
       </button>
 
+      <!-- <button ion-button block round icon-start color="dark" (click)="editImage()">
+        <ion-icon name="camera"></ion-icon>Crop Image
+      </button> -->
+
     </ion-row>
 
     <ion-list>
@@ -73,9 +78,9 @@
         <ion-item mode="md">
           <ion-label stacked>
             <span dark>Price (RM)*</span>
-            <p dark>*must equal or more than sale price</p>
+            <p dark>*must equal or more than discount selling price</p>
           </ion-label>
-          <ion-input dark type="number" step="0.01" min="0" [max]="product.price" [formControl]="formEdit.controls['regular_price']"
+          <ion-input dark type="number" step="0.01" min="0" [formControl]="formEdit.controls['regular_price']"
             placeholder="price" [(ngModel)]="product.regular_price"></ion-input>
         </ion-item>
 
@@ -84,7 +89,7 @@
             <span dark>Discount Selling Price (RM)</span>
             <p dark>*must equal or less than price</p>
           </ion-label>
-          <ion-input dark type="number" step="0.01" min="0" [max]="product.regular_price" [formControl]="formEdit.controls['sale_price']"
+          <ion-input dark type="number" step="0.01" min="0" [formControl]="formEdit.controls['sale_price']"
             placeholder="sale price" [(ngModel)]="product.price"></ion-input>
         </ion-item>
 
@@ -92,15 +97,18 @@
           <ion-label stacked>
             <span dark>Short Description</span>
           </ion-label>
-          <ion-textarea dark type="text" formControlName="short_description" placeholder="short description"></ion-textarea>
+          <ion-textarea dark type="text" formControlName="short_description" placeholder="short description">
+          </ion-textarea>
         </ion-item>
 
         <ion-item mode="md">
           <ion-label stacked>
             <span dark>Categories*</span>
           </ion-label>
-          <ion-input dark placeholder="Please Choose" (click)="modalCategory()" disabled *ngIf="!categoryName"></ion-input>
-          <ion-input dark placeholder="Please Choose" (click)="modalCategory()" *ngIf="categoryName" [innerHTML]="categoryName"></ion-input>
+          <ion-input dark placeholder="Please Choose" (click)="modalCategory()" disabled *ngIf="!categoryName">
+          </ion-input>
+          <ion-input dark placeholder="Please Choose" (click)="modalCategory()" *ngIf="categoryName"
+            [innerHTML]="categoryName"></ion-input>
         </ion-item>
 
         <div *ngFor="let attr of attributes.attributes">
@@ -121,14 +129,16 @@
 
         <ion-item mode="md">
           <ion-label padding-left>Manage Stock?</ion-label>
-          <ion-checkbox color="dark" checked="false" [(ngModel)]="product.manage_stock" formControlName="manage_stock"></ion-checkbox>
+          <ion-checkbox color="dark" checked="false" [(ngModel)]="product.manage_stock" formControlName="manage_stock">
+          </ion-checkbox>
         </ion-item>
 
         <ion-item mode="md" *ngIf="product.manage_stock">
           <ion-label stacked>
             <span dark>Stock Quantity</span>
           </ion-label>
-          <ion-input dark type="number" step="1" min="1" placeholder="quantity" [(ngModel)]="product.stock_quantity" formControlName="stock_quantity"></ion-input>
+          <ion-input dark type="number" step="1" min="1" placeholder="quantity" [(ngModel)]="product.stock_quantity"
+            formControlName="stock_quantity"></ion-input>
         </ion-item>
 
         <ion-item mode="md" *ngIf="product.manage_stock">
@@ -144,7 +154,8 @@
 
         <ion-item mode="md">
           <ion-label padding-left>In stock</ion-label>
-          <ion-checkbox color="dark" checked="true" [(ngModel)]="product.in_stock" formControlName="in_stock"></ion-checkbox>
+          <ion-checkbox color="dark" checked="true" [(ngModel)]="product.in_stock" formControlName="in_stock">
+          </ion-checkbox>
         </ion-item>
 
         <ion-item mode="md">
@@ -152,7 +163,8 @@
             Sold Individually
             <p dark>*only allow one item to be bought in a single order</p>
           </ion-label>
-          <ion-checkbox color="dark" checked="false" [(ngModel)]="product.sold_individually" formControlName="sold_individually"></ion-checkbox>
+          <ion-checkbox color="dark" checked="false" [(ngModel)]="product.sold_individually"
+            formControlName="sold_individually"></ion-checkbox>
         </ion-item>
 
         <ion-input type="hidden" placeholder="Category ID" formControlName="category"></ion-input>

@@ -1,0 +1,237 @@
+body{
+    background: #f1f1f1 !important;
+}
+hr{
+    margin-top:10px !important;
+    margin-bottom:10px !important;
+}
+.wooconnector-hold {   
+    background-image: url(../images/iconsmartphone.png);
+    width:250px;
+    height:515px;
+}
+#woo-content-popup{
+    position: relative;
+    top: 63px;
+    left: 16px;
+    bottom: 62px;
+    right: 14px;
+    width: 220px;
+    height: 390px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+#woo-content-popup #overlay-popup{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    background: #000;
+    opacity: 0.4;
+}
+#content-popup-div{
+    position: relative;
+    z-index: 9999;
+}
+#woo-content-popup #content-popup{
+    width:190px;
+    height:auto;
+    border-radius: 20px;
+    box-shadow: 0px 0px 8px;
+    display:flex;
+}
+#woo-content-popup #woo-content-popup-close{
+    cursor: pointer;
+    color: #fff;
+    font-size: 10px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: solid 1px #dedede;
+    color: #666;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.woo-content-close-button{
+    width:14px;
+    height:14px;
+    background: url('iconclose.png') no-repeat center center;
+    background-size: 14px 14px;
+}
+.woopopup_configuration{
+    float:left;
+    width:100%;
+}
+.woopopup #poststuff{
+    width:70%;
+    float:left;
+    display: flex;
+    justify-content: center;
+}
+.woopopup .postbox-container{
+    float:left;
+    width:30%;
+    background: #FFF;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 5px #dedede;
+}
+.woopopup .postbox-container .woopopup_publish{
+    width:100%;
+    float:right;
+    padding: 0px 0px 10px 0px;
+}
+.woopopup .postbox-container .woopopup-configuration{
+    width:100%;
+    float:right;
+    padding:10px 0px;
+    border-top: 1px solid #ddd;
+    background: #f5f5f5;
+}
+.woopopup .postbox-container .woopopup-configuration > input{
+    margin-right:15px;
+}
+.woo-hidden{
+    display:none !important;
+}
+.woopopup_settings_field label{
+    font-weight: 400;
+}
+.woo-form-content{
+    width:100%;
+    float:left;
+}
+.woo-form-content:first-child{
+    margin-bottom:10px;
+}
+#wooconnector_datetime_picker{
+    float:left;
+    border:solid 0.5px #9999993b;
+    padding:10px;
+    margin-top:10px;
+}
+.woo-form-control{
+    width:100%;
+    float:left;
+    margin-bottom:15px;
+}
+.woo-form-content label{
+    width:20%;
+    float:left;
+    font-size:14px;
+}
+#wooconnector_datetimepicker_from,#wooconnector_datetimepicker_to{
+    width: 67%;
+    float:left;
+    height:28px;
+}
+.woo-clear-button{
+    display:block;
+    float:left;
+    margin-left:5px;
+    margin-top:5px;
+    cursor: pointer;
+}
+#wooconnector_check_popup_datetime{
+    margin-left:5px;
+    margin-top:-1px !important;
+}
+#wooconnector-settings-popup{
+    margin-left:15px;
+    font-size:14px;    
+    margin-top:13px !important;
+}
+#wooconnector_check_popup_link_label{
+    width:125px;
+    float:left;
+}
+#wooconnector_check_popup_link{
+    width:187px;
+    float:left;
+}
+.slide-hidden{
+    display:none;
+    height: 0px;
+    -webkit-transition: height 0.5s linear;
+    -moz-transition: height 0.5s linear;
+    -ms-transition: height 0.5s linear;
+    -o-transition: height 0.5s linear;
+    transition: height 0.5s linear;
+}
+.slide-hidden.open{
+    display:block;
+    height: 70px;
+    -webkit-transition: height 0.5s linear;
+    -moz-transition: height 0.5s linear;
+    -ms-transition: height 0.5s linear;
+    -o-transition: height 0.5s linear;
+    transition: height 0.5s linear;
+}
+.woo-form-control label{
+    margin-top:3px;
+}
+.wp-media-buttons-icon{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    vertical-align: text-top;
+    margin: 0 2px;
+}
+.woopopup_settings_field{
+    float:left;
+    padding:15px 15px 0px 15px;
+}
+.ui-datepicker{
+    display:none;
+    margin-top:30px;
+}
+.misc-pub-section{
+    padding: 6px 10px 8px 15px;
+}
+.woopopup_configuration .misc-pub-section:before{
+    font: 400 16px/1 dashicons;
+    speak: none;
+    display: inline-block;
+    margin-left: -1px;
+    padding-right: 3px;
+    vertical-align: top;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-top: 1px;
+}
+.woopopup_configuration .misc-pub-post-status:before {
+    content: "\f173";
+}
+.woopopup_configuration .misc-pub-visibility:before{
+    content: "\f177";
+}
+.notice-mobiconnector{
+    width:100%;
+    float:left;
+}
+.notice-mobiconnector{
+    border-left: 4px solid #fff;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+    margin: 5px 15px 2px 0px;
+    padding: 1px 12px;
+    background: #fff;
+}
+.notice-mobiconnector.notice-success{
+    border-left-color: #46b450;
+}
+.notice-mobiconnector.notice-error{
+    border-left-color: #FF0000;
+}
+.notice-mobiconnector p{
+    margin: .5em 0;
+    padding: 2px;
+}

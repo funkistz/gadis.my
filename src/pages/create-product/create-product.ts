@@ -14,8 +14,11 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { File } from '@ionic-native/file';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { FilePath } from '@ionic-native/file-path';
+import { Crop } from '@ionic-native/crop';
 
 import { ModalCategoryPage } from '../../pages/modal-category/modal-category';
+import { ImageEditorPage } from '../../pages/image-editor/image-editor';
+
 import moment from 'moment';
 
 declare var cordova: any;
@@ -82,7 +85,8 @@ export class CreateProductPage {
     public camera: Camera,
     private file: File,
     private filePath: FilePath,
-    private transfer: FileTransfer
+    private transfer: FileTransfer,
+    private crop: Crop
   ) {
 
     this.callback = this.navParams.get('callback');
@@ -99,7 +103,7 @@ export class CreateProductPage {
       brand: ['', Validators.compose([Validators.maxLength(50)])],
       name: ['', Validators.compose([Validators.maxLength(50), Validators.required])],
       regular_price: ['', Validators.compose([Validators.required])],
-      sale_price: ['', Validators.compose([Validators.required, Validators.min(0)])],
+      sale_price: [''],
       short_description: ['', Validators.compose([Validators.maxLength(255)])],
       category: ['', Validators.compose([Validators.required])],
       pa_condition: ['', Validators.compose([Validators.required])],
@@ -145,11 +149,25 @@ export class CreateProductPage {
   }
 
   matchValidator(group: FormGroup) {
+
+    var regular_price = parseFloat(group.controls['regular_price'].value);
+    var sale_price = parseFloat(group.controls['sale_price'].value);
+
+    if (isNaN(sale_price)) {
+      sale_price = 0;
+    }
+
+    console.log('price: ' + regular_price + ' > ' + sale_price);
+
     // console.log('checking...');
     var valid = false;
 
-    if (group.controls['regular_price'].value >= group.controls['sale_price'].value) {
+    if (regular_price >= sale_price) {
       // console.log(group.controls['regular_price'].value + ' >= ' + group.controls['sale_price'].value);
+      console.log('regular price higher: ' + regular_price + ' > ' + sale_price);
+      valid = true;
+    } else if (group.controls['sale_price'].value === null) {
+      console.log('sale price null');
       valid = true;
     }
 
@@ -311,6 +329,7 @@ export class CreateProductPage {
 
       fileTransfer.upload(targetPath, url, options).then(data => {
 
+        console.log('upload response');
         console.log(data.response);
         let uploaded = JSON.parse(data.response);
         this.uploadedImages.push(uploaded.url);
@@ -325,6 +344,7 @@ export class CreateProductPage {
 
       }, err => {
 
+        console.log('upload image failed');
         console.log(err);
         reject('upload image failed');
 
@@ -442,7 +462,7 @@ export class CreateProductPage {
     });
 
     console.log('Pushed images');
-    console.log( JSON.stringify(images) );
+    console.log(JSON.stringify(images));
 
     let params: any = {
       vendor: vendorID,
@@ -456,6 +476,10 @@ export class CreateProductPage {
       manage_stock: temp.manage_stock,
       in_stock: temp.in_stock,
       sold_individually: temp.sold_individually
+    }
+
+    if (temp.sale_price === null) {
+      temp.sale_price = temp.regular_price
     }
 
     if (temp.stock_quantity) {
@@ -625,40 +649,65 @@ export class CreateProductPage {
       sourceType: sourceType,
       saveToPhotoAlbum: false,
       correctOrientation: true,
-      allowEdit: true
+      // allowEdit: true,
+      width: 500,
+      height: 500
     };
 
     // Get the data of an image
-    this.camera.getPicture(options).then((imagePath) => {
-      // Special handling for Android library
-      if (this.device.platform === 'Android' && sourceType == this.camera.PictureSourceType.PHOTOLIBRARY) {
-        this.filePath.resolveNativePath(imagePath)
-          .then(filePath => {
-            let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-            let currentName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
+    this.camera.getPicture(options).then((cameraimagePath) => {
 
-            console.log('from library');
-            console.log(currentName);
-            console.log(correctPath);
+      const loader = this.loadingCtrl.create({
+        content: "Please wait...",
+        duration: 1500
+      });
+      loader.present();
 
-            this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-          });
-      } else {
+      var crop_options = {
+        quality: 50,
+      };
 
-        console.log(imagePath);
-        var currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
-        var correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
+      this.crop.crop(cameraimagePath, crop_options).then(imagePath => {
 
-        console.log('from camera');
-        console.log(currentName);
-        console.log(correctPath);
+        // Special handling for Android library
+        if (this.device.platform === 'Android') {
 
-        this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-      }
+          this.filePath.resolveNativePath(imagePath)
+            .then(filePath => {
+              let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
+              let currentName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
+
+              console.log('from library');
+              console.log(currentName);
+              console.log(correctPath);
+
+              this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
+            });
+
+        } else {
+
+          console.log(imagePath);
+          var currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
+          var correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
+
+          console.log('from library');
+          console.log(currentName);
+          console.log(correctPath);
+
+          this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
+        }
+
+
+      }, (err) => {
+        // this.images.push('assets/imgs/logo.png');
+        // this.presentToast('Error while selecting image.');
+      });
+
     }, (err) => {
-      this.images.push('assets/imgs/logo.png');
-      this.presentToast('Error while selecting image.');
+      // this.images.push('assets/imgs/logo.png');
+      // this.presentToast('Error while selecting image.');
     });
+
   }
 
   prevImage(id) {
@@ -709,7 +758,7 @@ export class CreateProductPage {
         //   }
         // },
         {
-          text: 'Load from album (crop)',
+          text: 'Load From Album',
           handler: () => {
             this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
             // this.getPictures();
@@ -741,7 +790,7 @@ export class CreateProductPage {
 
     this.file.copyFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(success => {
 
-      console.log(success);
+      console.log(success.nativeURL);
       this.images.push(newFileName);
 
     }, error => {
@@ -786,4 +835,19 @@ export class CreateProductPage {
 
   }
 
+  editImage(src) {
+
+    let newsrc = this.pathForImage(src);
+
+    this.crop.crop(newsrc, { quality: 75, targetWidth: 400, targetHeight: 600 })
+      .then(
+        newImage => console.log('new image path is: ' + newImage),
+        error => console.error('Error cropping image', error)
+      );
+
+    // this.navCtrl.push(ImageEditorPage, {
+    //   src: src
+    // });
+
+  }
 }

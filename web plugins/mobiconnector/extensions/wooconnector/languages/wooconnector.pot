@@ -1,0 +1,1282 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: WooCommerce Connector\n"
+"POT-Creation-Date: 2018-07-24 16:16+0700\n"
+"PO-Revision-Date: 2018-07-24 16:16+0700\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.9\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: wooconnector.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: endpoints/class-wooconnector-cart.php:144
+#: endpoints/class-wooconnector-checkout.php:39
+#: endpoints/class-wooconnector-contactus.php:50
+#: endpoints/class-wooconnector-coupon.php:45
+#: endpoints/class-wooconnector-order.php:76
+#: endpoints/class-wooconnector-products.php:623
+#: endpoints/class-wooconnector-user.php:99
+#: settings/class-wooconnector-settings.php:75
+#: settings/popuphomepage/class-wooconnector-popup.php:122
+#: settings/slider/class-wooconnector-slider.php:205
+msgid "Sorry, you cannot list resources."
+msgstr ""
+
+#: endpoints/class-wooconnector-cart.php:816
+#, php-format
+msgid ""
+"Sorry, Unfortunately we do not ship to %s. Please enter an alternative "
+"shipping address."
+msgstr ""
+
+#: endpoints/class-wooconnector-cart.php:1637
+#: endpoints/class-wooconnector-checkout.php:295
+msgid "Sorry, Coupon not exist."
+msgstr ""
+
+#: endpoints/class-wooconnector-cart.php:1640
+msgid "Sorry, Amount not suitable for Coupon. "
+msgstr ""
+
+#: endpoints/class-wooconnector-cart.php:1643
+#: endpoints/class-wooconnector-checkout.php:318
+msgid "Sorry, Coupon has expired."
+msgstr ""
+
+#: endpoints/class-wooconnector-cart.php:1646
+#: endpoints/class-wooconnector-checkout.php:298
+msgid "Sorry, Coupon usage limit has been reached."
+msgstr ""
+
+#: endpoints/class-wooconnector-cart.php:1649
+#: endpoints/class-wooconnector-checkout.php:308
+msgid "Sorry, Coupon usage limit per user has been reached."
+msgstr ""
+
+#: endpoints/class-wooconnector-cart.php:1663
+#: endpoints/class-wooconnector-cart.php:1668
+#: endpoints/class-wooconnector-checkout.php:233
+#: endpoints/class-wooconnector-checkout.php:238
+msgid "Sorry, Coupon only one."
+msgstr ""
+
+#: endpoints/class-wooconnector-cart.php:1675
+#: endpoints/class-wooconnector-checkout.php:244
+msgid "Sorry, Coupon already applied!."
+msgstr ""
+
+#: endpoints/class-wooconnector-cart.php:2332
+#: endpoints/class-wooconnector-cart.php:2346
+msgid "Sorry, Coupon not for sale products."
+msgstr ""
+
+#: endpoints/class-wooconnector-cart.php:2334
+#: endpoints/class-wooconnector-cart.php:2336
+#: endpoints/class-wooconnector-cart.php:2348
+#: endpoints/class-wooconnector-cart.php:2350
+msgid "Sorry, Coupon not supported with these products."
+msgstr ""
+
+#: endpoints/class-wooconnector-cart.php:2338
+#: endpoints/class-wooconnector-cart.php:2340
+#: endpoints/class-wooconnector-cart.php:2352
+#: endpoints/class-wooconnector-cart.php:2354
+msgid "Sorry, Coupon not supported with these categories."
+msgstr ""
+
+#: endpoints/class-wooconnector-cart.php:2342
+#: endpoints/class-wooconnector-cart.php:2356
+msgid "Sorry, It looks like this coupon code is not yours."
+msgstr ""
+
+#: endpoints/class-wooconnector-cart.php:2931
+#: endpoints/class-wooconnector-checkout.php:56
+msgid "Sorry, Product not exits."
+msgstr ""
+
+#: endpoints/class-wooconnector-cart.php:2960
+#: endpoints/class-wooconnector-checkout.php:90
+#, php-format
+msgid ""
+"Sorry, we do not have enough %1$s in stock to fulfill your order right now. "
+"Please try again in %2$d minutes or edit your cart and try again. We "
+"apologize for any inconvenience caused."
+msgstr ""
+
+#: endpoints/class-wooconnector-cart.php:2968
+#: endpoints/class-wooconnector-checkout.php:62
+msgid "Sorry, This is not product."
+msgstr ""
+
+#: endpoints/class-wooconnector-cart.php:2971
+#, php-format
+msgid "Sorry, Product %s quantity for must be greater than 0."
+msgstr ""
+
+#: endpoints/class-wooconnector-cart.php:2980
+#, php-format
+msgid "Sorry, Variation %1$s does not belong to Products %2$s."
+msgstr ""
+
+#: endpoints/class-wooconnector-cart.php:2987
+#: endpoints/class-wooconnector-cart.php:2994
+#, php-format
+msgid "Sorry, Product %s only sells quantity 1 ."
+msgstr ""
+
+#: endpoints/class-wooconnector-cart.php:3024
+#: endpoints/class-wooconnector-cart.php:3027
+#, php-format
+msgid "Sorry, Product %s out of stock."
+msgstr ""
+
+#: endpoints/class-wooconnector-cart.php:3030
+#: endpoints/class-wooconnector-checkout.php:137
+msgid "Sorry, Product not enough."
+msgstr ""
+
+#: endpoints/class-wooconnector-checkout.php:94
+msgid "Sorry,Your Quantity Quantity must be greater than 0."
+msgstr ""
+
+#: endpoints/class-wooconnector-checkout.php:99
+msgid "Sorry, Variation does not belong to Products."
+msgstr ""
+
+#: endpoints/class-wooconnector-checkout.php:105
+msgid "Sorry, Product only sells quantity 1."
+msgstr ""
+
+#: endpoints/class-wooconnector-checkout.php:131
+#: endpoints/class-wooconnector-checkout.php:134
+msgid "Sorry, Product out of stock."
+msgstr ""
+
+#: endpoints/class-wooconnector-checkout.php:150
+#: endpoints/class-wooconnector-checkout.php:168
+#, php-format
+msgid "Sorry, %s is required"
+msgstr ""
+
+#: endpoints/class-wooconnector-checkout.php:154
+msgid "Sorry, Incorrect phone number."
+msgstr ""
+
+#: endpoints/class-wooconnector-checkout.php:156
+msgid "Sorry, Incorrect email."
+msgstr ""
+
+#: endpoints/class-wooconnector-checkout.php:158
+#: endpoints/class-wooconnector-checkout.php:172
+msgid "Sorry, Incorrect postcode."
+msgstr ""
+
+#: endpoints/class-wooconnector-checkout.php:183
+msgid "Sorry, You must choose a Shipping."
+msgstr ""
+
+#: endpoints/class-wooconnector-checkout.php:213
+msgid "Sorry, Coupon not exits ."
+msgstr ""
+
+#: endpoints/class-wooconnector-checkout.php:279
+msgid "Sorry, Please try again."
+msgstr ""
+
+#: endpoints/class-wooconnector-contactus.php:76
+msgid "success"
+msgstr ""
+
+#: endpoints/class-wooconnector-contactus.php:77
+msgid "Your message has been sent!"
+msgstr ""
+
+#: endpoints/class-wooconnector-contactus.php:82
+msgid "fail"
+msgstr ""
+
+#: endpoints/class-wooconnector-contactus.php:83
+msgid "Something went wrong, go back and try again!"
+msgstr ""
+
+#: endpoints/class-wooconnector-coupon.php:54
+msgid "Woocommerce Deactive"
+msgstr ""
+
+#: endpoints/class-wooconnector-order.php:153
+msgid "Sorry, User not logged in."
+msgstr ""
+
+#: endpoints/class-wooconnector-products.php:3035
+msgid "You are posting comments too quickly. Slow down."
+msgstr ""
+
+#: endpoints/class-wooconnector-products.php:3052
+msgid "Error, Please input 1 to 5 in ratestar."
+msgstr ""
+
+#: endpoints/class-wooconnector-products.php:3055
+msgid "Error, Please type a comment."
+msgstr ""
+
+#: endpoints/class-wooconnector-products.php:3163
+#: endpoints/class-wooconnector-products.php:3281
+msgid ""
+"Duplicate comment detected; it looks as though you’ve already said that!"
+msgstr ""
+
+#: endpoints/class-wooconnector-products.php:3189
+msgid "Sorry, you must be logged in to comment."
+msgstr ""
+
+#: endpoints/class-wooconnector-products.php:3196
+msgid "Creating a comment requires valid author name and email values."
+msgstr ""
+
+#: endpoints/class-wooconnector-products.php:3199
+msgid "Sorry, is not a email."
+msgstr ""
+
+#: endpoints/class-wooconnector-products.php:3323
+msgid "Add a comment successfully"
+msgstr ""
+
+#: endpoints/class-wooconnector-products.php:3328
+msgid "Products are not allowed to comment"
+msgstr ""
+
+#: endpoints/class-wooconnector-products.php:3348
+#, php-format
+msgid "New comment on your post \"%s\""
+msgstr ""
+
+#: endpoints/class-wooconnector-products.php:3349
+#: endpoints/class-wooconnector-products.php:3361
+#, php-format
+msgid "Author: %s"
+msgstr ""
+
+#: endpoints/class-wooconnector-products.php:3350
+#: endpoints/class-wooconnector-products.php:3362
+#, php-format
+msgid "Email: %s"
+msgstr ""
+
+#: endpoints/class-wooconnector-products.php:3351
+#: endpoints/class-wooconnector-products.php:3363
+#, php-format
+msgid "URL: %s"
+msgstr ""
+
+#: endpoints/class-wooconnector-products.php:3352
+#: endpoints/class-wooconnector-products.php:3364
+#, php-format
+msgid "Comment: %1$s%2$s"
+msgstr ""
+
+#: endpoints/class-wooconnector-products.php:3353
+#, php-format
+msgid "You can see all comments on this post here: %1$s%2$s"
+msgstr ""
+
+#: endpoints/class-wooconnector-products.php:3354
+#, php-format
+msgid "Permalink: %s "
+msgstr ""
+
+#: endpoints/class-wooconnector-products.php:3355
+#: endpoints/class-wooconnector-products.php:3366
+#, php-format
+msgid "Trash it: %s "
+msgstr ""
+
+#: endpoints/class-wooconnector-products.php:3356
+#: endpoints/class-wooconnector-products.php:3367
+#, php-format
+msgid "Spam it: %s "
+msgstr ""
+
+#: endpoints/class-wooconnector-products.php:3357
+#, php-format
+msgid "[%1$s] Comment: \"%2$s\""
+msgstr ""
+
+#: endpoints/class-wooconnector-products.php:3359
+#, php-format
+msgid "A new comment on the post \"%s\" is waiting for your approval"
+msgstr ""
+
+#: endpoints/class-wooconnector-products.php:3360
+#, php-format
+msgid "%s"
+msgstr ""
+
+#: endpoints/class-wooconnector-products.php:3365
+#, php-format
+msgid "Approve it: %s"
+msgstr ""
+
+#: endpoints/class-wooconnector-products.php:3368
+#, php-format
+msgid ""
+"Currently %3$d comments are waiting for approval. Please visit the "
+"moderation panel: %1$s%2$s"
+msgstr ""
+
+#: endpoints/class-wooconnector-products.php:3369
+#, php-format
+msgid "[%1$s] Please moderate: \"%2$s\""
+msgstr ""
+
+#: endpoints/class-wooconnector-products.php:4210
+#: endpoints/class-wooconnector-products.php:4211
+msgid "Placeholder"
+msgstr ""
+
+#: endpoints/class-wooconnector-user.php:115
+msgid "Invalid resource id."
+msgstr ""
+
+#: endpoints/class-wooconnector-user.php:119
+msgid "Email address is invalid."
+msgstr ""
+
+#: endpoints/class-wooconnector-user.php:123
+msgid "Username isn't editable"
+msgstr ""
+
+#: hooks/brands/wooconnector-edit-field-brand.php:19
+msgid "This picture only work on Mobile App"
+msgstr ""
+
+#: hooks/class-wooconnector-brands-images.php:29
+msgid "Choose Brand Image"
+msgstr ""
+
+#: hooks/class-wooconnector-brands-images.php:30
+msgid "Choose Image"
+msgstr ""
+
+#: hooks/class-wooconnector-brands-images.php:108
+#: hooks/class-wooconnector-brands-images.php:113
+msgid "Image"
+msgstr ""
+
+#: hooks/class-wooconnector-brands-images.php:162
+msgid "Feature Image"
+msgstr ""
+
+#: hooks/class-wooconnector-brands-images.php:163
+msgid "Upload/Edit Image"
+msgstr ""
+
+#: hooks/class-wooconnector-brands-images.php:164
+msgid "Remove image"
+msgstr ""
+
+#: hooks/class-wooconnector-create-table-player.php:11
+msgid "Player"
+msgstr ""
+
+#: hooks/class-wooconnector-create-table-player.php:12
+msgid "Players"
+msgstr ""
+
+#: hooks/class-wooconnector-create-table-player.php:78
+msgid "No players avaliable."
+msgstr ""
+
+#: hooks/class-wooconnector-create-table-player.php:344
+#: hooks/class-wooconnector-create-table-player.php:345
+#: hooks/class-wooconnector-create-table-player.php:346
+msgid "<a "
+msgstr ""
+
+#: hooks/class-wooconnector-create-table-player.php:358
+msgid "PlayerID"
+msgstr ""
+
+#: hooks/class-wooconnector-create-table-player.php:359
+msgid "Subscribed"
+msgstr ""
+
+#: hooks/class-wooconnector-create-table-player.php:360
+msgid "Device"
+msgstr ""
+
+#: hooks/class-wooconnector-create-table-player.php:361
+msgid "Platform"
+msgstr ""
+
+#: hooks/class-wooconnector-create-table-player.php:362
+msgid "Os"
+msgstr ""
+
+#: hooks/class-wooconnector-create-table-player.php:363
+msgid "Language"
+msgstr ""
+
+#: hooks/class-wooconnector-create-table-player.php:364
+msgid "Session Count"
+msgstr ""
+
+#: hooks/class-wooconnector-create-table-player.php:365
+msgid "Player Test"
+msgstr ""
+
+#: hooks/class-wooconnector-create-table-player.php:366
+msgid "Action"
+msgstr ""
+
+#: hooks/class-wooconnector-create-table.php:11
+#: hooks/class-wooconnector-create-table.php:157
+msgid "Notification"
+msgstr ""
+
+#: hooks/class-wooconnector-create-table.php:12
+#: settings/class-wooconnector-settings.php:290
+#: settings/class-wooconnector-settings.php:291
+msgid "Notifications"
+msgstr ""
+
+#: hooks/class-wooconnector-create-table.php:86
+msgid "No notification avaliable."
+msgstr ""
+
+#: hooks/class-wooconnector-create-table.php:158
+msgid "Create date"
+msgstr ""
+
+#: hooks/class-wooconnector-create-table.php:159
+#: settings/onesignal/details-notification.php:95
+msgid "Recipients"
+msgstr ""
+
+#: hooks/class-wooconnector-create-table.php:160
+msgid "Successful"
+msgstr ""
+
+#: hooks/class-wooconnector-create-table.php:161
+msgid "Clicked"
+msgstr ""
+
+#: hooks/class-wooconnector-create-table.php:162
+msgid "Remaining"
+msgstr ""
+
+#: hooks/class-wooconnector-create-table.php:163
+msgid "Failed"
+msgstr ""
+
+#: hooks/class-wooconnector-create-table.php:164
+#: templates/wooconnector-content-checkout.php:242
+#: templates/wooconnector-content-checkout.php:313
+msgid "Total"
+msgstr ""
+
+#: hooks/class-wooconnector-create-table.php:165
+msgid "Actions"
+msgstr ""
+
+#: hooks/pushnotification.php:170 hooks/pushnotification.php:176
+#, php-format
+msgid "The order %s has been updated"
+msgstr ""
+
+#: hooks/pushnotification.php:173
+#, php-format
+msgid ""
+"Order %1$s has been updated on %2$s. You should log in your account to "
+"review this Order"
+msgstr ""
+
+#: hooks/wooconnector-core.php:29
+msgid "Order meta"
+msgstr ""
+
+#: hooks/wooconnector-core.php:42
+msgid "Mobile App Data"
+msgstr ""
+
+#: hooks/wooconnector-core.php:132 settings/class-wooconnector-settings.php:727
+msgid "Please input your api key!"
+msgstr ""
+
+#: hooks/wooconnector-core.php:136 settings/class-wooconnector-settings.php:732
+msgid "Please input your rest api key!"
+msgstr ""
+
+#: hooks/wooconnector-core.php:167 settings/class-wooconnector-settings.php:778
+msgid "Invalid player ids"
+msgstr ""
+
+#: hooks/wooconnector-core.php:170 settings/class-wooconnector-settings.php:782
+msgid "All included players are not subscribed"
+msgstr ""
+
+#: hooks/wooconnector-core.php:257
+msgid "From Mobile App"
+msgstr ""
+
+#: hooks/wooconnector-core.php:291
+msgid "Non Mobile App"
+msgstr ""
+
+#: hooks/wooconnector-core.php:294 settings/class-wooconnector-settings.php:270
+#: settings/class-wooconnector-settings.php:271
+msgid "Mobile App"
+msgstr ""
+
+#: hooks/wooconnector-core.php:425
+msgid "Sorry, Currency can only enter the character a - z."
+msgstr ""
+
+#: hooks/wooconnector-core.php:426 settings/class-wooconnector-settings.php:471
+msgid "Rate is invalid."
+msgstr ""
+
+#: hooks/wooconnector-core.php:427 settings/class-wooconnector-settings.php:487
+msgid "Number of decimals is invalid. Please specify a valid number [0-9]."
+msgstr ""
+
+#: hooks/wooconnector-core.php:428 settings/class-wooconnector-settings.php:455
+msgid "The currencies is duplicated."
+msgstr ""
+
+#: hooks/wooconnector-core.php:429 settings/class-wooconnector-settings.php:447
+#: settings/class-wooconnector-settings.php:463
+msgid "Currency Code is invalid."
+msgstr ""
+
+#: hooks/wooconnector-core.php:430 settings/class-wooconnector-settings.php:479
+msgid "Rate is required."
+msgstr ""
+
+#: hooks/wooconnector-core.php:431
+msgid "You want to fix the exchange rate yourself?"
+msgstr ""
+
+#: hooks/wooconnector-core.php:432 settings/class-wooconnector-settings.php:259
+msgid "Successful deletion"
+msgstr ""
+
+#: hooks/wooconnector-core.php:433
+msgid "Google Finance does not support this currency"
+msgstr ""
+
+#: hooks/wooconnector-core.php:434
+msgid "You must select a currency"
+msgstr ""
+
+#: hooks/wooconnector-core.php:456 settings/class-wooconnector-settings.php:281
+#: settings/class-wooconnector-settings.php:282 settings/onesignal/tab.php:6
+#: settings/views/settings-form.php:83
+msgid "Settings"
+msgstr ""
+
+#: hooks/wooconnector-core.php:568 settings/onesignal/subtab.php:9
+msgid "All Users"
+msgstr ""
+
+#: hooks/wooconnector-core.php:934
+msgid "Left"
+msgstr ""
+
+#: hooks/wooconnector-core.php:936
+msgid "Right"
+msgstr ""
+
+#: hooks/wooconnector-core.php:938
+msgid "Left with space"
+msgstr ""
+
+#: hooks/wooconnector-core.php:940
+msgid "Right with space"
+msgstr ""
+
+#: hooks/wooconnector-core.php:989 hooks/wooconnector-core.php:995
+#, php-format
+msgid "no data for %s"
+msgstr ""
+
+#: hooks/wooconnector-core.php:1320 hooks/wooconnector-core.php:1339
+msgid "Only use in Mobile App"
+msgstr ""
+
+#: hooks/wooconnector-core.php:1490
+msgid "Half Day"
+msgstr ""
+
+#: languages/wooconnector-settings-languages.php:13
+#: languages/wooconnector-settings-languages.php:14
+msgid "Languages"
+msgstr ""
+
+#: settings/brands/class-wooconnector-brands.php:39
+msgid "Brand added."
+msgstr ""
+
+#: settings/brands/class-wooconnector-brands.php:40
+#: settings/brands/class-wooconnector-brands.php:44
+msgid "Brand deleted."
+msgstr ""
+
+#: settings/brands/class-wooconnector-brands.php:41
+msgid "Brand updated."
+msgstr ""
+
+#: settings/brands/class-wooconnector-brands.php:42
+msgid "Brand not added."
+msgstr ""
+
+#: settings/brands/class-wooconnector-brands.php:43
+msgid "Brand not updated."
+msgstr ""
+
+#: settings/brands/class-wooconnector-brands.php:53
+#: settings/brands/class-wooconnector-brands.php:55
+#: settings/brands/class-wooconnector-brands.php:93
+#: settings/brands/class-wooconnector-brands.php:94
+msgid "Brands"
+msgstr ""
+
+#: settings/brands/class-wooconnector-brands.php:54
+msgid "Brand"
+msgstr ""
+
+#: settings/brands/class-wooconnector-brands.php:56
+msgid "All Brands"
+msgstr ""
+
+#: settings/brands/class-wooconnector-brands.php:57
+msgid "Edit Brand"
+msgstr ""
+
+#: settings/brands/class-wooconnector-brands.php:58
+msgid "View Brand"
+msgstr ""
+
+#: settings/brands/class-wooconnector-brands.php:59
+msgid "Update Brand"
+msgstr ""
+
+#: settings/brands/class-wooconnector-brands.php:60
+msgid "Add New Brand"
+msgstr ""
+
+#: settings/brands/class-wooconnector-brands.php:61
+msgid "New Brand Name"
+msgstr ""
+
+#: settings/brands/class-wooconnector-brands.php:62
+msgid "Search Brands"
+msgstr ""
+
+#: settings/brands/class-wooconnector-brands.php:63
+msgid "Parent Brand"
+msgstr ""
+
+#: settings/brands/class-wooconnector-brands.php:64
+msgid "Parent Brand:"
+msgstr ""
+
+#: settings/brands/class-wooconnector-brands.php:65
+msgid "No brands found."
+msgstr ""
+
+#: settings/brands/class-wooconnector-brands.php:66
+msgid "Choose from the most used brands"
+msgstr ""
+
+#: settings/brands/class-wooconnector-brands.php:67
+msgid "Separate brands with commas"
+msgstr ""
+
+#: settings/class-wooconnector-settings.php:431
+#: settings/class-wooconnector-settings.php:497
+#: settings/class-wooconnector-settings.php:568
+#: settings/popuphomepage/class-wooconnector-popup.php:46
+#: settings/slider/class-wooconnector-slider.php:168
+#: settings/slider/class-wooconnector-slider.php:490
+msgid "Successfully Update"
+msgstr ""
+
+#: settings/class-wooconnector-settings.php:507
+msgid "Your APP ID must be 36 characters. Please retype"
+msgstr ""
+
+#: settings/class-wooconnector-settings.php:512
+msgid "Your REST API KEY must be 48 characters. Please retype"
+msgstr ""
+
+#: settings/class-wooconnector-settings.php:612
+msgid "Your URL is not Product URL. Please retype"
+msgstr ""
+
+#: settings/class-wooconnector-settings.php:649
+#: settings/class-wooconnector-settings.php:654
+msgid "Your URL is not Product Category URL. Please retype"
+msgstr ""
+
+#: settings/class-wooconnector-settings.php:752
+msgid "Send to segments empty!"
+msgstr ""
+
+#: settings/class-wooconnector-settings.php:761
+msgid "List test player empty!"
+msgstr ""
+
+#: settings/class-wooconnector-settings.php:822
+msgid "Successfully Send Notice"
+msgstr ""
+
+#: settings/class-wooconnector-settings.php:826
+msgid "Successfully Save Notice"
+msgstr ""
+
+#: settings/currency/settingscurrency.php:26
+msgid "Settings Currency"
+msgstr ""
+
+#: settings/currency/settingscurrency.php:40
+#: settings/currency/settingscurrency.php:131 settings/onesignal/tab.php:7
+msgid "Currency"
+msgstr ""
+
+#: settings/currency/settingscurrency.php:41
+#: settings/currency/settingscurrency.php:132
+msgid "Rate / 1"
+msgstr ""
+
+#: settings/currency/settingscurrency.php:42
+#: settings/currency/settingscurrency.php:133
+msgid "Currency position"
+msgstr ""
+
+#: settings/currency/settingscurrency.php:43
+#: settings/currency/settingscurrency.php:134
+msgid "Thousand separator"
+msgstr ""
+
+#: settings/currency/settingscurrency.php:44
+#: settings/currency/settingscurrency.php:135
+msgid "Decimal separator"
+msgstr ""
+
+#: settings/currency/settingscurrency.php:45
+#: settings/currency/settingscurrency.php:136
+msgid "Number of decimals"
+msgstr ""
+
+#: settings/currency/settingscurrency.php:144
+msgid ""
+"Use Google Finance's webservice (<a target='_blank' href='https://finance."
+"google.com/finance'>https://finance.google.com/finance</a>) to update your "
+"currency exchange rates. \n"
+"However, please use caution: rates are provided as-is."
+msgstr ""
+
+#: settings/currency/settingscurrency.php:148
+#: settings/onesignal/content-setting.php:342
+#: settings/onesignal/onesignal-form.php:57
+#: settings/popuphomepage/wooconnector-popup.php:92
+#: settings/views/settings-form.php:345
+msgid "Save"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:80
+msgid "New push notification"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:95
+msgid "Title Notification"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:108
+#: settings/onesignal/details-notification.php:58
+msgid "Content Notification"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:121
+msgid "Subtitle Notification"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:131
+msgid "Subtitle only for ios 10+"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:135
+msgid "Internal Link Clickable"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:159
+msgid "Small Icon Notification"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:171
+msgid "You should upload a 48x48 image for small icon"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:175
+msgid "Icon Notification"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:187
+msgid "You should upload a 256x256 image for icon"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:191
+msgid "Bigimages Notification"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:203
+msgid ""
+"Use a 2:1 aspect ratio, You should upload a 1024x512 image for big images"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:207
+msgid "Sound Notification"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:213
+msgid "Android Background Images"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:224
+msgid "You should upload a 17 : 2 image for background"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:228
+msgid "Android Title Color"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:236
+msgid "Android Content Color"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:246
+msgid ""
+"The title color or content color only changes when you use background images"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:250
+msgid "Android Led Color"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:259
+msgid "Android Accent Color"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:267
+msgid "Send this message to?"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:273
+msgid "Send to Particular Segment(s)"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:275
+#: settings/onesignal/details-notification.php:87
+msgid "Send to segments"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:281
+#: settings/onesignal/content-setting.php:298
+msgid "All"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:283
+#: settings/onesignal/content-setting.php:300
+msgid "Engaged Users"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:285
+#: settings/onesignal/content-setting.php:302
+msgid "Active Users"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:287
+#: settings/onesignal/content-setting.php:304
+msgid "Inactive Users"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:292
+msgid "Exclude users in segments"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:312
+msgid "Send to Test Device(s)"
+msgstr ""
+
+#: settings/onesignal/content-setting.php:326
+msgid ""
+"You have not added any test users yet. You can do this on the List Player "
+"page."
+msgstr ""
+
+#: settings/onesignal/content-setting.php:343
+msgid "Save And Send"
+msgstr ""
+
+#: settings/onesignal/details-notification.php:60
+msgid "Messeger Title"
+msgstr ""
+
+#: settings/onesignal/details-notification.php:72
+msgid "Messeger Content"
+msgstr ""
+
+#: settings/onesignal/details-notification.php:84
+msgid "Segments"
+msgstr ""
+
+#: settings/onesignal/details-notification.php:91
+msgid "Exclude segments"
+msgstr ""
+
+#: settings/onesignal/details-notification.php:98
+msgid "Total Number of Recipients"
+msgstr ""
+
+#: settings/onesignal/details-notification.php:106
+msgid "Google Android"
+msgstr ""
+
+#: settings/onesignal/details-notification.php:109
+msgid "Big Picture "
+msgstr ""
+
+#: settings/onesignal/details-notification.php:113
+msgid "Large Icon "
+msgstr ""
+
+#: settings/onesignal/details-notification.php:117
+msgid "Small Icon "
+msgstr ""
+
+#: settings/onesignal/details-notification.php:121
+#: settings/onesignal/details-notification.php:136
+msgid "Sound "
+msgstr ""
+
+#: settings/onesignal/details-notification.php:125
+#: settings/onesignal/details-notification.php:140
+msgid "Url "
+msgstr ""
+
+#: settings/onesignal/details-notification.php:133
+msgid "Apple iOS"
+msgstr ""
+
+#: settings/onesignal/list-notification.php:10 settings/onesignal/subtab.php:8
+msgid "Sent Notification"
+msgstr ""
+
+#: settings/onesignal/onesignal-form.php:11
+msgid "Save API successfully"
+msgstr ""
+
+#: settings/onesignal/onesignal-form.php:16 settings/onesignal/subtab.php:6
+msgid "Onesignal API"
+msgstr ""
+
+#: settings/onesignal/onesignal-form.php:27
+msgid "Onesignal APP ID"
+msgstr ""
+
+#: settings/onesignal/onesignal-form.php:35
+#, php-format
+msgid ""
+"Enter your Onesignal Onesignal APP ID. You can find this in App Settings > "
+"Keys & IDs. %s"
+msgstr ""
+
+#: settings/onesignal/onesignal-form.php:41
+msgid "Onesignal APP REST API"
+msgstr ""
+
+#: settings/onesignal/onesignal-form.php:49
+#, php-format
+msgid ""
+"Enter 48 characters of your Onesignal REST API Key. You can find this in App "
+"Settings > Keys & IDs. %s"
+msgstr ""
+
+#: settings/onesignal/subtab.php:7
+msgid "New Notification"
+msgstr ""
+
+#: settings/onesignal/subtab.php:41 settings/onesignal/subtab.php:43
+msgid ""
+"Your Onesignal Api key is invalid, so you can not use this feature. Please "
+"recheck your Onesignal Api Key"
+msgstr ""
+
+#: settings/onesignal/wooconnector-ajax.php:61
+#: settings/onesignal/wooconnector-ajax.php:98
+msgid "Sorry"
+msgstr ""
+
+#: settings/popuphomepage/class-wooconnector-popup.php:54
+#: settings/popuphomepage/class-wooconnector-popup.php:55
+msgid "Popup Homepage"
+msgstr ""
+
+#: settings/popuphomepage/wooconnector-popup.php:12
+msgid "WooConnector Popup"
+msgstr ""
+
+#: settings/popuphomepage/wooconnector-popup.php:37
+msgid "Popup Settings"
+msgstr ""
+
+#: settings/popuphomepage/wooconnector-popup.php:41
+msgid "Add Photo"
+msgstr ""
+
+#: settings/popuphomepage/wooconnector-popup.php:42
+msgid "Delete Photo"
+msgstr ""
+
+#: settings/popuphomepage/wooconnector-popup.php:45
+msgid "Link"
+msgstr ""
+
+#: settings/popuphomepage/wooconnector-popup.php:49
+msgid "Use available period"
+msgstr ""
+
+#: settings/popuphomepage/wooconnector-popup.php:53
+msgid "From"
+msgstr ""
+
+#: settings/popuphomepage/wooconnector-popup.php:55
+#: settings/popuphomepage/wooconnector-popup.php:60
+msgid "Clear"
+msgstr ""
+
+#: settings/popuphomepage/wooconnector-popup.php:58
+msgid "To"
+msgstr ""
+
+#: settings/popuphomepage/wooconnector-popup.php:84
+msgid "Publish"
+msgstr ""
+
+#: settings/popuphomepage/wooconnector-popup.php:87
+#: settings/slider/class-wooconnector-slider.php:85
+msgid "Status"
+msgstr ""
+
+#: settings/popuphomepage/wooconnector-popup.php:87
+#: settings/slider/class-wooconnector-slider.php:85
+msgid "Published"
+msgstr ""
+
+#: settings/popuphomepage/wooconnector-popup.php:88
+#: settings/slider/class-wooconnector-slider.php:86
+msgid "Visibility"
+msgstr ""
+
+#: settings/popuphomepage/wooconnector-popup.php:88
+#: settings/slider/class-wooconnector-slider.php:86
+msgid "Public"
+msgstr ""
+
+#: settings/popuphomepage/wooconnector-popup.php:89
+#: settings/slider/class-wooconnector-slider.php:87
+msgid "Catalog visibility"
+msgstr ""
+
+#: settings/popuphomepage/wooconnector-popup.php:89
+#: settings/slider/class-wooconnector-slider.php:87
+msgid "Visible"
+msgstr ""
+
+#: settings/slider/class-wooconnector-slider.php:42
+msgid "WooConnector Slider"
+msgstr ""
+
+#: settings/slider/class-wooconnector-slider.php:54
+msgid "Slides"
+msgstr ""
+
+#: settings/slider/class-wooconnector-slider.php:57
+#: settings/slider/class-wooconnector-slider.php:58
+msgid "Add Slide"
+msgstr ""
+
+#: settings/slider/class-wooconnector-slider.php:76
+msgid "Resize Images for Slider"
+msgstr ""
+
+#: settings/slider/class-wooconnector-slider.php:79
+msgid "Width"
+msgstr ""
+
+#: settings/slider/class-wooconnector-slider.php:79
+#: settings/slider/class-wooconnector-slider.php:80
+msgid "Pixel"
+msgstr ""
+
+#: settings/slider/class-wooconnector-slider.php:80
+msgid "Height"
+msgstr ""
+
+#: settings/slider/class-wooconnector-slider.php:90
+msgid "Save Sliders"
+msgstr ""
+
+#: settings/slider/class-wooconnector-slider.php:128
+msgid "Delete slide"
+msgstr ""
+
+#: settings/slider/class-wooconnector-slider.php:132
+#: settings/slider/wooconnector-slider-ajax.php:61
+msgid "General"
+msgstr ""
+
+#: settings/slider/class-wooconnector-slider.php:139
+#, php-format
+msgid "When user click this picture, the URL will be openned. %s"
+msgstr ""
+
+#: settings/slider/class-wooconnector-slider.php:215
+msgid "Home Slideshow"
+msgstr ""
+
+#: settings/slider/class-wooconnector-slider.php:216
+msgid "Home Slideshows"
+msgstr ""
+
+#: settings/views/settings-form.php:94
+msgid "Email received in Contact page"
+msgstr ""
+
+#: settings/views/settings-form.php:102
+msgid ""
+"Email receive a message when someone submit a message in Contact page on "
+"mobile application. This option only work if your mobile application have a "
+"Form in Contact page"
+msgstr ""
+
+#: settings/views/settings-form.php:110
+msgid "Include Custom Attributes to Filter"
+msgstr ""
+
+#: settings/views/settings-form.php:116
+msgid "Billing/Shipping Countries"
+msgstr ""
+
+#: settings/views/settings-form.php:124
+msgid ""
+"List Countries display in Billing/Shipping Form when checkout on mobile "
+"application"
+msgstr ""
+
+#: settings/views/settings-form.php:193
+msgid "Billing/Shipping States"
+msgstr ""
+
+#: settings/views/settings-form.php:201
+msgid ""
+"List States display in Billing/Shipping Form when checkout on mobile "
+"application"
+msgstr ""
+
+#: settings/views/settings-form.php:306
+msgid "Search Keyword In"
+msgstr ""
+
+#: settings/views/settings-form.php:310
+msgid "Categories"
+msgstr ""
+
+#: settings/views/settings-form.php:314
+msgid "Product Tags"
+msgstr ""
+
+#: settings/views/settings-form.php:318
+msgid "Product Description"
+msgstr ""
+
+#: settings/views/settings-form.php:325
+msgid ""
+"When an User enter a keyword in Search page of mobile application, the app "
+"can search keyword in Product Name. Also you can extend result with search "
+"keyword in Category Name, Product Tags, Product Description from this option"
+msgstr ""
+
+#: settings/views/settings-form.php:333
+msgid "Change Position Price"
+msgstr ""
+
+#: settings/views/settings-form.php:337
+msgid "Change"
+msgstr ""
+
+#: templates/error.php:3
+msgid "Data key no found"
+msgstr ""
+
+#: templates/error.php:6
+msgid "Data key not exist "
+msgstr ""
+
+#: templates/error.php:9
+msgid "Order paid"
+msgstr ""
+
+#: templates/wooconnector-content-checkout.php:226
+msgid "Your order"
+msgstr ""
+
+#: templates/wooconnector-content-checkout.php:241
+msgid "Product"
+msgstr ""
+
+#: templates/wooconnector-content-checkout.php:269
+msgid "Subtotal"
+msgstr ""
+
+#: wooconnector.php:237
+msgid ""
+"Your PHP have not installed the GD library . Please install the GD library "
+"to avoid some errors when using the REST API. "
+msgstr ""
+
+#: wooconnector.php:238
+msgid "Install GD library"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "WooCommerce Connector"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://buy-addons.com/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Intergrated to Woocommerce API"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "buy-addons"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://buy-addons.com"
+msgstr ""

@@ -72,10 +72,27 @@ export class AccountPage {
 		// else this.isCache = true;
 		this.getData();
 	}
+
+	loginPage() {
+		this.navCtrl.push(this.LoginPage, {});
+	}
+
 	getData() {
 		this.storageMul.get(['login', 'user']).then(val => {
 			if (val) {
-				if (val["user"]) this.data["user"] = val["user"]['mobiconnector_info'];
+				if (val["user"]) {
+					this.data["user"] = val["user"]['mobiconnector_info'];
+
+					console.log('user');
+					console.log(this.data["user"]);
+
+					if (val["user"].wcemailverified) {
+
+						this.data["user"].wcemailverified = val["user"].wcemailverified;
+
+					}
+				}
+
 				if (val["login"] && val["login"]["token"]) {
 					this.isLogin = true;
 					this.getDataValidToken(val["login"]);

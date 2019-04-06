@@ -1,0 +1,5 @@
+.ui-datepicker-header.ui-widget-header , .ui-datepicker-buttonpane.ui-widget-content{
+	    background-color: #cacaca !important;
+}
+table.ui-datepicker-calendar{margin-bottom: 0px !important; background-color:#fff;}
+.woocommerce-additional-fields{clear: both;}

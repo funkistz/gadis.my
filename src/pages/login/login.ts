@@ -32,6 +32,7 @@ declare var google_web_api_key;
 	providers: [Core]
 })
 export class LoginPage {
+
 	wordpress_user: string = wordpress_url + '/wp-json/mobiconnector/user';
 	SignupPage = SignupPage;
 	formLogin: FormGroup;
@@ -42,6 +43,8 @@ export class LoginPage {
 	socialMode: boolean = false;
 	playerId: string;
 	loading: boolean = false;
+	message = null;
+
 	constructor(
 		public platform: Platform,
 		public navCtrl: NavController,
@@ -60,6 +63,9 @@ export class LoginPage {
 	) {
 		// this.login_facebook = config['app_settings']['facebook'];
 		// this.login_google = config['app_settings']['google'];
+
+		// this.message = navParams.get("message");
+
 		storage.get('userID').then(val => {
 			if (val) {
 				this.playerId = val;
@@ -82,6 +88,12 @@ export class LoginPage {
 		translate.get('login').subscribe(trans => { if (trans) this.trans = trans; });
 	}
 
+	signupPage() {
+
+		this.navCtrl.push(this.SignupPage, {});
+
+	}
+
 	login(key: string) {
 		if (key == 'normal') {
 			this.loginNormal();
@@ -93,6 +105,8 @@ export class LoginPage {
 	}
 
 	loginNormal() {
+
+
 		this.core.showLoading();
 		this.http.post(wordpress_url + '/wp-json/mobiconnector/jwt/token', this.formLogin.value)
 			.subscribe(
@@ -111,8 +125,16 @@ export class LoginPage {
 						headers: headers,
 						withCredentials: true
 					}).subscribe(user => {
+						console.log('user');
 						console.log(user.json());
 						this.core.hideLoading();
+
+						let userData = user.json();
+
+						// if (!userData.wcemailverified) {
+						// 	this.presentToast('Please verify your email address.');
+						// }
+
 						this.storage.set('user', user.json()).then(() => {
 							this.storage.set('login', login).then(() => this.navCtrl.pop());
 						});
@@ -124,12 +146,23 @@ export class LoginPage {
 					});
 				},
 				err => {
+
+					console.log(err.json());
+
+					if (err.json()) {
+
+						// this.message = err.json().message;
+
+						this.presentToast('Login Failed!');
+
+					}
+
 					this.core.hideLoading();
 					this.formLogin.patchValue({ password: null });
 					this.wrong = true;
 				},
 
-		);
+			);
 	}
 	loginFacebook() {
 		this.socialMode = true;
@@ -225,8 +258,46 @@ export class LoginPage {
 		this.http.post(wordpress_url + '/wp-json/mobiconnector/settings/usersociallogin', params)
 			.subscribe(
 				res => {
+
+					console.log('social user');
+					console.log(res.json());
+
+					let user = res.json();
+
+					if (!user.wcemailverified) {
+
+						// console.log('user id: ' + user.ID);
+
+						let params = {
+							id: user.ID,
+							wcemailverified: "true",
+						};
+
+						let updateRequest = this.http.post(wordpress_url + '/wcmp-vendor.php',
+							params
+						).subscribe(response => {
+
+							console.log(response);
+							if (response) {
+
+								if (response.json().status == 'success') {
+									this.presentToast('User successfully verified!');
+								} else {
+									this.presentToast('Some error occured');
+								}
+
+							}
+
+						});
+
+					} else {
+
+					}
+
+					user.wcemailverified = "true";
+
 					this.loading = false;
-					this.storage.set('user', res.json()).then(() => {
+					this.storage.set('user', user).then(() => {
 						this.storage.set('login', { token: res.json()['token'], socialStatus: params['social'] }).then(() => this.navCtrl.pop());
 					});
 					console.log(res.json());
@@ -289,6 +360,15 @@ export class LoginPage {
 			]
 		});
 		alert.present();
+	}
+
+	presentToast(text) {
+		let toast = this.toastCtrl.create({
+			message: text,
+			duration: 3000,
+			position: 'top'
+		});
+		toast.present();
 	}
 
 }

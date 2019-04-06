@@ -6,6 +6,7 @@ import { SearchPage } from '../search/search';
 import { AccountPage } from '../account/account';
 import { VendorsPage } from '../vendors/vendors';
 import { MyshopPage } from '../myshop/myshop';
+import { Myshop2Page } from '../myshop2/myshop2';
 
 @Component({
   templateUrl: 'tabs.html'
@@ -17,7 +18,7 @@ export class TabsPage {
   SearchPage = SearchPage;
   AccountPage = AccountPage;
   VendorsPage = VendorsPage;
-  MyshopPage = MyshopPage;
+  MyshopPage = Myshop2Page;
 
   // HomePage = MyshopPage;
 

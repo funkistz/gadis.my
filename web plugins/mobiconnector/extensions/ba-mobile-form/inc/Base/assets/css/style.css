@@ -1,0 +1,159 @@
+span.status-enabled.tips::before {
+    font-family: WooCommerce;
+    speak: none;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    margin: 0;
+    text-indent: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    content: "";
+    color: #a46497;
+}
+#ba_checkout_fields span.status-enabled.tips{
+    font-size: 1.6em;
+    display: block;
+    text-indent: -9999px;
+    position: relative;
+    height: 1em;
+    width: 1em;
+    cursor: pointer;
+}
+.baform_icon-status-completed:before {
+    content: "\e017";
+} 
+.baform_icon-status-cancelled:before{
+    content: "\e033";
+    color: #cc0000;
+}
+#ba_checkout_fields .status > a {font-size: 1.4em; cursor: pointer;}
+[class^="baform_icon-"], [class*="baform_icon-"] {
+    font-family: WooCommerce;
+    speak: none;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    margin: 0;
+    text-indent: 0;
+    text-align: center;
+    color: #a46497;
+    -moz-osx-font-smoothing: grayscale;
+}
+.ngothoai-action  p > strong{float: left; width: 100px;}
+.ngothoai-action  p > input, .ngothoai-action  p > select{width: 200px;}
+
+.sort.ui-sortable-handle {
+    cursor: move;
+}
+.sort.ui-sortable-handle {
+    vertical-align: middle;
+}
+.col.col-item-form{
+    width: 23%;
+    width: 23%;
+    position: relative;
+    float: left;
+}
+.actions.ngothoai-action{
+    position: relative;
+    clear: both;
+    display: inline-block;
+}
+.form-design p.submit {
+    margin-top: 0px;
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+ #createuser .form-field-custom input[type="email"], #createuser .form-field-custom input[type="text"], #createuser .form-field-custom input[type="tel"],  #createuser .form-field-custom textarea , #createuser .form-field-custom select,  #createuser .form-field-custom div.wc-enhanced-select  , .form-table select.checkout_chosen_select {
+    width: 25em;
+}
+.form-design table.form-table input[type="text"] , .form-design table.form-table select{
+    width: 40%;
+    height: 26.4px;
+    font-size: 14px;
+    color: #32373c;
+}
+#your-profile .form-table input[type="email"], #your-profile .form-table input[type="text"], #your-profile .form-table input[type="tel"], #your-profile .form-table select{
+    width: 25em;
+ }
+.ba-background-white{
+    background-color: #fff;
+    padding: 1px 12px;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+}
+table.form-table > tbody > tr > th{
+    font-size: 12px;
+    color: #555;
+    vertical-align: middle;
+    font-weight: 400;
+}
+.baform_button_from >p.submit{display: inline-block;}
+.baform-tick-col{width: 8%;}
+#ba_checkout_fields .ui-sortable tr td{line-height: 26px;height: 28px;}
+
+.form-design table.form-table input.disabled, .form-design table.form-table input:disabled, .form-design table.form-table select.disabled, .form-design table.form-table select:disabled, .form-design table.form-table textarea.disabled, .form-design table.form-table textarea:disabled {
+    background: rgba(255,255,255,.5);
+    border-color: rgba(222,222,222,.75);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.04);
+    color: rgba(51,51,51,.5);
+}
+.form-table .baform_setup_field th label{font-size: 14px;}
+tr.baform_setup_field td label{position: relative;}
+.baform_setup_field .woocommerce-help-tip::after{
+    font-family: Dashicons;
+    speak: none;
+    font-weight: 400;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    text-indent: 0px;
+    position: absolute;
+    top: 4px;
+    left: -28px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    content: "";
+    cursor: help;
+    font-variant: normal;
+    margin: 0px;
+}
+.baform_setup_field .tooltiptext {
+    visibility: hidden;
+    position: absolute;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 8px 5px;
+    border-radius: 6px;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity .6s;
+    bottom: 125%;
+    left: -65px;
+    margin-left: -60px;
+    width: 200px;
+    font-size: 12px;
+}
+.tooltip-top::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+.baform_setup_field .woocommerce-help-tip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}

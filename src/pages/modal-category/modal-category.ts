@@ -56,6 +56,10 @@ export class ModalCategoryPage {
 
   }
 
+  ionViewDidEnter() {
+    this.today = moment();
+  }
+
   search(ev: any) {
 
     if (this.loading) {

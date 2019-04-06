@@ -54,6 +54,7 @@ export class CategoriesPage {
 		this.loadCategories();
 	}
 	ionViewDidEnter() {
+		this.today = moment();
 		this.buttonCart.update();
 	}
 	onSwipeContent(e) {

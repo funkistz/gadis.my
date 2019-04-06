@@ -1,0 +1,214 @@
+#mobi_views{
+    width:120px;
+}
+.mobiconnector-upload{
+    width:100px;
+    height:100px;
+}
+.mobiconnector-avatar-24{
+    width:24px !important;
+    height:24px !important;
+}
+.mobiconnector-avatar-26{
+    width:16px !important;
+    overflow: hidden;
+}
+.mobiconnector-avatar-32{
+    width:32px;
+    height:32px;
+}
+.mobiconnector-avatar-50{
+    width:50px;
+    height:50px;
+}
+.mobiconnector-avatar-96{
+    width:100px;
+    height:100px;
+}
+.mobiconnector-modal{
+    display:none;
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    background: rgba(0, 0, 0, 0.61);
+    z-index:10000;
+}
+.modal-popup{
+    position:fixed;
+    left:50%;
+    top:51%;
+    transform:translate(-50%,-50%);
+    min-height:60px;
+    max-height:600px;
+    width:700px;
+    border-radius:1px;
+    background: #FFF;
+    box-shadow:0px 0px 8px #111;
+}
+.modal-content{
+    overflow-Y: auto;
+    max-height:527px;
+    width:100%;
+    float:left;
+    background: #FFF;
+    padding: 13px 16px;
+}
+.modal-footer{
+    float:left;
+    height:33px;
+    width:100%;
+    border-top: 1px solid #ddd;
+    background: #f3f3f3;
+    padding: 13px 16px;
+}
+.modal-footer > a{
+    margin: 0;
+    display: inline-block;
+    background: #0085ba;
+    border-color: #0073aa #006799 #006799;
+    text-decoration: none;
+    color:#FFF;
+    padding:6px 14px;
+    font-size:14px;
+    vertical-align: middle;
+    height: auto;
+    margin-bottom: 4px;
+    line-height: normal;
+    text-shadow: 0 -1px 1px #006799, 1px 0 1px #006799, 0 1px 1px #006799, -1px 0 1px #006799;
+    cursor: pointer;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 3px;
+    box-sizing: border-box;
+    white-space: nowrap;
+    -webkit-appearance: none;
+    float:right;
+}
+.modal-footer > a:active{
+    background: #0073aa;
+    border-color: #006799;
+    -webkit-box-shadow: inset 0 2px 0 #006799;
+    box-shadow: inset 0 2px 0 #006799;
+    vertical-align: top;
+    transform: translateY(1px);
+    outline: 0;
+}
+.modal-footer > a:hover{
+    background: #008ec2;
+    border-color: #006799;
+    color: #fff;
+}
+.modal-footer > a:forcus{
+    -webkit-box-shadow: 0 1px 0 #0073aa, 0 0 2px 1px #33b3db;
+    box-shadow: 0 1px 0 #0073aa, 0 0 2px 1px #33b3db;
+    background: #008ec2;
+    border-color: #006799;
+    color: #fff;
+}
+.mobiconnector-modal .close-modal{
+    cursor:pointer;
+    position:fixed;
+    right: -58px;
+    top: 2px;
+    transform:translate(-30%,0%);
+    border-radius:3px;
+    border:none;
+    font-size:20px;
+    font-weight:bold;
+    background: none;
+    color:#EEE;
+}
+.mobiconnector-modal .close-modal:hover{
+    color:#3399FF;
+}
+.mobiconnector_category_image > img{
+    max-width:68px;
+    max-height:68px;
+}
+.mobiconnector-checkbox-form-field{
+    float:left;
+    width:100%;
+}
+.mobiconnector-label-checkbox-field{
+    float:left;
+}
+.mobiconnector-checkbox-field{
+    float:left;
+    margin-right:8px !important;
+    margin-top:3px !important;
+}
+.mobiconnector-icon{
+    font-size:20px;
+    color:#008ec2;
+}
+.column-mobiconnector_category_disable{
+    text-align: center !important;
+}
+.mobiconnector-content-post-noti{
+    height:auto;
+    display:none;
+}
+.mobiconnector-after-checked-notification{
+    width:100%;
+    display:none;
+}
+.mobiconnector-after-checked-notification > label{
+    width:100%;
+    float:left 
+}
+.mobiconnector-after-checked-notification >input{
+    width:100%;
+    float:right 
+}
+.mobiconnector-after-checked-notification >textarea{
+    resize:vertical;
+    width:100%;
+    float:right 
+}
+.mobiconnector-notice-categories-images{
+    display:block;
+    padding:8px 0px;
+    font-size:13px;
+    color:#666;
+    width:100%;
+    float:left;
+}
+.mobiconnector-views-preview{
+    background-image: url(../images/iconviews.png);
+    background-size:20px 20px;
+    width:20px;
+    height:20px;
+}
+#mobiconnector-post-views::before{
+    display: inline-block;
+    font: 400 20px/1 dashicons;
+    left: -1px;
+    padding: 0 2px 0 0;
+    position: relative;
+    text-decoration: none !important;
+    vertical-align: top;
+    color: #888;
+    content: "\f185";
+    top: -1px;
+}
+.notice-mobiconnector{
+    width:calc(97% + 6px) !important;
+    float:left;
+    border-left: 4px solid #fff;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+    margin: 5px 0px 15px 0px;
+    padding: 1px 12px;
+    background: #fff;
+}
+.notice-mobiconnector.notice-success{
+    border-left-color: #46b450;
+}
+.notice-mobiconnector.notice-error{
+    border-left-color: #FF0000;
+}
+.notice-mobiconnector p{
+    margin: .5em 0;
+    padding: 2px;
+}

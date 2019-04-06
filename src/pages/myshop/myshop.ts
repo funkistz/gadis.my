@@ -105,6 +105,7 @@ export class MyshopPage {
       }
       if (val["user"]) {
 
+        console.log("user");
         console.log(val["user"]);
         this.user = val["user"];
 
@@ -209,6 +210,12 @@ export class MyshopPage {
     shop.image = this.getMeta(meta_data, '_vendor_image');
     shop.banner = this.getMeta(meta_data, '_vendor_banner');
     shop.message_to_buyers = this.getMeta(meta_data, '_vendor_message_to_buyers');
+
+    if (this.getMeta(meta_data, '_vendor_turn_off') == 'Enable') {
+      shop.activated = false;
+    } else {
+      shop.activated = true;
+    }
 
     if (!shop.image) {
       shop.image = 'assets/images/person.png';
@@ -462,7 +469,7 @@ export class MyshopPage {
     this.loaded = false;
     this.shop = {
       shop: {
-        banner: "assets/images/account-bg.png",
+        banner: "assets/images/account-bg.jpg",
         image: "assets/images/person.png"
       }
     };
@@ -563,12 +570,13 @@ export class MyshopPage {
       });
   }
 
-  registerPage() {
+  registerPage(type) {
 
     this.navCtrl.push(VendorRegisterPage,
       {
         username: this.customer.username,
-        callback: this.registerCallback
+        callback: this.registerCallback,
+        type: type
       });
 
   }
@@ -603,12 +611,16 @@ export class MyshopPage {
 
       console.log(data);
       this.first = false;
+
+      this.storage.remove('customer');
+      this.storage.remove('shop');
       this.getData();
-      const toast = this.toastCtrl.create({
-        message: 'Sucessfully Registered',
-        duration: 3000
-      });
-      toast.present();
+
+      // const toast = this.toastCtrl.create({
+      //   message: 'Sucessfully Registered',
+      //   duration: 3000
+      // });
+      // toast.present();
 
       resolve();
     });

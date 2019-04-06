@@ -6,8 +6,12 @@
 -->
 <ion-header>
 
+  <div text-center padding style="background-color:#f53d3d; color: white;">
+    Please verify your email address
+  </div>
+
   <ion-navbar>
-    <ion-title>My Shop {{ debug }}</ion-title>
+    <ion-title>My Shop xx</ion-title>
     <!-- <ion-spinner name="bubbles" *ngIf="!loaded" float-right></ion-spinner>
     <ion-buttons end *ngIf="loaded">
       <button ion-button icon-only color="royal" (click)="refreshPage()">
@@ -17,7 +21,8 @@
   </ion-navbar>
 
   <div padding-right padding-left style="height: 42px; background-color: #fff;">
-    <ion-segment [(ngModel)]="segment" (ionChange)="segmentChanged($event)" *ngIf="role == 'dc_vendor' && customerLoaded">
+    <ion-segment [(ngModel)]="segment" (ionChange)="segmentChanged($event)"
+      *ngIf="role == 'dc_vendor' && customerLoaded && shop.activated">
       <ion-segment-button value="shop">
         Details
       </ion-segment-button>
@@ -83,7 +88,8 @@
 
         <ion-card-content>
 
-          <h3 text-center>Congratulations! You have successfully applied as a Vendor. Please wait for further notifications from the admin.</h3>
+          <h3 text-center>Congratulations! <br>You have successfully applied as a Vendor. Please wait for further
+            notifications from the admin.</h3>
 
           <button ion-item (click)="checkShop(user.ID)">
             <ion-icon name="refresh" item-start></ion-icon>
@@ -102,7 +108,7 @@
 
         <ion-card-content>
 
-          <button ion-button full icon-start (click)="registerPage()">
+          <button ion-button full icon-start (click)="registerPage('dashboard')">
             <ion-icon name="star"></ion-icon>
             Apply as vendor now!
           </button>
@@ -111,9 +117,24 @@
 
       </ion-card>
 
+      <!-- if vendor rejected-->
+      <ion-card *ngIf="role == 'dc_rejected_vendor' && customerLoaded">
+
+        <ion-card-content>
+
+          <h3 text-center color="danger" padding-bottom>We have reviewed your application. Unfortunately, you are not
+            the right fit with us at this time.</h3>
+
+          <button ion-button color="danger" full icon-start (click)="registerPage('reapply')">
+            Resubmit Application
+          </button>
+        </ion-card-content>
+
+      </ion-card>
+
     </div>
 
-    <div [ngSwitch]="segment">
+    <div [ngSwitch]="segment" *ngIf="shop && user">
       <div *ngSwitchCase="'shop'">
 
         <div *ngIf="shop && user">
@@ -139,9 +160,13 @@
           <ion-grid>
             <ion-row>
               <ion-col>
+                <h5 *ngIf="!shop.activated" style="color: #f53d3d;">
+                  Your account has been suspended by the admin due to some suspicious activity. Please contact your
+                  admin for further information.
+                </h5>
                 <h3>Store Details</h3>
               </ion-col>
-              <ion-col text-right>
+              <ion-col text-right *ngIf="shop.activated">
                 <button ion-button icon-start (click)="storeFrontPage()">
                   <ion-icon name="create"></ion-icon>
                   Update
@@ -186,45 +211,49 @@
       </div>
       <div *ngSwitchCase="'product'">
 
-        <div text-center style="background-color: #fff; padding: 10px 16px">
-          <button block ion-button icon-start (click)="createProductPage()">
-            <ion-icon name="pricetag"></ion-icon>
-            Add Product
-          </button>
-        </div>
+        <div *ngIf="shop && user">
 
-        <div class="slider-temp" *ngIf="!productLoaded && shop" style="height: 183px; width: 100%; padding: 40px 0;">
-          <g-loader></g-loader>
-        </div>
+          <div text-center style="background-color: #fff; padding: 10px 16px">
+            <button block ion-button icon-start (click)="createProductPage()">
+              <ion-icon name="pricetag"></ion-icon>
+              Add Product
+            </button>
+          </div>
 
-        <ion-list *ngIf="productLoaded && shop">
-          <ion-item *ngIf="productLoaded && products.length <= 0">
-            <h2>No product found</h2>
-          </ion-item>
-          <ion-item-sliding *ngFor="let product of products">
+          <div class="slider-temp" *ngIf="!productLoaded && shop" style="height: 183px; width: 100%; padding: 40px 0;">
+            <g-loader></g-loader>
+          </div>
 
-            <ion-item>
-              <ion-thumbnail item-start>
-                <img [src]="product.modernshop_images[0].modern_square">
-              </ion-thumbnail>
-              <h2>{{ product.name }}</h2>
-              <h3 [innerHTML]="product.price_html"></h3>
-              <h3 *ngIf="product.stock_quantity" [innerHTML]="'Quantity: ' + product.stock_quantity"></h3>
-              <p>
-                <ion-badge *ngFor="let cat of product.categories" [innerHTML]="cat.name"></ion-badge>
-              </p>
-              <!-- <button ion-button clear item-end [navPush]="BrowserPage" [navParams]="{username: customer.username ,task:'add-product/' + product.id}">Edit</button> -->
-              <button ion-button clear item-end (click)="updateProduct(product)">Edit</button>
+          <ion-list *ngIf="productLoaded && shop">
+            <ion-item *ngIf="productLoaded && products.length <= 0">
+              <h2>No product found</h2>
             </ion-item>
-            <ion-item-options side="right">
-              <button ion-button color="danger" (click)="deleteProduct(product)">
-                <ion-icon name="trash"></ion-icon>
-                Delete
-              </button>
-            </ion-item-options>
+            <ion-item-sliding *ngFor="let product of products">
 
-          </ion-item-sliding>
-        </ion-list>
+              <ion-item>
+                <ion-thumbnail item-start>
+                  <img [src]="product.modernshop_images[0].modern_square">
+                </ion-thumbnail>
+                <h2>{{ product.name }}</h2>
+                <h3 [innerHTML]="product.price_html"></h3>
+                <h3 *ngIf="product.stock_quantity" [innerHTML]="'Quantity: ' + product.stock_quantity"></h3>
+                <p>
+                  <ion-badge *ngFor="let cat of product.categories" [innerHTML]="cat.name"></ion-badge>
+                </p>
+                <!-- <button ion-button clear item-end [navPush]="BrowserPage" [navParams]="{username: customer.username ,task:'add-product/' + product.id}">Edit</button> -->
+                <button ion-button clear item-end (click)="updateProduct(product)">Edit</button>
+              </ion-item>
+              <ion-item-options side="right">
+                <button ion-button color="danger" (click)="deleteProduct(product)">
+                  <ion-icon name="trash"></ion-icon>
+                  Delete
+                </button>
+              </ion-item-options>
+
+            </ion-item-sliding>
+          </ion-list>
+
+        </div>
 
       </div>
       <div *ngSwitchCase="'order'">
@@ -233,23 +262,29 @@
       </div>
       <div *ngSwitchCase="'other'">
 
-        <ion-list>
-          <button ion-item [navPush]="BrowserPage" [navParams]="{username: customer.username ,task:'vendor-report'}">
-            Reports
-          </button>
-          <button ion-item [navPush]="BrowserPage" [navParams]="{username: customer.username ,task:'vendor-withdrawal'}">
-            Payments Withdrawal
-          </button>
-          <button ion-item [navPush]="BrowserPage" [navParams]="{username: customer.username ,task:'transaction-details'}">
-            Payments History
-          </button>
-        </ion-list>
+        <div *ngIf="shop && user">
+
+          <ion-list>
+            <button ion-item [navPush]="BrowserPage" [navParams]="{username: customer.username ,task:'vendor-report'}">
+              Reports
+            </button>
+            <button ion-item [navPush]="BrowserPage"
+              [navParams]="{username: customer.username ,task:'vendor-withdrawal'}">
+              Payments Withdrawal
+            </button>
+            <button ion-item [navPush]="BrowserPage"
+              [navParams]="{username: customer.username ,task:'transaction-details'}">
+              Payments History
+            </button>
+          </ion-list>
+
+        </div>
 
       </div>
     </div>
 
-    <iframe [src]='safeURL' width="100%" [height]="orderHeight" frameborder="0" class="iframe" [ngStyle]="{'visibility':orderStyle}"
-      *ngIf="user && shop"></iframe>
+    <iframe [src]='safeURL' width="100%" [height]="orderHeight" frameborder="0" class="iframe"
+      [ngStyle]="{'visibility':orderStyle}" *ngIf="user && shop"></iframe>
 
     <!-- <div *ngIf="user && shop"> -->
 

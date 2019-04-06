@@ -1,0 +1,4 @@
+jQuery(function ($) {
+    var params = mobiconnector_settings_notifi_js_params; $('#title').keyup(function () { var val = $(this).val(); $('#mobi_push_notification_title').val(val); })
+    $('#mobi_push_notification').click(function () { if ($(this).is(':checked')) { $('#mobi_push_notification_title').attr("required", "true"); $('#mobi_push_notification_content').attr("required", "true"); $('.mobiconnector-after-checked-notification').slideDown(200); } else { $('#mobi_push_notification_title').removeAttr("required"); $('#mobi_push_notification_content').removeAttr("required"); $('.mobiconnector-after-checked-notification').slideUp(200); } })
+})
