@@ -115,6 +115,26 @@ function updateVendor($user_id, $data)
     if (isset($data['instagram'])) {
         update_user_meta($user_id, '_vendor_instagram', $data['instagram']);
     }
+
+    if (isset($data['payment_mode'])) {
+        update_user_meta($user_id, '_vendor_payment_mode', $data['payment_mode']);
+    }
+
+    if (isset($data['account_type'])) {
+        update_user_meta($user_id, '_vendor_account_type', $data['account_type']);
+    }
+
+    if (isset($data['bank_name'])) {
+        update_user_meta($user_id, '_vendor_bank_name', $data['bank_name']);
+    }
+
+    if (isset($data['account_holder_name'])) {
+        update_user_meta($user_id, '_vendor_account_holder_name', $data['account_holder_name']);
+    }
+
+    if (isset($data['bank_account_number'])) {
+        update_user_meta($user_id, '_vendor_bank_account_number', $data['bank_account_number']);
+    }
 }
 
 // function getVendor($user_id)

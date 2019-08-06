@@ -25,7 +25,7 @@ export class OnboardingPage {
 		},
 		{
 			title: "Sell Your New and Preloved Item",
-			image: "assets/images/onboarding/3.jpg",
+			image: "assets/images/onboarding/5.jpg",
 		}
 	];
 

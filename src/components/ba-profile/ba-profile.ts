@@ -156,6 +156,9 @@ export class BaProfileComponent {
 		let headers = new Headers();
 		headers.set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 		headers.set('Authorization', 'Bearer ' + this.login["token"]);
+
+		console.log(params);
+
 		this.http.post(this.wordpress_user + '/update_profile_form', params, {
 			headers: headers,
 			withCredentials: true

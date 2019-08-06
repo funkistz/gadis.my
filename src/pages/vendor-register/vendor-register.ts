@@ -1,11 +1,13 @@
 import { Component, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Storage } from '@ionic/storage';
+import { Device } from '@ionic-native/device';
 
 @Component({
   selector: 'page-vendor-register',
   templateUrl: 'vendor-register.html',
+  providers: [Device]
 })
 export class VendorRegisterPage {
 
@@ -25,6 +27,8 @@ export class VendorRegisterPage {
     public navParams: NavParams,
     public sanitizer: DomSanitizer,
     public storage: Storage,
+    public platform: Platform,
+    private device: Device,
   ) {
 
     this.username = this.navParams.get('username');
@@ -51,7 +55,18 @@ export class VendorRegisterPage {
 
     if (this.first > 0) {
 
-      this.callback('registered').then(() => { this.navCtrl.pop() });
+      if (this.device.platform === 'Android') {
+
+        if (this.first > 1) {
+          this.callback('registered').then(() => { this.navCtrl.pop() });
+        }
+
+      } else {
+
+        this.callback('registered').then(() => { this.navCtrl.pop() });
+
+      }
+
 
     } else {
       this.first++;

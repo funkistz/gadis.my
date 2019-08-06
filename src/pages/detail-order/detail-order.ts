@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, AlertController} from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Http, Headers } from '@angular/http';
 import { Content } from 'ionic-angular';
 // Custom
@@ -13,13 +13,13 @@ declare var wordpress_url: string;
 declare var date_format: string;
 
 @Component({
-  selector: 'page-detail-order',
-  templateUrl: 'detail-order.html',
-  providers: [Core]
+	selector: 'page-detail-order',
+	templateUrl: 'detail-order.html',
+	providers: [Core]
 })
 export class DetailOrderPage {
 
-  	DetailPage = DetailPage;
+	DetailPage = DetailPage;
 	id: Number; login: Object; data: Object;
 	date_format: string = date_format;
 	@ViewChild(Content) content: Content;
@@ -51,10 +51,13 @@ export class DetailOrderPage {
 		let headers = new Headers();
 		headers.set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 		headers.set('Authorization', 'Bearer ' + this.login["token"]);
-		this.http.get(wordpress_url + '/wp-json/wooconnector/order/getorderbyid?order=' + this.id +'&time=' + new Date().getTime(), {
+		this.http.get(wordpress_url + '/wp-json/wooconnector/order/getorderbyid?order=' + this.id + '&time=' + new Date().getTime(), {
 			headers: headers,
 			withCredentials: true
 		}).subscribe(res => {
+
+			console.log(res.json());
+
 			this.data = res.json();
 			this.core.hideLoading();
 			this.content.resize();

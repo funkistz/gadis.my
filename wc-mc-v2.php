@@ -88,8 +88,16 @@ function api($header)
     $response = [];
 
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-	
-	$response = $woocommerce->get($authorization[3], $data);
+    
+        try {
+            $response = $woocommerce->get($authorization[3], $data);
+
+        } catch (\Throwable $th) {
+            
+            echo $th;
+
+        }
+    
 
     }if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 

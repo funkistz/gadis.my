@@ -1,16 +1,24 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, AlertController, LoadingController } from 'ionic-angular';
 import { StorageMulti } from '../../service/storage-multi.service';
 import { Core } from '../../service/core.service';
 import { Device } from '@ionic-native/device';
 import { WoocommerceProvider } from '../../providers/woocommerce/woocommerce';
 import { Storage } from '@ionic/storage';
 import { Toast } from '@ionic-native/toast';
+import { Http, Headers } from '@angular/http';
 
 import { VendorUpdatePage } from '../../pages/vendor-update/vendor-update';
 import { BrowserPage } from '../../pages/browser/browser';
 import { CreateProductPage } from '../../pages/create-product/create-product';
 import { VendorRegisterPage } from '../../pages/vendor-register/vendor-register';
+import { DetailOrderVendorPage } from '../detail-order-vendor/detail-order-vendor';
+import { VendorOrdersPage } from '../vendor-orders/vendor-orders';
+import { VendorWithdrawalPage } from '../vendor-withdrawal/vendor-withdrawal';
+import { LoginPage } from '../login/login';
+
+declare var wordpress_url: string;
+declare var date_format: string;
 
 @Component({
   selector: 'page-myshop2',
@@ -20,6 +28,10 @@ import { VendorRegisterPage } from '../../pages/vendor-register/vendor-register'
 export class Myshop2Page {
 
   BrowserPage = BrowserPage;
+  DetailOrderPage = DetailOrderVendorPage;
+  VendorOrdersPage = VendorOrdersPage;
+  VendorWithdrawalPage = VendorWithdrawalPage;
+  LoginPage = LoginPage;
 
   userStatus = 'logoff';
   shopStatus = 'loading';
@@ -27,9 +39,14 @@ export class Myshop2Page {
   user: any = {};
   login: any = {};
   customer: any = {};
-  segment = 'shop';
+  segment = 'dashboard';
   products = [];
   productLoaded = false;
+  orders = [];
+  orderLoaded = false;
+  withdrawal: any = {};
+  withdrawLoaded = false;
+  loader: any;
 
   constructor(
     public navCtrl: NavController,
@@ -40,8 +57,9 @@ export class Myshop2Page {
     public toastCtrl: ToastController,
     public alertCtrl: AlertController,
     public core: Core,
-    public Toast: Toast
-
+    public Toast: Toast,
+    public http: Http,
+    public loadingCtrl: LoadingController
   ) {
 
   }
@@ -78,7 +96,7 @@ export class Myshop2Page {
       } else {
         this.userStatus = 'logoff';
         this.shopStatus = 'none';
-        this.segment = 'shop';
+        this.segment = 'dashboard';
       }
 
 
@@ -111,6 +129,8 @@ export class Myshop2Page {
             this.storage.set('customer', customer);
             this.setShopStatus(customer);
             this.setShop(customer);
+            this.getWithdrawal(customer.id);
+            this.getOrder(customer.id);
           }
 
         }
@@ -152,6 +172,17 @@ export class Myshop2Page {
     shop.banner = this.getMeta(meta_data, '_vendor_banner');
     shop.message_to_buyers = this.getMeta(meta_data, '_vendor_message_to_buyers');
 
+    //billing
+    shop.account_type = this.getMeta(meta_data, '_vendor_bank_account_type');
+    shop.payment_mode = this.getMeta(meta_data, '_vendor_payment_mode');
+    shop.bank_account_number = this.getMeta(meta_data, '_vendor_bank_account_number');
+    shop.bank_name = this.getMeta(meta_data, '_vendor_bank_name');
+    shop.aba_routing_number = this.getMeta(meta_data, '_vendor_aba_routing_number');
+    shop.bank_address = this.getMeta(meta_data, '_vendor_bank_address');
+    shop.destination_currency = this.getMeta(meta_data, '_vendor_destination_currency');
+    shop.iban = this.getMeta(meta_data, '_vendor_iban');
+    shop.account_holder_name = this.getMeta(meta_data, '_vendor_account_holder_name');
+
     if (this.getMeta(meta_data, '_vendor_turn_off') == 'Enable') {
       shop.activated = false;
     } else {
@@ -168,6 +199,104 @@ export class Myshop2Page {
 
     this.shop = shop;
     this.storage.set('shop', shop);
+
+  }
+
+  getWithdrawal(id, refresher = null) {
+
+    this.withdrawLoaded = false;
+
+    let params: any = {
+      vendor_id: id
+    }
+
+    let updateRequest = this.http.get(wordpress_url + '/wcmp-transaction.php',
+      {
+        params: params
+      }
+    ).subscribe(response => {
+
+      console.log('withdrawal', response.json());
+      if (response) {
+
+        this.withdrawal = response.json();
+        this.withdrawLoaded = true;
+
+      }
+
+      if (refresher) {
+        refresher.complete();
+      }
+
+    }, err => {
+
+      if (refresher) {
+        refresher.complete();
+      }
+
+      console.log(err);
+
+    });
+
+  }
+
+  getOrder(id, refresher = null) {
+
+    this.orderLoaded = false;
+
+    let params = {
+      vendor: id,
+      status: 'processing',
+    };
+
+    let getOrder = this.WP.get({
+      wcmc: false,
+      method: 'GET',
+      api: 'orders',
+      param: params
+    });
+
+    getOrder.subscribe(data => {
+
+      this.orderLoaded = true;
+
+      if (data) {
+
+        console.log(data);
+
+        let orders = data.json();
+
+        orders.forEach((v, i) => {
+
+          if (orders[i].meta_data.filter(e => e.key === 'dc_pv_shipped').length > 0) {
+
+            let shipperArray = orders[i].meta_data.find(x => x.key === 'dc_pv_shipped').value;
+
+            if (shipperArray.includes(id)) {
+              orders[i].shipped = true;
+            }
+          }
+
+
+        });
+
+        this.orders = orders;
+
+      }
+
+      if (refresher) {
+        refresher.complete();
+      }
+
+    }, err => {
+
+      if (refresher) {
+        refresher.complete();
+      }
+
+      console.log('error oi');
+
+    });
 
   }
 
@@ -204,7 +333,7 @@ export class Myshop2Page {
 
       if (this.getMeta(customer.meta_data, '_vendor_turn_off') == 'Enable') {
         this.shopStatus = 'suspended';
-        this.segment = 'shop';
+        this.segment = 'dashboard';
       } else {
         this.shopStatus = 'registered';
       }
@@ -340,6 +469,8 @@ export class Myshop2Page {
 
     } else {
 
+      this.getWithdrawal(this.user.ID);
+      this.getOrder(this.user.ID);
       refresher.complete();
 
     }
@@ -450,6 +581,128 @@ export class Myshop2Page {
       resolve();
     });
 
+  }
+
+  vendorOrderPage() {
+
+    this.navCtrl.push(VendorOrdersPage,
+      {
+        vendor: this.customer.id,
+      });
+
+  }
+
+  vendorWithdrawalPage() {
+
+    this.navCtrl.push(VendorWithdrawalPage,
+      {
+        vendor: this.customer.id,
+      });
+
+  }
+
+  sendVerification(user) {
+
+    console.log(user);
+
+    this.loader = this.loadingCtrl.create({
+      content: 'Please wait...',
+    });
+    this.loader.present();
+
+    let params: any = {
+      id: user.ID,
+    }
+
+    let updateRequest = this.http.post(wordpress_url + '/wcmp-email-verification.php',
+      params
+    ).subscribe(response => {
+
+      this.loader.dismiss();
+      console.log(response);
+      if (response) {
+
+        console.log(response);
+        if (response.json().status == 'success') {
+          this.presentToast(response.json().message);
+
+          const confirm = this.alertCtrl.create({
+            title: 'Please re-login',
+            message: 'You need to re-login after you have successfully verify your email address',
+            buttons: [
+              {
+                text: 'Later',
+                handler: () => {
+                  console.log('Disagree clicked');
+                }
+              },
+              {
+                text: 'Ok',
+                handler: () => {
+                  console.log('Agree clicked');
+
+                  this.storage.remove('login').then(() => {
+                    this.storage.remove('user').then(() => {
+                      this.storage.remove('shop');
+                      this.storage.remove('customer');
+
+                      this.loginPage();
+                    })
+                  });
+
+                }
+              }
+            ]
+          });
+          confirm.present();
+        } else {
+          this.presentToast('Some error occured');
+        }
+
+      }
+
+    });
+
+  }
+
+  resendVerification(user) {
+
+    console.log(user);
+
+    const confirm = this.alertCtrl.create({
+      title: 'Are you sure?',
+      message: 'This action will resend confirmation email to your email address',
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: () => {
+            console.log('Disagree clicked');
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            console.log('Agree clicked');
+            this.sendVerification(user);
+
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  presentToast(text) {
+    let toast = this.toastCtrl.create({
+      message: text,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
+
+  loginPage() {
+    this.navCtrl.push(this.LoginPage, {});
   }
 
 }

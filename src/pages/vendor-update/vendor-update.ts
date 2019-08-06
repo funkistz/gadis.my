@@ -110,7 +110,13 @@ export class VendorUpdatePage {
       city: ['', Validators.compose([Validators.maxLength(25)])],
       state: ['', Validators.compose([Validators.maxLength(25)])],
       country: ['', Validators.compose([Validators.maxLength(25)])],
-      postcode: ['', Validators.compose([Validators.maxLength(8)])]
+      postcode: ['', Validators.compose([Validators.maxLength(8)])],
+
+      account_type: ['', Validators.compose([Validators.required])],
+      bank_name: ['', Validators.compose([Validators.maxLength(20), Validators.required])],
+      account_holder_name: ['', Validators.compose([Validators.maxLength(40), Validators.required])],
+      bank_account_number: ['', Validators.compose([Validators.maxLength(30), Validators.required])]
+
     });
 
   }
@@ -239,6 +245,14 @@ export class VendorUpdatePage {
       country: 'MY',
       postcode: temp.postcode,
       phone: temp.phone,
+
+      //set to always direct bank
+      payment_mode: 'direct_bank',
+      account_type: temp.account_type,
+      bank_name: temp.bank_name,
+      account_holder_name: temp.account_holder_name,
+      bank_account_number: temp.bank_account_number,
+
     }
 
     if (this.uploadedAvatar) {

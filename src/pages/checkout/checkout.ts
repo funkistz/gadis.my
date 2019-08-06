@@ -88,6 +88,9 @@ export class CheckoutPage {
 						option['headers'] = headers;
 					}
 					this.http.get(wordpress_url + '/wp-json/wooconnector/calculator/getall', option).subscribe(res => {
+
+						console.log(res);
+
 						this.data = res.json();
 						console.log(this.data);
 						if (this.data['payment']) {

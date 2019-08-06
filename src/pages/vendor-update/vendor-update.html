@@ -52,9 +52,10 @@
 
         <ion-item mode="md" bg-transparent no-padding>
           <ion-label stacked>
-            <span dark>Store Name *</span>
+            <span dark>Store Name (cannot be change)</span>
           </ion-label>
-          <ion-input dark type="text" formControlName="name" placeholder="Name" [(ngModel)]="shop.title"></ion-input>
+          <ion-input disabled dark type="text" formControlName="name" placeholder="Name" [(ngModel)]="shop.title">
+          </ion-input>
         </ion-item>
 
         <!-- <ion-item mode="md" bg-transparent no-padding>
@@ -68,14 +69,16 @@
           <ion-label stacked>
             <span dark>Store Description *</span>
           </ion-label>
-          <ion-textarea dark type="text" formControlName="description" placeholder="Description" [(ngModel)]="shop.description"></ion-textarea>
+          <ion-textarea dark type="text" formControlName="description" placeholder="Description"
+            [(ngModel)]="shop.description"></ion-textarea>
         </ion-item>
 
         <ion-item mode="md" bg-transparent no-padding>
           <ion-label stacked>
             <span dark>Message to Buyers</span>
           </ion-label>
-          <ion-textarea dark type="text" formControlName="message_to_buyers" placeholder="Message to Buyers" [(ngModel)]="shop.message_to_buyers"></ion-textarea>
+          <ion-textarea dark type="text" formControlName="message_to_buyers" placeholder="Message to Buyers"
+            [(ngModel)]="shop.message_to_buyers"></ion-textarea>
         </ion-item>
 
         <ion-item mode="md" bg-transparent no-padding>
@@ -86,17 +89,51 @@
         </ion-item>
 
         <h4>
+          Billing
+        </h4>
+
+        <ion-item mode="md" bg-transparent no-padding>
+          <ion-label stacked>Account Type</ion-label>
+          <ion-select dark placeholder="Account Type" formControlName="account_type" [(ngModel)]="shop.account_type"
+            interface="popover">
+            <ion-option value="savings">Savings</ion-option>
+            <ion-option value="current">Current</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item mode="md" bg-transparent no-padding>
+          <ion-label stacked>Bank Name</ion-label>
+          <ion-input dark type="text" placeholder="Bank Name" formControlName="bank_name" [(ngModel)]="shop.bank_name">
+          </ion-input>
+        </ion-item>
+
+        <ion-item mode="md" bg-transparent no-padding>
+          <ion-label stacked>Account Holder Name</ion-label>
+          <ion-input dark type="text" placeholder="Account Holder Name" formControlName="account_holder_name"
+            [(ngModel)]="shop.account_holder_name">
+          </ion-input>
+        </ion-item>
+
+        <ion-item mode="md" bg-transparent no-padding>
+          <ion-label stacked>Account Number</ion-label>
+          <ion-input dark type="Number" placeholder="Account Number" formControlName="bank_account_number"
+            [(ngModel)]="shop.bank_account_number"></ion-input>
+        </ion-item>
+
+        <h4>
           Address
         </h4>
 
         <ion-item mode="md" bg-transparent no-padding>
           <ion-label>Line 1</ion-label>
-          <ion-input dark type="text" placeholder="Address Line 1" formControlName="address_1" [(ngModel)]="shop.address_1"></ion-input>
+          <ion-input dark type="text" placeholder="Address Line 1" formControlName="address_1"
+            [(ngModel)]="shop.address_1"></ion-input>
         </ion-item>
 
         <ion-item mode="md" bg-transparent no-padding>
           <ion-label>Line 2</ion-label>
-          <ion-input dark type="text" placeholder="Address Line 1" formControlName="address_2" [(ngModel)]="shop.address_2"></ion-input>
+          <ion-input dark type="text" placeholder="Address Line 1" formControlName="address_2"
+            [(ngModel)]="shop.address_2"></ion-input>
         </ion-item>
 
         <!-- <ion-item mode="md" bg-transparent no-padding>
@@ -118,7 +155,8 @@
 
         <ion-item mode="md" bg-transparent no-padding>
           <ion-label>Zip Code</ion-label>
-          <ion-input dark type="text" placeholder="ZIP Code" formControlName="postcode" [(ngModel)]="shop.postcode"></ion-input>
+          <ion-input dark type="text" placeholder="ZIP Code" formControlName="postcode" [(ngModel)]="shop.postcode">
+          </ion-input>
         </ion-item>
 
       </form>

@@ -73,6 +73,9 @@ import { OnboardingPage } from '../pages/onboarding/onboarding';
 import { ModalCategoryPage } from '../pages/modal-category/modal-category';
 import { ImageEditorPage } from '../pages/image-editor/image-editor';
 import { Myshop2Page } from '../pages/myshop2/myshop2';
+import { DetailOrderVendorPage } from '../pages/detail-order-vendor/detail-order-vendor';
+import { VendorOrdersPage } from '../pages/vendor-orders/vendor-orders';
+import { VendorWithdrawalPage } from '../pages/vendor-withdrawal/vendor-withdrawal';
 
 import { ImagePicker } from '@ionic-native/image-picker';
 import { File } from '@ionic-native/file';
@@ -151,7 +154,10 @@ import { WoocommerceProvider } from '../providers/woocommerce/woocommerce';
     ModalCategoryPage,
     VendorUpdatePage,
     ImageEditorPage,
-    Myshop2Page
+    Myshop2Page,
+    DetailOrderVendorPage,
+    VendorOrdersPage,
+    VendorWithdrawalPage
   ],
   imports: [
     BrowserModule,
@@ -217,7 +223,10 @@ import { WoocommerceProvider } from '../providers/woocommerce/woocommerce';
     ModalCategoryPage,
     VendorUpdatePage,
     ImageEditorPage,
-    Myshop2Page
+    Myshop2Page,
+    DetailOrderVendorPage,
+    VendorOrdersPage,
+    VendorWithdrawalPage
   ],
   providers: [
     StatusBar,

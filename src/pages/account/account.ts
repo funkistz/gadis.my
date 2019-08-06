@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { ActionSheetController, AlertController, Platform } from 'ionic-angular';
+import { ActionSheetController, AlertController, Platform, LoadingController, ToastController } from 'ionic-angular';
 import { Http, Headers } from '@angular/http';
 
 
@@ -48,6 +48,7 @@ export class AccountPage {
 	SearchPage = SearchPage;
 	isCache: boolean; isLogin: boolean; loadedOrder: boolean;
 	data: any = {};
+	loader: any;
 
 	constructor(
 		public storage: Storage,
@@ -63,7 +64,9 @@ export class AccountPage {
 		public InAppBrowser: InAppBrowser,
 		public core: Core,
 		public actionCtr: ActionSheetController,
-		public Device: Device
+		public Device: Device,
+		public loadingCtrl: LoadingController,
+		public toastCtrl: ToastController
 	) {
 		// this.getData();
 	}
@@ -204,6 +207,105 @@ export class AccountPage {
 	}
 	onSwipeContent(e) {
 		if (e['deltaX'] > 150) this.navCtrl.push(this.SearchPage);
+	}
+
+	sendVerification(user) {
+
+		console.log(user);
+
+		this.loader = this.loadingCtrl.create({
+			content: 'Please wait...',
+		});
+		this.loader.present();
+
+		let params: any = {
+			id: user.ID,
+		}
+
+		let updateRequest = this.http.post(wordpress_url + '/wcmp-email-verification.php',
+			params
+		).subscribe(response => {
+
+			this.loader.dismiss();
+			console.log(response);
+			if (response) {
+
+				console.log(response);
+				if (response.json().status == 'success') {
+					this.presentToast(response.json().message);
+
+					const confirm = this.alertCtrl.create({
+						title: 'Please re-login',
+						message: 'You need to re-login after you have successfully verify your email address',
+						buttons: [
+							{
+								text: 'Later',
+								handler: () => {
+									console.log('Disagree clicked');
+								}
+							},
+							{
+								text: 'Ok',
+								handler: () => {
+									console.log('Agree clicked');
+
+									this.data['order'] = 0;
+									this.storage.remove('login').then(() => {
+										this.storage.remove('user').then(() => {
+											this.storage.remove('shop');
+											this.storage.remove('customer');
+											this.isLogin = false;
+
+											this.loginPage();
+										})
+									});
+
+								}
+							}
+						]
+					});
+					confirm.present();
+				} else {
+					this.presentToast('Some error occured');
+				}
+
+			}
+
+		});
+
+	}
+
+	resendVerification(user) {
+		const confirm = this.alertCtrl.create({
+			title: 'Are you sure?',
+			message: 'This action will resend confirmation email to your email address',
+			buttons: [
+				{
+					text: 'Cancel',
+					handler: () => {
+						console.log('Disagree clicked');
+					}
+				},
+				{
+					text: 'Yes',
+					handler: () => {
+						console.log('Agree clicked');
+						this.sendVerification(user);
+
+					}
+				}
+			]
+		});
+		confirm.present();
+	}
+
+	presentToast(text) {
+		let toast = this.toastCtrl.create({
+			message: text,
+			duration: 3000,
+			position: 'top'
+		});
+		toast.present();
 	}
 
 }

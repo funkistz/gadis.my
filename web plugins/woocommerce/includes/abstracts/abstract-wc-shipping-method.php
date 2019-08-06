@@ -308,10 +308,16 @@ abstract class WC_Shipping_Method extends WC_Settings_API {
 		// Store package data.
 		if ( $args['package'] ) {
 			$items_in_package = array();
-			foreach ( $args['package']['contents'] as $item ) {
-				$product            = $item['data'];
-				$items_in_package[] = $product->get_name() . ' &times; ' . $item['quantity'];
+
+			if($package['contents']){
+
+				foreach ( $args['package']['contents'] as $item ) {
+					$product            = $item['data'];
+					$items_in_package[] = $product->get_name() . ' &times; ' . $item['quantity'];
+				}
+
 			}
+
 			$rate->add_meta_data( __( 'Items', 'woocommerce' ), implode( ', ', $items_in_package ) );
 		}
 

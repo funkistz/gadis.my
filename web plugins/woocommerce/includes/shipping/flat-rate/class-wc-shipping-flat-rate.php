@@ -215,11 +215,17 @@ class WC_Shipping_Flat_Rate extends WC_Shipping_Method {
 	 */
 	public function get_package_item_qty( $package ) {
 		$total_quantity = 0;
-		foreach ( $package['contents'] as $item_id => $values ) {
-			if ( $values['quantity'] > 0 && $values['data']->needs_shipping() ) {
-				$total_quantity += $values['quantity'];
+
+		if($package['contents']){
+
+			foreach ( $package['contents'] as $item_id => $values ) {
+				if ( $values['quantity'] > 0 && $values['data']->needs_shipping() ) {
+					$total_quantity += $values['quantity'];
+				}
 			}
+
 		}
+
 		return $total_quantity;
 	}
 
@@ -232,16 +238,20 @@ class WC_Shipping_Flat_Rate extends WC_Shipping_Method {
 	public function find_shipping_classes( $package ) {
 		$found_shipping_classes = array();
 
-		foreach ( $package['contents'] as $item_id => $values ) {
-			if ( $values['data']->needs_shipping() ) {
-				$found_class = $values['data']->get_shipping_class();
+		if($package['contents']){
 
-				if ( ! isset( $found_shipping_classes[ $found_class ] ) ) {
-					$found_shipping_classes[ $found_class ] = array();
+			foreach ( $package['contents'] as $item_id => $values ) {
+				if ( $values['data']->needs_shipping() ) {
+					$found_class = $values['data']->get_shipping_class();
+	
+					if ( ! isset( $found_shipping_classes[ $found_class ] ) ) {
+						$found_shipping_classes[ $found_class ] = array();
+					}
+	
+					$found_shipping_classes[ $found_class ][ $item_id ] = $values;
 				}
-
-				$found_shipping_classes[ $found_class ][ $item_id ] = $values;
 			}
+
 		}
 
 		return $found_shipping_classes;

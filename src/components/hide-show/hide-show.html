@@ -2,6 +2,6 @@
 	<ng-content select="[this-title]"></ng-content>
 	<ion-icon [name]="show ? 'ios-arrow-up' : 'ios-arrow-down'"></ion-icon>
 </button>
-<div [hidden]="!show" padding-horizontal class="hide-show-content">
+<div [hidden]="!show" class="hide-show-content" padding-horizontal>
 	<ng-content select="[this-content]"></ng-content>
 </div>

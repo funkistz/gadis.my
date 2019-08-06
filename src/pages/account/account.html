@@ -1,7 +1,15 @@
 <ion-content>
-  <div *ngIf="isLogin && !data.user.wcemailverified" text-center padding
-    style="background-color:#f53d3d; color: white;">
-    Please verify your email address
+  <div *ngIf="isLogin && !data.user.wcemailverified" style="background-color:#f53d3d; color: white;">
+    <ion-row>
+      <ion-col padding col-8>
+        Please verify your email address
+      </ion-col>
+      <ion-col text-right col-4>
+        <button ion-button color="light" clear class="link" (click)="resendVerification(data.user)">
+          Resend email
+        </button>
+      </ion-col>
+    </ion-row>
   </div>
   <div relative overflow class="account-header" text-center (swipe)="onSwipeContent($event)">
     <img float-left width-100 src="assets/images/account-bg.jpg" />

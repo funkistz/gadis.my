@@ -78,14 +78,14 @@ class WCMp_Vendor_Hooks {
                         , 'link_target' => '_self'
                         , 'nav_icon'    => 'wcmp-font ico-storefront-icon'
                     ),
-                   /** 'vendor-policies' => array(
+                   /* 'vendor-policies' => array(
                         'label'       => __( 'Policies', 'dc-woocommerce-multi-vendor' )
                         , 'url'         => wcmp_get_vendor_dashboard_endpoint_url( get_wcmp_vendor_settings( 'wcmp_vendor_policies_endpoint', 'vendor', 'general', 'vendor-policies' ) )
                         , 'capability'  => apply_filters( 'wcmp_vendor_dashboard_menu_vendor_policies_capability', false )
                         , 'position'    => 20
                         , 'link_target' => '_self'
                         , 'nav_icon'    => 'wcmp-font ico-policies-icon'
-                    ),
+                    ),*/
                     'vendor-billing'  => array(
                         'label'       => __( 'Billing', 'dc-woocommerce-multi-vendor' )
                         , 'url'         => wcmp_get_vendor_dashboard_endpoint_url( get_wcmp_vendor_settings( 'wcmp_vendor_billing_endpoint', 'vendor', 'general', 'vendor-billing' ) )
@@ -93,7 +93,7 @@ class WCMp_Vendor_Hooks {
                         , 'position'    => 30
                         , 'link_target' => '_self'
                         , 'nav_icon'    => 'wcmp-font ico-billing-icon'
-                    ), */
+                    ),
                     'vendor-shipping' => array(
                         'label'       => __( 'Shipping', 'dc-woocommerce-multi-vendor' )
                         , 'url'         => wcmp_get_vendor_dashboard_endpoint_url( get_wcmp_vendor_settings( 'wcmp_vendor_shipping_endpoint', 'vendor', 'general', 'vendor-shipping' ) )

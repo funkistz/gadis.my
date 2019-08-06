@@ -95,12 +95,18 @@ class WooconnectorOrders extends  WP_REST_Controller{
 					$limages[$key] = $wp_upload['baseurl']."/". get_post_meta($thumbId, $key, true);
 				}				
 			}	
-			$value['regular_price'] = $product->get_regular_price();
-			$value['sale_price'] = $product->get_sale_price();
-			$value['description'] = $product->get_description();
-			$value['short_description'] = $product->get_short_description();
-			$value['images'] =  $limages;	
-			$list[] = $value;
+
+			// if($product != false){ 
+
+				$value['regular_price'] = $product->get_regular_price();
+				$value['sale_price'] = $product->get_sale_price();
+				$value['description'] = $product->get_description();
+				$value['short_description'] = $product->get_short_description();
+				$value['images'] =  $limages;	
+				$list[] = $value;
+
+			// }
+			
 		}
 	
 		return  $list;

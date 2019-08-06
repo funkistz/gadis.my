@@ -1,0 +1,63 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Withdrawal</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Status</ion-label>
+      <ion-select [(ngModel)]="status" (ionChange)="getWithdrawal()">
+        <ion-option value="all">All</ion-option>
+        <ion-option value="pending">Pending</ion-option>
+        <ion-option value="requested">Requested</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="slider-temp" *ngIf="!orderLoaded" style="height: 183px; width: 100%; padding: 40px 0;">
+    <g-loader></g-loader>
+  </div>
+
+  <ion-row *ngIf="orderLoaded && orders.length <= 0" class="item-order" padding relative>
+    <ion-col no-padding>
+      <div class="order-id" text-center>
+        <b dark>No result</b>
+      </div>
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngFor="let order of orders" class="item-order" padding relative>
+    <ion-col no-padding [navPush]="DetailOrderPage" [navParams]="{id:order.order_id, vendor: vendor}">
+      <div class="order-id">
+        <b dark>{{'order.id'|translate}} - #{{order.order_id}}</b>
+      </div>
+      <div>
+        <h5>RM {{ order.total }}</h5>
+      </div>
+      <div>
+        <span *ngIf="order.withdrawable == 'disabled'">Status: Requested</span>
+        <span *ngIf="order.withdrawable != 'disabled'">Status: Pending</span>
+      </div>
+    </ion-col>
+    <ion-col text-right>
+      <button bottom small ion-button color="success" *ngIf="order.withdrawable != 'disabled'"
+        (click)="requestWithdrawal(order.order_id, order.commission_id)">
+        <span>Request Withdrawal</span>
+      </button>
+      <button bottom small ion-button color="gray" disabled *ngIf="order.withdrawable == 'disabled'">
+        <span>Requested</span>
+      </button>
+    </ion-col>
+  </ion-row>
+
+</ion-content>
