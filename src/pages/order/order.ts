@@ -23,7 +23,8 @@ const wordpress_order = wordpress_url + '/wp-json/wooconnector/order';
 export class OrderPage {
 	DetailOrderPage = DetailOrderPage;
 	login: Object = {}; data: Object[]; date_format: string = date_format;
-	page = 1; over: boolean;
+	page = 1;
+	over: boolean;
 	noOrder: boolean = false;
 	customer: any;
 
@@ -40,12 +41,12 @@ export class OrderPage {
 	}
 	ionViewDidEnter() {
 		this.page = 1;
-		this.storage.get('customer').then(val => {
+		this.storage.get('user').then(val => {
 			console.log(val);
-			if (val && val['id']) {
+			if (val && val['ID']) {
 				this.customer = val;
 
-				this.getData(val['id']).subscribe(order => {
+				this.getData(val['ID']).subscribe(order => {
 					if (order.length > 0) {
 						this.noOrder = false;
 						this.page++;
@@ -125,6 +126,8 @@ export class OrderPage {
 
 			let params = {
 				customer: id,
+				page: this.page,
+				per_page: 10
 			};
 
 			let getOrder = this.WP.get({
@@ -170,7 +173,7 @@ export class OrderPage {
 		this.navCtrl.popToRoot();
 	}
 	load(infiniteScroll) {
-		this.getData(this.customer.id, true).subscribe(order => {
+		this.getData(this.customer.ID, true).subscribe(order => {
 			if (order.length > 0) this.page++;
 			else this.over = true;
 			this.data = this.data.concat(order);
@@ -179,7 +182,7 @@ export class OrderPage {
 	}
 	doRefresh(refresher) {
 		this.page = 1;
-		this.getData(this.customer.id, true).subscribe(order => {
+		this.getData(this.customer.ID, true).subscribe(order => {
 			this.over = false;
 			if (order.length > 0) this.page++;
 			this.data = order;

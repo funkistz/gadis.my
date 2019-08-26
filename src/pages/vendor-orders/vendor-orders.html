@@ -12,7 +12,7 @@
   <ion-list>
     <ion-item>
       <ion-label>Status</ion-label>
-      <ion-select [(ngModel)]="status" (ionChange)="getOrder()">
+      <ion-select [(ngModel)]="status" (ionChange)="ionViewDidEnter()">
         <ion-option value="all">All</ion-option>
         <ion-option value="processing">Processing</ion-option>
         <ion-option value="completed">Completed</ion-option>
@@ -25,9 +25,9 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <div class="slider-temp" *ngIf="!orderLoaded" style="height: 183px; width: 100%; padding: 40px 0;">
+  <!-- <div class="slider-temp" *ngIf="!orderLoaded" style="height: 183px; width: 100%; padding: 40px 0;">
     <g-loader></g-loader>
-  </div>
+  </div> -->
 
   <ion-row *ngIf="orderLoaded && orders.length <= 0" class="item-order" padding relative>
     <ion-col no-padding>
@@ -72,5 +72,8 @@
       <span border-dashed>{{'order.details'|translate}}</span>
     </button>
   </ion-row>
+  <ion-infinite-scroll (ionInfinite)="load($event)" *ngIf="!over">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 </ion-content>

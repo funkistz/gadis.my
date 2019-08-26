@@ -6,6 +6,7 @@ import { Device } from '@ionic-native/device';
 import { WoocommerceProvider } from '../../providers/woocommerce/woocommerce';
 import { Storage } from '@ionic/storage';
 import { Toast } from '@ionic-native/toast';
+import { Observable } from 'rxjs/Observable';
 
 import { DetailOrderVendorPage } from '../detail-order-vendor/detail-order-vendor';
 
@@ -22,6 +23,9 @@ export class VendorOrdersPage {
   orders = [];
   orderLoaded = false;
   status = 'all';
+  page = 1;
+  over: boolean;
+  noOrder: boolean = false;
 
   constructor(
     public navCtrl: NavController,
@@ -45,46 +49,125 @@ export class VendorOrdersPage {
   }
 
   ionViewDidEnter() {
-    this.getOrder();
+
+    this.page = 1;
+    this.getData().subscribe(order => {
+      if (order.length > 0) {
+        this.noOrder = false;
+        this.page++;
+        this.orders = order;
+      } else {
+        this.noOrder = true;
+      }
+    });
   }
 
-  getOrder(refresher = null) {
+  // getOrder(refresher = null) {
+
+  //   this.orderLoaded = false;
+
+  //   console.log('enter get order');
+
+  //   let params = {};
+
+  //   if (this.status == "all") {
+  //     params = {
+  //       vendor: this.vendor,
+  //     };
+  //   } else {
+
+  //     params = {
+  //       vendor: this.vendor,
+  //       status: this.status
+  //     };
+
+  //   }
+
+  //   let getOrder = this.WP.get({
+  //     wcmc: false,
+  //     method: 'GET',
+  //     api: 'orders',
+  //     param: params
+  //   });
+
+  //   getOrder.subscribe(data => {
+
+  //     this.orderLoaded = true;
+
+  //     console.log(data);
+
+  //     if (data) {
+
+  //       let orders = data.json();
+
+  //       orders.forEach((v, i) => {
+
+  //         if (orders[i].meta_data.filter(e => e.key === 'dc_pv_shipped').length > 0) {
+
+  //           let shipperArray = orders[i].meta_data.find(x => x.key === 'dc_pv_shipped').value;
+
+  //           if (shipperArray.includes(this.vendor)) {
+  //             orders[i].shipped = true;
+  //           }
+  //         }
+
+
+  //       });
+
+  //       this.orders = orders;
+
+  //     }
+
+  //     if (refresher) {
+  //       refresher.complete();
+  //     }
+
+  //   }, err => {
+
+  //     if (refresher) {
+  //       refresher.complete();
+  //     }
+
+  //     console.log('error oi');
+
+  //   });
+
+  // }
+
+  getData(hide: boolean = false): Observable<Object[]> {
 
     this.orderLoaded = false;
 
-    console.log('enter get order');
+    return new Observable(observable => {
+      if (!hide) this.core.showLoading();
 
-    let params = {};
+      let params = {};
 
-    if (this.status == "all") {
-      params = {
-        vendor: this.vendor,
-      };
-    } else {
+      if (this.status == "all") {
+        params = {
+          vendor: this.vendor,
+          page: this.page,
+          per_page: 10
+        };
+      } else {
 
-      params = {
-        vendor: this.vendor,
-        status: this.status
-      };
+        params = {
+          vendor: this.vendor,
+          status: this.status,
+          page: this.page,
+          per_page: 10
+        };
 
-    }
+      }
 
+      let getOrder = this.WP.get({
+        wcmc: false,
+        method: 'GET',
+        api: 'orders',
+        param: params
+      });
 
-    let getOrder = this.WP.get({
-      wcmc: false,
-      method: 'GET',
-      api: 'orders',
-      param: params
-    });
-
-    getOrder.subscribe(data => {
-
-      this.orderLoaded = true;
-
-      console.log(data);
-
-      if (data) {
-
+      getOrder.subscribe(data => {
         let orders = data.json();
 
         orders.forEach((v, i) => {
@@ -97,40 +180,47 @@ export class VendorOrdersPage {
               orders[i].shipped = true;
             }
           }
-
-
         });
 
-        this.orders = orders;
+        console.log('orders', orders);
 
-      }
+        if (!hide) this.core.hideLoading();
+        this.orderLoaded = true;
 
-      if (refresher) {
-        refresher.complete();
-      }
+        observable.next(orders);
+        observable.complete();
 
-    }, err => {
+      }, err => {
+        if (!hide) this.core.hideLoading();
+        this.orderLoaded = true;
 
-      if (refresher) {
-        refresher.complete();
-      }
-
-      console.log('error oi');
+        this.Toast.showShortBottom(err.json()["message"]).subscribe(
+          toast => { },
+          error => { console.log(error); }
+        );
+      });
 
     });
+  }
 
+  load(infiniteScroll) {
+    this.getData(true).subscribe(order => {
+      if (order.length > 0) this.page++;
+      else this.over = true;
+      this.orders = this.orders.concat(order);
+      infiniteScroll.complete();
+    });
   }
 
   doRefresh(refresher) {
 
-    refresher.complete();
-    this.getOrder();
-
-  }
-
-  refreshPage() {
-
-    this.getOrder();
+    this.page = 1;
+    this.getData(true).subscribe(order => {
+      this.over = false;
+      if (order.length > 0) this.page++;
+      this.orders = order;
+      refresher.complete();
+    });
 
   }
 

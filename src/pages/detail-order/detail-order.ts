@@ -2,6 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Http, Headers } from '@angular/http';
 import { Content } from 'ionic-angular';
+import { WoocommerceProvider } from '../../providers/woocommerce/woocommerce';
+
 // Custom
 import { Storage } from '@ionic/storage';
 import { Core } from '../../service/core.service';
@@ -24,6 +26,13 @@ export class DetailOrderPage {
 	date_format: string = date_format;
 	@ViewChild(Content) content: Content;
 	trans: Object;
+	notes = [];
+	shipped: boolean = false;
+	shop: any;
+	tracking: any = {
+		url: '',
+		track_number: ''
+	};
 
 	constructor(
 		public navCtrl: NavController,
@@ -33,7 +42,8 @@ export class DetailOrderPage {
 		public core: Core,
 		public translate: TranslateService,
 		public Toast: Toast,
-		public alertCtrl: AlertController
+		public alertCtrl: AlertController,
+		public WP: WoocommerceProvider
 	) {
 		translate.get('detailOrder.popup_cancel').subscribe(trans => this.trans = trans);
 		this.id = navParams.get('id');
@@ -48,20 +58,47 @@ export class DetailOrderPage {
 	}
 	getData() {
 		this.core.showLoading();
-		let headers = new Headers();
-		headers.set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-		headers.set('Authorization', 'Bearer ' + this.login["token"]);
-		this.http.get(wordpress_url + '/wp-json/wooconnector/order/getorderbyid?order=' + this.id + '&time=' + new Date().getTime(), {
-			headers: headers,
-			withCredentials: true
-		}).subscribe(res => {
 
+		let getOrder = this.WP.get({
+			wcmc: false,
+			method: 'GET',
+			api: 'orders/' + this.id
+		});
+
+		getOrder.subscribe(res => {
+
+			console.log('detail order vendor');
 			console.log(res.json());
 
 			this.data = res.json();
+
+		}, err => {
+
+			console.log(err);
+
+		});
+
+		let getOrderNotes = this.WP.get({
+			wcmc: false,
+			method: 'GET',
+			api: 'orders/' + this.id + '/notes'
+		});
+
+		getOrderNotes.subscribe(res => {
+
+			console.log('order notes');
+			console.log(res.json());
+
+			this.notes = res.json();
 			this.core.hideLoading();
 			this.content.resize();
+
+		}, err => {
+
+			console.log(err);
+
 		});
+
 	}
 	changeStatus() {
 		let alert = this.alertCtrl.create({

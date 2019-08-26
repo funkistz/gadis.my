@@ -276,7 +276,8 @@
       <ion-grid>
         <ion-row>
           <ion-col>
-            <h5>Pending Order <ion-badge color="danger" *ngIf="orders.length > 0">{{ orders.length }}</ion-badge>
+            <h5 style="margin-top:0;">Latest Pending Order <ion-badge color="danger" *ngIf="orders.length > 0">
+                {{ orders.length }}</ion-badge>
             </h5>
           </ion-col>
           <ion-col text-right *ngIf="shopStatus == 'registered'">
